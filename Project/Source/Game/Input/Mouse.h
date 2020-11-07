@@ -16,8 +16,6 @@ public:
 	~Mouse() noexcept;
 
 	void initialize();
-	void update();
-	void resetMousePosition();
 
 	bool getState(int button) const { return mState[button]; }
 	const Vector2& getOriginPosition() const { return mOriginPosition; }

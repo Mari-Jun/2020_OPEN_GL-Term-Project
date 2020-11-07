@@ -29,6 +29,7 @@ void FollowCameraActor::initailize()
 
 void FollowCameraActor::updateActor(float deltatime)
 {
+
 }
 
 void FollowCameraActor::actorInput()

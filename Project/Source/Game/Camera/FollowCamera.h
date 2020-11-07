@@ -25,7 +25,7 @@ public:
 	void setYawSpeed(float speed) { mYawSpeed = speed; }
 
 private:
-	Vector3 updateCameraPos();
+	Vector3 updateCameraPos(Vector3& cameraForward);
 
 	std::weak_ptr<class Actor> mFollower;
 

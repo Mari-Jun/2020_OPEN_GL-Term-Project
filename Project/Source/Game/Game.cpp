@@ -246,9 +246,6 @@ void Game::update()
 			Fps = 0;
 		}
 
-		//Mouse Update
-		mMouse->update();
-
 		mIsUpdateActor = true;
 		for (auto actor : mActor)
 		{
@@ -278,11 +275,10 @@ void Game::update()
 		}
 		deadActor.clear();
 
-				//Mouse Reset
-		mMouse->resetMousePosition();
-
 		mRenderer->update(deltatime);
 	}
+
+
 }
 
 void Game::draw()

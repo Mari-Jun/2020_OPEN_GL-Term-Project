@@ -42,11 +42,6 @@ bool Window::initialize()
 	glutDisplayFunc(renderCallBack);
 	glutReshapeFunc(reshapeCallBack);
 
-	//Set Mouse Position
-	glutWarpPointer(static_cast<int>(mSize.x / 2), static_cast<int>(mSize.y / 2));
-	RECT rect{ static_cast<int>(mPosition.x),static_cast<int>(mPosition.y),static_cast<int>(mSize.x), static_cast<int>(mSize.y) };
-	ClipCursor(&rect);
-
 	return true;
 }
 

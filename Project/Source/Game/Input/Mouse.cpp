@@ -31,19 +31,6 @@ void Mouse::initialize()
 	glutSetCursor(GLUT_CURSOR_NONE);
 }
 
-void Mouse::update()
-{
-	mOriginPosition = mPosition;
-}
-
-void Mouse::resetMousePosition()
-{
-	glutWarpPointer(static_cast<int>(Window::getSize().x / 2), static_cast<int>(Window::getSize().y / 2));
-	mPosition = Vector2(0.0f, 0.0f);
-	mOriginPosition = mPosition;
-	
-}
-
 GLvoid mouseClickCallBack(int button, int state, int x, int y)
 {
 	Mouse::mState[button] = (state == GLUT_DOWN);
@@ -56,6 +43,13 @@ GLvoid mouseClickMoveCallBack(int x, int y)
 
 GLvoid mouseMoveCallBack(int x, int y)
 {
+	RECT rect{ 10, 40, static_cast<LONG>(Window::getSize().x - 10), static_cast<LONG>(Window::getSize().y - 10) };
+	ClipCursor(&rect);
+
+	glutWarpPointer(static_cast<int>(Window::getSize().x / 2), static_cast<int>(Window::getSize().y / 2));
+	Mouse::mPosition = Vector2(0.0f, 0.0f);
+	Mouse::mOriginPosition = Mouse::mPosition;
+
 	Mouse::mPosition.x = static_cast<float>(x) - Window::getSize().x / 2.0f;
 	Mouse::mPosition.y = (static_cast<float>(y) - Window::getSize().y / 2.0f) /** -1.0f*/;
 }

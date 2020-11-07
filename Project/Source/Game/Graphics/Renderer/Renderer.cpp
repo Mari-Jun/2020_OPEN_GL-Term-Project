@@ -110,8 +110,9 @@ void Renderer::drawLineComponent()
 void Renderer::drawMeshComponent()
 {
 	glEnable(GL_DEPTH_TEST);
-	glFrontFace(GL_CW);
 	glEnable(GL_CULL_FACE);
+	glFrontFace(GL_CW);
+	
 	//glDisable(GL_BLEND);
 
 	mMeshShader->setActive();

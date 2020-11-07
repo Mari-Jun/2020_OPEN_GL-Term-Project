@@ -34,26 +34,28 @@ void FollowCamera::update(float deltatime)
 
 	auto owner = mOwner.lock();
 
+	Vector3 cameraForward = owner->getForward();
+
 	Quaternion yaw(Vector3::UnitY, mYawSpeed * deltatime);
 	owner->setRotation(Quaternion::Concatenate(owner->getRotation(), yaw));
-	Vector3 up = Vector3::Transform(Vector3::UnitY, yaw);
+	cameraForward = Vector3::Transform(cameraForward, yaw);
 
-	Vector3 right = Vector3::Cross(up, owner->getForward());
-	right.Normalize();
+	Vector3 up = Vector3::UnitY;
+	Vector3 right = Vector3::Cross(up, cameraForward);
 
 	mPitch += mPitchSpeed * deltatime;
-	if (mPitch == Math::Clamp(mPitch, -mMaxPitch, mMaxPitch))
-	{
-		Quaternion pitch(right, mPitchSpeed * deltatime);
-		owner->setRotation(Quaternion::Concatenate(owner->getRotation(), pitch));
-		up = Vector3::Transform(up, pitch);
-	}
 	mPitch = Math::Clamp(mPitch, -mMaxPitch, mMaxPitch);
 
-	owner->setPosition(updateCameraPos());
+	Quaternion pitch(right, mPitch);
+	cameraForward = Vector3::Transform(cameraForward, pitch);
+	up = Vector3::Transform(up, pitch);
+
+	std::cout << up.x << ", " << up.y << ", " << up.z << std::endl;
+
+	owner->setPosition(updateCameraPos(cameraForward));
 
 	auto follower = mFollower.lock();
-	Vector3 target = follower->getPosition() + owner->getForward() * mTargetDist;
+	Vector3 target = follower->getPosition() + cameraForward * mTargetDist;
 	Matrix4 view = Matrix4::CreateLookAt(owner->getPosition(), target, up);
 	setViewMatrix(view);
 }
@@ -62,7 +64,8 @@ void FollowCamera::SnapToIdeal()
 {
 	auto owner = mOwner.lock();
 
-	owner->setPosition(updateCameraPos());
+	Vector3 cameraForward = owner->getForward();
+	owner->setPosition(updateCameraPos(cameraForward));
 
 	auto follower = mFollower.lock();
 	Vector3 target = follower->getPosition() + owner->getForward() * mTargetDist;
@@ -70,13 +73,12 @@ void FollowCamera::SnapToIdeal()
 	setViewMatrix(view);
 }
 
-Vector3 FollowCamera::updateCameraPos()
+Vector3 FollowCamera::updateCameraPos(Vector3& cameraForward)
 {
 	auto follower = mFollower.lock();
-	auto owner = mOwner.lock();
 
 	Vector3 cameraPos = follower->getPosition();
-	cameraPos -= owner->getForward() * mHDist;
+	cameraPos -= cameraForward * mHDist;
 	cameraPos += Vector3::UnitY * mVDist;
 	return cameraPos;
 }

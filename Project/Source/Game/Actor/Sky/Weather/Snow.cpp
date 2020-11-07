@@ -24,7 +24,7 @@ void Snow::initailize()
 	mSnow->setScale(getScale());
 	mSnow->setRotation(getRotation());
 	mSnow->setPosition(getPosition());
-	mSnow->setMeshColor(Vector3::Rgb(Vector3(234.0f, 234.0f, 234.0f)));
+	mSnow->setMeshColor(Vector3::Rgb(Vector3(256.0f, 256.0f, 256.0f)));
 	mSnow->initailize();
 
 	//Create MoveComponent
