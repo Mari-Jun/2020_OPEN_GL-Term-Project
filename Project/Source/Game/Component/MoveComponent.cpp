@@ -9,12 +9,12 @@ MoveComponent::MoveComponent(const std::weak_ptr<Actor>& actor, int updateOrder)
 	, mSideSpeed(0.0f)
 	, mUpSpeed(0.0f)
 {
-	std::cerr << "Create MoveComponent\n";
+
 }
 
 MoveComponent::~MoveComponent()
 {
-	std::cerr << "Destory MoveComponent\n";
+
 }
 
 void MoveComponent::update(float deltatime)

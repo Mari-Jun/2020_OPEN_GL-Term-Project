@@ -5,7 +5,6 @@
 #include "../Window.h"
 #include "../../Math/Math.h"
 
-
 class Renderer : public std::enable_shared_from_this<Renderer>
 {
 public:
@@ -28,7 +27,6 @@ public:
 
 private:
 	bool loadShader();
-	void setLightShader();
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;
@@ -46,16 +44,14 @@ private:
 	Matrix4 mView;
 	Matrix4 mProjection;
 
-	bool mLight;
-	Vector3 mAmbientLight;
-	std::vector<struct DirectionalLight> mDirLight;
-
+	std::unique_ptr<class Light> mLight;
 	std::unique_ptr<class Window> mWindow;
 
 public:
 	void setViewMatrix(const Matrix4& view) { mView = view; }
 	void setProjectionMatrix(const Matrix4& projection) { mProjection = projection; }
 
+	const std::weak_ptr<class Game>& getGame() const { return mGame; }
 	std::weak_ptr<class Texture> getTexture(const std::string& fileName);
 	std::shared_ptr<class Mesh> getMesh(const std::string& fileName);
 

@@ -1,8 +1,8 @@
 #pragma once
 #include "CameraComponent.h"
 
-//1인칭 카메라
-//마우스 미사용 카메라
+//3인칭 카메라
+//마우스 사용 카메라
 
 class FPSMouseCamera : public CameraComponent
 {

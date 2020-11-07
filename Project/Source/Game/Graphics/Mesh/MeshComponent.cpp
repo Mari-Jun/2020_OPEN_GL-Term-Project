@@ -13,13 +13,12 @@ MeshComponent::MeshComponent(const std::weak_ptr<class Actor>& owner, const std:
 	, mRender(render)
 	, mTextureIndex(0)
 {
-	std::cerr << "Create MeshComponent\n";
+
 }
 
 MeshComponent::~MeshComponent()
 {
 	mRender.lock()->removeMeshComponent(std::dynamic_pointer_cast<MeshComponent>(weak_from_this().lock()));
-	std::cerr << "Destory MeshComponent\n";	
 }
 
 void MeshComponent::initailize()

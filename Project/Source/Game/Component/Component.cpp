@@ -6,7 +6,7 @@ Component::Component(const std::weak_ptr<class Actor>& owner, int updateOrder)
 	: mOwner(owner)
 	, mUpdateOrder(updateOrder)
 {
-	std::cerr << "Create Component\n";
+
 }
 
 Component::~Component()
@@ -15,7 +15,6 @@ Component::~Component()
 	{
 		mOwner.lock()->removeComponent(weak_from_this());
 	}
-	std::cerr << "Destory Component\n";
 }
 
 void Component::initailize()

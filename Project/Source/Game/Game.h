@@ -30,11 +30,9 @@ private:
 
 	bool mIsUpdateActor;
 
-	std::shared_ptr<class CameraActor> mCameraActor;
+	std::shared_ptr<class CameraActor> mMouseCamera;
+	std::shared_ptr<class FollowCameraActor> mFollowCamera;
 	std::vector<std::shared_ptr<class PlaneActor>> mPlaneActor;
-
-	std::shared_ptr<class DefualtShape> mLightActor;
-	bool mLightAni;
 
 public:
 	void run();
@@ -52,8 +50,6 @@ public:
 
 	const std::vector<std::shared_ptr<class PlaneActor>>& getPlanes() { return mPlaneActor; }
 
-	bool getLightAni() const { return mLightAni; }
-
 private:
 	void processInput();
 	void update();
@@ -61,4 +57,6 @@ private:
 	
 	void loadData();
 	void unLoadData();
+	void loadActorData();
+	void loadWorldBox();
 };

@@ -10,7 +10,7 @@ Actor::Actor(const wptrGame& Game)
 	, mGame(Game)
 	, mRechangeWorldTransform(true)
 {
-	std::cerr << "Create Actor\n";
+	
 }
 
 Actor::~Actor()
@@ -20,7 +20,6 @@ Actor::~Actor()
 		mComponent.clear();
 	}
 	mGame.lock()->removeActor(weak_from_this());
-	std::cerr << "Destory Actor\n";
 }
 
 void Actor::initailize()

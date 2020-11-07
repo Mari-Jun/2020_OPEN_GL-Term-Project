@@ -4,8 +4,11 @@
 #include "Input/KeyBoard.h"
 #include "Input/Mouse.h"
 #include "Actor/PlaneActor.h"
-#include "Actor/CameraActor.h"
-#include "Actor/CraneActor.h"
+#include "Actor/Camera/CameraActor.h"
+#include "Actor/Camera/FollowCameraActor.h"
+#include "Actor/Robot/RobotActor.h"
+#include "Actor/Sky/Weather/Cloud.h"
+#include "Actor/Sky/Solor/Solor.h"
 #include "Actor/Defualt/DefualtShape.h"
 #include "Game.h"
 #include "Graphics/Mesh/MeshComponent.h"
@@ -18,7 +21,6 @@ Game::Game()
 	, mIsRunning(true)
 	, mIsPaused(false)
 	, mIsUpdateActor(false)
-	, mLightAni(false)
 {
 
 }
@@ -97,28 +99,8 @@ void Game::shutDown()
 
 void Game::loadData()
 {
-	//Create CameraActor
-	mCameraActor = std::make_shared<CameraActor>(weak_from_this());
-	mCameraActor->initailize();
-
-	//Create PlaneActor //¹Ù´Ú¸¸µé±â
-	auto mPlaneActor = std::make_shared<PlaneActor>(weak_from_this());
-	mPlaneActor->setPosition(Vector3(0.0f, -30.0f, 100.0f));
-	mPlaneActor->setScale(100.0f);
-	mPlaneActor->initailize();
-	mPlaneActor->setPlaneColor(Vector3(0.8f, 0.8f, 0.8f));
-
-	//Create CraneActor
-	auto mCraneActor = std::make_shared<CraneActor>(weak_from_this());
-	mCraneActor->setPosition(Vector3(0.0f, -28.0f, 100.0f));
-	mCraneActor->initailize();
-
-	//Create LightActor
-	mLightActor = std::make_shared<DefualtShape>(weak_from_this());
-	mLightActor->setPosition(Vector3(80.0f, 30.0f, 100.0f));
-	mLightActor->setScale(10.0f);
-	mLightActor->setMeshColor(Vector3(1.0f, 1.0f, 1.0f));
-	mLightActor->initailize();
+	loadActorData();
+	loadWorldBox();
 }
 
 void Game::unLoadData()
@@ -132,6 +114,51 @@ void Game::unLoadData()
 	{
 		mRenderer->unLoadData();
 	}
+}
+
+void Game::loadActorData()
+{
+	//Create ControlRobot
+	auto robot = std::make_shared<RobotActor>(weak_from_this(), RobotActor::RobotState::Control);
+	robot->initailize();
+
+	//Create CameraActor
+	/*mMouseCamera = std::make_shared<CameraActor>(weak_from_this());
+	mMouseCamera->initailize();*/
+	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), robot);
+	mFollowCamera->initailize();
+
+	//Create pyramid
+	auto pyramid = std::make_shared<DefualtShape>(weak_from_this(), DefualtShape::Shape::Pyramid);
+	pyramid->setPosition(Vector3(0.0f, -50.0f, 400.0f));
+	pyramid->setScale(4.0f);
+	pyramid->setMeshColor(Vector3::Rgb(Vector3(229.0f, 216.0f, 92.0f)));
+	pyramid->initailize();
+
+	//Create Cloud
+	auto cloud = std::make_shared<Cloud>(weak_from_this());
+	cloud->setPosition(Vector3(0.0f, 500.0f, 400.0f));
+	cloud->setScale(400.0f);
+	cloud->initailize();
+
+	//Create Solor
+	auto solor = std::make_shared<Solor>(weak_from_this());
+	solor->setPosition(Vector3(0.0f, 150.0f, 400.0f));
+	solor->initailize();
+}
+
+void Game::loadWorldBox()
+{
+	//Create WorldBox
+	std::shared_ptr<PlaneActor> plane = nullptr;
+	Quaternion q;
+
+	//Set floor
+	plane = std::make_shared<PlaneActor>(weak_from_this());
+	plane->setPosition(Vector3(0.0f, -30.0f, 400.0f));
+	plane->setScale(500.0f);
+	plane->initailize();
+	plane->setPlaneColor(Vector3(0.5f, 0.5f, 0.5f));
 }
 
 void Game::addActor(const std::shared_ptr<Actor>& actor)
@@ -192,15 +219,6 @@ void Game::processInput()
 
 	mRenderer->processInput();
 
-	if (mKeyBoard->isKeyPressed('r'))
-	{
-		mLightAni = true;
-	}
-	if (mKeyBoard->isKeyPressed('R'))
-	{
-		mLightAni = false;
-	}
-
 	mIsUpdateActor = true;
 	for (auto actor : mActor)
 	{
@@ -230,13 +248,6 @@ void Game::update()
 
 		//Mouse Update
 		mMouse->update();
-
-		if (mLightAni)
-		{
-			mLightActor->setPosition(mLightActor->getPosition() - Vector3(0.0f, 0.0f, 100.0f));
-			mLightActor->setPosition(Vector3::Transform(mLightActor->getPosition(), Quaternion(Vector3::UnitY, Math::ToRadians(-200.0f * deltatime))));
-			mLightActor->setPosition(mLightActor->getPosition() + Vector3(0.0f, 0.0f, 100.0f));
-		}
 
 		mIsUpdateActor = true;
 		for (auto actor : mActor)
@@ -270,7 +281,6 @@ void Game::update()
 				//Mouse Reset
 		mMouse->resetMousePosition();
 
-		//Renderer Update
 		mRenderer->update(deltatime);
 	}
 }

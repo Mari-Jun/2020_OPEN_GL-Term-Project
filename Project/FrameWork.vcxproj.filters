@@ -18,7 +18,64 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Game.cpp">
+    <ClCompile Include="Source\Game\Actor\Camera\CameraActor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\Actor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\PlaneActor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Camera\CameraComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Camera\FollowCamera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Camera\FPSCamera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Camera\FPSMouseCamera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\BoxComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Component.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\MoveComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Light\Light.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Mesh\LineComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Mesh\Mesh.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Mesh\MeshComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Renderer\Renderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Shader\Shader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Shader\VertexArray.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Texture\Texture.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Graphics\Window.cpp">
@@ -30,21 +87,6 @@
     <ClCompile Include="Source\Game\Input\Mouse.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actor\Actor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Component\Component.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Component\MoveComponent.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Math\Vector2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Math\Vector3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game\Math\Matrix3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -54,28 +96,22 @@
     <ClCompile Include="Source\Game\Math\Quaternion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Shader\Shader.cpp">
+    <ClCompile Include="Source\Game\Math\Vector2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Renderer\Renderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Shader\VertexArray.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Mesh\Mesh.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Component\BoxComponent.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp">
+    <ClCompile Include="Source\Game\Math\Vector3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Physics\Coliision\AABB.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Physics\Coliision\Capsule.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Game\Physics\Coliision\Collision.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Physics\Coliision\ConvexPolygon.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Physics\Coliision\LineSegment.cpp">
@@ -87,54 +123,96 @@
     <ClCompile Include="Source\Game\Physics\Coliision\Sphere.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Physics\Coliision\Capsule.cpp">
+    <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Physics\Coliision\ConvexPolygon.cpp">
+    <ClCompile Include="Source\Game\Game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actor\CameraActor.cpp">
+    <ClCompile Include="Source\Game\Actor\Sky\Solor\Solor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Camera\FPSCamera.cpp">
+    <ClCompile Include="Source\Game\Actor\Sky\Weather\Cloud.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Camera\CameraComponent.cpp">
+    <ClCompile Include="Source\Game\Actor\Sky\Weather\Snow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Mesh\MeshComponent.cpp">
+    <ClCompile Include="Source\Game\Actor\Robot\RobotActor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Camera\FPSMouseCamera.cpp">
+    <ClCompile Include="Source\Game\Actor\Robot\RobotArm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Texture\Texture.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Mesh\LineComponent.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Actor\PlaneActor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Actor\ArmActor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Actor\CMiddleActor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Actor\CraneActor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Light\Light.cpp">
+    <ClCompile Include="Source\Game\Actor\Robot\RobotHead.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Game\Game.h">
+    <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\Actor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\PlaneActor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Camera\CameraComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Camera\FollowCamera.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Camera\FPSCamera.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Camera\FPSMouseCamera.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\BoxComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Component.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\MoveComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Etc\DeltaTime.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Light\Light.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Mesh\LineComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Mesh\Mesh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Mesh\MeshComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Renderer\Renderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Shader\Shader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Shader\VertexArray.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Texture\stb_image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Texture\Texture.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Graphics\Window.h">
@@ -146,25 +224,10 @@
     <ClInclude Include="Source\Game\Input\Mouse.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Math\GLMath.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Game\Math\Math.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Etc\DeltaTime.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\Actor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Component\Component.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Component\MoveComponent.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Math\Vector2.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Math\Vector3.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Math\Matrix3.h">
@@ -173,37 +236,31 @@
     <ClInclude Include="Source\Game\Math\Matrix4.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Math\GLMath.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game\Math\Quaternion.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Shader\Shader.h">
+    <ClInclude Include="Source\Game\Math\Vector2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Renderer\Renderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Shader\VertexArray.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Mesh\Mesh.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Component\BoxComponent.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Physics\PhysicsEngine.h">
+    <ClInclude Include="Source\Game\Math\Vector3.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Physics\Coliision\AABB.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Physics\Coliision\Capsule.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Game\Physics\Coliision\Collision.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Physics\Coliision\ConvexPolygon.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Game\Physics\Coliision\LineSegment.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Physics\Coliision\OBB.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Physics\Coliision\Plane.h">
@@ -212,69 +269,41 @@
     <ClInclude Include="Source\Game\Physics\Coliision\Sphere.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Physics\Coliision\Capsule.h">
+    <ClInclude Include="Source\Game\Physics\PhysicsEngine.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Physics\Coliision\OBB.h">
+    <ClInclude Include="Source\Game\Game.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Physics\Coliision\ConvexPolygon.h">
+    <ClInclude Include="Source\Game\Actor\Sky\Solor\Solor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actor\CameraActor.h">
+    <ClInclude Include="Source\Game\Actor\Sky\Weather\Cloud.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Camera\FPSCamera.h">
+    <ClInclude Include="Source\Game\Actor\Sky\Weather\Snow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Camera\CameraComponent.h">
+    <ClInclude Include="Source\Game\Actor\Robot\RobotActor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Mesh\MeshComponent.h">
+    <ClInclude Include="Source\Game\Actor\Robot\RobotArm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Camera\FPSMouseCamera.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Texture\Texture.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Texture\stb_image.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Mesh\LineComponent.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\PlaneActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\ArmActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\CMiddleActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\CraneActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Light\Light.h">
+    <ClInclude Include="Source\Game\Actor\Robot\RobotHead.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Game\Graphics\Shader\Basic.vert" />
-    <None Include="Source\Game\Graphics\Shader\Basic.frag" />
     <None Include="Source\Game\Graphics\Shader\2D.frag" />
     <None Include="Source\Game\Graphics\Shader\2D.vert" />
-    <None Include="Source\Game\Graphics\Shader\Mesh.vert" />
-    <None Include="Source\Game\Graphics\Shader\Mesh.frag" />
-    <None Include="Source\Game\Graphics\Shader\Light.vert" />
+    <None Include="Source\Game\Graphics\Shader\Basic.frag" />
+    <None Include="Source\Game\Graphics\Shader\Basic.vert" />
     <None Include="Source\Game\Graphics\Shader\Light.frag" />
-    <None Include="Source\Game\Graphics\Shader\Phong.vert" />
+    <None Include="Source\Game\Graphics\Shader\Light.vert" />
+    <None Include="Source\Game\Graphics\Shader\Mesh.frag" />
+    <None Include="Source\Game\Graphics\Shader\Mesh.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
-    <None Include="Source\Game\Graphics\Shader\Phong2.frag" />
+    <None Include="Source\Game\Graphics\Shader\Phong.vert" />
   </ItemGroup>
 </Project>

@@ -50,18 +50,13 @@ void main()
 
 	vec3 halfVec = normalize(toCamera + uDirLight.direction);
 
-	//프래그먼트 법선과, 표면에서 카메라고 향하는 벡터의 내적값
-	//1.0에서 빼주는 것은 내적을 반전하는 효과. 반전하지 않을 경우 메쉬의 중심부가 밝아짐
-	float rimLight = 1.0 - max(0.0, dot(normal, toCamera));
-	rimLight = pow(rimLight, 2);
-
 	//프래그먼트 법선과 Directional Light의 방향과의 내적
 	float lightAmt = max(0.0, dot(normal, uDirLight.direction));
 
 	//라이트의 양을 결정
 	vec3 fragLight = uDirLight.diffuseColor * lightAmt;
-	vec3 diffuseLight = fragColor * fragLight + rimLight;
-	//vec3 diffuseLight = texture(uDiffuseTexture, fragTexCoord).xyz * fragLight + rimLight;
+	vec3 diffuseLight = fragColor * fragLight;
+	//vec3 diffuseLight = texture(uDiffuseTexture, fragTexCoord).xyz * fragLight;
 
 	//스펙큘러 라이트를 구함
 	//float specBright = pow(max(0.0, dot(refl, toCamera)), uSpecBrightness);

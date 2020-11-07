@@ -10,12 +10,11 @@ BoxComponent::BoxComponent(const std::weak_ptr<class Actor>& owner, const std::w
 	, mWorldBox(Vector3::Zero, Vector3::Zero)
 	, mIsRotate(true)
 {
-	std::cerr << "Create BoxComponent\n";
+
 }
 
 BoxComponent::~BoxComponent()
 {
-	std::cerr << "Destory BoxComponent\n";
 	mEngine.lock()->removeBox(std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
 }
 

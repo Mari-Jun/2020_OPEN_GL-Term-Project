@@ -8,12 +8,12 @@ Mesh::Mesh()
 	: mVertexArray(nullptr)
 	, mBox(Vector3::Zero, Vector3::Zero)
 {
-	std::cerr << "Create Mesh\n";
+
 }
 
 Mesh::~Mesh()
 {
-	std::cerr << "Destory Mesh\n";
+
 }
 
 bool Mesh::load(const std::string& fileName)

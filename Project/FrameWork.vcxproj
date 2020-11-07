@@ -119,6 +119,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>#(ProjectDir)\Source\Game;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,12 +145,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Actor\Actor.cpp" />
-    <ClCompile Include="Source\Game\Actor\ArmActor.cpp" />
-    <ClCompile Include="Source\Game\Actor\CameraActor.cpp" />
-    <ClCompile Include="Source\Game\Actor\CMiddleActor.cpp" />
-    <ClCompile Include="Source\Game\Actor\CraneActor.cpp" />
+    <ClCompile Include="Source\Game\Actor\Camera\CameraActor.cpp" />
+    <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp" />
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
+    <ClCompile Include="Source\Game\Actor\Robot\RobotActor.cpp" />
+    <ClCompile Include="Source\Game\Actor\Robot\RobotArm.cpp" />
+    <ClCompile Include="Source\Game\Actor\Robot\RobotHead.cpp" />
+    <ClCompile Include="Source\Game\Actor\Sky\Weather\Cloud.cpp" />
+    <ClCompile Include="Source\Game\Actor\Sky\Weather\Snow.cpp" />
+    <ClCompile Include="Source\Game\Actor\Sky\Solor\Solor.cpp" />
+    <ClCompile Include="Source\Game\Camera\FollowCamera.cpp" />
     <ClCompile Include="Source\Game\Camera\FPSCamera.cpp" />
     <ClCompile Include="Source\Game\Camera\FPSMouseCamera.cpp" />
     <ClCompile Include="Source\Game\Component\BoxComponent.cpp" />
@@ -185,12 +191,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Actor.h" />
-    <ClInclude Include="Source\Game\Actor\ArmActor.h" />
-    <ClInclude Include="Source\Game\Actor\CameraActor.h" />
-    <ClInclude Include="Source\Game\Actor\CMiddleActor.h" />
-    <ClInclude Include="Source\Game\Actor\CraneActor.h" />
+    <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h" />
+    <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h" />
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
+    <ClInclude Include="Source\Game\Actor\Robot\RobotActor.h" />
+    <ClInclude Include="Source\Game\Actor\Robot\RobotArm.h" />
+    <ClInclude Include="Source\Game\Actor\Robot\RobotHead.h" />
+    <ClInclude Include="Source\Game\Actor\Sky\Weather\Cloud.h" />
+    <ClInclude Include="Source\Game\Actor\Sky\Weather\Snow.h" />
+    <ClInclude Include="Source\Game\Actor\Sky\Solor\Solor.h" />
+    <ClInclude Include="Source\Game\Camera\FollowCamera.h" />
     <ClInclude Include="Source\Game\Camera\FPSCamera.h" />
     <ClInclude Include="Source\Game\Camera\FPSMouseCamera.h" />
     <ClInclude Include="Source\Game\Component\BoxComponent.h" />
@@ -239,7 +250,6 @@
     <None Include="Source\Game\Graphics\Shader\Mesh.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
-    <None Include="Source\Game\Graphics\Shader\Phong2.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
