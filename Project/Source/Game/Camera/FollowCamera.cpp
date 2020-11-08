@@ -50,8 +50,6 @@ void FollowCamera::update(float deltatime)
 	cameraForward = Vector3::Transform(cameraForward, pitch);
 	up = Vector3::Transform(up, pitch);
 
-	std::cout << up.x << ", " << up.y << ", " << up.z << std::endl;
-
 	owner->setPosition(updateCameraPos(cameraForward));
 
 	auto follower = mFollower.lock();

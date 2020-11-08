@@ -40,29 +40,25 @@ uniform DirectionalLight uDirLight;
 void main()
 {
 	//프래그먼트 법선의 정규화
-	vec3 normal = normalize(fragNormal);
+	vec3 N = normalize(fragNormal);
+
+	//광원 방향
+	vec3 L = normalize(-uDirLight.direction);
 
 	//표면에서 카메라로 향하는 벡터
-	vec3 toCamera = normalize(uCameraPos - fragWorldPos);
+	vec3 V = normalize(uCameraPos - fragWorldPos);
 
 	//광선이 프래그먼트로부터 튕겨 나오는 벡터
-	//vec3 refl = reflect(-uDirLight.direction, normal);
-
-	vec3 halfVec = normalize(toCamera + uDirLight.direction);
+	vec3 R = normalize(reflect(-L, N));
 
 	//프래그먼트 법선과 Directional Light의 방향과의 내적
-	float lightAmt = max(0.0, dot(normal, uDirLight.direction));
+	float lightAmt = max(0.0, dot(N, L));
 
 	//라이트의 양을 결정
-	vec3 fragLight = uDirLight.diffuseColor * lightAmt;
-	vec3 diffuseLight = fragColor * fragLight;
-	//vec3 diffuseLight = texture(uDiffuseTexture, fragTexCoord).xyz * fragLight;
+	vec3 diffuseLight = uDirLight.diffuseColor * lightAmt;
 
 	//스펙큘러 라이트를 구함
-	//float specBright = pow(max(0.0, dot(refl, toCamera)), uSpecBrightness);
-	float specBright = pow(max(0.0, dot(halfVec, normal)), uSpecBrightness);
-	vec3 specularLight = uDirLight.specularColor * uDirLight.diffuseColor * specBright;
-	//vec3 specularLight = texture(uSpecularTexture, fragTexCoord).x * uDirLight.diffuseColor * specBright;
+	vec3 specularLight =  uDirLight.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
 
 	//앰비언트 라이트를 구함
 	vec3 ambientLight = uAmbientLight * fragColor;
@@ -70,5 +66,4 @@ void main()
 	vec3 Phong = diffuseLight + specularLight + ambientLight;
 
 	outColor = texture(uDiffuseTexture, fragTexCoord) + vec4(Phong, 1.0);
-	//outColor = vec4(Phong, 1.0);
 }

@@ -25,8 +25,8 @@ void Light::initailize()
 	DirectionalLight dirLight;
 	dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 	dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
-	dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
-	dirLight.intensity = 1.0f;
+	dirLight.specularColor = Vector3(0.3f, 0.3f, 0.3f);
+	dirLight.intensity = 0.7f;
 
 	mDirLight.push_back(dirLight);
 }

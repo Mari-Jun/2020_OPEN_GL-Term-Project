@@ -109,11 +109,11 @@ void Renderer::drawLineComponent()
 
 void Renderer::drawMeshComponent()
 {
+	//Draw Mesh Component
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CW);
-	
-	//glDisable(GL_BLEND);
+	glDisable(GL_BLEND);
 
 	mMeshShader->setActive();
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
@@ -126,6 +126,13 @@ void Renderer::drawMeshComponent()
 			mComp.lock()->draw(mMeshShader);
 		}
 	}
+
+	//Draw Texture
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
 }
 
