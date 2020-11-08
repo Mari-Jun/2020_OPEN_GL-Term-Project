@@ -8,7 +8,7 @@
 Building::Building(const std::weak_ptr<class Game>& game)
 	: Actor(game)
 {
-	std::cout << "브랜치 실험\n";
+
 }
 
 Building::~Building()
@@ -36,7 +36,6 @@ void Building::initailize()
 		auto x = pos(mersenne) * (mi(mersenne) == 0 ? -1 : 1);
 		auto y = buliding->getScale().y / 2;
 		auto z = pos(mersenne) * (mi(mersenne) == 0 ? -1 : 1);
-		std::cout << x << ", " << y << ", " << z << std::endl;
 		Vector3 p(x, y, z);
 		buliding->setPosition(getPosition() + p);
 

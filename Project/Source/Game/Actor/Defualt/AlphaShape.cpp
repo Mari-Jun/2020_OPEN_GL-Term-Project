@@ -30,16 +30,16 @@ void AlphaShape::initailize()
 	switch (mShape)
 	{
 	case AlphaShape::Shape::Box:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box");
 		break;
 	case AlphaShape::Shape::Sphere:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere");
 		break;
 	case AlphaShape::Shape::Slinder:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder");
 		break;
 	case AlphaShape::Shape::Pyramid:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid");
 		break;
 	default:
 		break;

@@ -23,7 +23,7 @@ void PlaneActor::initailize()
 	auto game = getGame().lock();
 
 	//Create MeshComponent
-	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Plane.obj");
+	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Plane");
 	//추후에 Box.obj도 넣어서 입체감을 주는 벽과 그냥 평면을 따로 구분해주자.
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), game->getRenderer());
 	mMeshComponent->setMesh(mesh);

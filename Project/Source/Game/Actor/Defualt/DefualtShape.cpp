@@ -30,16 +30,16 @@ void DefualtShape::initailize()
 	switch (mShape)
 	{
 	case DefualtShape::Shape::Box:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box");
 		break;
 	case DefualtShape::Shape::Sphere:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere");
 		break;
 	case DefualtShape::Shape::Slinder:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder");
 		break;
 	case DefualtShape::Shape::Pyramid:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid.obj");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid");
 		break;
 	default:
 		break;

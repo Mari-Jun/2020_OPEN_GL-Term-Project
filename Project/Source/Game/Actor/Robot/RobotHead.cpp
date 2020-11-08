@@ -24,7 +24,7 @@ void RobotHead::initailize()
 	Actor::initailize();
 
 	//Create MeshComponent
-	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box.obj");
+	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box");
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mMeshComponent->initailize();
 	mMeshComponent->setMesh(mesh);

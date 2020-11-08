@@ -11,7 +11,6 @@
 MeshComponent::MeshComponent(const std::weak_ptr<class Actor>& owner, const std::weak_ptr<class Renderer>& render)
 	: Component(owner)
 	, mRender(render)
-	, mColor(Vector3(1.0f,1.0f,1.0f))
 	, mTextureIndex(0)
 {
 
