@@ -8,7 +8,7 @@
 Building::Building(const std::weak_ptr<class Game>& game)
 	: Actor(game)
 {
-	std::cout << "브랜치 실험\n";
+
 }
 
 Building::~Building()
