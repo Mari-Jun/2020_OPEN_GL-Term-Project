@@ -14,5 +14,12 @@ uniform sampler2D uDiffuseTexture;
 
 void main()
 {
-	outColor = texture(uDiffuseTexture, fragTexCoord) * vec4(fragColor, 1.0);
+	if(texture(uDiffuseTexture, fragTexCoord).xyz == 0)
+	{
+		outColor = vec4(fragColor, 1.0);
+	}
+	else
+	{
+		outColor = texture(uDiffuseTexture, fragTexCoord) * vec4(fragColor, 1.0);
+	}
 }
