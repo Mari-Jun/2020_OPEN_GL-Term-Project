@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
+#include <unordered_map>
 #include "../Shader/VertexArray.h"
 #include "../../Physics/Coliision/Collision.h"
 
@@ -11,6 +12,7 @@ public:
 	~Mesh();
 
 	bool load(const std::string& fileName);
+	bool load(const std::string& fileName, std::unordered_map<std::string, Vector3>& mtl);
 	void unLoad();
 
 	const AABB& getBox() const { return mBox; }

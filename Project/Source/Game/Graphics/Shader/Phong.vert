@@ -4,6 +4,7 @@
 layout (location = 0) in vec3 inPosition;
 layout (location = 1) in vec3 inNormal;
 layout (location = 2) in vec2 inTexCoord;
+layout (location = 3) in vec3 inColor;
 
 uniform vec3 uColor;
 
@@ -39,5 +40,12 @@ void main()
 	fragTexCoord = inTexCoord;
 
 	//컬러 전달
-	fragColor = uColor;
+	if(uColor.x == 0.0 && uColor.y == 0.0 && uColor.z == 0.0)
+	{
+		fragColor = inColor;
+	}
+	else
+	{
+		fragColor = uColor;
+	}
 }

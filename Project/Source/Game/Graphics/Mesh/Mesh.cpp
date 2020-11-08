@@ -18,26 +18,34 @@ Mesh::~Mesh()
 
 bool Mesh::load(const std::string& fileName)
 {
-	//Open Mesh file
-	std::ifstream meshFile(fileName);
+	//Open Obj file
+	std::string objName = fileName + ".obj";
+	std::ifstream meshFile(objName);
 
 	if (!meshFile.is_open())
 	{
-		std::cerr << "Mesh file not found : " << fileName << '\n';
+		std::cerr << "Obj file not found : " << objName << '\n';
 		return false;
 	}
 	
+	std::unordered_map<std::string, Vector3> mtl;
+	if (!load(fileName, mtl))
+		return false;
+
 	std::vector<Vector3> position;
 	std::vector<Vector2> texcoord;
 	std::vector<Vector3> normal;
+	std::vector<Vector3> color;
 
 	std::vector<unsigned int> pIndex;
 	std::vector<unsigned int> tIndex;
 	std::vector<unsigned int> nIndex;
+	std::vector<std::string> mtlIndex;
 
 	std::stringstream ss;
 	std::string line = "";
 	std::string prefix = "";
+	std::string mtlName;
 	Vector3 vec3;
 	Vector2 vec2;
 	unsigned int tempUInt = 0;
@@ -63,6 +71,10 @@ bool Mesh::load(const std::string& fileName)
 			ss >> vec2.x >> vec2.y;
 			texcoord.push_back(vec2);
 		}
+		else if (prefix == "usemtl")
+		{
+			ss >> mtlName;
+		}
 		else if (prefix == "f")
 		{
 			int counter = 0;
@@ -71,6 +83,7 @@ bool Mesh::load(const std::string& fileName)
 				if (counter == 0)
 				{
 					pIndex.push_back(tempUInt - 1);
+					mtlIndex.push_back(mtlName);
 				}
 				else if (counter == 1)
 				{
@@ -105,12 +118,52 @@ bool Mesh::load(const std::string& fileName)
 		vertex[index].position = position[pIndex[index]];
 		vertex[index].texcoord = texcoord[tIndex[index]];
 		vertex[index].normal = normal[nIndex[index]];
+		vertex[index].color = mtl[mtlIndex[index]];
 	}
 
 	setVertexArray(std::make_shared<VertexArray>(vertex, vertex.size(), pIndex, 0));
 	for (const auto& index : vertex)
 	{
 		mBox.UpdateMinMax(Vector3(index.position.x, index.position.y, index.position.z));
+	}
+
+	return true;
+}
+
+bool Mesh::load(const std::string& fileName, std::unordered_map<std::string, Vector3>& mtl)
+{
+	//Open Mtl file
+	std::string mtlName = fileName + ".mtl";
+	std::ifstream mtlFile(mtlName);
+
+	if (!mtlFile.is_open())
+	{
+		std::cerr << "Mtl file not found : " << mtlName << '\n';
+		return false;
+	}
+
+	std::stringstream ss;
+	std::string line = "";
+	std::string prefix = "";
+	std::string name;
+	Vector3 vec3;
+	unsigned int tempUInt = 0;
+
+	while (std::getline(mtlFile, line))
+	{
+		ss.clear();
+		ss.str(line);
+		ss >> prefix;
+
+		if (prefix == "newmtl")
+		{
+			ss >> name;
+		}
+		else if (prefix == "Kd")
+		{
+			ss >> vec3.x >> vec3.y >> vec3.z;
+			mtl.emplace(name, vec3);
+		}
 	}
 
 	return true;
