@@ -1,14 +1,14 @@
-#include "DefualtShape.h"
+#include "AlphaShape.h"
 #include "../../Graphics/Window.h"
 #include "../../Game.h"
 #include "../../Component/MoveComponent.h"
 #include "../../Component/BoxComponent.h"
-#include "../../Graphics/Mesh/MeshComponent.h"
+#include "../../Graphics/Mesh/AlphaComponent.h"
 #include "../../Input/KeyBoard.h"
 #include "../../Graphics/Mesh/Mesh.h"
 #include "../PlaneActor.h"
 
-DefualtShape::DefualtShape(const std::weak_ptr<class Game>& game, Shape shape, bool collides)
+AlphaShape::AlphaShape(const std::weak_ptr<class Game>& game, Shape shape, bool collides)
 	: Actor(game)
 	, mShape(shape)
 	, mCollides(collides)
@@ -16,40 +16,40 @@ DefualtShape::DefualtShape(const std::weak_ptr<class Game>& game, Shape shape, b
 
 }
 
-DefualtShape::~DefualtShape()
+AlphaShape::~AlphaShape()
 {
 
 }
 
-void DefualtShape::initailize()
+void AlphaShape::initailize()
 {
 	Actor::initailize();
 
-	//Create MeshComponent
+	//Create AlphaComponent
 	std::shared_ptr<Mesh> mesh;
 	switch (mShape)
 	{
-	case DefualtShape::Shape::Box:
+	case AlphaShape::Shape::Box:
 		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box.obj");
 		break;
-	case DefualtShape::Shape::Sphere:
+	case AlphaShape::Shape::Sphere:
 		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere.obj");
 		break;
-	case DefualtShape::Shape::Slinder:
+	case AlphaShape::Shape::Slinder:
 		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder.obj");
 		break;
-	case DefualtShape::Shape::Pyramid:
+	case AlphaShape::Shape::Pyramid:
 		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid.obj");
 		break;
 	default:
 		break;
 	}
 
-	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mMeshComponent->initailize();
-	mMeshComponent->setMesh(mesh);
-	mMeshComponent->setColor(mMeshColor);
-	
+	mAlphaComponent = std::make_shared<AlphaComponent>(weak_from_this(), getGame().lock()->getRenderer());
+	mAlphaComponent->initailize();
+	mAlphaComponent->setMesh(mesh);
+	mAlphaComponent->setColor(mMeshColor);
+
 
 	//Create BoxComponent
 	if (mCollides)
@@ -58,20 +58,20 @@ void DefualtShape::initailize()
 		mBoxComponent->setObjectBox(mesh->getBox());
 		mBoxComponent->initailize();
 	}
-	
+
 }
 
-void DefualtShape::updateActor(float deltatime)
+void AlphaShape::updateActor(float deltatime)
 {
 
 }
 
-void DefualtShape::actorInput()
+void AlphaShape::actorInput()
 {
-	
+
 }
 
-void DefualtShape::setTexture(const std::string& fileName)
+void AlphaShape::setTexture(const std::string& fileName)
 {
-	mMeshComponent->setTexture(fileName);
+	mAlphaComponent->setTexture(fileName);
 }

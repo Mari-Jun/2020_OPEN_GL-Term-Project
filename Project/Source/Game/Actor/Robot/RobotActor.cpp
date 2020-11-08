@@ -16,12 +16,12 @@ RobotActor::RobotActor(const std::weak_ptr<class Game>& game, RobotState state)
 	, mAnimation(false)
 	, mState(state)
 {
-	std::cerr << "Create RobotActor\n";
+
 }
 
 RobotActor::~RobotActor()
 {
-	std::cerr << "Destory RobotActor\n";
+	
 }
 
 void RobotActor::initailize()

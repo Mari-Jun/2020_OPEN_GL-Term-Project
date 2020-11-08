@@ -6,12 +6,12 @@
 CameraComponent::CameraComponent(const std::weak_ptr<class Actor>& owner, int updateOrder)
 	: Component(owner, updateOrder)
 {
-	std::cerr << "Create CameraComponenet\n";
+
 }
 
 CameraComponent::~CameraComponent()
 {
-	std::cerr << "Destory CameraComponent\n";
+
 }
 
 void CameraComponent::initailize()

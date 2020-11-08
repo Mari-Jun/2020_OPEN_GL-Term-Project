@@ -14,12 +14,12 @@ RobotArm::RobotArm(const std::weak_ptr<class Game>& game, bool front)
 	, mMove(false)
 	, mRot(0.0f)
 {
-	std::cerr << "Create RobotArm\n";
+	
 }
 
 RobotArm::~RobotArm()
 {
-	std::cerr << "Destory RobotArm\n";
+
 }
 
 void RobotArm::initailize()

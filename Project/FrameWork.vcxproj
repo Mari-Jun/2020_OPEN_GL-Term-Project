@@ -145,6 +145,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Actor\Actor.cpp" />
+    <ClCompile Include="Source\Game\Actor\Bulider\Building.cpp" />
+    <ClCompile Include="Source\Game\Actor\Defualt\AlphaShape.cpp" />
     <ClCompile Include="Source\Game\Actor\Camera\CameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp" />
@@ -162,6 +164,7 @@
     <ClCompile Include="Source\Game\Camera\CameraComponent.cpp" />
     <ClCompile Include="Source\Game\Component\Component.cpp" />
     <ClCompile Include="Source\Game\Graphics\Light\Light.cpp" />
+    <ClCompile Include="Source\Game\Graphics\Mesh\AlphaComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Mesh\LineComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Mesh\MeshComponent.cpp" />
     <ClCompile Include="Source\Game\Component\MoveComponent.cpp" />
@@ -191,6 +194,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Actor.h" />
+    <ClInclude Include="Source\Game\Actor\Bulider\Building.h" />
+    <ClInclude Include="Source\Game\Actor\Defualt\AlphaShape.h" />
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h" />
@@ -208,6 +213,7 @@
     <ClInclude Include="Source\Game\Camera\CameraComponent.h" />
     <ClInclude Include="Source\Game\Component\Component.h" />
     <ClInclude Include="Source\Game\Graphics\Light\Light.h" />
+    <ClInclude Include="Source\Game\Graphics\Mesh\AlphaComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\LineComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\MeshComponent.h" />
     <ClInclude Include="Source\Game\Component\MoveComponent.h" />
@@ -240,14 +246,8 @@
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Game\Graphics\Shader\2D.frag" />
-    <None Include="Source\Game\Graphics\Shader\2D.vert" />
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />
     <None Include="Source\Game\Graphics\Shader\Basic.vert" />
-    <None Include="Source\Game\Graphics\Shader\Light.frag" />
-    <None Include="Source\Game\Graphics\Shader\Light.vert" />
-    <None Include="Source\Game\Graphics\Shader\Mesh.frag" />
-    <None Include="Source\Game\Graphics\Shader\Mesh.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
   </ItemGroup>

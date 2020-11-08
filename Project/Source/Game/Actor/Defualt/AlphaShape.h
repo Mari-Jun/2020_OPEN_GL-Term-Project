@@ -1,7 +1,7 @@
 #pragma once
 #include "../Actor.h"
 
-class DefualtShape : public Actor
+class AlphaShape : public Actor
 {
 public:
 	enum class Shape
@@ -12,8 +12,8 @@ public:
 		Pyramid
 	};
 
-	DefualtShape(const std::weak_ptr<class Game>& game, Shape shape = Shape::Box, bool collides = true);
-	virtual ~DefualtShape() noexcept;
+	AlphaShape(const std::weak_ptr<class Game>& game, Shape shape = Shape::Box, bool collides = true);
+	virtual ~AlphaShape() noexcept;
 
 	virtual void initailize() override;
 
@@ -27,7 +27,7 @@ public:
 private:
 	Shape mShape;
 	bool mCollides;
-	std::shared_ptr<class MeshComponent> mMeshComponent;
+	std::shared_ptr<class AlphaComponent> mAlphaComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 	Vector3 mMeshColor;
 };

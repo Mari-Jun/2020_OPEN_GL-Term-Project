@@ -20,13 +20,13 @@ Light::~Light()
 void Light::initailize()
 {
 	//Set Light
-	mAmbientLight = Vector3(0.5f, 0.5f, 0.5f);
+	mAmbientLight = Vector3(0.2f, 0.2f, 0.2f);
 
 	DirectionalLight dirLight;
 	dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 	dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
-	dirLight.specularColor = Vector3(0.3f, 0.3f, 0.3f);
-	dirLight.intensity = 0.7f;
+	dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
+	dirLight.intensity = 1.0f;
 
 	mDirLight.push_back(dirLight);
 }
@@ -80,7 +80,7 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 		shader->SetVectorUniform("uDirLight.specularColor", dir.specularColor);
 	}
 
-	shader->SetFloatUniform("uSpecBrightness", 64.0f);
+	shader->SetFloatUniform("uSpecBrightness", 1111.0f);
 }
 
 DirectionalLight loadDirectionalLight()

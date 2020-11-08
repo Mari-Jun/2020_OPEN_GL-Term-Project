@@ -11,8 +11,9 @@ out vec4 outColor;
 
 //텍스쳐
 uniform sampler2D uDiffuseTexture;
-uniform sampler2D uNormalTexture;
-uniform sampler2D uSpecularTexture;
+
+//알파
+uniform float uAlpha = 1.0f;
 
 //Directional Light
 struct DirectionalLight
@@ -51,19 +52,28 @@ void main()
 	//광선이 프래그먼트로부터 튕겨 나오는 벡터
 	vec3 R = normalize(reflect(-L, N));
 
+
 	//프래그먼트 법선과 Directional Light의 방향과의 내적
-	float lightAmt = max(0.0, dot(N, L));
+	float NdotL = max(0.0, dot(N, L));
 
 	//라이트의 양을 결정
-	vec3 diffuseLight = uDirLight.diffuseColor * lightAmt;
+	vec3 diffuseLight = uDirLight.diffuseColor * NdotL;
 
 	//스펙큘러 라이트를 구함
-	vec3 specularLight =  uDirLight.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
+	vec3 specularLight = uDirLight.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
 
 	//앰비언트 라이트를 구함
-	vec3 ambientLight = uAmbientLight * fragColor;
+	vec3 ambientLight = uAmbientLight;
 
-	vec3 Phong = diffuseLight + specularLight + ambientLight;
+	vec3 Phong = (diffuseLight + specularLight + ambientLight) * fragColor;
 
-	outColor = texture(uDiffuseTexture, fragTexCoord) + vec4(Phong, 1.0);
+	if(texture(uDiffuseTexture, fragTexCoord).xyz == 0)
+	{
+		outColor = vec4(Phong, uAlpha);
+	}
+	else
+	{
+		outColor = texture(uDiffuseTexture, fragTexCoord) * vec4(Phong, uAlpha);
+	}
+	
 }

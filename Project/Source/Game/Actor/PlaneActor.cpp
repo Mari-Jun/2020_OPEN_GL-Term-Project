@@ -8,12 +8,11 @@
 PlaneActor::PlaneActor(const std::weak_ptr<class Game>& game)
 	: Actor(game)
 {
-	std::cerr << "Create PlaneActor\n";
+
 }
 
 PlaneActor::~PlaneActor()
 {
-	std::cerr << "Destory PlaneActor\n";
 	getGame().lock()->removePlane(std::dynamic_pointer_cast<PlaneActor>(weak_from_this().lock()));
 }
 
@@ -51,4 +50,9 @@ void PlaneActor::actorInput()
 void PlaneActor::setPlaneColor(const Vector3& color)
 {
 	mMeshComponent->setColor(color);
+}
+
+void PlaneActor::setTexture(const std::string& fileName)
+{
+	mMeshComponent->setTexture(fileName);
 }

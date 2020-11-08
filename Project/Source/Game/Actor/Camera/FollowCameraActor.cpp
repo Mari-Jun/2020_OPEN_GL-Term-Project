@@ -10,12 +10,12 @@ FollowCameraActor::FollowCameraActor(const std::weak_ptr<class Game>& game, cons
 	: Actor(game)
 	, mFollower(follower)
 {
-	std::cerr << "Create FollowCameraActor\n";
+
 }
 
 FollowCameraActor::~FollowCameraActor()
 {
-	std::cerr << "Destory FollowCameraActor\n";
+	
 }
 
 void FollowCameraActor::initailize()

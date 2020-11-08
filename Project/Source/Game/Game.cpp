@@ -9,6 +9,7 @@
 #include "Actor/Robot/RobotActor.h"
 #include "Actor/Sky/Weather/Cloud.h"
 #include "Actor/Sky/Solor/Solor.h"
+#include "Actor/Bulider/Building.h"
 #include "Actor/Defualt/DefualtShape.h"
 #include "Game.h"
 #include "Graphics/Mesh/MeshComponent.h"
@@ -145,6 +146,11 @@ void Game::loadActorData()
 	auto solor = std::make_shared<Solor>(weak_from_this());
 	solor->setPosition(Vector3(0.0f, 150.0f, 400.0f));
 	solor->initailize();
+
+	//Create Building
+	auto buildings = std::make_shared<Building>(weak_from_this());
+	buildings->setPosition(Vector3(0.0f, -50.0f, 400.0f));
+	buildings->initailize();
 }
 
 void Game::loadWorldBox()
@@ -158,7 +164,7 @@ void Game::loadWorldBox()
 	plane->setPosition(Vector3(0.0f, -30.0f, 400.0f));
 	plane->setScale(500.0f);
 	plane->initailize();
-	plane->setPlaneColor(Vector3(0.5f, 0.5f, 0.5f));
+	plane->setTexture("Asset/Mesh/Road.png");
 }
 
 void Game::addActor(const std::shared_ptr<Actor>& actor)

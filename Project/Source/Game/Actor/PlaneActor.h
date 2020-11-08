@@ -13,6 +13,7 @@ public:
 	virtual void actorInput() override;
 
 	void setPlaneColor(const Vector3& color);
+	void setTexture(const std::string& fileName);
 
 	std::shared_ptr<class BoxComponent>& getBox() { return mBoxComponent; }
 private:

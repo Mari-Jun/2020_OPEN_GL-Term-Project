@@ -11,12 +11,12 @@
 RobotHead::RobotHead(const std::weak_ptr<class Game>& game)
 	: Actor(game)
 {
-	std::cerr << "Create RobotHead\n";
+
 }
 
 RobotHead::~RobotHead()
 {
-	std::cerr << "Destory RobotHead\n";
+
 }
 
 void RobotHead::initailize()

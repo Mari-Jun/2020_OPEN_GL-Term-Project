@@ -24,9 +24,6 @@
     <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game\Actor\Actor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -147,15 +144,24 @@
     <ClCompile Include="Source\Game\Actor\Robot\RobotHead.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Mesh\AlphaComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\Defualt\AlphaShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actor\Bulider\Building.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Actor\Actor.h">
@@ -293,16 +299,22 @@
     <ClInclude Include="Source\Game\Actor\Robot\RobotHead.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Mesh\AlphaComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\Defualt\AlphaShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actor\Bulider\Building.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Game\Graphics\Shader\2D.frag" />
-    <None Include="Source\Game\Graphics\Shader\2D.vert" />
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />
     <None Include="Source\Game\Graphics\Shader\Basic.vert" />
-    <None Include="Source\Game\Graphics\Shader\Light.frag" />
-    <None Include="Source\Game\Graphics\Shader\Light.vert" />
-    <None Include="Source\Game\Graphics\Shader\Mesh.frag" />
-    <None Include="Source\Game\Graphics\Shader\Mesh.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
   </ItemGroup>

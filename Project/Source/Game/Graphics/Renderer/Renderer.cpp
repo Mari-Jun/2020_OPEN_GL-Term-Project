@@ -2,6 +2,7 @@
 #include "../Light/Light.h"
 #include "../Shader/VertexArray.h"
 #include "../Mesh/MeshComponent.h"
+#include "../Mesh/AlphaComponent.h"
 #include "../Mesh/LineComponent.h"
 #include "../Mesh/Mesh.h"
 #include "../Texture/Texture.h"
@@ -121,18 +122,19 @@ void Renderer::drawMeshComponent()
 
 	for (auto mComp : mMeshComponent)
 	{
-		if (mComp.lock())
-		{
-			mComp.lock()->draw(mMeshShader);
-		}
+		mComp.lock()->draw(mMeshShader);
 	}
 
-	//Draw Texture
-	glDisable(GL_DEPTH_TEST);
+	//Draw AlphaComponent
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
 	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+
+	for (auto aComp : mAlphaComponent)
+	{
+		aComp.lock()->draw(mMeshShader);
+	}
 
 }
 
@@ -167,6 +169,23 @@ void Renderer::removeMeshComponent(const std::weak_ptr<class MeshComponent>& com
 	if (iter != mMeshComponent.end())
 	{
 		mMeshComponent.erase(iter);
+	}
+}
+
+void Renderer::addAlphaComponent(const std::weak_ptr<class AlphaComponent>& component)
+{
+	mAlphaComponent.emplace_back(component);
+}
+
+void Renderer::removeAlphaComponent(const std::weak_ptr<class AlphaComponent>& component)
+{
+	auto iter = std::find_if(mAlphaComponent.begin(), mAlphaComponent.end(),
+		[&component](const std::weak_ptr<AlphaComponent>& comp)
+		{return component.lock() == comp.lock(); });
+
+	if (iter != mAlphaComponent.end())
+	{
+		mAlphaComponent.erase(iter);
 	}
 }
 

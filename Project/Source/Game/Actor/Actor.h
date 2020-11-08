@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <string>
 #include "../Math/Math.h"
 
 class Actor : public std::enable_shared_from_this<Actor>

@@ -1,9 +1,18 @@
 #version 330
 
-in vec3 passColor;
-out vec4 fragColor;
+//Vert에서 가져온 것들
+in vec2 fragTexCoord;
+in vec3 fragNormal;
+in vec3 fragColor;
+in vec3 fragWorldPos;
+
+//색
+out vec4 outColor;
+
+//텍스쳐
+uniform sampler2D uDiffuseTexture;
 
 void main()
 {
-	fragColor = vec4(passColor, 1.0);
+	outColor = texture(uDiffuseTexture, fragTexCoord) * vec4(fragColor, 1.0);
 }

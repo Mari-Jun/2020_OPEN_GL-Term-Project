@@ -25,6 +25,9 @@ public:
 	void addMeshComponent(const std::weak_ptr<class MeshComponent>& component);
 	void removeMeshComponent(const std::weak_ptr<class MeshComponent>& component);
 
+	void addAlphaComponent(const std::weak_ptr<class AlphaComponent>& component);
+	void removeAlphaComponent(const std::weak_ptr<class AlphaComponent>& component);
+
 private:
 	bool loadShader();
 
@@ -33,6 +36,7 @@ private:
 
 	std::vector<std::weak_ptr<class LineComponent>> mLineComponent;
 	std::vector<std::weak_ptr<class MeshComponent>> mMeshComponent;
+	std::vector<std::weak_ptr<class AlphaComponent>> mAlphaComponent;
 
 	std::weak_ptr<class Game> mGame;
 
