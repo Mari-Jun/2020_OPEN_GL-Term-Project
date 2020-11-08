@@ -57,15 +57,15 @@ void main()
 	float NdotL = max(0.0, dot(N, L));
 
 	//라이트의 양을 결정
-	vec3 diffuseLight = uDirLight.diffuseColor * NdotL;
+	vec3 diffuseLight = uDirLight.diffuseColor * fragColor * NdotL;
 
 	//스펙큘러 라이트를 구함
-	vec3 specularLight = uDirLight.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
+	vec3 specularLight = uDirLight.diffuseColor * uDirLight.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
 
 	//앰비언트 라이트를 구함
-	vec3 ambientLight = uAmbientLight;
+	vec3 ambientLight = uAmbientLight * fragColor;
 
-	vec3 Phong = (diffuseLight + specularLight + ambientLight) * fragColor;
+	vec3 Phong = diffuseLight + specularLight + ambientLight;
 
 	if(texture(uDiffuseTexture, fragTexCoord).xyz == 0)
 	{
