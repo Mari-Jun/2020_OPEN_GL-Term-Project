@@ -2,7 +2,7 @@
 #include <gl/freeglut.h>
 #include <unordered_map>
 #include <iostream>
-#include <queue>
+#include <stack>
 
 class Game final : public std::enable_shared_from_this<Game>
 {

@@ -13,6 +13,7 @@
 #include "Actor/Defualt/DefualtShape.h"
 #include "Game.h"
 #include "Graphics/Mesh/MeshComponent.h"
+#include "Graphics/Texture/SpriteComponent.h"
 
 
 Game::Game()
@@ -165,6 +166,14 @@ void Game::loadWorldBox()
 	plane->setScale(500.0f);
 	plane->initailize();
 	plane->setTexture("Asset/Mesh/Road.png");
+
+	auto a = std::make_shared<Actor>(weak_from_this());
+	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
+	a->setScale(0.1f);
+	a->initailize();
+	auto sc = std::make_shared<SpriteComponent>(a, mRenderer);
+	sc->setTexture(mRenderer->getTexture("Asset/Mesh/background.png"));
+	sc->initailize();
 }
 
 void Game::addActor(const std::shared_ptr<Actor>& actor)

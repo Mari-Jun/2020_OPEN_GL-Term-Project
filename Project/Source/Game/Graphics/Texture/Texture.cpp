@@ -57,6 +57,8 @@ bool Texture::load(const std::string& fileName)
 		glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, largest);
 	}
+	
+	mName = fileName;
 
 	return true;
 }

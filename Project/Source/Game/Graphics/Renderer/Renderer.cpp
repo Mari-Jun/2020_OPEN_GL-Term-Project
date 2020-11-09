@@ -6,6 +6,7 @@
 #include "../Mesh/LineComponent.h"
 #include "../Mesh/Mesh.h"
 #include "../Texture/Texture.h"
+#include "../Texture/SpriteComponent.h"
 #include "Renderer.h"
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
@@ -37,6 +38,8 @@ bool Renderer::initailize(const Vector2& pos, const Vector2& size, std::string n
 		std::cerr << "Failed to load shader\n";
 		return false;
 	}
+
+	createSpriteVertex();
 
 	//Create Z Rot Light
 	mLight = std::make_unique<Light>(weak_from_this());
@@ -128,14 +131,24 @@ void Renderer::drawMeshComponent()
 	//Draw AlphaComponent
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
-	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+	
 
 	for (auto aComp : mAlphaComponent)
 	{
 		aComp.lock()->draw(mMeshShader);
 	}
 
+	glDisable(GL_DEPTH_TEST);
+	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+
+	mSpriteShader->setActive();
+	mSpriteVertex->setActive();
+
+	for (auto sComp : mSpriteComponent)
+	{
+		sComp.lock()->draw(mSpriteShader);
+	}
 }
 
 void Renderer::addLineComponent(const std::weak_ptr<class LineComponent>& component)
@@ -189,8 +202,36 @@ void Renderer::removeAlphaComponent(const std::weak_ptr<class AlphaComponent>& c
 	}
 }
 
+void Renderer::addSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)
+{
+	mSpriteComponent.emplace_back(component);
+}
+
+void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)
+{
+	auto iter = std::find_if(mSpriteComponent.begin(), mSpriteComponent.end(),
+		[&component](const std::weak_ptr<SpriteComponent>& comp)
+		{return component.lock() == comp.lock(); });
+
+	if (iter != mSpriteComponent.end())
+	{
+		mSpriteComponent.erase(iter);
+	}
+}
+
 bool Renderer::loadShader()
 {
+	mSpriteShader = std::make_unique<Shader>();
+	if (!mSpriteShader->load("Source/Game/Graphics/Shader/Sprite.vert", "Source/Game/Graphics/Shader/Sprite.frag"))
+	{
+		return false;
+	}
+	mSpriteShader->setActive();
+
+	Matrix4 viewSprite = Matrix4::CreateSimpleViewProj(getWindow()->getSize().x, getWindow()->getSize().y);
+	mSpriteShader->setMatrixUniform("uViewProj", viewSprite);
+
+
 	mMeshShader = std::make_unique<Shader>();
 	if (!mMeshShader->load("Source/Game/Graphics/Shader/Phong.vert", "Source/Game/Graphics/Shader/Phong.frag"))
 	{
@@ -205,7 +246,31 @@ bool Renderer::loadShader()
 	return true;
 }
 
-std::weak_ptr<class Texture> Renderer::getTexture(const std::string& fileName)
+void Renderer::createSpriteVertex()
+{
+	std::vector<Vertex> vertex(4);
+
+	vertex[0].position = Vector3(-0.5f, -0.5f, 0.0f);
+	vertex[1].position = Vector3(-0.5f, 0.5f, 0.0f);
+	vertex[2].position = Vector3(0.5f, 0.5f, 0.0f);
+	vertex[3].position = Vector3(0.5f, -0.5f, 0.0f);
+	vertex[0].normal = Vector3(0.0f, 0.0f, 0.0f);
+	vertex[1].normal = Vector3(0.0f, 0.0f, 0.0f);
+	vertex[2].normal = Vector3(0.0f, 0.0f, 0.0f);
+	vertex[3].normal = Vector3(0.0f, 0.0f, 0.0f);
+	vertex[0].texcoord = Vector2(0.0f, 0.0f);
+	vertex[1].texcoord = Vector2(0.0f, 1.0f);
+	vertex[2].texcoord = Vector2(1.0f, 1.0f);
+	vertex[3].texcoord = Vector2(1.0f, 0.0f);
+
+	std::vector<unsigned int> index = {
+		0, 1, 2, 0, 2, 3
+	};
+
+	mSpriteVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
+}
+
+std::shared_ptr<class Texture> Renderer::getTexture(const std::string& fileName)
 {
 	std::shared_ptr<Texture> texture = nullptr;
 

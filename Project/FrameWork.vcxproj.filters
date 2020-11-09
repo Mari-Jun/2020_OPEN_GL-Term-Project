@@ -156,6 +156,9 @@
     <ClCompile Include="Source\Game\Actor\Bulider\Building.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Texture\SpriteComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -311,11 +314,16 @@
     <ClInclude Include="Source\Game\Actor\Bulider\Building.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Texture\SpriteComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />
     <None Include="Source\Game\Graphics\Shader\Basic.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
+    <None Include="Source\Game\Graphics\Shader\Sprite.vert" />
+    <None Include="Source\Game\Graphics\Shader\Sprite.frag" />
   </ItemGroup>
 </Project>
