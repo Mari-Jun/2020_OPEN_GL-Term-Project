@@ -39,7 +39,7 @@ void DefualtShape::initailize()
 		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder");
 		break;
 	case DefualtShape::Shape::Pyramid:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid");
+		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Car/police");
 		break;
 	default:
 		break;
