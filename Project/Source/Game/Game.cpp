@@ -131,8 +131,9 @@ void Game::loadActorData()
 
 	//Create pyramid
 	auto pyramid = std::make_shared<DefualtShape>(weak_from_this(), DefualtShape::Shape::Pyramid);
-	pyramid->setPosition(Vector3(0.0f, -30.0f, 400.0f));
-	//pyramid->setMeshColor(Vector3::Rgb(Vector3(229.0f, 216.0f, 92.0f)));
+	pyramid->setPosition(Vector3(0.0f, 70.0f, 400.0f));
+	pyramid->setScale(200.0f);
+	pyramid->setMeshColor(Vector3::Rgb(Vector3(229.0f, 216.0f, 92.0f)));
 	pyramid->initailize();
 
 	//Create Cloud
