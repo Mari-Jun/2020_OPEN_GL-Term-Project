@@ -112,7 +112,7 @@ void RobotActor::updateActor(float deltatime)
 
 	mRightLeg->setPosition(getPosition() - getUp() * (mRightLeg->getScale().y + getScale().y) / 2 + getSide() * mLeftLeg->getScale().x);
 	mRightLeg->setRotation(getRotation());
-	std::cout << "hi";
+
 	if (mState == RobotState::Running)
 	{
 		if (mAnimation)
