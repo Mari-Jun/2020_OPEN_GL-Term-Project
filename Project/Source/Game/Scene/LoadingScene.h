@@ -16,5 +16,5 @@ public:
 	virtual void unLoadData();
 
 private:
-	std::shared_ptr<class FollowCameraActor> mFollowCamera;
+	int count;
 };

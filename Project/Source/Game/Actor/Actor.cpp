@@ -10,7 +10,7 @@ Actor::Actor(const wptrGame& Game)
 	, mGame(Game)
 	, mRechangeWorldTransform(true)
 {
-	
+
 }
 
 Actor::~Actor()

@@ -69,7 +69,7 @@ bool Game::initialize(int argc, char** argv)
 	}
 
 	//Create Scene
-	auto scene = std::make_shared<GameScene>(weak_from_this());
+	auto scene = std::make_shared<LoadingScene>(weak_from_this());
 	scene->initailize();
 	scene->loadData();
 
@@ -129,6 +129,7 @@ void Game::addScene(const std::shared_ptr<class Scene>& scene)
 	if (mIsUpdateScene)
 	{
 		mReadyScene.emplace_back(scene);
+		std::cout << scene.use_count() << std::endl;
 	}
 	else
 	{
@@ -157,7 +158,14 @@ void Game::removeScene(const std::weak_ptr<class Scene>& scene)
 
 void Game::addActor(const std::shared_ptr<Actor>& actor)
 {
-	mScene.back()->addActor(actor);
+	if (!mReadyScene.empty())
+	{
+		mReadyScene.back()->addActor(actor);
+	}
+	else
+	{
+		mScene.back()->addActor(actor);
+	}
 }
 
 void Game::removeActor(const std::weak_ptr<Actor>& actor)
@@ -218,7 +226,7 @@ void Game::update()
 		}
 		mReadyScene.clear();
 	
-		/*std::vector<std::shared_ptr<Scene>> deadScene;
+		std::vector<std::shared_ptr<Scene>> deadScene;
 		for (auto& scene : mScene)
 		{
 			if (scene->getState() == Scene::State::Dead)
@@ -228,10 +236,10 @@ void Game::update()
 		}
 
 		for (auto& scene : deadScene)
-		{
+		{		
 			scene.reset();
 		}
-		deadScene.clear();*/
+		deadScene.clear();
 
 	}
 }

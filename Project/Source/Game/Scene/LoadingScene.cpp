@@ -6,12 +6,14 @@
 
 LoadingScene::LoadingScene(const std::weak_ptr<class Game>& game)
 	: Scene(game)
+	, count(0)
 {
 
 }
 
 LoadingScene::~LoadingScene()
 {
+
 }
 
 void LoadingScene::initailize()
@@ -26,10 +28,7 @@ void LoadingScene::sceneInput()
 
 void LoadingScene::sceneUpdate(float deltatime)
 {
-	static int count = 0;
-
 	count += 1;
-	std::cout << count << std::endl;
 
 	//Á¶°Ç
 	if (count > 200)

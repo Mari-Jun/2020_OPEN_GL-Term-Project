@@ -123,7 +123,6 @@ void Renderer::drawMeshComponent()
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 	mLight->setLightShader(mView, mMeshShader);
 
-	std::cout << mMeshComponent.size() << std::endl;
 	for (auto mComp : mMeshComponent)
 	{
 		mComp.lock()->draw(mMeshShader);

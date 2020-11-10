@@ -2,6 +2,8 @@
 #include "../Graphics/Renderer/Renderer.h"
 #include "../Game.h"
 #include "../Actor/Actor.h"
+#include "../Input/KeyBoard.h"
+#include "LoadingScene.h"
 
 #include "../Actor/PlaneActor.h"
 #include "../Actor/Camera/CameraActor.h"
@@ -23,7 +25,7 @@ GameScene::GameScene(const std::weak_ptr<class Game>& game)
 
 GameScene::~GameScene()
 {
-
+	
 }
 
 void GameScene::initailize()
@@ -34,6 +36,16 @@ void GameScene::initailize()
 void GameScene::sceneInput()
 {
 	Scene::sceneInput();
+
+	auto game = getGame().lock();
+
+	if (game->getKeyBoard()->isKeyPressed('z'))
+	{
+		setState(State::Dead);
+		auto scene = std::make_shared<LoadingScene>(getGame());
+		scene->initailize();
+		scene->loadData();
+	}
 }
 
 void GameScene::sceneUpdate(float deltatime)

@@ -9,7 +9,7 @@ Scene::Scene(const std::weak_ptr<class Game>& game)
 	, mGame(game)
 	, mIsUpdateActor(false)
 {
-
+	
 }
 
 Scene::~Scene()
