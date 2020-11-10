@@ -25,6 +25,8 @@ private:
 
 	std::string nName;
 
+	//std::stack<std::unique_ptr<class Scene>> mScene;
+
 	std::vector<std::shared_ptr<class Actor>> mActor;
 	std::vector<std::shared_ptr<class Actor>> mReadyActor;
 

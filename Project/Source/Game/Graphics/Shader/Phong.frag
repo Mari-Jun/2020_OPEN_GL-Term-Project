@@ -67,7 +67,7 @@ void main()
 
 	vec3 Phong = diffuseLight + specularLight + ambientLight;
 
-	if(texture(uDiffuseTexture, fragTexCoord).xyz == 0)
+	if(texture(uDiffuseTexture, fragTexCoord).xyz == vec3(0.0,0.0,0.0))
 	{
 		outColor = vec4(Phong, uAlpha);
 	}

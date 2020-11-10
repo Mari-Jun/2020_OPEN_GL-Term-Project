@@ -204,7 +204,16 @@ void Renderer::removeAlphaComponent(const std::weak_ptr<class AlphaComponent>& c
 
 void Renderer::addSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)
 {
-	mSpriteComponent.emplace_back(component);
+	int order = component.lock()->getUpdateOrder();
+	auto iter = mSpriteComponent.begin();
+	for (; iter != mSpriteComponent.end(); ++iter)
+	{
+		if (order < (*iter).lock()->getUpdateOrder())
+		{
+			break;
+		}
+	}
+	mSpriteComponent.insert(iter, component);
 }
 
 void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)
