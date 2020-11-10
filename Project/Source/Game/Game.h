@@ -2,7 +2,7 @@
 #include <gl/freeglut.h>
 #include <unordered_map>
 #include <iostream>
-#include <queue>
+#include <stack>
 
 class Game final : public std::enable_shared_from_this<Game>
 {
@@ -24,6 +24,8 @@ private:
 	bool mIsPaused;
 
 	std::string nName;
+
+	//std::stack<std::unique_ptr<class Scene>> mScene;
 
 	std::vector<std::shared_ptr<class Actor>> mActor;
 	std::vector<std::shared_ptr<class Actor>> mReadyActor;

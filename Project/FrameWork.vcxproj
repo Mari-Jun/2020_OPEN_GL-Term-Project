@@ -172,6 +172,7 @@
     <ClCompile Include="Source\Game\Graphics\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Game\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="Source\Game\Graphics\Shader\VertexArray.cpp" />
+    <ClCompile Include="Source\Game\Graphics\Texture\SpriteComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Texture\Texture.cpp" />
     <ClCompile Include="Source\Game\Input\KeyBoard.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Source\Game\Graphics\Mesh\Mesh.h" />
     <ClInclude Include="Source\Game\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Game\Graphics\Shader\VertexArray.h" />
+    <ClInclude Include="Source\Game\Graphics\Texture\SpriteComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Texture\stb_image.h" />
     <ClInclude Include="Source\Game\Graphics\Texture\Texture.h" />
     <ClInclude Include="Source\Game\Input\KeyBoard.h" />
@@ -251,6 +253,8 @@
     <None Include="Source\Game\Graphics\Shader\Basic.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
+    <None Include="Source\Game\Graphics\Shader\Sprite.frag" />
+    <None Include="Source\Game\Graphics\Shader\Sprite.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

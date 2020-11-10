@@ -28,8 +28,12 @@ public:
 	void addAlphaComponent(const std::weak_ptr<class AlphaComponent>& component);
 	void removeAlphaComponent(const std::weak_ptr<class AlphaComponent>& component);
 
+	void addSpriteComponent(const std::weak_ptr<class SpriteComponent>& component);
+	void removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component);
+
 private:
 	bool loadShader();
+	void createSpriteVertex();
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;
@@ -37,13 +41,13 @@ private:
 	std::vector<std::weak_ptr<class LineComponent>> mLineComponent;
 	std::vector<std::weak_ptr<class MeshComponent>> mMeshComponent;
 	std::vector<std::weak_ptr<class AlphaComponent>> mAlphaComponent;
+	std::vector<std::weak_ptr<class SpriteComponent>> mSpriteComponent;
 
 	std::weak_ptr<class Game> mGame;
 
-	/*std::unique_ptr<class Shader> mSpriteShader;
-	std::shared_ptr<class VertexArray> mSpriteVerts;*/
-
 	std::unique_ptr<class Shader> mMeshShader;
+	std::unique_ptr<class Shader> mSpriteShader;
+	std::unique_ptr<class VertexArray> mSpriteVertex;
 	
 	Matrix4 mView;
 	Matrix4 mProjection;
@@ -56,7 +60,7 @@ public:
 	void setProjectionMatrix(const Matrix4& projection) { mProjection = projection; }
 
 	const std::weak_ptr<class Game>& getGame() const { return mGame; }
-	std::weak_ptr<class Texture> getTexture(const std::string& fileName);
+	std::shared_ptr<class Texture> getTexture(const std::string& fileName);
 	std::shared_ptr<class Mesh> getMesh(const std::string& fileName);
 
 	const std::unique_ptr<class Window>& getWindow() const { return mWindow; }
