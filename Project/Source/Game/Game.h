@@ -27,14 +27,7 @@ private:
 
 	std::stack<std::unique_ptr<class Scene>> mScene;
 
-	std::vector<std::shared_ptr<class Actor>> mActor;
-	std::vector<std::shared_ptr<class Actor>> mReadyActor;
-
 	bool mIsUpdateActor;
-
-	std::shared_ptr<class CameraActor> mMouseCamera;
-	std::shared_ptr<class FollowCameraActor> mFollowCamera;
-	std::vector<std::shared_ptr<class PlaneActor>> mPlaneActor;
 
 public:
 	void run();
@@ -52,10 +45,6 @@ public:
 
 	void addActor(const std::shared_ptr<class Actor>& actor);
 	void removeActor(const std::weak_ptr<class Actor>& actor);
-	void addPlane(const std::shared_ptr<class PlaneActor>& plane);
-	void removePlane(const std::weak_ptr<class PlaneActor>& plane);
-
-	const std::vector<std::shared_ptr<class PlaneActor>>& getPlanes() { return mPlaneActor; }
 
 private:
 	void processInput();
@@ -64,6 +53,4 @@ private:
 	
 	void loadData();
 	void unLoadData();
-	void loadActorData();
-	void loadWorldBox();
 };
