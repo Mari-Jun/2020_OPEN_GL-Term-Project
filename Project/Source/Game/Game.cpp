@@ -3,6 +3,7 @@
 #include "Etc/DeltaTime.h"
 #include "Input/KeyBoard.h"
 #include "Input/Mouse.h"
+#include "Scene/Scene.h"
 #include "Actor/PlaneActor.h"
 #include "Actor/Camera/CameraActor.h"
 #include "Actor/Camera/FollowCameraActor.h"
@@ -174,6 +175,33 @@ void Game::loadWorldBox()
 	auto sc = std::make_shared<SpriteComponent>(a, mRenderer);
 	sc->setTexture(mRenderer->getTexture("Asset/Mesh/background.png"));
 	sc->initailize();
+}
+
+void Game::revertScene(std::unique_ptr<class Scene>&& scene)
+{
+	clearScene();
+	pushScene(std::move(scene));
+}
+
+void Game::clearScene()
+{
+	while (!mScene.empty())
+	{
+		popScene();
+	}
+} 
+
+void Game::pushScene(std::unique_ptr<class Scene>&& scene)
+{
+	mScene.emplace(std::move(scene));
+}
+
+void Game::popScene()
+{
+	if (!mScene.empty())
+	{
+		mScene.pop();
+	}
 }
 
 void Game::addActor(const std::shared_ptr<Actor>& actor)
