@@ -1,9 +1,11 @@
+#include <algorithm>
 #include "Graphics/Renderer/Renderer.h"
 #include "Physics/PhysicsEngine.h"
 #include "Etc/DeltaTime.h"
 #include "Input/KeyBoard.h"
 #include "Input/Mouse.h"
 #include "Scene/Scene.h"
+#include "Scene/LoadingScene.h"
 #include "Scene/GameScene.h"
 #include "Game.h"
 
@@ -14,7 +16,7 @@ Game::Game()
 	, mMouse(nullptr)
 	, mIsRunning(true)
 	, mIsPaused(false)
-	, mIsUpdateActor(false)
+	, mIsUpdateScene(false)
 {
 
 }
@@ -67,10 +69,9 @@ bool Game::initialize(int argc, char** argv)
 	}
 
 	//Create Scene
-	auto scene = std::make_unique<GameScene>(weak_from_this());
-	mScene.push(std::move(scene));
-
-	loadData();
+	auto scene = std::make_shared<GameScene>(weak_from_this());
+	scene->initailize();
+	scene->loadData();
 
 	return true;
 }
@@ -87,7 +88,6 @@ void Game::run()
 
 void Game::shutDown()
 {
-	mScene.top()->unLoadData();
 	if (mRenderer != nullptr)
 	{
 		mRenderer->shutDown();
@@ -97,7 +97,7 @@ void Game::shutDown()
 
 void Game::loadData()
 {
-	mScene.top()->loadData();
+	
 }
 
 void Game::unLoadData()
@@ -110,41 +110,59 @@ void Game::unLoadData()
 	}
 }
 
-void Game::revertScene(std::unique_ptr<class Scene>&& scene)
+void Game::revertScene(const std::shared_ptr<class Scene>& scene)
 {
 	clearScene();
-	pushScene(std::move(scene));
+	addScene(scene);
 }
 
 void Game::clearScene()
 {
-	while (!mScene.empty())
+	for (auto scene : mScene)
 	{
-		popScene();
+		scene->setState(Scene::State::Dead);
 	}
 } 
 
-void Game::pushScene(std::unique_ptr<class Scene>&& scene)
+void Game::addScene(const std::shared_ptr<class Scene>& scene)
 {
-	mScene.emplace(std::move(scene));
+	if (mIsUpdateScene)
+	{
+		mReadyScene.emplace_back(scene);
+	}
+	else
+	{
+		mScene.emplace_back(scene);
+	}
 }
 
-void Game::popScene()
+void Game::removeScene(const std::weak_ptr<class Scene>& scene)
 {
-	if (!mScene.empty())
+	auto iter = std::find_if(mReadyScene.begin(), mReadyScene.end(),
+		[&scene](const std::weak_ptr<Scene>& sc)
+		{return scene.lock() == sc.lock(); });
+	if (iter != mReadyScene.end())
 	{
-		mScene.pop();
+		mReadyScene.erase(iter);
+	}
+
+	iter = std::find_if(mScene.begin(), mScene.end(),
+		[&scene](const std::weak_ptr<Scene>& sc)
+		{return scene.lock() == sc.lock(); });
+	if (iter != mScene.end())
+	{
+		mScene.erase(iter);
 	}
 }
 
 void Game::addActor(const std::shared_ptr<Actor>& actor)
 {
-	mScene.top()->addActor(actor);
+	mScene.back()->addActor(actor);
 }
 
 void Game::removeActor(const std::weak_ptr<Actor>& actor)
 {
-	mScene.top()->removeActor(actor);
+	mScene.back()->removeActor(actor);
 }
 
 void Game::processInput()
@@ -154,7 +172,15 @@ void Game::processInput()
 		mIsRunning = false;
 	}
 
-	mScene.top()->sceneInput();
+	mIsUpdateScene = true;
+	for (auto scene : mScene)
+	{
+		if (scene->getState() == Scene::State::Active)
+		{
+			scene->sceneInput();
+		}
+	}
+	mIsUpdateScene = false;
 }
 
 void Game::update()
@@ -175,11 +201,45 @@ void Game::update()
 			std::cout << "ÇÁ·¹ÀÓ : " << Fps << '\n';
 			Fps = 0;
 		}
-		mScene.top()->sceneUpdate(deltatime);
+
+		mIsUpdateScene = true;
+		for (auto scene : mScene)
+		{
+			if (scene->getState() == Scene::State::Active)
+			{
+				scene->sceneUpdate(deltatime);
+			}
+		}
+		mIsUpdateScene = false;
+
+		for (auto scene : mReadyScene)
+		{
+			mScene.emplace_back(scene);
+		}
+		mReadyScene.clear();
+	
+		/*std::vector<std::shared_ptr<Scene>> deadScene;
+		for (auto& scene : mScene)
+		{
+			if (scene->getState() == Scene::State::Dead)
+			{
+				deadScene.emplace_back(std::move(scene));
+			}
+		}
+
+		for (auto& scene : deadScene)
+		{
+			scene.reset();
+		}
+		deadScene.clear();*/
+
 	}
 }
 
 void Game::draw()
 {
-	mScene.top()->draw();
+	for (auto scene : mScene)
+	{
+		scene->draw();
+	}
 }

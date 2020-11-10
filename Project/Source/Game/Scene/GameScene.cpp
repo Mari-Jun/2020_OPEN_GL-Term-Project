@@ -1,7 +1,6 @@
 #include "GameScene.h"
 #include "../Graphics/Renderer/Renderer.h"
 #include "../Game.h"
-#include "../Etc/DeltaTime.h"
 #include "../Actor/Actor.h"
 
 #include "../Actor/PlaneActor.h"
@@ -27,6 +26,11 @@ GameScene::~GameScene()
 
 }
 
+void GameScene::initailize()
+{
+	Scene::initailize();
+}
+
 void GameScene::sceneInput()
 {
 	Scene::sceneInput();
@@ -39,7 +43,6 @@ void GameScene::sceneUpdate(float deltatime)
 
 void GameScene::loadData()
 {
-
 	loadActorData();
 	loadWorldBox();
 }

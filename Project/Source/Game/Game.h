@@ -25,9 +25,10 @@ private:
 
 	std::string nName;
 
-	std::stack<std::unique_ptr<class Scene>> mScene;
+	std::vector<std::shared_ptr<class Scene>> mScene;
+	std::vector<std::shared_ptr<class Scene>> mReadyScene;
 
-	bool mIsUpdateActor;
+	bool mIsUpdateScene;
 
 public:
 	void run();
@@ -38,10 +39,10 @@ public:
 	const std::unique_ptr<class KeyBoard>& getKeyBoard() const { return mKeyBoard; }
 	const std::unique_ptr<class Mouse>& getMouse() const { return mMouse; }
 
-	void revertScene(std::unique_ptr<class Scene>&& scene);
+	void revertScene(const std::shared_ptr<class Scene>& scene);
 	void clearScene();
-	void pushScene(std::unique_ptr<class Scene>&& scene);
-	void popScene();
+	void addScene(const std::shared_ptr<class Scene>& scene);
+	void removeScene(const std::weak_ptr<class Scene>& scene);
 
 	void addActor(const std::shared_ptr<class Actor>& actor);
 	void removeActor(const std::weak_ptr<class Actor>& actor);

@@ -5,14 +5,21 @@
 #include "../Actor/Actor.h"
 
 Scene::Scene(const std::weak_ptr<class Game>& game)
-	: mGame(game)
+	: mState(State::Active)
+	, mGame(game)
+	, mIsUpdateActor(false)
 {
 
 }
 
 Scene::~Scene()
 {
+	mGame.lock()->removeScene(weak_from_this());
+}
 
+void Scene::initailize()
+{
+	mGame.lock()->addScene(shared_from_this());
 }
 
 void Scene::sceneInput()
