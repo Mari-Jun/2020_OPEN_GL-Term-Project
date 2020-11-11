@@ -31,7 +31,7 @@ void LoadingScene::sceneUpdate(float deltatime)
 	count += 1;
 
 	//Á¶°Ç
-	if (count > 200)
+	if (count > 50)
 	{
 		auto scene = std::make_shared<GameScene>(getGame());
 		scene->initailize();

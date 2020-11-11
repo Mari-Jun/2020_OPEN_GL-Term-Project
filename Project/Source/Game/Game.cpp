@@ -118,7 +118,7 @@ void Game::revertScene(const std::shared_ptr<class Scene>& scene)
 
 void Game::clearScene()
 {
-	for (auto scene : mScene)
+	for (const auto& scene : mScene)
 	{
 		scene->setState(Scene::State::Dead);
 	}
@@ -129,7 +129,6 @@ void Game::addScene(const std::shared_ptr<class Scene>& scene)
 	if (mIsUpdateScene)
 	{
 		mReadyScene.emplace_back(scene);
-		std::cout << scene.use_count() << std::endl;
 	}
 	else
 	{
@@ -211,7 +210,7 @@ void Game::update()
 		}
 
 		mIsUpdateScene = true;
-		for (auto scene : mScene)
+		for (const auto& scene: mScene)
 		{
 			if (scene->getState() == Scene::State::Active)
 			{
@@ -220,7 +219,7 @@ void Game::update()
 		}
 		mIsUpdateScene = false;
 
-		for (auto scene : mReadyScene)
+		for (const auto& scene : mReadyScene)
 		{
 			mScene.emplace_back(scene);
 		}
@@ -246,7 +245,7 @@ void Game::update()
 
 void Game::draw()
 {
-	for (auto scene : mScene)
+	for (const auto& scene : mScene)
 	{
 		scene->draw();
 	}
