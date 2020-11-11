@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Jun_Programming\Jun_VS\Jun_VS_Project\2-2-OpenGL\FrameWork\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -192,6 +192,9 @@
     <ClCompile Include="Source\Game\Physics\Coliision\Plane.cpp" />
     <ClCompile Include="Source\Game\Physics\Coliision\Sphere.cpp" />
     <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="Source\Game\Scene\GameScene.cpp" />
+    <ClCompile Include="Source\Game\Scene\LoadingScene.cpp" />
+    <ClCompile Include="Source\Game\Scene\Scene.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +250,9 @@
     <ClInclude Include="Source\Game\Physics\Coliision\Plane.h" />
     <ClInclude Include="Source\Game\Physics\Coliision\Sphere.h" />
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
+    <ClInclude Include="Source\Game\Scene\GameScene.h" />
+    <ClInclude Include="Source\Game\Scene\LoadingScene.h" />
+    <ClInclude Include="Source\Game\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />
