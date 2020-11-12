@@ -127,6 +127,8 @@ bool Mesh::load(const std::string& fileName)
 		mBox.UpdateMinMax(Vector3(index.position.x, index.position.y, index.position.z));
 	}
 
+	std::cerr << fileName << " load complete\n";
+
 	return true;
 }
 

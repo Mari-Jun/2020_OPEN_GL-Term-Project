@@ -68,6 +68,7 @@ void GameScene::loadActorData()
 {
 	//Create ControlRobot
 	auto robot = std::make_shared<RobotActor>(getGame(), RobotActor::RobotState::Control);
+	robot->setScale(1.5f);
 	robot->initailize();
 
 	//Create CameraActor

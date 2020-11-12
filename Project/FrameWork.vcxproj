@@ -155,6 +155,7 @@
     <ClCompile Include="Source\Game\Actor\Robot\RobotActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Robot\RobotArm.cpp" />
     <ClCompile Include="Source\Game\Actor\Robot\RobotHead.cpp" />
+    <ClCompile Include="Source\Game\Actor\Robot\RobotLeg.cpp" />
     <ClCompile Include="Source\Game\Actor\Sky\Weather\Cloud.cpp" />
     <ClCompile Include="Source\Game\Actor\Sky\Weather\Snow.cpp" />
     <ClCompile Include="Source\Game\Actor\Sky\Solor\Solor.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Source\Game\Actor\Robot\RobotActor.h" />
     <ClInclude Include="Source\Game\Actor\Robot\RobotArm.h" />
     <ClInclude Include="Source\Game\Actor\Robot\RobotHead.h" />
+    <ClInclude Include="Source\Game\Actor\Robot\RobotLeg.h" />
     <ClInclude Include="Source\Game\Actor\Sky\Weather\Cloud.h" />
     <ClInclude Include="Source\Game\Actor\Sky\Weather\Snow.h" />
     <ClInclude Include="Source\Game\Actor\Sky\Solor\Solor.h" />

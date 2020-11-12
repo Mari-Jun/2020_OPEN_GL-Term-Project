@@ -15,13 +15,13 @@ BoxComponent::BoxComponent(const std::weak_ptr<class Actor>& owner, const std::w
 
 BoxComponent::~BoxComponent()
 {
-	mEngine.lock()->removeBox(std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
+	mEngine.lock()->removeBox(mOwner.lock()->getTypeToString(), std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
 }
 
 void BoxComponent::initailize()
 {
 	Component::initailize();
-	mEngine.lock()->addBox(std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
+	mEngine.lock()->addBox(mOwner.lock()->getTypeToString(), std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
 }
 
 void BoxComponent::updateWorldTransForm()
