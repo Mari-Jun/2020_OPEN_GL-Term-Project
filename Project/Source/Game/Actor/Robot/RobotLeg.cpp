@@ -1,4 +1,4 @@
-#include "RobotArm.h"
+#include "RobotLeg.h"
 #include "../../Graphics/Window.h"
 #include "../../Game.h"
 #include "../../Component/MoveComponent.h"
@@ -8,33 +8,33 @@
 #include "../../Graphics/Mesh/Mesh.h"
 #include "../PlaneActor.h"
 
-RobotArm::RobotArm(const std::weak_ptr<class Game>& game, bool left)
+RobotLeg::RobotLeg(const std::weak_ptr<class Game>& game, bool left)
 	: Actor(game, Type::Player)
 	, mLeft(left)
 	, mMove(false)
 	, mRot(0.0f)
 {
-	
+
 }
 
-RobotArm::~RobotArm()
+RobotLeg::~RobotLeg()
 {
 
 }
 
-void RobotArm::initailize()
+void RobotLeg::initailize()
 {
 	Actor::initailize();
 
 	//Create MeshComponent
-	std::string arm = mLeft ? "PlayerLArm" : "PlayerRArm";
-	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/" + arm);
+	std::string leg = mLeft ? "PlayerLLeg" : "PlayerRLeg";
+	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/" + leg);
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mMeshComponent->initailize();
 	mMeshComponent->setMesh(mesh);
 }
 
-void RobotArm::updateActor(float deltatime)
+void RobotLeg::updateActor(float deltatime)
 {
 	/*if (mRot >= 90.0f)
 	{
@@ -61,16 +61,16 @@ void RobotArm::updateActor(float deltatime)
 	}
 	else
 	{
-		if(Math::Abs(mRot) >= 1.0f)
+		if (Math::Abs(mRot) >= 1.0f)
 			mRot += rotSpeed * deltatime;
 	}
-	
+
 	setPosition(getPosition() - getUp() * getScale().y / 2);
 
 	mMove = false;*/
 }
 
-void RobotArm::actorInput()
+void RobotLeg::actorInput()
 {
 
 }

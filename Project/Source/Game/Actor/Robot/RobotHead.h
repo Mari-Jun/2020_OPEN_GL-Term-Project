@@ -12,13 +12,7 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
-	void setMeshColor(const Vector3& color) { mMeshColor = color; }
-
-	void createNose();
-
 private:
-	std::shared_ptr<class MeshComponent> mMeshComponent;
-	Vector3 mMeshColor;
-	
-	std::shared_ptr<class RobotHead> mNose;
+	std::shared_ptr<class MeshComponent> mMeshComponent;	
+	std::shared_ptr<class BoxComponent> mBoxComponent;
 };

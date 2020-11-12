@@ -2,9 +2,9 @@
 #include "..\Game.h"
 #include "..\Component\Component.h"
 
-Actor::Actor(const wptrGame& Game)
+Actor::Actor(const wptrGame& Game, Type type)
 	: mState(State::Active)
-	, mType(Type::Object)
+	, mType(type)
 	, mPosition(Vector3::Zero)
 	, mRotation(Quaternion::Identity)
 	, mScale(Vector3(1.0f, 1.0f, 1.0f))
@@ -137,9 +137,9 @@ void Actor::removeComponent(const std::weak_ptr<Component>& component)
 	}
 }
 
-std::string Actor::getTypeToString() const
+std::string Actor::getTypeToString(Type type) const
 {
-	switch (mType)
+	switch (type)
 	{
 	case Actor::Type::Player:
 		return "player";
