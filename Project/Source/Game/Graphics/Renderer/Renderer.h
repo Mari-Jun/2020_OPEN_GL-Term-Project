@@ -31,6 +31,9 @@ public:
 	void addSpriteComponent(const std::weak_ptr<class SpriteComponent>& component);
 	void removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component);
 
+	void addBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component);
+	void removeBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component);
+
 private:
 	bool loadShader();
 	void createSpriteVertex();
@@ -38,10 +41,12 @@ private:
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;
 
+	//추후에 unordered_map으로 변환하도록 하자
 	std::vector<std::weak_ptr<class LineComponent>> mLineComponent;
 	std::vector<std::weak_ptr<class MeshComponent>> mMeshComponent;
 	std::vector<std::weak_ptr<class AlphaComponent>> mAlphaComponent;
 	std::vector<std::weak_ptr<class SpriteComponent>> mSpriteComponent;
+	std::vector<std::weak_ptr<class BillBoardComponent>> mBillBoardComponent;
 
 	std::weak_ptr<class Game> mGame;
 
@@ -68,4 +73,7 @@ public:
 private:
 	void drawLineComponent();
 	void drawMeshComponent();
+	void drawAlphaComponent();
+	void drawSpriteComponent();
+	void drawBillBoardComponent();
 };

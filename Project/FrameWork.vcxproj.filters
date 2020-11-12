@@ -156,9 +156,6 @@
     <ClCompile Include="Source\Game\Actor\Bulider\Building.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Graphics\Texture\SpriteComponent.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game\Scene\Scene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -169,6 +166,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Actor\Robot\RobotLeg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Mesh\BillBoardComponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Graphics\Mesh\SpriteComponent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -326,9 +329,6 @@
     <ClInclude Include="Source\Game\Actor\Bulider\Building.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Graphics\Texture\SpriteComponent.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game\Scene\Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -339,6 +339,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Actor\Robot\RobotLeg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Mesh\BillBoardComponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Graphics\Mesh\SpriteComponent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

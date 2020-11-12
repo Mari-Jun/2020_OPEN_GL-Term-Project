@@ -4,9 +4,9 @@
 #include "../Mesh/MeshComponent.h"
 #include "../Mesh/AlphaComponent.h"
 #include "../Mesh/LineComponent.h"
+#include "../Mesh/SpriteComponent.h"
 #include "../Mesh/Mesh.h"
 #include "../Texture/Texture.h"
-#include "../Texture/SpriteComponent.h"
 #include "Renderer.h"
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
@@ -90,11 +90,14 @@ void Renderer::draw()
 {
 	mWindow->clear();
 
-	drawMeshComponent();
 	drawLineComponent();
+	drawMeshComponent();
+	drawAlphaComponent();
+	drawSpriteComponent();
 	
 	mWindow->swapBuffer();
 }
+
 
 void Renderer::drawLineComponent()
 {
@@ -113,7 +116,6 @@ void Renderer::drawLineComponent()
 
 void Renderer::drawMeshComponent()
 {
-	//Draw Mesh Component
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CW);
@@ -127,17 +129,22 @@ void Renderer::drawMeshComponent()
 	{
 		mComp.lock()->draw(mMeshShader);
 	}
+}
 
-	//Draw AlphaComponent
+void Renderer::drawAlphaComponent()
+{
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+
 
 	for (auto aComp : mAlphaComponent)
 	{
 		aComp.lock()->draw(mMeshShader);
 	}
+}
 
+void Renderer::drawSpriteComponent()
+{
 	glDisable(GL_DEPTH_TEST);
 	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);

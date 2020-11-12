@@ -16,10 +16,11 @@ Actor::Actor(const wptrGame& Game, Type type)
 
 Actor::~Actor()
 {
-	while (!mComponent.empty())
+	for (auto comp : mComponent)
 	{
-		mComponent.clear();
+		comp.reset();
 	}
+	mComponent.clear();
 	mGame.lock()->removeActor(getTypeToString(), weak_from_this());
 }
 
