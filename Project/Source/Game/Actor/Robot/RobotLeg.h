@@ -20,4 +20,5 @@ private:
 	bool mLeft;
 	bool mMove;
 	float mRot;
+	float mRotSpeed;
 };

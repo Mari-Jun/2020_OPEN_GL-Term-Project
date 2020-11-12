@@ -11,11 +11,10 @@
 #include "../../Graphics/Mesh/Mesh.h"
 #include "../PlaneActor.h"
 
-RobotActor::RobotActor(const std::weak_ptr<class Game>& game, RobotState state)
+RobotActor::RobotActor(const std::weak_ptr<class Game>& game)
 	: Actor(game, Type::Player)
 	, mGravitySpeed(0.0f)
 	, mAnimation(false)
-	, mState(state)
 {
 
 }
@@ -32,8 +31,9 @@ void RobotActor::initailize()
 	//Create MeshComponent
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/PlayerBody");
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mMeshComponent->initailize();
 	mMeshComponent->setMesh(mesh);
+	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
+	mMeshComponent->initailize();
 
 	//Create MoveComponent
 	mMoveComponent = std::make_shared<MoveComponent>(weak_from_this());
@@ -87,7 +87,6 @@ void RobotActor::updateActor(float deltatime)
 	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
 
 	collides(mBoxComponent);
-	
 
 	mHead->setRotation(getRotation());
 	mHead->setPosition(getPosition());
@@ -103,91 +102,32 @@ void RobotActor::updateActor(float deltatime)
 
 	mRightLeg->setPosition(getPosition());
 	mRightLeg->setRotation(getRotation());
-
-	
-
-	if (mState == RobotState::Running)
-	{
-		if (mAnimation)
-		{
-			mLeftArm->setMove(true);
-			mRightArm->setMove(true);
-			mLeftLeg->setMove(true);
-			mRightLeg->setMove(true);
-		}
-		mGravitySpeed = 0.0f;
-	}
-	else if (mState == RobotState::Pole)
-	{
-		mLeftArm->setRot(180.0f);
-		mRightArm->setRot(180.0f);
-		mGravitySpeed = 0.0f;
-	}
-	else if (mState == RobotState::Press)
-	{
-		mLeftArm->setRot(-90.0f);
-		mRightArm->setRot(-90.0f);
-		mGravitySpeed = 0.0f;
-
-		if (mAnimation)
-		{
-			static float movePos = 0.0f;
-			static float moveSpeed = 4.0f;
-
-			mLeftArm->setPosition(mLeftArm->getPosition() + getForward() * movePos);
-			mRightArm->setPosition(mRightArm->getPosition() + getForward() * movePos);
-			movePos += moveSpeed * deltatime;
-			if (movePos > 2.0f)
-			{
-				moveSpeed = -4.0f;
-			}
-			else if (movePos < -1.0f)
-			{
-				moveSpeed = 4.0f;
-			}
-		}
-	}
 }
 
 void RobotActor::actorInput()
 {
 	auto game = getGame().lock();
 
-	if (mState == RobotState::Control)
+	float forwardSpeed = 0.0f;
+
+	if (game->getKeyBoard()->isKeyPressed('w') ||
+		game->getKeyBoard()->isKeyPressed('a') ||
+		game->getKeyBoard()->isKeyPressed('s') ||
+		game->getKeyBoard()->isKeyPressed('d'))
 	{
-		float forwardSpeed = 0.0f;
-
-		if (game->getKeyBoard()->isKeyPressed('w') ||
-			game->getKeyBoard()->isKeyPressed('a') ||
-			game->getKeyBoard()->isKeyPressed('s') ||
-			game->getKeyBoard()->isKeyPressed('d'))
-		{
-			forwardSpeed = 100.0f;
-		}
-
-		if (game->getKeyBoard()->isKeyPressed(32))
-		{
-			mGravitySpeed = 2000.0f;
-		}
-
-		if (forwardSpeed != 0.0f)
-		{
-			mLeftArm->setMove(true);
-			mRightArm->setMove(true);
-			mLeftLeg->setMove(true);
-			mRightLeg->setMove(true);
-		}
-
-		mMoveComponent->setForwardSpeed(forwardSpeed);
+		forwardSpeed = 100.0f;
+		mLeftArm->setMove(true);
+		mRightArm->setMove(true);
+		mLeftLeg->setMove(true);
+		mRightLeg->setMove(true);
 	}
-	if (game->getKeyBoard()->isKeyPressed('p'))
+
+	if (game->getKeyBoard()->isKeyPressed(32))
 	{
-		mAnimation = true;
+		mGravitySpeed = 2000.0f;
 	}
-	if (game->getKeyBoard()->isKeyPressed('P'))
-	{
-		mAnimation = false;
-	}
+
+	mMoveComponent->setForwardSpeed(forwardSpeed);
 }
 
 void RobotActor::collides(const std::weak_ptr<BoxComponent>& bComp)

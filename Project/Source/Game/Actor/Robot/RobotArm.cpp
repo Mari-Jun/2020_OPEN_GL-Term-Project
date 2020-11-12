@@ -11,8 +11,8 @@
 RobotArm::RobotArm(const std::weak_ptr<class Game>& game, bool left)
 	: Actor(game, Type::Player)
 	, mLeft(left)
-	, mMove(false)
 	, mRot(0.0f)
+	, mRotSpeed(mLeft ? 300.0f : -300.0f)
 {
 	
 }
@@ -30,26 +30,20 @@ void RobotArm::initailize()
 	std::string arm = mLeft ? "PlayerLArm" : "PlayerRArm";
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/" + arm);
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mMeshComponent->initailize();
+	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
 	mMeshComponent->setMesh(mesh);
+	mMeshComponent->initailize();
 }
 
 void RobotArm::updateActor(float deltatime)
 {
-	/*if (mRot >= 90.0f)
+	if (mRot >= 60.0f && mRotSpeed > 0.0f ||
+		mRot <= -60.0f && mRotSpeed < 0.0f)
 	{
-		mFront = false;
-	}
-	if (mRot <= -90.0f)
-	{
-		mFront = true;
+		mRotSpeed *= -1;
 	}
 
-	float rotSpeed = 400.0f;
-	if (!mFront)
-		rotSpeed *= -1;
-
-	setPosition(getPosition() + getUp() * getScale().y / 2);
+	setPosition(getPosition() + getUp() * getScale().y * 11);
 
 	Quaternion q = getRotation();
 	q = Quaternion::Concatenate(q, Quaternion(getSide(), Math::ToRadians(mRot)));
@@ -57,17 +51,23 @@ void RobotArm::updateActor(float deltatime)
 
 	if (mMove)
 	{
-		mRot += rotSpeed * deltatime;
+		mRot += mRotSpeed * deltatime;
 	}
 	else
 	{
-		if(Math::Abs(mRot) >= 1.0f)
-			mRot += rotSpeed * deltatime;
+		if (Math::Abs(mRot) >= 2.0f)
+		{
+			mRot += mRotSpeed * deltatime;
+		}
+		else
+		{
+			mRot = 0.0f;
+		}
 	}
 	
-	setPosition(getPosition() - getUp() * getScale().y / 2);
+	setPosition(getPosition() - getUp() * getScale().y * 11);
 
-	mMove = false;*/
+	mMove = false;
 }
 
 void RobotArm::actorInput()

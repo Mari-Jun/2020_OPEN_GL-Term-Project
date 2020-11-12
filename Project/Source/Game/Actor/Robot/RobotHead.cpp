@@ -27,6 +27,7 @@ void RobotHead::initailize()
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/PlayerHead");
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mMeshComponent->setMesh(mesh);
+	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
 	mMeshComponent->initailize();
 
 	//Create BoxComponent

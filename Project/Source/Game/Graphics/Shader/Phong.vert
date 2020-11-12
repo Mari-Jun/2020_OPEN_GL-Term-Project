@@ -40,7 +40,7 @@ void main()
 	fragTexCoord = inTexCoord;
 
 	//컬러 전달
-	if(uColor.x == 0.0 && uColor.y == 0.0 && uColor.z == 0.0)
+	if(uColor.xyz == vec3(0.0, 0.0, 0.0))
 	{
 		fragColor = inColor;
 	}
