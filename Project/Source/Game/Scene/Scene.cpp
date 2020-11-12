@@ -27,9 +27,13 @@ void Scene::sceneInput()
 	mGame.lock()->getRenderer()->processInput();
 
 	mIsUpdateActor = true;
-	for (auto actor : mActors)
+
+	for (const auto& actors : mActors)
 	{
-		actor.second->processInput();
+		for (const auto& actor : actors.second)
+		{
+			actor->processInput();
+		}
 	}
 	mIsUpdateActor = false;
 }
@@ -37,34 +41,59 @@ void Scene::sceneInput()
 void Scene::sceneUpdate(float deltatime)
 {
 	mIsUpdateActor = true;
-	std::cout << mActors.size() << std::endl;
-	for (auto actor : mActors)
+	for (const auto& actors : mActors)
 	{
-		actor.second->update(deltatime);
+		for (const auto& actor : actors.second)
+		{
+			actor->update(deltatime);
+		}
 	}
 	mIsUpdateActor = false;
 
-	for (auto actor : mReadyActors)
+	for (const auto& actors : mReadyActors)
 	{
-		actor.second->updateWorldTransform();
-		mActors.emplace(actor);
-	}
-	mReadyActor.clear();
-
-	std::vector<std::shared_ptr<Actor>> deadActor;
-	for (auto& actor : mActors)
-	{
-		if (actor.second->getState() == Actor::State::Dead)
+		for (const auto& actor : actors.second)
 		{
-			deadActor.emplace_back(std::move(actor.second));
+			actor->updateWorldTransform();
+			mActors.find(actors.first)->second.emplace_back(actor);
 		}
 	}
+	mReadyActors.clear();
 
-	for (auto& actor : deadActor)
+	mIsUpdateActor = true;
+
+	std::unordered_map<std::string, std::vector<std::shared_ptr<class Actor>>> deadActor;
+	for (auto& actors : mActors)
 	{
-		actor.reset();
+		for (auto& actor : actors.second)
+		{
+			if (actor->getState() == Actor::State::Dead)
+			{
+				auto iter = deadActor.find(actors.first);
+				if (iter == deadActor.end())
+				{
+					std::vector<std::shared_ptr<class Actor>> ret;
+					ret.emplace_back(std::move(actor));
+					deadActor.insert({actors.first, ret});
+				}
+				else
+				{
+					iter->second.emplace_back(std::move(actor));
+				}
+			}
+		}		
+	}
+
+	for (auto& actors : deadActor)
+	{
+		for (auto& actor : actors.second)
+		{
+			actor.reset();
+		}
 	}
 	deadActor.clear();
+
+	mIsUpdateActor = false;
 
 	mGame.lock()->getRenderer()->update(deltatime);
 }
@@ -84,66 +113,65 @@ void Scene::unLoadData()
 
 }
 
-void Scene::addActor(const std::shared_ptr<class Actor>& actor)
-{
-	if (mIsUpdateActor)
-	{
-		mReadyActor.emplace_back(actor);
-	}
-	else
-	{
-		mActor.emplace_back(actor);
-	}
-}
-
-void Scene::removeActor(const std::weak_ptr<class Actor>& actor)
-{
-	auto iter = std::find_if(mReadyActor.begin(), mReadyActor.end(),
-		[&actor](const std::weak_ptr<Actor>& act)
-		{return actor.lock() == act.lock(); });
-	if (iter != mReadyActor.end())
-	{
-		std::iter_swap(iter, mReadyActor.end() - 1);
-		mReadyActor.pop_back();
-	}
-
-	iter = std::find_if(mActor.begin(), mActor.end(),
-		[&actor](const std::weak_ptr<Actor>& act)
-		{return actor.lock() == act.lock(); });
-	if (iter != mActor.end())
-	{
-		std::iter_swap(iter, mActor.end() - 1);
-		mActor.pop_back();
-	}
-}
-
 void Scene::addActor(const std::string& type, const std::shared_ptr<class Actor>& actor)
 {
 	if (mIsUpdateActor)
 	{
-		mReadyActors.insert(std::make_pair(type, actor));
+		auto iter = mReadyActors.find(type);
+		if (iter == mReadyActors.end())
+		{
+			std::vector<std::shared_ptr<class Actor>> ret;
+			ret.emplace_back(actor);
+			mReadyActors.insert({ type,ret });
+		}
+		else
+		{
+			iter->second.emplace_back(actor);
+		}
 	}
 	else
 	{
-		mActors.insert(std::make_pair(type, actor));
+		auto iter = mActors.find(type);
+		if (iter == mActors.end())
+		{
+			std::vector<std::shared_ptr<class Actor>> ret;
+			ret.emplace_back(actor);
+			mActors.insert({ type,ret });
+		}
+		else
+		{
+			iter->second.emplace_back(actor);
+		}
 	}
 }
 
 void Scene::removeActor(const std::string& type, const std::weak_ptr<class Actor>& actor)
 {
-	auto iter = std::find_if(mReadyActors.begin(), mReadyActors.end(),
-		[&actor](const std::pair<std::string, std::weak_ptr<class Actor>>& act)
-		{return actor.lock() == act.second.lock(); });
-	if (iter != mReadyActors.end())
+	auto rActors = mReadyActors.find(type);
+	if (rActors != mReadyActors.end())
 	{
-		mReadyActors.erase(iter);
+		auto& actors = rActors->second;
+		auto iter = std::find_if(actors.begin(), actors.end(),
+			[&actor](const std::weak_ptr<Actor>& act)
+			{return actor.lock() == act.lock(); });
+		if (iter != actors.end())
+		{
+			std::iter_swap(iter, actors.end() - 1);
+			actors.pop_back();
+		}
 	}
-	
-	iter = std::find_if(mActors.begin(), mActors.end(),
-		[&actor](const std::pair<std::string, std::weak_ptr<class Actor>>& act)
-		{return actor.lock() == act.second.lock(); });
-	if (iter != mActors.end())
+
+	auto aActors = mActors.find(type);
+	if (aActors != mActors.end())
 	{
-		mActors.erase(iter);
+		auto& actors = aActors->second;
+		auto iter = std::find_if(actors.begin(), actors.end(),
+			[&actor](const std::weak_ptr<Actor>& act)
+			{return actor.lock() == act.lock(); });
+		if (iter != actors.end())
+		{
+			std::iter_swap(iter, actors.end() - 1);
+			actors.pop_back();
+		}
 	}
 }
