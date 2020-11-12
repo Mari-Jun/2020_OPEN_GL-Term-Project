@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <map>
+#include <string>
 
 class Scene : public std::enable_shared_from_this<Scene>
 {
@@ -26,10 +28,16 @@ public:
 
 	void addActor(const std::shared_ptr<class Actor>& actor);
 	void removeActor(const std::weak_ptr<class Actor>& actor);
+	
+	void addActor(const std::string& type, const std::shared_ptr<class Actor>& actor);
+	void removeActor(const std::string& type, const std::weak_ptr<class Actor>& actor);
 
 private:
 	State mState;
 	std::weak_ptr<class Game> mGame;
+
+	std::multimap<std::string, std::shared_ptr<class Actor>> mActors;
+	std::multimap<std::string, std::shared_ptr<class Actor>> mReadyActors;
 
 	std::vector<std::shared_ptr<class Actor>> mActor;
 	std::vector<std::shared_ptr<class Actor>> mReadyActor;

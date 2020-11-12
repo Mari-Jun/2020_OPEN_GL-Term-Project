@@ -27,9 +27,9 @@ void Scene::sceneInput()
 	mGame.lock()->getRenderer()->processInput();
 
 	mIsUpdateActor = true;
-	for (auto actor : mActor)
+	for (auto actor : mActors)
 	{
-		actor->processInput();
+		actor.second->processInput();
 	}
 	mIsUpdateActor = false;
 }
@@ -37,25 +37,26 @@ void Scene::sceneInput()
 void Scene::sceneUpdate(float deltatime)
 {
 	mIsUpdateActor = true;
-	for (auto actor : mActor)
+	std::cout << mActors.size() << std::endl;
+	for (auto actor : mActors)
 	{
-		actor->update(deltatime);
+		actor.second->update(deltatime);
 	}
 	mIsUpdateActor = false;
 
-	for (auto actor : mReadyActor)
+	for (auto actor : mReadyActors)
 	{
-		actor->updateWorldTransform();
-		mActor.emplace_back(actor);
+		actor.second->updateWorldTransform();
+		mActors.emplace(actor);
 	}
 	mReadyActor.clear();
 
 	std::vector<std::shared_ptr<Actor>> deadActor;
-	for (auto& actor : mActor)
+	for (auto& actor : mActors)
 	{
-		if (actor->getState() == Actor::State::Dead)
+		if (actor.second->getState() == Actor::State::Dead)
 		{
-			deadActor.emplace_back(std::move(actor));
+			deadActor.emplace_back(std::move(actor.second));
 		}
 	}
 
@@ -113,5 +114,36 @@ void Scene::removeActor(const std::weak_ptr<class Actor>& actor)
 	{
 		std::iter_swap(iter, mActor.end() - 1);
 		mActor.pop_back();
+	}
+}
+
+void Scene::addActor(const std::string& type, const std::shared_ptr<class Actor>& actor)
+{
+	if (mIsUpdateActor)
+	{
+		mReadyActors.insert(std::make_pair(type, actor));
+	}
+	else
+	{
+		mActors.insert(std::make_pair(type, actor));
+	}
+}
+
+void Scene::removeActor(const std::string& type, const std::weak_ptr<class Actor>& actor)
+{
+	auto iter = std::find_if(mReadyActors.begin(), mReadyActors.end(),
+		[&actor](const std::pair<std::string, std::weak_ptr<class Actor>>& act)
+		{return actor.lock() == act.second.lock(); });
+	if (iter != mReadyActors.end())
+	{
+		mReadyActors.erase(iter);
+	}
+	
+	iter = std::find_if(mActors.begin(), mActors.end(),
+		[&actor](const std::pair<std::string, std::weak_ptr<class Actor>>& act)
+		{return actor.lock() == act.second.lock(); });
+	if (iter != mActors.end())
+	{
+		mActors.erase(iter);
 	}
 }

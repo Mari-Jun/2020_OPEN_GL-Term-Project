@@ -47,6 +47,9 @@ public:
 	void addActor(const std::shared_ptr<class Actor>& actor);
 	void removeActor(const std::weak_ptr<class Actor>& actor);
 
+	void addActor(const std::string& type, const std::shared_ptr<class Actor>& actor);
+	void removeActor(const std::string& type, const std::weak_ptr<class Actor>& actor);
+
 private:
 	void processInput();
 	void update();

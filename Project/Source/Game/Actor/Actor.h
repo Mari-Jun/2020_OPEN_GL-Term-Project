@@ -14,6 +14,15 @@ public:
 		Paused,
 		Dead
 	};
+	enum class Type
+	{
+		Player,
+		Enemy,
+		Object,
+		Particle,
+		Ui,
+		Etc
+	};
 
 	Actor(const wptrGame& Game);
 	virtual ~Actor() noexcept;
@@ -22,6 +31,7 @@ public:
 
 private:
 	State mState;
+	Type mType;
 
 	Matrix4 mWorldTransform;
 	Vector3 mPosition;
@@ -42,6 +52,7 @@ public:
 	
 	State getState() const { return mState; }
 	void setState(State state) { mState = state; }
+	std::string getTypeToString() const;
 
 	void updateWorldTransform();
 	void rotateToNewForward(const Vector3& forward);

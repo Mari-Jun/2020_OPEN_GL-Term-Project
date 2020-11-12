@@ -172,6 +172,23 @@ void Game::removeActor(const std::weak_ptr<Actor>& actor)
 	mScene.back()->removeActor(actor);
 }
 
+void Game::addActor(const std::string& type, const std::shared_ptr<Actor>& actor)
+{
+	if (!mReadyScene.empty())
+	{
+		mReadyScene.back()->addActor(type, actor);
+	}
+	else
+	{
+		mScene.back()->addActor(type, actor);
+	}
+}
+
+void Game::removeActor(const std::string& type, const std::weak_ptr<Actor>& actor)
+{
+	mScene.back()->removeActor(type, actor);
+}
+
 void Game::processInput()
 {
 	if (mKeyBoard->isKeyPressed(27))

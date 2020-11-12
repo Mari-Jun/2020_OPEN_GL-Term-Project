@@ -4,6 +4,7 @@
 
 Actor::Actor(const wptrGame& Game)
 	: mState(State::Active)
+	, mType(Type::Object)
 	, mPosition(Vector3::Zero)
 	, mRotation(Quaternion::Identity)
 	, mScale(Vector3(1.0f, 1.0f, 1.0f))
@@ -19,12 +20,12 @@ Actor::~Actor()
 	{
 		mComponent.clear();
 	}
-	mGame.lock()->removeActor(weak_from_this());
+	mGame.lock()->removeActor(getTypeToString(), weak_from_this());
 }
 
 void Actor::initailize()
 {
-	mGame.lock()->addActor(shared_from_this());
+	mGame.lock()->addActor(getTypeToString(), shared_from_this());
 }
 
 void Actor::update(float deltatime)
@@ -133,5 +134,26 @@ void Actor::removeComponent(const std::weak_ptr<Component>& component)
 	if (iter != mComponent.end())
 	{
 		mComponent.erase(iter);
+	}
+}
+
+std::string Actor::getTypeToString() const
+{
+	switch (mType)
+	{
+	case Actor::Type::Player:
+		return "player";
+	case Actor::Type::Enemy:
+		return "enemy";
+	case Actor::Type::Object:
+		return "object";
+	case Actor::Type::Particle:
+		return "particle";
+	case Actor::Type::Ui:
+		return "ui";
+	case Actor::Type::Etc:
+		return "etc";
+	default:
+		return "";
 	}
 }
