@@ -3,8 +3,8 @@
 GLvoid renderCallBack();
 GLvoid reshapeCallBack(int width, int height);
 
-Vector2 Window::mPosition = Vector2(0.0f, 0.0f);
-Vector2 Window::mSize = Vector2(800.0f, 600.0f);
+Vector2 Window::mPosition = Vector2(100.0f, 100.0f);
+Vector2 Window::mSize = Vector2(1366.0f, 768.0f);
 
 Window::Window(const Vector2& pos, const Vector2& size, std::string& name)
 	: mName(name)
