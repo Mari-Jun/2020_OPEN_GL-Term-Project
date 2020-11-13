@@ -13,6 +13,6 @@ public:
 	virtual void actorInput() override;
 
 private:
-	std::shared_ptr<class DefualtShape> mSnow;
+	std::shared_ptr<class BillBoardComponent> mSnow;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
 };

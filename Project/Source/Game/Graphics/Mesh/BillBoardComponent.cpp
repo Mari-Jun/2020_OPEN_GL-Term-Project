@@ -7,10 +7,9 @@
 #include "../Texture/Texture.h"
 
 
-BillBoardComponent::BillBoardComponent(const std::weak_ptr<class Actor>& owner, const std::weak_ptr<class Renderer>& render, int drawOrder)
+BillBoardComponent::BillBoardComponent(const std::weak_ptr<class Actor>& owner, const std::weak_ptr<class Renderer>& render)
 	: Component(owner)
 	, mRender(render)
-	, mDrawOrder(drawOrder)
 	, mTexWidth(0)
 	, mTexHeight(0)
 {
@@ -32,9 +31,9 @@ void BillBoardComponent::draw(std::unique_ptr<Shader>& shader)
 {
 	if (mTexture)
 	{
-		Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(mTexWidth), static_cast<float>(mTexHeight), 1.0f);
-		Matrix4 world = scaleMat * mOwner.lock()->getWorldTransform();
-		shader->setMatrixUniform("uWorldTransform", world);
+		shader->setMatrixUniform("uWorldTransform", mOwner.lock()->getWorldTransform());
+		shader->SetVectorUniform("uAmbientLight", Vector3(1.0f, 1.0f, 1.0f));
+		shader->SetVectorUniform("uColor", Vector3(1.0f, 1.0f, 1.0f));
 
 		mTexture->setActive();
 

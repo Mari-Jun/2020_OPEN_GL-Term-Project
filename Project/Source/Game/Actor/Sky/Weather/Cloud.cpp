@@ -40,7 +40,7 @@ void Cloud::updateActor(float deltatime)
 		{
 			auto snow = std::make_shared<Snow>(getGame());
 			snow->setPosition(getPosition() + Vector3(pos(mersenne), 0.0f, pos(mersenne)));
-			snow->setScale(1.0f);
+			snow->setScale(3.0f);
 			snow->initailize();
 		}
 	}

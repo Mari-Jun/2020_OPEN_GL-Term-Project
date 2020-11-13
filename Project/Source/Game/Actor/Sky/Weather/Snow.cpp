@@ -2,6 +2,7 @@
 #include "../../../Graphics/Window.h"
 #include "../../../Game.h"
 #include "../../../Component/MoveComponent.h"
+#include "../../../Graphics/Mesh/BillBoardComponent.h"
 #include "../../Defualt/DefualtShape.h"
 
 Snow::Snow(const std::weak_ptr<class Game>& game)
@@ -20,12 +21,9 @@ void Snow::initailize()
 	Actor::initailize();
 
 	//Create Snow~
-	mSnow = std::make_shared<DefualtShape>(getGame(), DefualtShape::Shape::Box, false);
-	mSnow->setScale(getScale());
-	mSnow->setRotation(getRotation());
-	mSnow->setPosition(getPosition());
-	mSnow->setMeshColor(Vector3::Rgb(Vector3(256.0f, 256.0f, 256.0f)));
+	mSnow = std::make_shared<BillBoardComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mSnow->initailize();
+	mSnow->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Particle/snow.png"));
 
 	//Create MoveComponent
 	mMoveComponent = std::make_shared<MoveComponent>(weak_from_this());
@@ -34,7 +32,7 @@ void Snow::initailize()
 
 void Snow::updateActor(float deltatime)
 {
-	mSnow->setPosition(getPosition());
+	setPosition(getPosition());
 
 	float upSpeed = -200.0f;
 
@@ -43,7 +41,7 @@ void Snow::updateActor(float deltatime)
 	if (getPosition().y <= -30.0f)
 	{
 		setState(State::Dead);
-		mSnow->setState(State::Dead);
+		//setState(State::Dead);
 	}
 }
 

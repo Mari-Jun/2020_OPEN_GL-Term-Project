@@ -127,7 +127,7 @@ void Renderer::drawMeshComponent()
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 	mLight->setLightShader(mView, mMeshShader);
 
-	for (auto mComp : mMeshComponent)
+	for (const auto& mComp : mMeshComponent)
 	{
 		mComp.lock()->draw(mMeshShader);
 	}
@@ -135,7 +135,9 @@ void Renderer::drawMeshComponent()
 
 void Renderer::drawBillBoardComponent()
 {
-	for (auto bComp : mBillBoardComponent)
+	mMeshShader->setMatrixUniform("uViewProj", mProjection);
+	mSpriteVertex->setActive();
+	for (const auto& bComp : mBillBoardComponent)
 	{
 		bComp.lock()->draw(mMeshShader);
 	}
@@ -145,9 +147,10 @@ void Renderer::drawAlphaComponent()
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
-
-	for (auto aComp : mAlphaComponent)
+	for (const auto& aComp : mAlphaComponent)
 	{
 		aComp.lock()->draw(mMeshShader);
 	}
@@ -156,13 +159,11 @@ void Renderer::drawAlphaComponent()
 void Renderer::drawSpriteComponent()
 {
 	glDisable(GL_DEPTH_TEST);
-	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
-	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
 	mSpriteShader->setActive();
 	mSpriteVertex->setActive();
 
-	for (auto sComp : mSpriteComponent)
+	for (const auto& sComp : mSpriteComponent)
 	{
 		sComp.lock()->draw(mSpriteShader);
 	}
@@ -298,10 +299,10 @@ void Renderer::createSpriteVertex()
 	vertex[1].position = Vector3(-0.5f, 0.5f, 0.0f);
 	vertex[2].position = Vector3(0.5f, 0.5f, 0.0f);
 	vertex[3].position = Vector3(0.5f, -0.5f, 0.0f);
-	vertex[0].normal = Vector3(0.0f, 0.0f, 0.0f);
-	vertex[1].normal = Vector3(0.0f, 0.0f, 0.0f);
-	vertex[2].normal = Vector3(0.0f, 0.0f, 0.0f);
-	vertex[3].normal = Vector3(0.0f, 0.0f, 0.0f);
+	vertex[0].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[1].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[2].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[3].normal = Vector3(0.0f, 0.0f, 1.0f);
 	vertex[0].texcoord = Vector2(0.0f, 0.0f);
 	vertex[1].texcoord = Vector2(0.0f, 1.0f);
 	vertex[2].texcoord = Vector2(1.0f, 1.0f);
