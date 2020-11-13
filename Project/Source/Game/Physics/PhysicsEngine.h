@@ -2,6 +2,8 @@
 #include <memory>
 #include <functional>
 #include <vector>
+#include <string>
+#include <unordered_map>
 #include "../Math/Math.h"
 #include "Coliision/Collision.h"
 
@@ -27,12 +29,12 @@ public:
 	void TestPairwise(std::function<void(std::weak_ptr<class Actor>&, std::weak_ptr<class Actor>&)> f);
 	void TestSweepAndPrune(std::function<void(std::weak_ptr<class Actor>&, std::weak_ptr<class Actor>&)> f);
 
-	void addBox(const std::weak_ptr<class BoxComponent>& box);
-	void removeBox(const std::weak_ptr<class BoxComponent>& box);
+	void addBox(const std::string& type, const std::weak_ptr<class BoxComponent>& box);
+	void removeBox(const std::string& type, const std::weak_ptr<class BoxComponent>& box);
 
-	std::vector<std::weak_ptr<class BoxComponent>>& getBoxes() { return mBoxes; }
+	const std::unordered_map<std::string, std::vector<std::weak_ptr<class BoxComponent>>>& getBoxes() { return mBoxes; }
 
 private:
 	std::weak_ptr<class Game> mGame;
-	std::vector<std::weak_ptr<class BoxComponent>> mBoxes;
+	std::unordered_map<std::string, std::vector<std::weak_ptr<class BoxComponent>>> mBoxes;
 };

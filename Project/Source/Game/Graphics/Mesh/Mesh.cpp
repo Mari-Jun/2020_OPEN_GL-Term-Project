@@ -127,6 +127,8 @@ bool Mesh::load(const std::string& fileName)
 		mBox.UpdateMinMax(Vector3(index.position.x, index.position.y, index.position.z));
 	}
 
+	std::cerr << fileName << " load complete\n";
+
 	return true;
 }
 
@@ -174,7 +176,7 @@ void Mesh::unLoad()
 	mVertexArray.reset();
 }
 
-void Mesh::setTexture(const std::string& fileName, std::weak_ptr<Renderer>& mRender)
+void Mesh::setTexture(const std::string& fileName, const std::weak_ptr<Renderer>& mRender)
 {
 	mTexture.emplace_back(mRender.lock()->getTexture(fileName));
 }

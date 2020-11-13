@@ -155,6 +155,7 @@
     <ClCompile Include="Source\Game\Actor\Robot\RobotActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Robot\RobotArm.cpp" />
     <ClCompile Include="Source\Game\Actor\Robot\RobotHead.cpp" />
+    <ClCompile Include="Source\Game\Actor\Robot\RobotLeg.cpp" />
     <ClCompile Include="Source\Game\Actor\Sky\Weather\Cloud.cpp" />
     <ClCompile Include="Source\Game\Actor\Sky\Weather\Snow.cpp" />
     <ClCompile Include="Source\Game\Actor\Sky\Solor\Solor.cpp" />
@@ -166,13 +167,14 @@
     <ClCompile Include="Source\Game\Component\Component.cpp" />
     <ClCompile Include="Source\Game\Graphics\Light\Light.cpp" />
     <ClCompile Include="Source\Game\Graphics\Mesh\AlphaComponent.cpp" />
+    <ClCompile Include="Source\Game\Graphics\Mesh\BillBoardComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Mesh\LineComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Mesh\MeshComponent.cpp" />
     <ClCompile Include="Source\Game\Component\MoveComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Game\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="Source\Game\Graphics\Shader\VertexArray.cpp" />
-    <ClCompile Include="Source\Game\Graphics\Texture\SpriteComponent.cpp" />
+    <ClCompile Include="Source\Game\Graphics\Mesh\SpriteComponent.cpp" />
     <ClCompile Include="Source\Game\Graphics\Texture\Texture.cpp" />
     <ClCompile Include="Source\Game\Input\KeyBoard.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
@@ -208,6 +210,7 @@
     <ClInclude Include="Source\Game\Actor\Robot\RobotActor.h" />
     <ClInclude Include="Source\Game\Actor\Robot\RobotArm.h" />
     <ClInclude Include="Source\Game\Actor\Robot\RobotHead.h" />
+    <ClInclude Include="Source\Game\Actor\Robot\RobotLeg.h" />
     <ClInclude Include="Source\Game\Actor\Sky\Weather\Cloud.h" />
     <ClInclude Include="Source\Game\Actor\Sky\Weather\Snow.h" />
     <ClInclude Include="Source\Game\Actor\Sky\Solor\Solor.h" />
@@ -219,6 +222,7 @@
     <ClInclude Include="Source\Game\Component\Component.h" />
     <ClInclude Include="Source\Game\Graphics\Light\Light.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\AlphaComponent.h" />
+    <ClInclude Include="Source\Game\Graphics\Mesh\BillBoardComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\LineComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\MeshComponent.h" />
     <ClInclude Include="Source\Game\Component\MoveComponent.h" />
@@ -226,7 +230,7 @@
     <ClInclude Include="Source\Game\Graphics\Mesh\Mesh.h" />
     <ClInclude Include="Source\Game\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Game\Graphics\Shader\VertexArray.h" />
-    <ClInclude Include="Source\Game\Graphics\Texture\SpriteComponent.h" />
+    <ClInclude Include="Source\Game\Graphics\Mesh\SpriteComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Texture\stb_image.h" />
     <ClInclude Include="Source\Game\Graphics\Texture\Texture.h" />
     <ClInclude Include="Source\Game\Input\KeyBoard.h" />

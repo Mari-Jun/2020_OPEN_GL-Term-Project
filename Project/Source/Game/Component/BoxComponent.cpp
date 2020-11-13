@@ -15,13 +15,14 @@ BoxComponent::BoxComponent(const std::weak_ptr<class Actor>& owner, const std::w
 
 BoxComponent::~BoxComponent()
 {
-	mEngine.lock()->removeBox(std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
+	mEngine.lock()->removeBox(getTypeToString(), std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
 }
 
 void BoxComponent::initailize()
 {
 	Component::initailize();
-	mEngine.lock()->addBox(std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
+	setType(mOwner.lock()->getTypeToString());
+	mEngine.lock()->addBox(getTypeToString(), std::dynamic_pointer_cast<BoxComponent>(weak_from_this().lock()));
 }
 
 void BoxComponent::updateWorldTransForm()
@@ -45,4 +46,47 @@ void BoxComponent::updateWorldTransForm()
 void BoxComponent::updateObjectBox(const Vector3& pos)
 {
 	mObjectBox.UpdateMinMax(pos);
+}
+
+void BoxComponent::setType(const std::string& type)
+{
+	if (type == "player")
+	{
+		mType = Type::Player;
+	}
+	else if (type == "enemy")
+	{
+		mType = Type::Enemy;
+	}
+	else if (type == "object")
+	{
+		mType = Type::Object;
+	}
+	else if (type == "etc")
+	{
+		mType = Type::Etc;
+	}
+	else
+	{
+		mType = Type::None;
+	}
+}
+
+std::string BoxComponent::getTypeToString() const
+{
+	switch (mType)
+	{
+	case BoxComponent::Type::Player:
+		return "player";
+	case BoxComponent::Type::Enemy:
+		return "enemy";
+	case BoxComponent::Type::Object:
+		return "object";
+	case BoxComponent::Type::Etc:
+		return "etc";
+	case BoxComponent::Type::None:
+		return "none";
+	default:
+		return "";
+	}
 }

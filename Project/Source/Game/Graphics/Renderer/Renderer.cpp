@@ -4,9 +4,10 @@
 #include "../Mesh/MeshComponent.h"
 #include "../Mesh/AlphaComponent.h"
 #include "../Mesh/LineComponent.h"
+#include "../Mesh/SpriteComponent.h"
+#include "../Mesh/BillBoardComponent.h"
 #include "../Mesh/Mesh.h"
 #include "../Texture/Texture.h"
-#include "../Texture/SpriteComponent.h"
 #include "Renderer.h"
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
@@ -92,9 +93,13 @@ void Renderer::draw()
 
 	drawMeshComponent();
 	drawLineComponent();
+	drawAlphaComponent();
+	drawBillBoardComponent();
+	drawSpriteComponent();
 	
 	mWindow->swapBuffer();
 }
+
 
 void Renderer::drawLineComponent()
 {
@@ -113,7 +118,6 @@ void Renderer::drawLineComponent()
 
 void Renderer::drawMeshComponent()
 {
-	//Draw Mesh Component
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CW);
@@ -123,29 +127,43 @@ void Renderer::drawMeshComponent()
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 	mLight->setLightShader(mView, mMeshShader);
 
-	for (auto mComp : mMeshComponent)
+	for (const auto& mComp : mMeshComponent)
 	{
 		mComp.lock()->draw(mMeshShader);
 	}
+}
 
-	//Draw AlphaComponent
+void Renderer::drawBillBoardComponent()
+{
+	mMeshShader->setMatrixUniform("uViewProj", mProjection);
+	mSpriteVertex->setActive();
+	for (const auto& bComp : mBillBoardComponent)
+	{
+		bComp.lock()->draw(mMeshShader);
+	}
+}
+
+void Renderer::drawAlphaComponent()
+{
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
-	for (auto aComp : mAlphaComponent)
+	for (const auto& aComp : mAlphaComponent)
 	{
 		aComp.lock()->draw(mMeshShader);
 	}
+}
 
+void Renderer::drawSpriteComponent()
+{
 	glDisable(GL_DEPTH_TEST);
-	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
-	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
 	mSpriteShader->setActive();
 	mSpriteVertex->setActive();
 
-	for (auto sComp : mSpriteComponent)
+	for (const auto& sComp : mSpriteComponent)
 	{
 		sComp.lock()->draw(mSpriteShader);
 	}
@@ -228,6 +246,24 @@ void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>&
 	}
 }
 
+void Renderer::addBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component)
+{
+	mBillBoardComponent.emplace_back(component);
+}
+
+void Renderer::removeBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component)
+{
+	auto iter = std::find_if(mBillBoardComponent.begin(), mBillBoardComponent.end(),
+		[&component](const std::weak_ptr<BillBoardComponent>& comp)
+		{return component.lock() == comp.lock(); });
+
+	if (iter != mBillBoardComponent.end())
+	{
+		mBillBoardComponent.erase(iter);
+	}
+}
+
+
 bool Renderer::loadShader()
 {
 	mSpriteShader = std::make_unique<Shader>();
@@ -263,10 +299,10 @@ void Renderer::createSpriteVertex()
 	vertex[1].position = Vector3(-0.5f, 0.5f, 0.0f);
 	vertex[2].position = Vector3(0.5f, 0.5f, 0.0f);
 	vertex[3].position = Vector3(0.5f, -0.5f, 0.0f);
-	vertex[0].normal = Vector3(0.0f, 0.0f, 0.0f);
-	vertex[1].normal = Vector3(0.0f, 0.0f, 0.0f);
-	vertex[2].normal = Vector3(0.0f, 0.0f, 0.0f);
-	vertex[3].normal = Vector3(0.0f, 0.0f, 0.0f);
+	vertex[0].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[1].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[2].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[3].normal = Vector3(0.0f, 0.0f, 1.0f);
 	vertex[0].texcoord = Vector2(0.0f, 0.0f);
 	vertex[1].texcoord = Vector2(0.0f, 1.0f);
 	vertex[2].texcoord = Vector2(1.0f, 1.0f);

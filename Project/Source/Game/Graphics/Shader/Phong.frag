@@ -52,7 +52,6 @@ void main()
 	//광선이 프래그먼트로부터 튕겨 나오는 벡터
 	vec3 R = normalize(reflect(-L, N));
 
-
 	//프래그먼트 법선과 Directional Light의 방향과의 내적
 	float NdotL = max(0.0, dot(N, L));
 
@@ -66,14 +65,21 @@ void main()
 	vec3 ambientLight = uAmbientLight * fragColor;
 
 	vec3 Phong = diffuseLight + specularLight + ambientLight;
+	
+	vec4 texColor = texture(uDiffuseTexture, fragTexCoord);
 
-	if(texture(uDiffuseTexture, fragTexCoord).xyz == vec3(0.0,0.0,0.0))
+	if(texColor.a < 0.1)
+	{
+		discard;
+	}
+
+	if(texColor.xyz == vec3(0.0,0.0,0.0))
 	{
 		outColor = vec4(Phong, uAlpha);
 	}
 	else
 	{
-		outColor = texture(uDiffuseTexture, fragTexCoord) * vec4(Phong, uAlpha);
+		outColor = texColor * vec4(Phong, uAlpha);
 	}
 	
 }

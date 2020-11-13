@@ -9,7 +9,7 @@
 #include "../PlaneActor.h"
 
 RobotHead::RobotHead(const std::weak_ptr<class Game>& game)
-	: Actor(game)
+	: Actor(game, Type::Player)
 {
 
 }
@@ -24,28 +24,21 @@ void RobotHead::initailize()
 	Actor::initailize();
 
 	//Create MeshComponent
-	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box");
+	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/PlayerHead");
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mMeshComponent->initailize();
 	mMeshComponent->setMesh(mesh);
-	mMeshComponent->setColor(mMeshColor);
-}
+	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
+	mMeshComponent->initailize();
 
-void RobotHead::createNose()
-{
-	//Create Nose
-	mNose = std::make_shared<RobotHead>(getGame());
-	mNose->setScale(2.0f);
-	mNose->setMeshColor(Vector3(0.0f, 0.0f, 1.0f));
-	mNose->initailize();
+	//Create BoxComponent
+	mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), getGame().lock()->getPhysEngine());
+	mBoxComponent->setObjectBox(mesh->getBox());
+	mBoxComponent->initailize();
 }
 
 void RobotHead::updateActor(float deltatime)
 {
-	if (mNose != nullptr)
-	{
-		mNose->setPosition(getPosition() + getForward() * (mNose->getScale() + getScale()) / 2);
-	}
+
 }
 
 void RobotHead::actorInput()

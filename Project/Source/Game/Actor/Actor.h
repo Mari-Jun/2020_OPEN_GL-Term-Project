@@ -24,7 +24,7 @@ public:
 		Etc
 	};
 
-	Actor(const wptrGame& Game);
+	Actor(const wptrGame& Game, Type type = Type::Object);
 	virtual ~Actor() noexcept;
 
 	virtual void initailize();
@@ -52,7 +52,8 @@ public:
 	
 	State getState() const { return mState; }
 	void setState(State state) { mState = state; }
-	std::string getTypeToString() const;
+	std::string getTypeToString() const { return getTypeToString(mType); }
+	std::string getTypeToString(Type type) const;
 
 	void updateWorldTransform();
 	void rotateToNewForward(const Vector3& forward);

@@ -4,15 +4,7 @@
 class RobotActor : public Actor
 {
 public:
-	enum class RobotState
-	{
-		Control,
-		Running,
-		Pole,
-		Press
-	};
-
-	RobotActor(const std::weak_ptr<class Game>& game, RobotState state);
+	RobotActor(const std::weak_ptr<class Game>& game);
 	virtual ~RobotActor() noexcept;
 
 	virtual void initailize() override;
@@ -29,17 +21,15 @@ private:
 
 	float mGravitySpeed;
 	bool mAnimation;
-	RobotState mState;
 
 private:
 	std::shared_ptr<class RobotHead> mHead;
 	std::shared_ptr<class RobotArm> mLeftArm;
 	std::shared_ptr<class RobotArm> mRightArm;
-	std::shared_ptr<class RobotArm> mLeftLeg;
-	std::shared_ptr<class RobotArm> mRightLeg;
+	std::shared_ptr<class RobotLeg> mLeftLeg;
+	std::shared_ptr<class RobotLeg> mRightLeg;
 
 public:
 	std::shared_ptr<class RobotArm> getLeftArm() { return mLeftArm; }
 	std::shared_ptr<class RobotArm> getRightArm() { return mRightArm; }
-	RobotState getState() { return mState; }
 };

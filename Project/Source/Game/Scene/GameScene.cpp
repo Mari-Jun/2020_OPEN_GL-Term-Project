@@ -14,7 +14,7 @@
 #include "../Actor/Bulider/Building.h"
 #include "../Actor/Defualt/DefualtShape.h"
 #include "../Graphics/Mesh/MeshComponent.h"
-#include "../Graphics/Texture/SpriteComponent.h"
+#include "../Graphics/Mesh/SpriteComponent.h"
 
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game)
@@ -67,7 +67,8 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	auto robot = std::make_shared<RobotActor>(getGame(), RobotActor::RobotState::Control);
+	auto robot = std::make_shared<RobotActor>(getGame());
+	robot->setScale(1.5f);
 	robot->initailize();
 
 	//Create CameraActor
