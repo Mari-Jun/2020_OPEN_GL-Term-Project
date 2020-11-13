@@ -5,9 +5,8 @@
 #include "Input/KeyBoard.h"
 #include "Input/Mouse.h"
 #include "Scene/Scene.h"
-#include "Scene/LoadingScene.h"
-#include "Scene/GameScene.h"
 #include "Game.h"
+#include "../InGame/Scene/LoadingScene.h"
 
 
 Game::Game()

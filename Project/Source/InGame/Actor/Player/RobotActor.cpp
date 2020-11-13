@@ -2,14 +2,14 @@
 #include "RobotHead.h"
 #include "RobotArm.h"
 #include "RobotLeg.h"
-#include "../../Graphics/Window.h"
-#include "../../Game.h"
-#include "../../Component/MoveComponent.h"
-#include "../../Component/BoxComponent.h"
-#include "../../Graphics/Mesh/MeshComponent.h"
-#include "../../Input/KeyBoard.h"
-#include "../../Graphics/Mesh/Mesh.h"
-#include "../PlaneActor.h"
+#include "../../../Game/Graphics/Window.h"
+#include "../../../Game/Game.h"
+#include "../../../Game/Component/MoveComponent.h"
+#include "../../../Game/Component/BoxComponent.h"
+#include "../../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../../Game/Input/KeyBoard.h"
+#include "../../../Game/Graphics/Mesh/Mesh.h"
+#include "../../../Game/Actor/PlaneActor.h"
 
 RobotActor::RobotActor(const std::weak_ptr<class Game>& game)
 	: Actor(game, Type::Player)
