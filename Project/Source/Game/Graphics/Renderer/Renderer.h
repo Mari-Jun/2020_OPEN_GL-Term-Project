@@ -73,7 +73,7 @@ public:
 private:
 	void drawLineComponent();
 	void drawMeshComponent();
+	void drawBillBoardComponent();
 	void drawAlphaComponent();
 	void drawSpriteComponent();
-	void drawBillBoardComponent();
 };

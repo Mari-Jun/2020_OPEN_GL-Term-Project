@@ -19,13 +19,13 @@ BillBoardComponent::BillBoardComponent(const std::weak_ptr<class Actor>& owner, 
 
 BillBoardComponent::~BillBoardComponent()
 {
-	//mRender.lock()->removeBillBoardComponent(std::dynamic_pointer_cast<BillBoardComponent>(weak_from_this().lock()));
+	mRender.lock()->removeBillBoardComponent(std::dynamic_pointer_cast<BillBoardComponent>(weak_from_this().lock()));
 }
 
 void BillBoardComponent::initailize()
 {
 	Component::initailize();
-	//mRender.lock()->addBillBoardComponent(std::dynamic_pointer_cast<BillBoardComponent>(weak_from_this().lock()));
+	mRender.lock()->addBillBoardComponent(std::dynamic_pointer_cast<BillBoardComponent>(weak_from_this().lock()));
 }
 
 void BillBoardComponent::draw(std::unique_ptr<Shader>& shader)

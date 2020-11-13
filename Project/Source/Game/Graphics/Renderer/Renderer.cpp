@@ -5,6 +5,7 @@
 #include "../Mesh/AlphaComponent.h"
 #include "../Mesh/LineComponent.h"
 #include "../Mesh/SpriteComponent.h"
+#include "../Mesh/BillBoardComponent.h"
 #include "../Mesh/Mesh.h"
 #include "../Texture/Texture.h"
 #include "Renderer.h"
@@ -90,9 +91,10 @@ void Renderer::draw()
 {
 	mWindow->clear();
 
-	drawLineComponent();
 	drawMeshComponent();
+	drawLineComponent();
 	drawAlphaComponent();
+	drawBillBoardComponent();
 	drawSpriteComponent();
 	
 	mWindow->swapBuffer();
@@ -128,6 +130,14 @@ void Renderer::drawMeshComponent()
 	for (auto mComp : mMeshComponent)
 	{
 		mComp.lock()->draw(mMeshShader);
+	}
+}
+
+void Renderer::drawBillBoardComponent()
+{
+	for (auto bComp : mBillBoardComponent)
+	{
+		bComp.lock()->draw(mMeshShader);
 	}
 }
 
@@ -234,6 +244,24 @@ void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>&
 		mSpriteComponent.erase(iter);
 	}
 }
+
+void Renderer::addBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component)
+{
+	mBillBoardComponent.emplace_back(component);
+}
+
+void Renderer::removeBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component)
+{
+	auto iter = std::find_if(mBillBoardComponent.begin(), mBillBoardComponent.end(),
+		[&component](const std::weak_ptr<BillBoardComponent>& comp)
+		{return component.lock() == comp.lock(); });
+
+	if (iter != mBillBoardComponent.end())
+	{
+		mBillBoardComponent.erase(iter);
+	}
+}
+
 
 bool Renderer::loadShader()
 {
