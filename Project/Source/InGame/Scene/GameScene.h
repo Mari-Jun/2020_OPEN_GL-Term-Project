@@ -16,7 +16,9 @@ public:
 	virtual void unLoadData();
 	void loadActorData();
 	void loadWorldBox();
+	void loadGameMap();
 
 private:
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;
+	std::shared_ptr<class GameMap> mGameMap;
 };

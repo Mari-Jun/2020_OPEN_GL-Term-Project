@@ -13,6 +13,8 @@
 
 #include "../Actor/Player/RobotActor.h"
 #include "../Actor/Particle/ParticleCreater.h"
+#include "../Actor/Tile/Tile.h"
+#include "../Map/GameMap.h"
 
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game)
@@ -55,6 +57,7 @@ void GameScene::loadData()
 {
 	loadActorData();
 	loadWorldBox();
+	loadGameMap();
 }
 
 void GameScene::unLoadData()
@@ -74,13 +77,6 @@ void GameScene::loadActorData()
 	mMouseCamera->initailize();*/
 	mFollowCamera = std::make_shared<FollowCameraActor>(getGame(), robot);
 	mFollowCamera->initailize();
-
-	//Create pyramid
-	auto pyramid = std::make_shared<DefualtShape>(getGame(), DefualtShape::Shape::Pyramid);
-	pyramid->setPosition(Vector3(0.0f, 70.0f, 400.0f));
-	pyramid->setScale(200.0f);
-	pyramid->setMeshColor(Vector3::Rgb(Vector3(229.0f, 216.0f, 92.0f)));
-	pyramid->initailize();
 
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(getGame());
@@ -109,4 +105,10 @@ void GameScene::loadWorldBox()
 	auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
 	sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
 	sc->initailize();*/
+}
+
+void GameScene::loadGameMap()
+{
+	mGameMap = std::make_shared<GameMap>(getGame());
+	mGameMap->loadMap("Asset/Map/Stage1.txt");
 }
