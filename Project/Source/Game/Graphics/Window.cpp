@@ -64,5 +64,5 @@ GLvoid renderCallBack()
 
 GLvoid reshapeCallBack(int width, int height)
 {
-
+	glViewport(Window::mPosition.x, Window::mPosition.y, Window::mSize.x, Window::mSize.y);
 }
