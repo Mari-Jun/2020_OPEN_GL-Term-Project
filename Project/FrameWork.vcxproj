@@ -146,19 +146,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Actor\Actor.cpp" />
-    <ClCompile Include="Source\Game\Actor\Bulider\Building.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\AlphaShape.cpp" />
     <ClCompile Include="Source\Game\Actor\Camera\CameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp" />
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
-    <ClCompile Include="Source\Game\Actor\Robot\RobotActor.cpp" />
-    <ClCompile Include="Source\Game\Actor\Robot\RobotArm.cpp" />
-    <ClCompile Include="Source\Game\Actor\Robot\RobotHead.cpp" />
-    <ClCompile Include="Source\Game\Actor\Robot\RobotLeg.cpp" />
-    <ClCompile Include="Source\Game\Actor\Sky\Weather\Cloud.cpp" />
-    <ClCompile Include="Source\Game\Actor\Sky\Weather\Snow.cpp" />
-    <ClCompile Include="Source\Game\Actor\Sky\Solor\Solor.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Player\RobotActor.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Player\RobotArm.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Player\RobotHead.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Player\RobotLeg.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Particle\ParticleCreater.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Particle\Snow.cpp" />
     <ClCompile Include="Source\Game\Camera\FollowCamera.cpp" />
     <ClCompile Include="Source\Game\Camera\FPSCamera.cpp" />
     <ClCompile Include="Source\Game\Camera\FPSMouseCamera.cpp" />
@@ -194,26 +192,24 @@
     <ClCompile Include="Source\Game\Physics\Coliision\Plane.cpp" />
     <ClCompile Include="Source\Game\Physics\Coliision\Sphere.cpp" />
     <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp" />
-    <ClCompile Include="Source\Game\Scene\GameScene.cpp" />
-    <ClCompile Include="Source\Game\Scene\LoadingScene.cpp" />
+    <ClCompile Include="Source\InGame\Scene\GameScene.cpp" />
+    <ClCompile Include="Source\InGame\Scene\LoadingScene.cpp" />
     <ClCompile Include="Source\Game\Scene\Scene.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Actor.h" />
-    <ClInclude Include="Source\Game\Actor\Bulider\Building.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\AlphaShape.h" />
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h" />
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
-    <ClInclude Include="Source\Game\Actor\Robot\RobotActor.h" />
-    <ClInclude Include="Source\Game\Actor\Robot\RobotArm.h" />
-    <ClInclude Include="Source\Game\Actor\Robot\RobotHead.h" />
-    <ClInclude Include="Source\Game\Actor\Robot\RobotLeg.h" />
-    <ClInclude Include="Source\Game\Actor\Sky\Weather\Cloud.h" />
-    <ClInclude Include="Source\Game\Actor\Sky\Weather\Snow.h" />
-    <ClInclude Include="Source\Game\Actor\Sky\Solor\Solor.h" />
+    <ClInclude Include="Source\InGame\Actor\Player\RobotActor.h" />
+    <ClInclude Include="Source\InGame\Actor\Player\RobotArm.h" />
+    <ClInclude Include="Source\InGame\Actor\Player\RobotHead.h" />
+    <ClInclude Include="Source\InGame\Actor\Player\RobotLeg.h" />
+    <ClInclude Include="Source\InGame\Actor\Particle\ParticleCreater.h" />
+    <ClInclude Include="Source\InGame\Actor\Particle\Snow.h" />
     <ClInclude Include="Source\Game\Camera\FollowCamera.h" />
     <ClInclude Include="Source\Game\Camera\FPSCamera.h" />
     <ClInclude Include="Source\Game\Camera\FPSMouseCamera.h" />
@@ -254,8 +250,8 @@
     <ClInclude Include="Source\Game\Physics\Coliision\Plane.h" />
     <ClInclude Include="Source\Game\Physics\Coliision\Sphere.h" />
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
-    <ClInclude Include="Source\Game\Scene\GameScene.h" />
-    <ClInclude Include="Source\Game\Scene\LoadingScene.h" />
+    <ClInclude Include="Source\InGame\Scene\GameScene.h" />
+    <ClInclude Include="Source\InGame\Scene\LoadingScene.h" />
     <ClInclude Include="Source\Game\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>

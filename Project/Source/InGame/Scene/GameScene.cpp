@@ -1,20 +1,18 @@
 #include "GameScene.h"
-#include "../Graphics/Renderer/Renderer.h"
-#include "../Game.h"
-#include "../Actor/Actor.h"
-#include "../Input/KeyBoard.h"
 #include "LoadingScene.h"
+#include "../../Game/Graphics/Renderer/Renderer.h"
+#include "../../Game/Game.h"
+#include "../../Game/Actor/Actor.h"
+#include "../../Game/Input/KeyBoard.h"
+#include "../../Game/Actor/PlaneActor.h"
+#include "../../Game/Actor/Camera/CameraActor.h"
+#include "../../Game/Actor/Camera/FollowCameraActor.h"
+#include "../../Game/Actor/Defualt/DefualtShape.h"
+#include "../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../Game/Graphics/Mesh/SpriteComponent.h"
 
-#include "../Actor/PlaneActor.h"
-#include "../Actor/Camera/CameraActor.h"
-#include "../Actor/Camera/FollowCameraActor.h"
-#include "../Actor/Robot/RobotActor.h"
-#include "../Actor/Sky/Weather/Cloud.h"
-#include "../Actor/Sky/Solor/Solor.h"
-#include "../Actor/Bulider/Building.h"
-#include "../Actor/Defualt/DefualtShape.h"
-#include "../Graphics/Mesh/MeshComponent.h"
-#include "../Graphics/Mesh/SpriteComponent.h"
+#include "../Actor/Player/RobotActor.h"
+#include "../Actor/Particle/ParticleCreater.h"
 
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game)
@@ -84,21 +82,11 @@ void GameScene::loadActorData()
 	pyramid->setMeshColor(Vector3::Rgb(Vector3(229.0f, 216.0f, 92.0f)));
 	pyramid->initailize();
 
-	//Create Cloud
-	auto cloud = std::make_shared<Cloud>(getGame());
-	cloud->setPosition(Vector3(0.0f, 500.0f, 400.0f));
-	cloud->setScale(400.0f);
-	cloud->initailize();
-
-	//Create Solor
-	auto solor = std::make_shared<Solor>(getGame());
-	solor->setPosition(Vector3(0.0f, 150.0f, 400.0f));
-	solor->initailize();
-
-	//Create Building
-	auto buildings = std::make_shared<Building>(getGame());
-	buildings->setPosition(Vector3(0.0f, -50.0f, 400.0f));
-	buildings->initailize();
+	//Create ParticleCreater
+	auto particle = std::make_shared<ParticleCreater>(getGame());
+	particle->setPosition(Vector3(0.0f, 500.0f, 400.0f));
+	particle->setScale(400.0f);
+	particle->initailize();
 }
 
 void GameScene::loadWorldBox()
@@ -114,11 +102,11 @@ void GameScene::loadWorldBox()
 	plane->initailize();
 	plane->setTexture("Asset/Mesh/Road.png");
 
-	auto a = std::make_shared<Actor>(getGame());
+	/*auto a = std::make_shared<Actor>(getGame());
 	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
 	a->setScale(0.1f);
 	a->initailize();
 	auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
 	sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
-	sc->initailize();
+	sc->initailize();*/
 }

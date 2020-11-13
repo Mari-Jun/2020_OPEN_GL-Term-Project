@@ -1,9 +1,8 @@
 #include "Snow.h"
-#include "../../../Graphics/Window.h"
-#include "../../../Game.h"
-#include "../../../Component/MoveComponent.h"
-#include "../../../Graphics/Mesh/BillBoardComponent.h"
-#include "../../Defualt/DefualtShape.h"
+#include "../../../Game/Component/MoveComponent.h"
+#include "../../../Game/Graphics/Mesh/BillBoardComponent.h"
+#include "../../../Game/Actor/Defualt/DefualtShape.h"
+#include "../../../Game/Game.h"
 
 Snow::Snow(const std::weak_ptr<class Game>& game)
 	: Actor(game)

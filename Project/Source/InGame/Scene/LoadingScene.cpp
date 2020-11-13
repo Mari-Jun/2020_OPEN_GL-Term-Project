@@ -1,7 +1,7 @@
 #include "LoadingScene.h"
-#include "../Graphics/Renderer/Renderer.h"
-#include "../Game.h"
 #include "GameScene.h"
+#include "../../Game/Graphics/Renderer/Renderer.h"
+#include "../../Game/Game.h"
 
 
 LoadingScene::LoadingScene(const std::weak_ptr<class Game>& game)

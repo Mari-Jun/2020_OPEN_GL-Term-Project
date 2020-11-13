@@ -1,34 +1,27 @@
-#include "Cloud.h"
+#include "ParticleCreater.h"
 #include "Snow.h"
-#include "../../../Graphics/Window.h"
-#include "../../../Game.h"
-#include "../../../Component/MoveComponent.h"
-#include "../../../Component/BoxComponent.h"
-#include "../../../Input/KeyBoard.h"
+#include "../../../Game/Game.h"
+#include "../../../Game/Input/KeyBoard.h"
 #include <random>
 
-Cloud::Cloud(const std::weak_ptr<class Game>& game)
+ParticleCreater::ParticleCreater(const std::weak_ptr<class Game>& game)
 	: Actor(game)
 	, mSnowing(true)
 {
 	
 }
 
-Cloud::~Cloud()
+ParticleCreater::~ParticleCreater()
 {
 
 }
 
-void Cloud::initailize()
+void ParticleCreater::initailize()
 {
 	Actor::initailize();
-
-	//Create MoveComponent
-	mMoveComponent = std::make_shared<MoveComponent>(weak_from_this());
-	mMoveComponent->initailize();
 }
 
-void Cloud::updateActor(float deltatime)
+void ParticleCreater::updateActor(float deltatime)
 {
 	if (mSnowing)
 	{
@@ -46,7 +39,7 @@ void Cloud::updateActor(float deltatime)
 	}
 }
 
-void Cloud::actorInput()
+void ParticleCreater::actorInput()
 {
 	auto game = getGame().lock();
 

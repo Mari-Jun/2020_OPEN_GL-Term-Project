@@ -1,11 +1,11 @@
 #pragma once
-#include "../../Actor.h"
+#include "../../../Game/Actor/Actor.h"
 
-class Cloud : public Actor
+class ParticleCreater : public Actor
 {
 public:
-	Cloud(const std::weak_ptr<class Game>& game);
-	virtual ~Cloud() noexcept;
+	ParticleCreater(const std::weak_ptr<class Game>& game);
+	virtual ~ParticleCreater() noexcept;
 
 	virtual void initailize() override;
 
@@ -13,6 +13,5 @@ public:
 	virtual void actorInput() override;
 
 private:
-	std::shared_ptr<class MoveComponent> mMoveComponent;
 	bool mSnowing;
 };
