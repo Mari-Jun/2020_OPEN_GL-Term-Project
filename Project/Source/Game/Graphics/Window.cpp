@@ -2,9 +2,11 @@
 
 GLvoid renderCallBack();
 GLvoid reshapeCallBack(int width, int height);
+GLvoid entryCallBack(int state);
 
 Vector2 Window::mPosition = Vector2(100.0f, 100.0f);
 Vector2 Window::mSize = Vector2(1366.0f, 768.0f);
+int Window::mEntry = GLUT_ENTERED;
 
 Window::Window(const Vector2& pos, const Vector2& size, std::string& name)
 	: mName(name)
@@ -41,6 +43,7 @@ bool Window::initialize()
 	//Set CallBack
 	glutDisplayFunc(renderCallBack);
 	glutReshapeFunc(reshapeCallBack);
+	glutEntryFunc(entryCallBack);
 
 	return true;
 }
@@ -49,6 +52,8 @@ void Window::clear(float r, float g, float b)
 {
 	glClearColor(r, g, b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	mPosition.x = glutGet((GLenum)GLUT_WINDOW_X);
+	mPosition.y = glutGet((GLenum)GLUT_WINDOW_Y);
 }
 
 void Window::swapBuffer() 
@@ -64,5 +69,11 @@ GLvoid renderCallBack()
 
 GLvoid reshapeCallBack(int width, int height)
 {
-	glViewport(Window::mPosition.x, Window::mPosition.y, Window::mSize.x, Window::mSize.y);
+	glViewport(0, 0, Window::mSize.x, Window::mSize.y);
+}
+
+GLvoid entryCallBack(int state)
+{
+	Window::mEntry = state;
+	std::cout << state << std::endl;
 }

@@ -1,9 +1,12 @@
 #include "GameScene.h"
 #include "LoadingScene.h"
+#include "EditScene.h"
+#include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
 #include "../../Game/Actor/Actor.h"
 #include "../../Game/Input/KeyBoard.h"
+#include "../../Game/Input/Mouse.h"
 #include "../../Game/Actor/PlaneActor.h"
 #include "../../Game/Actor/Camera/CameraActor.h"
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
@@ -31,6 +34,21 @@ GameScene::~GameScene()
 void GameScene::initailize()
 {
 	Scene::initailize();
+	loadData();
+
+	auto game = getGame().lock();
+
+	//SetMouse
+	game->getMouse()->setCursor(GLUT_CURSOR_NONE);
+	game->getMouse()->setWarp(true);
+
+	//Set View
+	auto windowSize = game->getRenderer()->getWindow()->getSize();
+	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 25.0f, 10000.0f);
+	//auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5000.0f);
+	//auto view = Matrix4::CreateLookAt(Vector3::Zero + Vector3::UnitY * 4000.0f, Vector3::UnitY, Vector3::UnitZ);
+	//getGame().lock()->getRenderer()->setViewMatrix(view);
+	game->getRenderer()->setProjectionMatrix(projection);
 }
 
 void GameScene::sceneInput()
@@ -44,7 +62,12 @@ void GameScene::sceneInput()
 		setState(State::Dead);
 		auto scene = std::make_shared<LoadingScene>(getGame());
 		scene->initailize();
-		scene->loadData();
+	}
+	if (game->getKeyBoard()->isKeyPressed('x'))
+	{
+		setState(State::Dead);
+		auto scene = std::make_shared<EditScene>(getGame());
+		scene->initailize();
 	}
 }
 
@@ -91,12 +114,12 @@ void GameScene::loadWorldBox()
 	std::shared_ptr<PlaneActor> plane = nullptr;
 	Quaternion q;
 
-	//Set floor
-	plane = std::make_shared<PlaneActor>(getGame());
-	plane->setPosition(Vector3(0.0f, -30.0f, 400.0f));
-	plane->setScale(500.0f);
-	plane->initailize();
-	plane->setTexture("Asset/Mesh/Road.png");
+	////Set floor
+	//plane = std::make_shared<PlaneActor>(getGame());
+	//plane->setPosition(Vector3(0.0f, -30.0f, 400.0f));
+	//plane->setScale(500.0f);
+	//plane->initailize();
+	//plane->setTexture("Asset/Mesh/Road.png");
 
 	/*auto a = std::make_shared<Actor>(getGame());
 	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));

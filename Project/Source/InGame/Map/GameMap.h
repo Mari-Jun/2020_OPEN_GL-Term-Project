@@ -14,25 +14,25 @@ constexpr unsigned int HashCode(const char* str)
 class GameMap : public std::enable_shared_from_this<GameMap>
 {
 public:
-	GameMap(const std::weak_ptr<class Game>& game, const Vector2& size = Vector2(20, 20));
+	GameMap(const std::weak_ptr<class Game>& game, float tileSize = 200.0f, int mapSize = 20);
 	~GameMap() noexcept;
 
 	bool loadMap(const std::string& fileName);
 	//bool saveMap();
 
-	void addTile(const std::string& type, int y, int x);
+	void addTile(const std::string& type, int y, int x, float rot);
 	void addTile(const std::weak_ptr<class Tile>& tile, int y, int x);
 	void removeTile(const std::weak_ptr<class Tile>& tile, int y, int x);
 
-	const Vector2& getMapSize() const { return mMapSize; }
-	const Vector3& getPosition() const { return mPosition; }
 	float getTileSize() const { return mTileSize; }
+	int getMapSize() const { return mMapSize; }
+	const Vector3& getPosition() const { return mPosition; }
 	const std::vector<std::vector<std::weak_ptr<class Tile>>>& getTiles() { return mTiles; }
 
 private:
 	std::weak_ptr<class Game> mGame;
-	Vector2 mMapSize;
-	Vector3 mPosition;
 	float mTileSize;
+	int mMapSize;
+	Vector3 mPosition;
 	std::vector<std::vector<std::weak_ptr<class Tile>>> mTiles;
 };

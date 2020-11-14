@@ -1,21 +1,21 @@
 #include <fstream>
 #include <sstream>
 #include "GameMap.h"
-#include ".././../Game/Game.h"
+#include "../../Game/Game.h"
 #include "../Actor/Tile/Tile.h"
 
-GameMap::GameMap(const std::weak_ptr<class Game>& game, const Vector2& size)
+GameMap::GameMap(const std::weak_ptr<class Game>& game, float tileSize, int mapSize)
 	: mGame(game)
-	, mMapSize(size)
-	, mPosition(Vector3(-500.0f, 0.0f, 500.0f))
-	, mTileSize(200.0f)
+	, mTileSize(tileSize)
+	, mMapSize(mapSize)
+	, mPosition(Vector3(-mTileSize * mapSize / 2, 0.0f, mTileSize * mapSize / 2))
 {
-	mTiles.resize(size.y, std::vector<std::weak_ptr<class Tile>>(size.x));
+	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }
 
 GameMap::~GameMap()
 {
-
+	
 }
 
 bool GameMap::loadMap(const std::string& fileName)
@@ -35,6 +35,7 @@ bool GameMap::loadMap(const std::string& fileName)
 	std::string tileName;
 	unsigned int y = 0;
 	unsigned int xSize = 0;
+	float rot = 0.0f;
 
 	while (std::getline(mapFile, line))
 	{
@@ -50,8 +51,8 @@ bool GameMap::loadMap(const std::string& fileName)
 		{
 			for (auto x = 0; x < xSize; x++)
 			{
-				ss >> tileName;
-				addTile(tileName, y - 1, x);
+				ss >> tileName >> rot;
+				addTile(tileName, y - 1, x, rot);
 			}
 		}
 	}
@@ -61,7 +62,7 @@ bool GameMap::loadMap(const std::string& fileName)
 	return true;
 }
 
-void GameMap::addTile(const std::string& type, int y, int x)
+void GameMap::addTile(const std::string& type, int y, int x, float rot)
 {
 	std::shared_ptr<Tile> tile = nullptr;
 	switch (HashCode(type.c_str()))
@@ -69,11 +70,18 @@ void GameMap::addTile(const std::string& type, int y, int x)
 	case HashCode("Basic"):
 		tile = std::make_shared<Tile>(mGame);
 		break;
+	case HashCode("Road"):
+		tile = std::make_shared<Tile>(mGame, Tile::Type::Road);
+		break;
+	case HashCode("Straight"):
+		tile = std::make_shared<Tile>(mGame, Tile::Type::Straight);
+		break;
 	default:
 		break;
 	}
 	tile->setScale(mTileSize);
-	tile->setPosition(Vector3(mPosition.x + x * mTileSize, mPosition.y, mPosition.z + y * mTileSize));
+	tile->setRotation(Quaternion(Vector3::UnitY, Math::ToRadians(rot)));
+	tile->setPosition(Vector3(mPosition.x + x * mTileSize, mPosition.y, mPosition.z - y * mTileSize));
 	tile->initailize();
 	addTile(tile, y, x);
 }

@@ -13,7 +13,7 @@ Tile::Tile(const std::weak_ptr<class Game>& game, Type type)
 
 Tile::~Tile()
 {
-
+	
 }
 
 void Tile::initailize()
@@ -48,6 +48,12 @@ std::shared_ptr<class Mesh> Tile::loadMesh() const
 	{
 	case Tile::Type::Basic:
 		meshName = "Asset/Mesh/Tile/Road/Tile";
+		break;
+	case Tile::Type::Road:
+		meshName = "Asset/Mesh/Tile/Road/Tile_Dirt";
+		break;
+	case Tile::Type::Straight:
+		meshName = "Asset/Mesh/Tile/Road/Tile_Straight";
 		break;
 	default:
 		meshName = "";

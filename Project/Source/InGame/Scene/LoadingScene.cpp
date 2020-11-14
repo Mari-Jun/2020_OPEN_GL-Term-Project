@@ -19,6 +19,7 @@ LoadingScene::~LoadingScene()
 void LoadingScene::initailize()
 {
 	Scene::initailize();
+	loadData();
 }
 
 void LoadingScene::sceneInput()
@@ -35,7 +36,6 @@ void LoadingScene::sceneUpdate(float deltatime)
 	{
 		auto scene = std::make_shared<GameScene>(getGame());
 		scene->initailize();
-		scene->loadData();
 		setState(State::Dead);
 	}
 }
