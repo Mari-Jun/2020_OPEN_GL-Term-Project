@@ -16,6 +16,7 @@ public:
 private:
 	static Vector2 mPosition;
 	static Vector2 mSize;
+	static int mEntry;
 	std::string mName;
 
 public:
@@ -25,10 +26,12 @@ public:
 
 	static Vector2 getPosition() { return mPosition; }
 	static Vector2 getSize() { return mSize; }
+	static int getEntry() { return mEntry; }
 
 private:
 	friend GLvoid renderCallBack();
 	friend GLvoid reshapeCallBack(int width, int height);
+	friend GLvoid entryCallBack(int state);
 };
 
 

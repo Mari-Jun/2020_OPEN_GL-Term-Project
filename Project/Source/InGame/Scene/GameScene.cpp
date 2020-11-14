@@ -1,9 +1,12 @@
 #include "GameScene.h"
 #include "LoadingScene.h"
+#include "EditScene.h"
+#include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
 #include "../../Game/Actor/Actor.h"
 #include "../../Game/Input/KeyBoard.h"
+#include "../../Game/Input/Mouse.h"
 #include "../../Game/Actor/PlaneActor.h"
 #include "../../Game/Actor/Camera/CameraActor.h"
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
@@ -13,6 +16,8 @@
 
 #include "../Actor/Player/RobotActor.h"
 #include "../Actor/Particle/ParticleCreater.h"
+#include "../Actor/Tile/Tile.h"
+#include "../Map/GameMap.h"
 
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game)
@@ -29,6 +34,21 @@ GameScene::~GameScene()
 void GameScene::initailize()
 {
 	Scene::initailize();
+	loadData();
+
+	auto game = getGame().lock();
+
+	//SetMouse
+	game->getMouse()->setCursor(GLUT_CURSOR_NONE);
+	game->getMouse()->setWarp(true);
+
+	//Set View
+	auto windowSize = game->getRenderer()->getWindow()->getSize();
+	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 25.0f, 10000.0f);
+	//auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5000.0f);
+	//auto view = Matrix4::CreateLookAt(Vector3::Zero + Vector3::UnitY * 4000.0f, Vector3::UnitY, Vector3::UnitZ);
+	//getGame().lock()->getRenderer()->setViewMatrix(view);
+	game->getRenderer()->setProjectionMatrix(projection);
 }
 
 void GameScene::sceneInput()
@@ -42,7 +62,12 @@ void GameScene::sceneInput()
 		setState(State::Dead);
 		auto scene = std::make_shared<LoadingScene>(getGame());
 		scene->initailize();
-		scene->loadData();
+	}
+	if (game->getKeyBoard()->isKeyPressed('x'))
+	{
+		setState(State::Dead);
+		auto scene = std::make_shared<EditScene>(getGame());
+		scene->initailize();
 	}
 }
 
@@ -55,6 +80,7 @@ void GameScene::loadData()
 {
 	loadActorData();
 	loadWorldBox();
+	loadGameMap();
 }
 
 void GameScene::unLoadData()
@@ -75,13 +101,6 @@ void GameScene::loadActorData()
 	mFollowCamera = std::make_shared<FollowCameraActor>(getGame(), robot);
 	mFollowCamera->initailize();
 
-	//Create pyramid
-	auto pyramid = std::make_shared<DefualtShape>(getGame(), DefualtShape::Shape::Pyramid);
-	pyramid->setPosition(Vector3(0.0f, 70.0f, 400.0f));
-	pyramid->setScale(200.0f);
-	pyramid->setMeshColor(Vector3::Rgb(Vector3(229.0f, 216.0f, 92.0f)));
-	pyramid->initailize();
-
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(getGame());
 	particle->setPosition(Vector3(0.0f, 500.0f, 400.0f));
@@ -95,12 +114,12 @@ void GameScene::loadWorldBox()
 	std::shared_ptr<PlaneActor> plane = nullptr;
 	Quaternion q;
 
-	//Set floor
-	plane = std::make_shared<PlaneActor>(getGame());
-	plane->setPosition(Vector3(0.0f, -30.0f, 400.0f));
-	plane->setScale(500.0f);
-	plane->initailize();
-	plane->setTexture("Asset/Mesh/Road.png");
+	////Set floor
+	//plane = std::make_shared<PlaneActor>(getGame());
+	//plane->setPosition(Vector3(0.0f, -30.0f, 400.0f));
+	//plane->setScale(500.0f);
+	//plane->initailize();
+	//plane->setTexture("Asset/Mesh/Road.png");
 
 	/*auto a = std::make_shared<Actor>(getGame());
 	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
@@ -109,4 +128,10 @@ void GameScene::loadWorldBox()
 	auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
 	sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
 	sc->initailize();*/
+}
+
+void GameScene::loadGameMap()
+{
+	mGameMap = std::make_shared<GameMap>(getGame());
+	mGameMap->loadMap("Asset/Map/Stage1.txt");
 }

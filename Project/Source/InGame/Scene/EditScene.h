@@ -1,11 +1,11 @@
 #pragma once
 #include "../../Game/Scene/Scene.h"
 
-class GameScene : public Scene
+class EditScene : public Scene
 {
 public:
-	GameScene(const std::weak_ptr<class Game>& game);
-	virtual ~GameScene();
+	EditScene(const std::weak_ptr<class Game>& game);
+	virtual ~EditScene();
 
 	virtual void initailize();
 
@@ -14,11 +14,10 @@ public:
 
 	virtual void loadData();
 	virtual void unLoadData();
-	void loadActorData();
-	void loadWorldBox();
-	void loadGameMap();
+	bool loadGameMap();
 
 private:
-	std::shared_ptr<class FollowCameraActor> mFollowCamera;
 	std::shared_ptr<class GameMap> mGameMap;
+	std::unique_ptr<class MapEditor> mEditor;
+	int mStage;
 };

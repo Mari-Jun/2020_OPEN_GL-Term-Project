@@ -10,6 +10,7 @@ private:
 	static bool mState[Button_Max];
 	static Vector2 mOriginPosition;
 	static Vector2 mPosition;
+	static bool mWarp;
 
 public:
 	Mouse();
@@ -21,6 +22,8 @@ public:
 	const Vector2& getOriginPosition() const { return mOriginPosition; }
 	const Vector2& getPosition() const { return mPosition; }
 
+	void setWarp(bool warp) { mWarp = warp; }
+	void setCursor(int cursor) { glutSetCursor(cursor); }
 
 private:
 	friend GLvoid mouseClickCallBack(int button, int state, int x, int y);
