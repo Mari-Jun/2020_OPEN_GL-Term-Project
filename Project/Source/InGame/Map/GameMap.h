@@ -30,6 +30,7 @@ public:
 
 private:
 	std::weak_ptr<class Game> mGame;
+	std::string mFileName;
 	float mTileSize;
 	int mMapSize;
 	Vector3 mPosition;

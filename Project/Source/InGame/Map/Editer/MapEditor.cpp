@@ -57,7 +57,7 @@ void MapEditor::editInput()
 
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_END))
 	{
-		exit(0);
+		mGameMap.lock()->saveMap();
 	}
 }
 

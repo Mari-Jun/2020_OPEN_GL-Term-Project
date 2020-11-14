@@ -15,7 +15,6 @@ public:
 	virtual void loadData();
 	virtual void unLoadData();
 	bool loadGameMap();
-	void unLoadGameMap();
 
 private:
 	std::shared_ptr<class GameMap> mGameMap;

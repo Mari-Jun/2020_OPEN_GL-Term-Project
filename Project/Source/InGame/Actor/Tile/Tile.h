@@ -28,4 +28,5 @@ private:
 
 public:
 	Type getType() const { return mType; }
+	std::string getTypeToString() const;
 };

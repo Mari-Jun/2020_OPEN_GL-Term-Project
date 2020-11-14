@@ -99,9 +99,6 @@ void EditScene::loadData()
 		std::cerr << "Error : Load Map\n";
 	}
 
-	//Create Editor
-	mEditor = std::make_unique<MapEditor>(getGame(), mGameMap);
-
 	/*auto a = std::make_shared<Actor>(getGame());
 	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
 	a->setScale(0.1f);
@@ -122,10 +119,10 @@ bool EditScene::loadGameMap()
 	std::string fileName = "Asset/Map/Stage";
 	fileName += std::to_string(mStage);
 	fileName += ".txt";
-	return mGameMap->loadMap(fileName);
-}
-
-void EditScene::unLoadGameMap()
-{
-	mGameMap.reset();
+	if (mGameMap->loadMap(fileName))
+	{
+		mEditor = std::make_unique<MapEditor>(getGame(), mGameMap);
+		return true;
+	}
+	return false;	
 }

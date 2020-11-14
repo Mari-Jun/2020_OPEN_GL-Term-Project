@@ -61,3 +61,18 @@ std::shared_ptr<class Mesh> Tile::loadMesh() const
 	}
 	return getGame().lock()->getRenderer()->getMesh(meshName);
 }
+
+std::string  Tile::getTypeToString() const
+{
+	switch (mType)
+	{
+	case Tile::Type::Basic:
+		return "Basic";
+	case Tile::Type::Road:
+		return "Road";
+	case Tile::Type::Straight:
+		return "Straight";
+	default:
+		return "";
+	}
+}
