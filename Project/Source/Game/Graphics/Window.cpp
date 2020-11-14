@@ -8,11 +8,12 @@ Vector2 Window::mPosition = Vector2(100.0f, 100.0f);
 Vector2 Window::mSize = Vector2(1366.0f, 768.0f);
 int Window::mEntry = GLUT_ENTERED;
 
-Window::Window(const Vector2& pos, const Vector2& size, std::string& name)
+Window::Window(const Vector2& size, std::string& name)
 	: mName(name)
 {
-	mPosition = pos;
 	mSize = size;
+	mPosition.x = (glutGet(GLUT_SCREEN_WIDTH) - mSize.x) / 2;
+	mPosition.y = (glutGet(GLUT_SCREEN_HEIGHT) - mSize.y) / 2;
 }
 
 Window::~Window()

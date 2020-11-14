@@ -8,7 +8,7 @@
 
 
 SpriteComponent::SpriteComponent(const std::weak_ptr<class Actor>& owner, const std::weak_ptr<class Renderer>& render, int drawOrder)
-	: Component(owner)
+	: Component(owner, drawOrder)
 	, mRender(render)
 	, mDrawOrder(drawOrder)
 	, mTexWidth(0)

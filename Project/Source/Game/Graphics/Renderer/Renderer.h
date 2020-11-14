@@ -11,7 +11,7 @@ public:
 	Renderer(const std::weak_ptr<class Game>& game);
 	~Renderer();
 
-	bool initailize(const Vector2& pos, const Vector2& size, std::string name);
+	bool initailize(const Vector2& size, std::string name);
 	void shutDown();
 	void unLoadData();
 

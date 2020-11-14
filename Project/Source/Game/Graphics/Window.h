@@ -8,7 +8,7 @@
 class Window
 {
 public:
-	Window(const Vector2& pos, const Vector2& size, std::string& name);
+	Window(const Vector2& size, std::string& name);
 	~Window() noexcept;
 
 	bool initialize();

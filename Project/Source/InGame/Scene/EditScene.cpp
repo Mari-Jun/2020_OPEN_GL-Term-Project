@@ -98,14 +98,7 @@ void EditScene::loadData()
 	{
 		std::cerr << "Error : Load Map\n";
 	}
-
-	auto a = std::make_shared<Actor>(getGame());
-	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
-	a->setScale(0.1f);
-	a->initailize();
-	auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
-	sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
-	sc->initailize();
+	loadBoard();
 }
 
 void EditScene::unLoadData()
@@ -125,4 +118,19 @@ bool EditScene::loadGameMap()
 		return true;
 	}
 	return false;	
+}
+
+void EditScene::loadBoard()
+{
+	auto leftBoard = std::make_shared<Actor>(getGame());
+	leftBoard->setPosition(Vector3(-500.0f, 0.0f, 0.0f));
+	leftBoard->initailize();
+
+	//Create Left Board
+	auto left = std::make_shared<SpriteComponent>(leftBoard, getGame().lock()->getRenderer());
+	left->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/left_board.png"));
+	left->initailize();	
+
+	mEditor->setLeftBoardPos(Vector2(leftBoard->getPosition().x - left->getTexWidth() / 2, left->getTexHeight() / 2));
+	mEditor->setLeftBoardTexSize(Vector2(left->getTexWidth(), left->getTexHeight()));
 }

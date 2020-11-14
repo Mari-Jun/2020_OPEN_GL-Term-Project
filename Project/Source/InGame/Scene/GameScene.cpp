@@ -45,9 +45,6 @@ void GameScene::initailize()
 	//Set View
 	auto windowSize = game->getRenderer()->getWindow()->getSize();
 	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 25.0f, 10000.0f);
-	//auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5000.0f);
-	//auto view = Matrix4::CreateLookAt(Vector3::Zero + Vector3::UnitY * 4000.0f, Vector3::UnitY, Vector3::UnitZ);
-	//getGame().lock()->getRenderer()->setViewMatrix(view);
 	game->getRenderer()->setProjectionMatrix(projection);
 }
 
@@ -121,13 +118,13 @@ void GameScene::loadWorldBox()
 	//plane->initailize();
 	//plane->setTexture("Asset/Mesh/Road.png");
 
-	/*auto a = std::make_shared<Actor>(getGame());
-	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
-	a->setScale(0.1f);
-	a->initailize();
-	auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
-	sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
-	sc->initailize();*/
+	//auto a = std::make_shared<Actor>(getGame());
+	//a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
+	//a->setScale(0.1f);
+	//a->initailize();
+	//auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
+	//sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
+	//sc->initailize();
 }
 
 void GameScene::loadGameMap()

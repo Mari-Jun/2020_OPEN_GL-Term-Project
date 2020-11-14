@@ -23,10 +23,10 @@ Renderer::~Renderer()
 
 }
 
-bool Renderer::initailize(const Vector2& pos, const Vector2& size, std::string name)
+bool Renderer::initailize(const Vector2& size, std::string name)
 {
 	//Create Window
-	mWindow = std::make_unique<Window>(pos, size, name);
+	mWindow = std::make_unique<Window>(size, name);
 	if (mWindow == nullptr || !mWindow->initialize())
 	{
 		std::cerr << "Failed to Create Window\n";
@@ -231,7 +231,7 @@ void Renderer::addSpriteComponent(const std::weak_ptr<class SpriteComponent>& co
 			break;
 		}
 	}
-	mSpriteComponent.insert(iter, component);
+	mSpriteComponent.insert(iter, component);	
 }
 
 void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)

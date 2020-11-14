@@ -21,14 +21,27 @@ private:
 	std::weak_ptr<class GameMap> mGameMap;
 	std::string mFileName;
 	Vector2 mClickPos;
-	std::pair<int, int> mSelectTileIndex;
-	bool mIsSelectTile;
 
 private:
+	void changeTile();
+
 	void checkTileIndex();
+	void checkLeftBoard();
+	void checkRightBoard();
 
 private:
-	//º¸Á¶
-	std::shared_ptr<class Actor> mSelecter;
-	std::shared_ptr<class SpriteComponent> mSelectBorder;
+	//Map selector
+	std::shared_ptr<class Actor> mSelectorMap;
+	std::pair<int, int> mSelectMapIndex;
+	
+	//Board selector
+	static constexpr std::pair<int, int> mBoardMaxIndex = { 6, 3 };
+	std::shared_ptr<class Actor> mSelectorBoard;
+	std::pair<int, int> mSelectBoardIndex;
+	Vector2 mLeftBoardPos;
+	Vector2 mLeftBoardTexSize;
+
+public:
+	void setLeftBoardPos(const Vector2& pos) { mLeftBoardPos = pos; }
+	void setLeftBoardTexSize(const Vector2& size) { mLeftBoardTexSize = size; }
 };
