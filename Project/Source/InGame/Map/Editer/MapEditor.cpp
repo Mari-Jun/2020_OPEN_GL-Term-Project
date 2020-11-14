@@ -7,6 +7,7 @@
 #include "../../Actor/Tile/Tile.h"
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Input/Mouse.h"
+#include "../../../Game/Graphics/Mesh/SpriteComponent.h"
 
 
 MapEditor::MapEditor(const std::weak_ptr<class Game>& game, const std::weak_ptr<class GameMap>& gameMap)
@@ -63,7 +64,8 @@ void MapEditor::editInput()
 
 void MapEditor::loadData()
 {
-
+	mSelecter = std::make_shared<Actor>(mGame);
+	mSelecter->initailize();
 }
 
 void MapEditor::checkTileIndex()
@@ -81,10 +83,18 @@ void MapEditor::checkTileIndex()
 		mSelectTileIndex = { 
 			static_cast<int>((mapUpLeft.z - mClickPos.y) / tileSize), 
 			static_cast<int>((mClickPos.x - mapUpLeft.x) / tileSize) };
+
+		auto selectXPos = mapPos.x + mSelectTileIndex.second * tileSize;
+		auto selectYPos = mapPos.z - mSelectTileIndex.first * tileSize;
+		mSelecter->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+		mSelectBorder = std::make_shared<SpriteComponent>(mSelecter, mGame.lock()->getRenderer());
+		mSelectBorder->setTexture(mGame.lock()->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
+		mSelectBorder->initailize();
 	}
 	else
 	{
 		mIsSelectTile = false;
 		mSelectTileIndex = { -1, -1 };
+		mSelectBorder.reset();
 	}
 }

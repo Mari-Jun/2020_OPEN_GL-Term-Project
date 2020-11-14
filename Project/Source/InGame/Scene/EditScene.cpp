@@ -99,13 +99,13 @@ void EditScene::loadData()
 		std::cerr << "Error : Load Map\n";
 	}
 
-	/*auto a = std::make_shared<Actor>(getGame());
+	auto a = std::make_shared<Actor>(getGame());
 	a->setPosition(Vector3(-350.0f, -350.0f, 0.0f));
 	a->setScale(0.1f);
 	a->initailize();
 	auto sc = std::make_shared<SpriteComponent>(a, getGame().lock()->getRenderer());
 	sc->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Mesh/background.png"));
-	sc->initailize();*/
+	sc->initailize();
 }
 
 void EditScene::unLoadData()

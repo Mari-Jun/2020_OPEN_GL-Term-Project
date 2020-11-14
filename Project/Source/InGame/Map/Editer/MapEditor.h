@@ -26,5 +26,9 @@ private:
 
 private:
 	void checkTileIndex();
-	void changeTile();
+
+private:
+	//º¸Á¶
+	std::shared_ptr<class Actor> mSelecter;
+	std::shared_ptr<class SpriteComponent> mSelectBorder;
 };
