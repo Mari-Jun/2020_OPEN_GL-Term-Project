@@ -15,7 +15,13 @@ GameMap::GameMap(const std::weak_ptr<class Game>& game, float tileSize, int mapS
 
 GameMap::~GameMap()
 {
-	
+	for (auto& y : mTiles)
+	{
+		for (auto& x : y)
+		{
+			x.lock()->setState(Actor::State::Dead);
+		}
+	}
 }
 
 bool GameMap::loadMap(const std::string& fileName)
@@ -83,15 +89,13 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	tile->setRotation(Quaternion(Vector3::UnitY, Math::ToRadians(rot)));
 	tile->setPosition(Vector3(mPosition.x + x * mTileSize, mPosition.y, mPosition.z - y * mTileSize));
 	tile->initailize();
-	addTile(tile, y, x);
-}
-
-void GameMap::addTile(const std::weak_ptr<class Tile>& tile, int y, int x)
-{
 	mTiles[y][x] = tile;
 }
 
-void GameMap::removeTile(const std::weak_ptr<class Tile>& tile, int y, int x)
+void GameMap::removeTile(int y, int x)
 {
-	
+	if (!mTiles[y][x].expired())
+	{
+		mTiles[y][x].lock()->setState(Actor::State::Dead);
+	}
 }

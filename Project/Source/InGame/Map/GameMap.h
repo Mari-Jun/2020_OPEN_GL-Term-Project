@@ -18,11 +18,10 @@ public:
 	~GameMap() noexcept;
 
 	bool loadMap(const std::string& fileName);
-	//bool saveMap();
+	bool saveMap();
 
 	void addTile(const std::string& type, int y, int x, float rot);
-	void addTile(const std::weak_ptr<class Tile>& tile, int y, int x);
-	void removeTile(const std::weak_ptr<class Tile>& tile, int y, int x);
+	void removeTile(int y, int x);
 
 	float getTileSize() const { return mTileSize; }
 	int getMapSize() const { return mMapSize; }

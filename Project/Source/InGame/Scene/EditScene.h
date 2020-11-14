@@ -14,9 +14,11 @@ public:
 
 	virtual void loadData();
 	virtual void unLoadData();
-	void loadGameMap();
+	bool loadGameMap();
+	void unLoadGameMap();
 
 private:
 	std::shared_ptr<class GameMap> mGameMap;
 	std::unique_ptr<class MapEditor> mEditor;
+	int mStage;
 };

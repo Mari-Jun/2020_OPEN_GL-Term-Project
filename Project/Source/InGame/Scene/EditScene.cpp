@@ -1,3 +1,4 @@
+#include <string>
 #include "EditScene.h"
 #include "GameScene.h"
 #include "../../Game/Graphics/Window.h"
@@ -22,6 +23,7 @@
 
 EditScene::EditScene(const std::weak_ptr<class Game>& game)
 	: Scene(game)
+	, mStage(1)
 {
 
 }
@@ -44,7 +46,7 @@ void EditScene::initailize()
 
 	//Set View
 	auto windowSize = getGame().lock()->getRenderer()->getWindow()->getSize();
-	auto view = Matrix4::CreateLookAt(Vector3::Zero + Vector3::UnitY * 1000.0f, Vector3::UnitY, Vector3::UnitZ);
+	auto view = Matrix4::CreateLookAt(Vector3::UnitY * 10.0f, Vector3::Zero, Vector3::UnitZ);
 	auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5000.0f);
 	getGame().lock()->getRenderer()->setViewMatrix(view);
 	getGame().lock()->getRenderer()->setProjectionMatrix(projection);
@@ -62,6 +64,27 @@ void EditScene::sceneInput()
 		auto scene = std::make_shared<GameScene>(getGame());
 		scene->initailize();
 	}
+
+	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_LEFT))
+	{
+		mStage--;
+		if (!loadGameMap())
+		{
+			std::cerr << "Error : Load Map\n";
+			mStage++;
+		}
+	}
+	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_RIGHT))
+	{
+		mStage++;
+		if (!loadGameMap())
+		{
+			std::cerr << "Error : Load Map\n";
+			mStage--;
+		}
+	}
+
+	mEditor->editInput();
 }
 
 void EditScene::sceneUpdate(float deltatime)
@@ -71,7 +94,10 @@ void EditScene::sceneUpdate(float deltatime)
 
 void EditScene::loadData()
 {
-	loadGameMap();
+	if (!loadGameMap())
+	{
+		std::cerr << "Error : Load Map\n";
+	}
 
 	//Create Editor
 	mEditor = std::make_unique<MapEditor>(getGame(), mGameMap);
@@ -87,13 +113,19 @@ void EditScene::loadData()
 
 void EditScene::unLoadData()
 {
-
+	
 }
 
-void EditScene::loadGameMap()
+bool EditScene::loadGameMap()
 {
 	mGameMap = std::make_shared<GameMap>(getGame(), 30.0f);
-	mGameMap->loadMap("Asset/Map/Stage1.txt");
+	std::string fileName = "Asset/Map/Stage";
+	fileName += std::to_string(mStage);
+	fileName += ".txt";
+	return mGameMap->loadMap(fileName);
+}
 
-
+void EditScene::unLoadGameMap()
+{
+	mGameMap.reset();
 }

@@ -19,7 +19,12 @@ public:
 private:
 	std::weak_ptr<class Game> mGame;
 	std::weak_ptr<class GameMap> mGameMap;
+	std::string mFileName;
 	Vector2 mClickPos;
 	std::pair<int, int> mSelectTileIndex;
 	bool mIsSelectTile;
+
+private:
+	void checkTileIndex();
+	void changeTile();
 };

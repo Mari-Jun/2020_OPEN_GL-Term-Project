@@ -13,7 +13,7 @@ Tile::Tile(const std::weak_ptr<class Game>& game, Type type)
 
 Tile::~Tile()
 {
-	
+
 }
 
 void Tile::initailize()
