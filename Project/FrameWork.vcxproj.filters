@@ -364,11 +364,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Game\Graphics\Shader\Basic.frag" />
-    <None Include="Source\Game\Graphics\Shader\Basic.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
     <None Include="Source\Game\Graphics\Shader\Sprite.vert" />
     <None Include="Source\Game\Graphics\Shader\Sprite.frag" />
+    <None Include="Source\Game\Graphics\Shader\Basic.frag" />
+    <None Include="Source\Game\Graphics\Shader\Basic.vert" />
   </ItemGroup>
 </Project>
