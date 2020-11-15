@@ -16,7 +16,6 @@ public:
 private:
 	std::shared_ptr<class Renderer> mRenderer;
 	std::shared_ptr<class PhysEngine> mPhysEngine;
-	std::unique_ptr<class DeltaTime> mDeltaTime;
 	std::unique_ptr<class KeyBoard> mKeyBoard;
 	std::unique_ptr<class Mouse> mMouse;
 

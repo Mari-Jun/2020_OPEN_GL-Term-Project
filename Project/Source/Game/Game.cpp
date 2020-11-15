@@ -1,7 +1,6 @@
 #include <algorithm>
 #include "Graphics/Renderer/Renderer.h"
 #include "Physics/PhysicsEngine.h"
-#include "Etc/DeltaTime.h"
 #include "Input/KeyBoard.h"
 #include "Input/Mouse.h"
 #include "Scene/Scene.h"
@@ -10,8 +9,7 @@
 
 
 Game::Game()
-	: mDeltaTime(nullptr)
-	, mKeyBoard(nullptr)
+	: mKeyBoard(nullptr)
 	, mMouse(nullptr)
 	, mIsRunning(true)
 	, mIsPaused(false)
@@ -40,13 +38,6 @@ bool Game::initialize(int argc, char** argv)
 	//Create Physics Engine
 	mPhysEngine = std::make_shared<PhysEngine>(weak_from_this());
 	if (mPhysEngine == nullptr)
-	{
-		return false;
-	}
-
-	//Create DeltaTime
-	mDeltaTime = std::make_unique<DeltaTime>();
-	if (mDeltaTime == nullptr)
 	{
 		return false;
 	}
@@ -193,24 +184,25 @@ void Game::processInput()
 void Game::update()
 {
 	static int Fps = 0;
-	static float time = 0.0f;
-	float deltatime = mDeltaTime->getDeltaTime();
+	static int oldTime = 0;
+	static int fpsTime = 0;
+	int time = glutGet(GLUT_ELAPSED_TIME);
+	float deltatime = (time - oldTime) / 1000.0f;
+	oldTime = time;
 
 	if (deltatime >= 0.016f)
 	{
 		Fps++;
-		time += deltatime;
-		mDeltaTime->reset();
 
-		if (time >= 1.0f)
+		if (time - fpsTime > 1000)
 		{
-			time -= 1.0f;
-			std::cout << "프레임 : " << Fps << '\n';
+			std::cout << "프레임 : " << Fps << std::endl;
 			Fps = 0;
+			fpsTime = time;
 		}
 
 		mIsUpdateScene = true;
-		for (const auto& scene: mScene)
+		for (const auto& scene : mScene)
 		{
 			if (scene->getState() == Scene::State::Active)
 			{
@@ -224,7 +216,7 @@ void Game::update()
 			mScene.emplace_back(scene);
 		}
 		mReadyScene.clear();
-	
+
 		std::vector<std::shared_ptr<Scene>> deadScene;
 		for (auto& scene : mScene)
 		{
@@ -235,7 +227,7 @@ void Game::update()
 		}
 
 		for (auto& scene : deadScene)
-		{		
+		{
 			scene.reset();
 		}
 		deadScene.clear();

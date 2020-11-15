@@ -1,7 +1,6 @@
 #include "Scene.h"
 #include "../Graphics/Renderer/Renderer.h"
 #include "../Game.h"
-#include "../Etc/DeltaTime.h"
 #include "../Actor/Actor.h"
 
 Scene::Scene(const std::weak_ptr<class Game>& game)
