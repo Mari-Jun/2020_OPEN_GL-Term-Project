@@ -285,7 +285,7 @@ bool Renderer::loadShader()
 	mMeshShader->setActive();
 
 	mView = Matrix4::CreateLookAt(Vector3::Zero, Vector3::UnitZ, Vector3::UnitY);
-	mProjection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), getWindow()->getSize().x, getWindow()->getSize().y, 25.0f, 10000.0f);
+	mProjection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), getWindow()->getSize().x, getWindow()->getSize().y, 25.0f, 1000.0f);
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 
 	return true;

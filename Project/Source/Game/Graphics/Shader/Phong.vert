@@ -40,12 +40,5 @@ void main()
 	fragTexCoord = inTexCoord;
 
 	//컬러 전달
-	if(uColor.xyz == vec3(0.0, 0.0, 0.0))
-	{
-		fragColor = inColor;
-	}
-	else
-	{
-		fragColor = uColor;
-	}
+	fragColor = inColor;
 }

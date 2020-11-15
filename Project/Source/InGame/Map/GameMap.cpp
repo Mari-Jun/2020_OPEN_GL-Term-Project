@@ -9,7 +9,9 @@ GameMap::GameMap(const std::weak_ptr<class Game>& game, float tileSize, int mapS
 	, mFileName("")
 	, mTileSize(tileSize)
 	, mMapSize(mapSize)
-	, mPosition(Vector3(-mTileSize * mapSize / 2, 0.0f, mTileSize * mapSize / 2))
+	, mPosition(Vector3(-mTileSize * mapSize / 2, 0.0f, mTileSize* mapSize / 2))
+	, mStartPosition(Vector3::Zero)
+	, mEndPosition(Vector3::Zero)
 {
 	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }
@@ -112,6 +114,7 @@ bool GameMap::saveMap()
 
 void GameMap::addTile(const std::string& type, int y, int x, float rot)
 {
+	Vector3 position(mPosition.x + x * mTileSize, mPosition.y, mPosition.z - y * mTileSize);
 	std::shared_ptr<Tile> tile = nullptr;
 	switch (HashCode(type.c_str()))
 	{
@@ -123,8 +126,8 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	case HashCode("Tree"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tree); break;
 	case HashCode("TreeDouble"): tile = std::make_shared<Tile>(mGame, Tile::Type::TreeDouble); break;
 	case HashCode("TreeQuad"): tile = std::make_shared<Tile>(mGame, Tile::Type::TreeQuad); break;
-	case HashCode("StartPoint"): tile = std::make_shared<Tile>(mGame, Tile::Type::StartPoint); break;
-	case HashCode("EndPoint"): tile = std::make_shared<Tile>(mGame, Tile::Type::EndPoint); break;
+	case HashCode("StartPoint"): tile = std::make_shared<Tile>(mGame, Tile::Type::StartPoint); setStartPosition(position); break;
+	case HashCode("EndPoint"): tile = std::make_shared<Tile>(mGame, Tile::Type::EndPoint); setEndPosition(position); break;
 	case HashCode("SnowBasic"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Basic); break;
 	case HashCode("SnowRock"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Rock); break;
 	case HashCode("SnowHill"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Hill); break;
@@ -136,7 +139,7 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	}
 	tile->setScale(mTileSize);
 	tile->setRotation(Quaternion(Vector3::UnitY, Math::ToRadians(rot)));
-	tile->setPosition(Vector3(mPosition.x + x * mTileSize, mPosition.y, mPosition.z - y * mTileSize));
+	tile->setPosition(position);
 	tile->initailize();
 	mTiles[y][x] = tile;
 }

@@ -36,4 +36,16 @@ private:
 	int mMapSize;
 	Vector3 mPosition;
 	std::vector<std::vector<std::weak_ptr<class Tile>>> mTiles;
+
+private:
+	Vector3 mStartPosition;
+	Vector3 mEndPosition;
+
+public:
+	const Vector3& getStartPosition() const { return mStartPosition; }
+	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>(mStartPosition.z - mPosition.z) / -mTileSize , static_cast<int>(mStartPosition.x - mPosition.x) / mTileSize }; }
+	const Vector3& getEndPosition() const { return mEndPosition; }
+	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>(mEndPosition.z - mPosition.z) / -mTileSize, static_cast<int>(mEndPosition.x - mPosition.x) / mTileSize }; }
+	void setStartPosition(const Vector3& pos) { std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl; mStartPosition = pos; }
+	void setEndPosition(const Vector3& pos) { std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl; mEndPosition = pos; }
 };

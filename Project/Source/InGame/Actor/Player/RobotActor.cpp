@@ -70,10 +70,6 @@ void RobotActor::initailize()
 	mRightLeg = std::make_shared<RobotLeg>(getGame(), true);
 	mRightLeg->setScale(getScale());
 	mRightLeg->initailize();
-
-	
-
-	setPosition(Vector3(0.0f, 30.0f, 200.0f));
 }
 
 void RobotActor::updateActor(float deltatime)
@@ -180,8 +176,6 @@ void RobotActor::collides(const std::weak_ptr<BoxComponent>& bComp)
 					mBoxComponent->updateWorldTransForm();
 				}
 			}
-
-			
 		}
 	}
 }

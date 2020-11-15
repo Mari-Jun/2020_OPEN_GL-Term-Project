@@ -77,8 +77,8 @@ void MapEditor::changeTile()
 	case 20: type = "Tree"; break;
 	case 21: type = "TreeDouble"; break;
 	case 22: type = "TreeQuad"; break;
-	case 30: type = "StartPoint"; break;
-	case 31: type = "EndPoint"; break;
+	case 30: type = "StartPoint"; changeStartTile(); break;
+	case 31: type = "EndPoint"; changeEndTile(); break;
 	case 32: type = "SnowBasic"; break;
 	case 40: type = "SnowRock"; break;
 	case 41: type = "SnowHill"; break;
@@ -97,6 +97,22 @@ void MapEditor::rotateTile()
 {
 	mGameMap.lock()->rotTile(mSelectMapIndex.first, mSelectMapIndex.second);
 }
+
+void MapEditor::changeStartTile()
+{
+	auto index = mGameMap.lock()->getStartPosIndex();
+	std::cout << index.first << ", " << index.second << std::endl;
+	mGameMap.lock()->removeTile(index.first, index.second);
+	mGameMap.lock()->addTile("Basic", index.first, index.second, 0);
+}
+
+void MapEditor::changeEndTile()
+{
+	auto index = mGameMap.lock()->getEndPosIndex();
+	mGameMap.lock()->removeTile(index.first, index.second);
+	mGameMap.lock()->addTile("Basic", index.first, index.second, 0);
+}
+
 
 void MapEditor::checkTileIndex()
 {
