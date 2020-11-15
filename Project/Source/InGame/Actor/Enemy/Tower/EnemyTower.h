@@ -20,7 +20,9 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
+private:
 	std::shared_ptr<class Mesh> loadMesh() const;
+	void chasePlayer(float deltatime);
 
 private:
 	Type mType;

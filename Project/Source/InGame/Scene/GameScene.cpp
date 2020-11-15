@@ -75,7 +75,7 @@ void GameScene::sceneUpdate(float deltatime)
 
 void GameScene::loadData()
 {
-	loadGameMap();
+	loadGameMap(1);
 	loadActorData();
 }
 
@@ -105,8 +105,11 @@ void GameScene::loadActorData()
 	//particle->initailize();
 }
 
-void GameScene::loadGameMap()
+void GameScene::loadGameMap(int stage)
 {
 	mGameMap = std::make_shared<GameMap>(getGame());
-	mGameMap->loadMap("Asset/Map/Stage1.txt");
+	std::string file = "Asset/Map/Stage";
+	file += std::to_string(stage);
+	file += ".txt";
+	mGameMap->loadMap(file);
 }

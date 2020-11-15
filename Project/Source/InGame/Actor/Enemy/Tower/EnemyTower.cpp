@@ -32,7 +32,7 @@ void EnemyTower::initailize()
 
 void EnemyTower::updateActor(float deltatime)
 {
-
+	chasePlayer(deltatime);
 }
 
 void EnemyTower::actorInput()
@@ -52,6 +52,11 @@ std::shared_ptr<class Mesh> EnemyTower::loadMesh() const
 	default: break;
 	}
 	return getGame().lock()->getRenderer()->getMesh(meshName);
+}
+
+void EnemyTower::chasePlayer(float deltatime)
+{
+	
 }
 
 std::string EnemyTower::getTypeToString() const
