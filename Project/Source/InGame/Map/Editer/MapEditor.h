@@ -38,13 +38,17 @@ private:
 	std::pair<int, int> mSelectMapIndex;
 	
 	//Board selector
-	static constexpr std::pair<int, int> mBoardMaxIndex = { 6, 3 };
+	static constexpr std::pair<int, int> mBoardMaxIndex = { 9, 3 };
 	std::shared_ptr<class Actor> mSelectorBoard;
 	std::pair<int, int> mSelectBoardIndex;
 	Vector2 mLeftBoardPos;
 	Vector2 mLeftBoardTexSize;
+	Vector2 mRightBoardPos;
+	Vector2 mRightBoardTexSize;
 
 public:
 	void setLeftBoardPos(const Vector2& pos) { mLeftBoardPos = pos; }
 	void setLeftBoardTexSize(const Vector2& size) { mLeftBoardTexSize = size; }
+	void setRightBoardPos(const Vector2& pos) { mRightBoardPos = pos; }
+	void setRightBoardTexSize(const Vector2& size) { mRightBoardTexSize = size; }
 };

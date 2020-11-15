@@ -122,15 +122,26 @@ bool EditScene::loadGameMap()
 
 void EditScene::loadBoard()
 {
+	//Create Left Board
 	auto leftBoard = std::make_shared<Actor>(getGame());
 	leftBoard->setPosition(Vector3(-500.0f, 0.0f, 0.0f));
 	leftBoard->initailize();
 
-	//Create Left Board
 	auto left = std::make_shared<SpriteComponent>(leftBoard, getGame().lock()->getRenderer());
 	left->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/left_board.png"));
 	left->initailize();	
 
+	//Create Right Board
+	auto rightBoard = std::make_shared<Actor>(getGame());
+	rightBoard->setPosition(Vector3(500.0f, 150.0f, 0.0f));
+	rightBoard->initailize();
+
+	auto right = std::make_shared<SpriteComponent>(rightBoard, getGame().lock()->getRenderer());
+	right->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/right_board.png"));
+	right->initailize();
+
 	mEditor->setLeftBoardPos(Vector2(leftBoard->getPosition().x - left->getTexWidth() / 2, left->getTexHeight() / 2));
 	mEditor->setLeftBoardTexSize(Vector2(left->getTexWidth(), left->getTexHeight()));
+	mEditor->setRightBoardPos(Vector2(rightBoard->getPosition().x - right->getTexWidth() / 2, rightBoard->getPosition().y + right->getTexHeight() / 2));
+	mEditor->setRightBoardTexSize(Vector2(right->getTexWidth(), right->getTexHeight()));
 }

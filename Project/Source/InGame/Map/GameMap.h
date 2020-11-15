@@ -46,6 +46,6 @@ public:
 	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>(mStartPosition.z - mPosition.z) / -mTileSize , static_cast<int>(mStartPosition.x - mPosition.x) / mTileSize }; }
 	const Vector3& getEndPosition() const { return mEndPosition; }
 	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>(mEndPosition.z - mPosition.z) / -mTileSize, static_cast<int>(mEndPosition.x - mPosition.x) / mTileSize }; }
-	void setStartPosition(const Vector3& pos) { std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl; mStartPosition = pos; }
-	void setEndPosition(const Vector3& pos) { std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl; mEndPosition = pos; }
+	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
+	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
 };

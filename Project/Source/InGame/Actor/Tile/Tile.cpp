@@ -63,6 +63,15 @@ std::shared_ptr<class Mesh> Tile::loadMesh() const
 	case Tile::Type::Snow_Tree: meshName = "Asset/Mesh/Tile/Road/Snow_Tile_Tree"; break;
 	case Tile::Type::Snow_TreeDouble: meshName = "Asset/Mesh/Tile/Road/Snow_Tile_TreeDouble"; break;
 	case Tile::Type::Snow_TreeQuad: meshName = "Asset/Mesh/Tile/Road/Snow_Tile_TreeQuad"; break;
+	case Tile::Type::Tower_RoundA: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_RoundA"; break;
+	case Tile::Type::Tower_RoundC: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_RoundC"; break;
+	case Tile::Type::Tower_Blaster: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Blaster"; break;
+	case Tile::Type::Tower_SquareA: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_SquareA"; break;
+	case Tile::Type::Tower_SquareB: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_SquareB"; break;
+	case Tile::Type::Tower_SquareC: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_SquareC"; break;
+	case Tile::Type::Tower_Ballista: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Ballista"; break;
+	case Tile::Type::Tower_Cannon: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Cannon"; break;
+	case Tile::Type::Tower_Catapult: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Catapult"; break;
 	default: break;
 	}
 	return getGame().lock()->getRenderer()->getMesh(meshName);
@@ -89,6 +98,15 @@ std::string Tile::getTypeToString() const
 	case Tile::Type::Snow_Tree: return "SnowTree";
 	case Tile::Type::Snow_TreeDouble: return "SnowTreeDouble";
 	case Tile::Type::Snow_TreeQuad: return "SnowTreeQuad";
+	case Tile::Type::Tower_RoundA: return "TowerRoundA";
+	case Tile::Type::Tower_RoundC: return "TowerRoundC";
+	case Tile::Type::Tower_Blaster: return "TowerBlaster";
+	case Tile::Type::Tower_SquareA: return "TowerSquareA";
+	case Tile::Type::Tower_SquareB: return "TowerSquareB";
+	case Tile::Type::Tower_SquareC: return "TowerSquareC";
+	case Tile::Type::Tower_Ballista: return "TowerBallista";
+	case Tile::Type::Tower_Cannon: return "TowerCannon";
+	case Tile::Type::Tower_Catapult: return "TowerCatapult";
 	default: return "";
 	}
 }

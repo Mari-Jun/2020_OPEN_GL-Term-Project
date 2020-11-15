@@ -35,6 +35,7 @@ void MapEditor::editInput()
 		mClickPos.y *= -1;
 		checkTileIndex();
 		checkLeftBoard();
+		checkRightBoard();
 	}
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_END))
 	{
@@ -86,6 +87,15 @@ void MapEditor::changeTile()
 	case 50: type = "SnowTree"; break;
 	case 51: type = "SnowTreeDouble"; break;
 	case 52: type = "SnowTreeQuad"; break;
+	case 60: type = "TowerRoundA"; break;
+	case 61: type = "TowerRoundC"; break;
+	case 62: type = "TowerBlaster"; break;
+	case 70: type = "TowerSquareA"; break;
+	case 71: type = "TowerSquareB"; break;
+	case 72: type = "TowerSquareC"; break;
+	case 80: type = "TowerBallista"; break;
+	case 81: type = "TowerCannon"; break;
+	case 82: type = "TowerCatapult"; break;
 	default: return;
 	}
 
@@ -101,7 +111,6 @@ void MapEditor::rotateTile()
 void MapEditor::changeStartTile()
 {
 	auto index = mGameMap.lock()->getStartPosIndex();
-	std::cout << index.first << ", " << index.second << std::endl;
 	mGameMap.lock()->removeTile(index.first, index.second);
 	mGameMap.lock()->addTile("Basic", index.first, index.second, 0);
 }
@@ -150,6 +159,23 @@ void MapEditor::checkLeftBoard()
 
 		auto selectXPos = mLeftBoardPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
 		auto selectYPos = mLeftBoardPos.y - 20 - mSelectBoardIndex.first * (15 + tileSize) - tileSize / 2;
+		mSelectorBoard->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+	}
+}
+
+void MapEditor::checkRightBoard()
+{
+	auto tileSize = 80.0f;
+
+	if (mRightBoardPos.x < mClickPos.x && mClickPos.x < mRightBoardPos.x + mRightBoardTexSize.x &&
+		mRightBoardPos.y > mClickPos.y && mClickPos.y > mRightBoardPos.y - mRightBoardTexSize.y)
+	{
+		mSelectBoardIndex =
+		{ static_cast<int>((mRightBoardPos.y - mClickPos.y) / 100.0f) + 6,
+			static_cast<int>((mClickPos.x - mRightBoardPos.x) / 100.0f) };
+
+		auto selectXPos = mRightBoardPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = mRightBoardPos.y - 20 - (mSelectBoardIndex.first - 6) * (15 + tileSize) - tileSize / 2;
 		mSelectorBoard->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
 	}
 }
