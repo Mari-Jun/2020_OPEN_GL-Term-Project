@@ -3,6 +3,7 @@
 #include "GameMap.h"
 #include "../../Game/Game.h"
 #include "../Actor/Tile/Tile.h"
+#include "../Actor/Tile/EnemyTile.h"
 
 GameMap::GameMap(const std::weak_ptr<class Game>& game, float tileSize, int mapSize)
 	: mGame(game)
@@ -137,13 +138,13 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	case HashCode("SnowTreeQuad"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_TreeQuad); break;
 	case HashCode("TowerRoundA"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_RoundA); break;
 	case HashCode("TowerRoundC"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_RoundC); break;
-	case HashCode("TowerBlaster"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_Blaster); break;
+	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Blaster); break;
 	case HashCode("TowerSquareA"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_SquareA); break;
 	case HashCode("TowerSquareB"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_SquareB); break;
 	case HashCode("TowerSquareC"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_SquareC); break;
-	case HashCode("TowerBallista"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_Ballista); break;
-	case HashCode("TowerCannon"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_Cannon); break;
-	case HashCode("TowerCatapult"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_Catapult); break;
+	case HashCode("TowerBallista"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Ballista); break;
+	case HashCode("TowerCannon"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Cannon); break;
+	case HashCode("TowerCatapult"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Catapult); break;
 	default: break;
 	}
 	tile->setScale(mTileSize);
