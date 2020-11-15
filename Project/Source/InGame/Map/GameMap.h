@@ -22,6 +22,7 @@ public:
 
 	void addTile(const std::string& type, int y, int x, float rot);
 	void removeTile(int y, int x);
+	void rotTile(int y, int x);
 
 	float getTileSize() const { return mTileSize; }
 	int getMapSize() const { return mMapSize; }
@@ -35,4 +36,16 @@ private:
 	int mMapSize;
 	Vector3 mPosition;
 	std::vector<std::vector<std::weak_ptr<class Tile>>> mTiles;
+
+private:
+	Vector3 mStartPosition;
+	Vector3 mEndPosition;
+
+public:
+	const Vector3& getStartPosition() const { return mStartPosition; }
+	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>(mStartPosition.z - mPosition.z) / -mTileSize , static_cast<int>(mStartPosition.x - mPosition.x) / mTileSize }; }
+	const Vector3& getEndPosition() const { return mEndPosition; }
+	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>(mEndPosition.z - mPosition.z) / -mTileSize, static_cast<int>(mEndPosition.x - mPosition.x) / mTileSize }; }
+	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
+	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
 };

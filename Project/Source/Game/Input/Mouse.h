@@ -8,6 +8,7 @@ class Mouse final
 private:
 	static constexpr auto Button_Max = 3;
 	static bool mState[Button_Max];
+	static bool mFirst[Button_Max];
 	static Vector2 mOriginPosition;
 	static Vector2 mPosition;
 	static bool mWarp;
@@ -17,8 +18,10 @@ public:
 	~Mouse() noexcept;
 
 	void initialize();
+	void update();
 
 	bool getState(int button) const { return mState[button]; }
+	bool getFirst(int button) const { return mFirst[button]; }
 	const Vector2& getOriginPosition() const { return mOriginPosition; }
 	const Vector2& getPosition() const { return mPosition; }
 

@@ -11,7 +11,7 @@ public:
 	Renderer(const std::weak_ptr<class Game>& game);
 	~Renderer();
 
-	bool initailize(const Vector2& pos, const Vector2& size, std::string name);
+	bool initailize(const Vector2& size, std::string name);
 	void shutDown();
 	void unLoadData();
 
@@ -37,6 +37,7 @@ public:
 private:
 	bool loadShader();
 	void createSpriteVertex();
+	
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;

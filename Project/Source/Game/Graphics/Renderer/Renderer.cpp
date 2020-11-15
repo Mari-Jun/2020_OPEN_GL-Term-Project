@@ -23,10 +23,10 @@ Renderer::~Renderer()
 
 }
 
-bool Renderer::initailize(const Vector2& pos, const Vector2& size, std::string name)
+bool Renderer::initailize(const Vector2& size, std::string name)
 {
 	//Create Window
-	mWindow = std::make_unique<Window>(pos, size, name);
+	mWindow = std::make_unique<Window>(size, name);
 	if (mWindow == nullptr || !mWindow->initialize())
 	{
 		std::cerr << "Failed to Create Window\n";
@@ -231,7 +231,7 @@ void Renderer::addSpriteComponent(const std::weak_ptr<class SpriteComponent>& co
 			break;
 		}
 	}
-	mSpriteComponent.insert(iter, component);
+	mSpriteComponent.insert(iter, component);	
 }
 
 void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)
@@ -285,7 +285,7 @@ bool Renderer::loadShader()
 	mMeshShader->setActive();
 
 	mView = Matrix4::CreateLookAt(Vector3::Zero, Vector3::UnitZ, Vector3::UnitY);
-	mProjection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), getWindow()->getSize().x, getWindow()->getSize().y, 25.0f, 10000.0f);
+	mProjection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), getWindow()->getSize().x, getWindow()->getSize().y, 25.0f, 1000.0f);
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 
 	return true;

@@ -6,9 +6,15 @@ class Tile : public Actor
 public:
 	enum class Type
 	{
-		Basic,
-		Road,
-		Straight
+		Basic, Road,
+		Rock, Hill, Crystal,
+		Tree, TreeDouble, TreeQuad,
+		StartPoint, EndPoint, Snow_Basic,
+		Snow_Rock, Snow_Hill, Snow_Crystal,
+		Snow_Tree, Snow_TreeDouble, Snow_TreeQuad,
+		Tower_RoundA, Tower_RoundC, Tower_Blaster,
+		Tower_SquareA, Tower_SquareB, Tower_SquareC,
+		Tower_Ballista, Tower_Cannon, Tower_Catapult
 	};
 
 	Tile(const std::weak_ptr<class Game>& game, Type type = Type::Basic);

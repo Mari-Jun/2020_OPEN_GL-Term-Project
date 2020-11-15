@@ -15,7 +15,6 @@ public:
 	virtual void loadData();
 	virtual void unLoadData();
 	void loadActorData();
-	void loadWorldBox();
 	void loadGameMap();
 
 private:

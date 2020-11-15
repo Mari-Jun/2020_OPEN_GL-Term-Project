@@ -33,6 +33,14 @@ void KeyBoard::initalize()
 	glutSpecialUpFunc(specialKeyUpCallBack);
 }
 
+void KeyBoard::update()
+{
+	for (auto& bt : KeyBoard::mFirsts)
+	{
+		bt = false;
+	}
+}
+
 GLvoid keyDownCallBack(unsigned char key, int x, int y)
 {
 	KeyBoard::mKeys[static_cast<int>(key)] = true;

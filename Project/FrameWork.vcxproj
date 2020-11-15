@@ -136,12 +136,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -227,7 +229,6 @@
     <ClInclude Include="Source\Game\Graphics\Mesh\LineComponent.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\MeshComponent.h" />
     <ClInclude Include="Source\Game\Component\MoveComponent.h" />
-    <ClInclude Include="Source\Game\Etc\DeltaTime.h" />
     <ClInclude Include="Source\Game\Graphics\Mesh\Mesh.h" />
     <ClInclude Include="Source\Game\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Game\Graphics\Shader\VertexArray.h" />

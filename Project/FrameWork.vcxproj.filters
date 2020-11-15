@@ -218,9 +218,6 @@
     <ClInclude Include="Source\Game\Component\MoveComponent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Etc\DeltaTime.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game\Graphics\Light\Light.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -367,11 +364,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Game\Graphics\Shader\Basic.frag" />
-    <None Include="Source\Game\Graphics\Shader\Basic.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
     <None Include="Source\Game\Graphics\Shader\Sprite.vert" />
     <None Include="Source\Game\Graphics\Shader\Sprite.frag" />
+    <None Include="Source\Game\Graphics\Shader\Basic.frag" />
+    <None Include="Source\Game\Graphics\Shader\Basic.vert" />
   </ItemGroup>
 </Project>
