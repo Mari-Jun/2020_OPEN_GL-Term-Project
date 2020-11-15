@@ -10,7 +10,7 @@ public:
 		Mouse,
 	};
 
-	CameraActor(const std::weak_ptr<class Game>& game);
+	CameraActor(const std::weak_ptr<class Scene>& scene);
 	virtual ~CameraActor() noexcept;
 
 	virtual void initailize() override;

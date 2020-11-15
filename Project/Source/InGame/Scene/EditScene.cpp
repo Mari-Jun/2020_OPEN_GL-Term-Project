@@ -115,14 +115,14 @@ void EditScene::unLoadData()
 
 bool EditScene::loadGameMap()
 {
-	auto newMap = std::make_shared<GameMap>(getGame(), 30.0f);
+	auto newMap = std::make_shared<GameMap>(weak_from_this(), 30.0f);
 	std::string fileName = "Asset/Map/Stage";
 	fileName += std::to_string(mStage);
 	fileName += ".txt";
 	if (newMap->loadMap(fileName))
 	{
 		mGameMap.swap(newMap);
-		mEditor = std::make_unique<MapEditor>(getGame(), mGameMap);
+		mEditor = std::make_unique<MapEditor>(weak_from_this(), mGameMap);
 		mEditor->setLeftBoardPos(mLeftBoardPos);
 		mEditor->setLeftBoardTexSize(mLeftBoardTexSize);
 		mEditor->setRightBoardPos(mRightBoardPos);
@@ -135,7 +135,7 @@ bool EditScene::loadGameMap()
 void EditScene::loadBoard()
 {
 	//Create Left Board
-	auto actor = std::make_shared<Actor>(getGame());
+	auto actor = std::make_shared<Actor>(weak_from_this());
 	actor->setPosition(Vector3(-500.0f, 0.0f, 0.0f));
 	actor->initailize();
 
@@ -147,7 +147,7 @@ void EditScene::loadBoard()
 	mLeftBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
 
 	//Create Right Board
-	actor = std::make_shared<Actor>(getGame());
+	actor = std::make_shared<Actor>(weak_from_this());
 	actor->setPosition(Vector3(500.0f, 50.0f, 0.0f));
 	actor->initailize();
 
@@ -159,7 +159,7 @@ void EditScene::loadBoard()
 	mRightBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
 
 	//Create Button
-	actor = std::make_shared<Actor>(getGame());
+	actor = std::make_shared<Actor>(weak_from_this());
 	actor->setPosition(Vector3(500.0f, -290.0f, 0.0f));
 	actor->initailize();
 
@@ -168,7 +168,7 @@ void EditScene::loadBoard()
 	image->initailize();
 	mButtonSize = Vector2(image->getTexWidth(), image->getTexHeight());
 
-	actor = std::make_shared<Actor>(getGame());
+	actor = std::make_shared<Actor>(weak_from_this());
 	actor->setPosition(Vector3(mSaveButtonPos.x, mSaveButtonPos.y, 0.0f));
 	actor->initailize();
 	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());

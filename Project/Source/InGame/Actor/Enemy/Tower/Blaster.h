@@ -4,7 +4,7 @@
 class Blaster : public EnemyTower
 {
 public:
-	Blaster(const std::weak_ptr<class Game>& game);
+	Blaster(const std::weak_ptr<class Scene>& scene);
 	virtual ~Blaster() noexcept;
 
 	virtual void initailize() override;

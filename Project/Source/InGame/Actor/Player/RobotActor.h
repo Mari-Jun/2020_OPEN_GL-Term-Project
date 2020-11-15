@@ -4,7 +4,7 @@
 class RobotActor : public Actor
 {
 public:
-	RobotActor(const std::weak_ptr<class Game>& game);
+	RobotActor(const std::weak_ptr<class Scene>& scene);
 	virtual ~RobotActor() noexcept;
 
 	virtual void initailize() override;

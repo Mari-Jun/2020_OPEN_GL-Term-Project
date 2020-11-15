@@ -14,7 +14,7 @@ constexpr unsigned int HashCode(const char* str)
 class GameMap : public std::enable_shared_from_this<GameMap>
 {
 public:
-	GameMap(const std::weak_ptr<class Game>& game, float tileSize = 200.0f, int mapSize = 20);
+	GameMap(const std::weak_ptr<class Scene>& scene, float tileSize = 200.0f, int mapSize = 20);
 	~GameMap() noexcept;
 
 	bool loadMap(const std::string& fileName);
@@ -30,7 +30,7 @@ public:
 	const std::vector<std::vector<std::weak_ptr<class Tile>>>& getTiles() { return mTiles; }
 
 private:
-	std::weak_ptr<class Game> mGame;
+	std::weak_ptr<class Scene> mScene;
 	std::string mFileName;
 	float mTileSize;
 	int mMapSize;

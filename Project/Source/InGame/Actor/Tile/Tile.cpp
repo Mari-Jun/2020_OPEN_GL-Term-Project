@@ -4,8 +4,8 @@
 #include "../../../Game/Component/BoxComponent.h"
 #include "../../../Game/Game.h"
 
-Tile::Tile(const std::weak_ptr<class Game>& game, Type type)
-	: Actor(game)
+Tile::Tile(const std::weak_ptr<class Scene>& scene, Type type)
+	: Actor(scene)
 	, mType(type)
 {
 	

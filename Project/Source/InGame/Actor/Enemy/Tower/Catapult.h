@@ -4,7 +4,7 @@
 class Catapult : public EnemyTower
 {
 public:
-	Catapult(const std::weak_ptr<class Game>& game);
+	Catapult(const std::weak_ptr<class Scene>& scene);
 	virtual ~Catapult() noexcept;
 
 	virtual void initailize() override;

@@ -4,8 +4,8 @@
 #include "../../../../Game/Component/MoveComponent.h"
 #include "../../../../Game/Game.h"
 
-EnemyTower::EnemyTower(const std::weak_ptr<class Game>& game, Type type)
-	: Actor(game)
+EnemyTower::EnemyTower(const std::weak_ptr<class Scene>& scene, Type type)
+	: Actor(scene)
 	, mType(type)
 {
 

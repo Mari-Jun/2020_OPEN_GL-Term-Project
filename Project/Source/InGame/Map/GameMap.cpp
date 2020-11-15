@@ -5,8 +5,8 @@
 #include "../Actor/Tile/Tile.h"
 #include "../Actor/Tile/EnemyTile.h"
 
-GameMap::GameMap(const std::weak_ptr<class Game>& game, float tileSize, int mapSize)
-	: mGame(game)
+GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int mapSize)
+	: mScene(scene)
 	, mFileName("")
 	, mTileSize(tileSize)
 	, mMapSize(mapSize)
@@ -122,32 +122,32 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	std::shared_ptr<Tile> tile = nullptr;
 	switch (HashCode(type.c_str()))
 	{
-	case HashCode("Basic"): tile = std::make_shared<Tile>(mGame); break;
-	case HashCode("Road"): tile = std::make_shared<Tile>(mGame, Tile::Type::Road); break;
-	case HashCode("Rock"): tile = std::make_shared<Tile>(mGame, Tile::Type::Rock); break;
-	case HashCode("Hill"): tile = std::make_shared<Tile>(mGame, Tile::Type::Hill); break;
-	case HashCode("Crystal"): tile = std::make_shared<Tile>(mGame, Tile::Type::Crystal); break;
-	case HashCode("Tree"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tree); break;
-	case HashCode("TreeDouble"): tile = std::make_shared<Tile>(mGame, Tile::Type::TreeDouble); break;
-	case HashCode("TreeQuad"): tile = std::make_shared<Tile>(mGame, Tile::Type::TreeQuad); break;
-	case HashCode("StartPoint"): tile = std::make_shared<Tile>(mGame, Tile::Type::StartPoint); setStartPosition(position); break;
-	case HashCode("EndPoint"): tile = std::make_shared<Tile>(mGame, Tile::Type::EndPoint); setEndPosition(position); break;
-	case HashCode("SnowBasic"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Basic); break;
-	case HashCode("SnowRock"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Rock); break;
-	case HashCode("SnowHill"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Hill); break;
-	case HashCode("SnowCrystal"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Crystal); break;
-	case HashCode("SnowTree"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_Tree); break;
-	case HashCode("SnowTreeDouble"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_TreeDouble); break;
-	case HashCode("SnowTreeQuad"): tile = std::make_shared<Tile>(mGame, Tile::Type::Snow_TreeQuad); break;
-	case HashCode("TowerRoundA"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_RoundA); break;
-	case HashCode("TowerRoundC"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_RoundC); break;
-	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Blaster); break;
-	case HashCode("TowerSquareA"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_SquareA); break;
-	case HashCode("TowerSquareB"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_SquareB); break;
-	case HashCode("TowerSquareC"): tile = std::make_shared<Tile>(mGame, Tile::Type::Tower_SquareC); break;
-	case HashCode("TowerBallista"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Ballista); break;
-	case HashCode("TowerCannon"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Cannon); break;
-	case HashCode("TowerCatapult"): tile = std::make_shared<EnemyTile>(mGame, Tile::Type::Tower_Catapult); break;
+	case HashCode("Basic"): tile = std::make_shared<Tile>(mScene); break;
+	case HashCode("Road"): tile = std::make_shared<Tile>(mScene, Tile::Type::Road); break;
+	case HashCode("Rock"): tile = std::make_shared<Tile>(mScene, Tile::Type::Rock); break;
+	case HashCode("Hill"): tile = std::make_shared<Tile>(mScene, Tile::Type::Hill); break;
+	case HashCode("Crystal"): tile = std::make_shared<Tile>(mScene, Tile::Type::Crystal); break;
+	case HashCode("Tree"): tile = std::make_shared<Tile>(mScene, Tile::Type::Tree); break;
+	case HashCode("TreeDouble"): tile = std::make_shared<Tile>(mScene, Tile::Type::TreeDouble); break;
+	case HashCode("TreeQuad"): tile = std::make_shared<Tile>(mScene, Tile::Type::TreeQuad); break;
+	case HashCode("StartPoint"): tile = std::make_shared<Tile>(mScene, Tile::Type::StartPoint); setStartPosition(position); break;
+	case HashCode("EndPoint"): tile = std::make_shared<Tile>(mScene, Tile::Type::EndPoint); setEndPosition(position); break;
+	case HashCode("SnowBasic"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_Basic); break;
+	case HashCode("SnowRock"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_Rock); break;
+	case HashCode("SnowHill"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_Hill); break;
+	case HashCode("SnowCrystal"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_Crystal); break;
+	case HashCode("SnowTree"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_Tree); break;
+	case HashCode("SnowTreeDouble"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_TreeDouble); break;
+	case HashCode("SnowTreeQuad"): tile = std::make_shared<Tile>(mScene, Tile::Type::Snow_TreeQuad); break;
+	case HashCode("TowerRoundA"): tile = std::make_shared<Tile>(mScene, Tile::Type::Tower_RoundA); break;
+	case HashCode("TowerRoundC"): tile = std::make_shared<Tile>(mScene, Tile::Type::Tower_RoundC); break;
+	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mScene, Tile::Type::Tower_Blaster); break;
+	case HashCode("TowerSquareA"): tile = std::make_shared<Tile>(mScene, Tile::Type::Tower_SquareA); break;
+	case HashCode("TowerSquareB"): tile = std::make_shared<Tile>(mScene, Tile::Type::Tower_SquareB); break;
+	case HashCode("TowerSquareC"): tile = std::make_shared<Tile>(mScene, Tile::Type::Tower_SquareC); break;
+	case HashCode("TowerBallista"): tile = std::make_shared<EnemyTile>(mScene, Tile::Type::Tower_Ballista); break;
+	case HashCode("TowerCannon"): tile = std::make_shared<EnemyTile>(mScene, Tile::Type::Tower_Cannon); break;
+	case HashCode("TowerCatapult"): tile = std::make_shared<EnemyTile>(mScene, Tile::Type::Tower_Catapult); break;
 	default: break;
 	}
 	tile->setScale(mTileSize);

@@ -1,8 +1,8 @@
 #include "Cannon.h"
 #include "../../../../Game/Game.h"
 
-Cannon::Cannon(const std::weak_ptr<class Game>& game)
-	: EnemyTower(game, EnemyTower::Type::Cannon)
+Cannon::Cannon(const std::weak_ptr<class Scene>& scene)
+	: EnemyTower(scene, EnemyTower::Type::Cannon)
 {
 
 }

@@ -12,7 +12,7 @@ public:
 		Pyramid
 	};
 
-	AlphaShape(const std::weak_ptr<class Game>& game, Shape shape = Shape::Box, bool collides = true);
+	AlphaShape(const std::weak_ptr<class Scene>& scene, Shape shape = Shape::Box, bool collides = true);
 	virtual ~AlphaShape() noexcept;
 
 	virtual void initailize() override;

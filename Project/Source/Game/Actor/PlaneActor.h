@@ -4,7 +4,7 @@
 class PlaneActor : public Actor
 {
 public:
-	PlaneActor(const std::weak_ptr<class Game>& game);
+	PlaneActor(const std::weak_ptr<class Scene>& scene);
 	virtual ~PlaneActor() noexcept;
 
 	virtual void initailize() override;

@@ -12,7 +12,7 @@ public:
 		Catapult
 	};
 
-	EnemyTower(const std::weak_ptr<class Game>& game, Type type = Type::Ballista);
+	EnemyTower(const std::weak_ptr<class Scene>& scene, Type type = Type::Ballista);
 	virtual ~EnemyTower() noexcept;
 
 	virtual void initailize() override;

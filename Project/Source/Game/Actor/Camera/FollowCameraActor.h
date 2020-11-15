@@ -4,7 +4,7 @@
 class FollowCameraActor : public Actor
 {
 public:
-	FollowCameraActor(const std::weak_ptr<class Game>& game, const std::weak_ptr<class Actor>& follower);
+	FollowCameraActor(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower);
 	virtual ~FollowCameraActor() noexcept;
 
 	virtual void initailize() override;

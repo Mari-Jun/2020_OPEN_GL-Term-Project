@@ -1,8 +1,8 @@
 #include "Blaster.h"
 #include "../../../../Game/Game.h"
 
-Blaster::Blaster(const std::weak_ptr<class Game>& game)
-	: EnemyTower(game, EnemyTower::Type::Blaster)
+Blaster::Blaster(const std::weak_ptr<class Scene>& scene)
+	: EnemyTower(scene, EnemyTower::Type::Blaster)
 {
 
 }

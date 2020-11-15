@@ -4,7 +4,7 @@
 class ParticleCreater : public Actor
 {
 public:
-	ParticleCreater(const std::weak_ptr<class Game>& game);
+	ParticleCreater(const std::weak_ptr<class Scene>& scene);
 	virtual ~ParticleCreater() noexcept;
 
 	virtual void initailize() override;

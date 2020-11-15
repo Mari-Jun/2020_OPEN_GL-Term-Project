@@ -4,8 +4,8 @@
 #include "../../../Game/Input/KeyBoard.h"
 #include <random>
 
-ParticleCreater::ParticleCreater(const std::weak_ptr<class Game>& game)
-	: Actor(game)
+ParticleCreater::ParticleCreater(const std::weak_ptr<class Scene>& scene)
+	: Actor(scene)
 	, mSnowing(true)
 {
 	
@@ -31,7 +31,7 @@ void ParticleCreater::updateActor(float deltatime)
 
 		for (auto i = 0; i < 3; i++)
 		{
-			auto snow = std::make_shared<Snow>(getGame());
+			auto snow = std::make_shared<Snow>(getScene());
 			snow->setPosition(getPosition() + Vector3(pos(mersenne), 0.0f, pos(mersenne)));
 			snow->setScale(3.0f);
 			snow->initailize();

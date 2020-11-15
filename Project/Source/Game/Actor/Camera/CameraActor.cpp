@@ -7,8 +7,8 @@
 #include "../../Camera/FPSMouseCamera.h"
 
 
-CameraActor::CameraActor(const std::weak_ptr<class Game>& game)
-	: Actor(game)
+CameraActor::CameraActor(const std::weak_ptr<class Scene>& scene)
+	: Actor(scene)
 	, mState(CameraState::Mouse)
 {
 	std::cerr << "Create CameraActor\n";

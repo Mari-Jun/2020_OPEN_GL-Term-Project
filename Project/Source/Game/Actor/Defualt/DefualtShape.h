@@ -12,7 +12,7 @@ public:
 		Pyramid
 	};
 
-	DefualtShape(const std::weak_ptr<class Game>& game, Shape shape = Shape::Box, bool collides = true);
+	DefualtShape(const std::weak_ptr<class Scene>& scene, Shape shape = Shape::Box, bool collides = true);
 	virtual ~DefualtShape() noexcept;
 
 	virtual void initailize() override;

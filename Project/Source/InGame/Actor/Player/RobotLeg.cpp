@@ -4,8 +4,8 @@
 #include "../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../Game/Game.h"
 
-RobotLeg::RobotLeg(const std::weak_ptr<class Game>& game, bool left)
-	: Actor(game, Type::Player)
+RobotLeg::RobotLeg(const std::weak_ptr<class Scene>& scene, bool left)
+	: Actor(scene, Type::Player)
 	, mLeft(left)
 	, mMove(false)
 	, mRot(0.0f)

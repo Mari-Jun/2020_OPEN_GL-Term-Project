@@ -8,8 +8,8 @@
 #include "../../Graphics/Mesh/Mesh.h"
 #include "../PlaneActor.h"
 
-AlphaShape::AlphaShape(const std::weak_ptr<class Game>& game, Shape shape, bool collides)
-	: Actor(game)
+AlphaShape::AlphaShape(const std::weak_ptr<class Scene>& scene, Shape shape, bool collides)
+	: Actor(scene)
 	, mShape(shape)
 	, mCollides(collides)
 {
@@ -25,27 +25,29 @@ void AlphaShape::initailize()
 {
 	Actor::initailize();
 
+	auto game = getGame().lock();
+
 	//Create AlphaComponent
 	std::shared_ptr<Mesh> mesh;
 	switch (mShape)
 	{
 	case AlphaShape::Shape::Box:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Box");
 		break;
 	case AlphaShape::Shape::Sphere:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Sphere");
 		break;
 	case AlphaShape::Shape::Slinder:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Slinder");
 		break;
 	case AlphaShape::Shape::Pyramid:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Pyramid");
 		break;
 	default:
 		break;
 	}
 
-	mAlphaComponent = std::make_shared<AlphaComponent>(weak_from_this(), getGame().lock()->getRenderer());
+	mAlphaComponent = std::make_shared<AlphaComponent>(weak_from_this(), game->getRenderer());
 	mAlphaComponent->initailize();
 	mAlphaComponent->setMesh(mesh);
 	mAlphaComponent->setColor(mMeshColor);
@@ -54,7 +56,7 @@ void AlphaShape::initailize()
 	//Create BoxComponent
 	if (mCollides)
 	{
-		mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), getGame().lock()->getPhysEngine());
+		mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), game->getPhysEngine());
 		mBoxComponent->setObjectBox(mesh->getBox());
 		mBoxComponent->initailize();
 	}

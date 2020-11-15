@@ -13,6 +13,23 @@ Scene::Scene(const std::weak_ptr<class Game>& game)
 
 Scene::~Scene()
 {
+	for (auto& actors : mReadyActors)
+	{
+		for (auto& actor : actors.second)
+		{
+			actor.reset();
+		}
+	}
+	mReadyActors.clear();
+	for (auto& actors : mActors)
+	{
+		for (auto& actor : actors.second)
+		{
+			actor.reset();
+		}
+	}
+	mActors.clear();
+
 	mGame.lock()->removeScene(weak_from_this());
 }
 
