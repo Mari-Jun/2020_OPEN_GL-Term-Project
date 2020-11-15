@@ -138,6 +138,7 @@ void CameraActor::InputMouse()
 
 	//Mouse Rotate
 	Vector2 mouseRelativePos = game->getMouse()->getPosition() - game->getMouse()->getOriginPosition();
+	mouseRelativePos.y *= -1;
 
 	if (mouseRelativePos.x != 0)
 	{

@@ -41,6 +41,7 @@ void FollowCameraActor::actorInput()
 
 	//Mouse Rotate
 	Vector2 mouseRelativePos = game->getMouse()->getPosition() - game->getMouse()->getOriginPosition();
+	mouseRelativePos.y *= -1;
 
 	const float maxMouseSpeed = 500.0f;
 

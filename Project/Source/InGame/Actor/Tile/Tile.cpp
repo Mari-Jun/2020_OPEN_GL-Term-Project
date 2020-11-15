@@ -31,16 +31,6 @@ void Tile::initailize()
 	mBoxComponent->initailize();
 }
 
-void Tile::updateActor(float deltatime)
-{
-
-}
-
-void Tile::actorInput()
-{
-
-}
-
 std::shared_ptr<class Mesh> Tile::loadMesh() const
 {
 	std::string meshName;

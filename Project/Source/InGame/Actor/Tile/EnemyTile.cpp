@@ -39,13 +39,3 @@ void EnemyTile::initailize()
 	mEnemy->setPosition(getPosition() + Vector3::UnitY * getScale().y);
 	mEnemy->initailize();
 }
-
-void EnemyTile::updateActor(float deltatime)
-{
-
-}
-
-void EnemyTile::actorInput()
-{
-
-}

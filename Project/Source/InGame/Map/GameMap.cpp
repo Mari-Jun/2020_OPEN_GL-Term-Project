@@ -23,7 +23,10 @@ GameMap::~GameMap()
 	{
 		for (auto& x : y)
 		{
-			x.lock()->setState(Actor::State::Dead);
+			if (!x.expired())
+			{
+				x.lock()->setState(Actor::State::Dead);
+			}
 		}
 	}
 }

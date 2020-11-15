@@ -22,9 +22,6 @@ public:
 
 	virtual void initailize() override;
 
-	virtual void updateActor(float deltatime) override;
-	virtual void actorInput() override;
-
 	std::shared_ptr<class Mesh> loadMesh() const;
 
 private:

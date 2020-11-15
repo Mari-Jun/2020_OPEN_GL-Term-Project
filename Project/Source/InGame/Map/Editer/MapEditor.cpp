@@ -22,7 +22,8 @@ MapEditor::MapEditor(const std::weak_ptr<class Game>& game, const std::weak_ptr<
 
 MapEditor::~MapEditor()
 {
-
+	mSelectorMap->setState(Actor::State::Dead);
+	mSelectorBoard->setState(Actor::State::Dead);
 }
 
 void MapEditor::editInput()
@@ -32,14 +33,9 @@ void MapEditor::editInput()
 	if (game->getMouse()->getState(GLUT_LEFT_BUTTON))
 	{
 		mClickPos = game->getMouse()->getPosition();
-		mClickPos.y *= -1;
 		checkTileIndex();
 		checkLeftBoard();
 		checkRightBoard();
-	}
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_END))
-	{
-		mGameMap.lock()->saveMap();
 	}
 	if (game->getKeyBoard()->isKeyPressed('r') && game->getKeyBoard()->isKeyFirst('r'))
 	{
@@ -59,7 +55,7 @@ void MapEditor::loadData()
 	mSelectorBoard->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
 	mSelectorBoard->setScale(2.5f);
 	mSelectorBoard->initailize();
-	auto borderBoard = std::make_shared<SpriteComponent>(mSelectorBoard, mGame.lock()->getRenderer(), 6000);
+	auto borderBoard = std::make_shared<SpriteComponent>(mSelectorBoard, mGame.lock()->getRenderer(), 600);
 	borderBoard->setTexture(mGame.lock()->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderBoard->initailize();
 }
