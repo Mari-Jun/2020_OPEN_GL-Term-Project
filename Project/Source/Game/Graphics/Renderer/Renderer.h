@@ -37,6 +37,7 @@ public:
 private:
 	bool loadShader();
 	void createSpriteVertex();
+	
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;

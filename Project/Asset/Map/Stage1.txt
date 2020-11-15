@@ -15,7 +15,7 @@ Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowRock 0 Road 0 SnowTreeD
 Line 8 20
 Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 SnowRock 0 Road 0 SnowRock 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 TreeDouble 0 Road 0 TreeDouble 0 Basic 0 Basic 0 Basic 0 
 Line 9 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 Road 0 SnowRock 0 Basic 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Hill 0 Road 0 Hill 0 Basic 0 Basic 0 Basic 0 
+Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 Road 0 SnowRock 0 Basic 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Hill 180 Road 0 Hill 0 Basic 0 Basic 0 Basic 0 
 Line 10 20
 Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 SnowHill 0 SnowHill 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 TreeDouble 0 Basic 0 Hill 0 Road 0 Hill 0 Basic 0 Basic 0 Basic 0 
 Line 11 20

@@ -56,14 +56,14 @@ void Light::processInput()
 {
 	auto game = mRenderer.lock()->getGame();
 	
-	if (game.lock()->getKeyBoard()->isKeyPressed('r'))
+	/*if (game.lock()->getKeyBoard()->isKeyPressed('r'))
 	{
 		mAnimation = true;
 	}
 	if (game.lock()->getKeyBoard()->isKeyPressed('R'))
 	{
 		mAnimation = false;
-	}
+	}*/
 }
 
 void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& shader)
@@ -80,7 +80,7 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 		shader->SetVectorUniform("uDirLight.specularColor", dir.specularColor);
 	}
 
-	shader->SetFloatUniform("uSpecBrightness", 1111.0f);
+	shader->SetFloatUniform("uSpecBrightness", 64.0f);
 }
 
 DirectionalLight loadDirectionalLight()

@@ -7,7 +7,8 @@ GLvoid mouseClickCallBack(int button, int state, int x, int y);
 GLvoid mouseClickMoveCallBack(int x, int y);
 GLvoid mouseMoveCallBack(int x, int y);
 
-bool Mouse::mState[Mouse::Button_Max] = { false };
+bool Mouse::mState[Mouse::Button_Max] = { false, };
+bool Mouse::mFirst[Button_Max] = { false, };
 Vector2 Mouse::mOriginPosition;
 Vector2 Mouse::mPosition;
 bool Mouse::mWarp = false;
@@ -28,6 +29,14 @@ void Mouse::initialize()
 	glutMouseFunc(mouseClickCallBack);
 	glutMotionFunc(mouseMoveCallBack);
 	glutPassiveMotionFunc(mouseMoveCallBack);
+}
+
+void Mouse::update()
+{
+	for (auto& bt : Mouse::mFirst)
+	{
+		bt = false;
+	}
 }
 
 GLvoid mouseClickCallBack(int button, int state, int x, int y)

@@ -22,6 +22,7 @@ public:
 
 	void addTile(const std::string& type, int y, int x, float rot);
 	void removeTile(int y, int x);
+	void rotTile(int y, int x);
 
 	float getTileSize() const { return mTileSize; }
 	int getMapSize() const { return mMapSize; }

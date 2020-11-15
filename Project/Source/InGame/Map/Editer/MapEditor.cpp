@@ -13,7 +13,7 @@
 MapEditor::MapEditor(const std::weak_ptr<class Game>& game, const std::weak_ptr<class GameMap>& gameMap)
 	: mGame(game)
 	, mGameMap(gameMap)
-	, mSelectMapIndex({ -1,-1 })
+	, mSelectMapIndex({ 10,10 })
 	, mSelectBoardIndex({ -1,-1 })
 	, mLeftBoardPos(Vector2::Zero)
 {
@@ -36,10 +36,13 @@ void MapEditor::editInput()
 		checkTileIndex();
 		checkLeftBoard();
 	}
-
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_END))
 	{
 		mGameMap.lock()->saveMap();
+	}
+	if (game->getKeyBoard()->isKeyPressed('r') && game->getKeyBoard()->isKeyFirst('r'))
+	{
+		rotateTile();
 	}
 }
 
@@ -83,12 +86,16 @@ void MapEditor::changeTile()
 	case 50: type = "SnowTree"; break;
 	case 51: type = "SnowTreeDouble"; break;
 	case 52: type = "SnowTreeQuad"; break;
-	default:
-		return;
+	default: return;
 	}
 
 	mGameMap.lock()->removeTile(mSelectMapIndex.first, mSelectMapIndex.second);
 	mGameMap.lock()->addTile(type, mSelectMapIndex.first, mSelectMapIndex.second, 0);
+}
+
+void MapEditor::rotateTile()
+{
+	mGameMap.lock()->rotTile(mSelectMapIndex.first, mSelectMapIndex.second);
 }
 
 void MapEditor::checkTileIndex()
@@ -110,11 +117,7 @@ void MapEditor::checkTileIndex()
 		auto selectYPos = mapPos.z - mSelectMapIndex.first * tileSize;
 		mSelectorMap->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
 
-		if (mSelectBoardIndex.first >= 0 && mSelectBoardIndex.first < mBoardMaxIndex.first &&
-			mSelectBoardIndex.second >= 0 && mSelectBoardIndex.second < mBoardMaxIndex.second)
-		{
-			changeTile();
-		}
+		changeTile();
 	}
 }
 

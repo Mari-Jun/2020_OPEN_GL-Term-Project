@@ -143,8 +143,11 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 
 void GameMap::removeTile(int y, int x)
 {
-	if (!mTiles[y][x].expired())
-	{
-		mTiles[y][x].lock()->setState(Actor::State::Dead);
-	}
+	mTiles[y][x].lock()->setState(Actor::State::Dead);
+}
+
+void GameMap::rotTile(int y, int x)
+{
+	auto tile = mTiles[y][x].lock();
+	tile->setRotation(Quaternion::Concatenate(tile->getRotation(), Quaternion(Vector3::UnitY, Math::ToRadians(90.0f))));
 }

@@ -16,6 +16,8 @@ public:
 
 	void initalize();
 
+	void update();
+
 	bool isKeyPressed(unsigned char key) const { return (static_cast<int>(key) >= Key_Max) ? false : mKeys[static_cast<int>(key)]; }
 	bool isKeyFirst(unsigned char key) const { return (static_cast<int>(key) >= Key_Max) ? false : mFirsts[static_cast<int>(key)]; }
 	bool isSpecialKeyPressed(int key) const { return mSpecialKeys[key]; }

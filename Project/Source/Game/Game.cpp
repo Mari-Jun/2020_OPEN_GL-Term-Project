@@ -187,6 +187,7 @@ void Game::processInput()
 		}
 	}
 	mIsUpdateScene = false;
+
 }
 
 void Game::update()
@@ -239,6 +240,9 @@ void Game::update()
 		}
 		deadScene.clear();
 
+		//Mouse, Keyboard Reset
+		mMouse->update();
+		mKeyBoard->update();
 	}
 }
 

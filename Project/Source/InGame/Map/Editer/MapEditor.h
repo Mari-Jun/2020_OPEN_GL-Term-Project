@@ -24,6 +24,7 @@ private:
 
 private:
 	void changeTile();
+	void rotateTile();
 
 	void checkTileIndex();
 	void checkLeftBoard();
