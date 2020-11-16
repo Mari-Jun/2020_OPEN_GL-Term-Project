@@ -9,7 +9,7 @@
 class MapEditor
 {
 public:
-	MapEditor(const std::weak_ptr<class Game>& game, const std::weak_ptr<class GameMap>& gameMap);
+	MapEditor(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class GameMap>& gameMap);
 	~MapEditor() noexcept;
 
 	void editInput();
@@ -17,7 +17,7 @@ public:
 	void loadData();
 
 private:
-	std::weak_ptr<class Game> mGame;
+	std::weak_ptr<class Scene> mScene;
 	std::weak_ptr<class GameMap> mGameMap;
 	std::string mFileName;
 	Vector2 mClickPos;
@@ -38,7 +38,7 @@ private:
 	std::pair<int, int> mSelectMapIndex;
 	
 	//Board selector
-	static constexpr std::pair<int, int> mBoardMaxIndex = { 9, 3 };
+	static constexpr std::pair<int, int> mBoardMaxIndex = { 11, 3 };
 	std::shared_ptr<class Actor> mSelectorBoard;
 	std::pair<int, int> mSelectBoardIndex;
 	Vector2 mLeftBoardPos;

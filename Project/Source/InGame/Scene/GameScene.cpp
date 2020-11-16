@@ -75,7 +75,7 @@ void GameScene::sceneUpdate(float deltatime)
 
 void GameScene::loadData()
 {
-	loadGameMap();
+	loadGameMap(1);
 	loadActorData();
 }
 
@@ -87,7 +87,7 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	auto robot = std::make_shared<RobotActor>(getGame());
+	auto robot = std::make_shared<RobotActor>(weak_from_this());
 	robot->setScale(1.5f);
 	robot->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
 	robot->initailize();
@@ -95,7 +95,7 @@ void GameScene::loadActorData()
 	//Create CameraActor
 	/*mMouseCamera = std::make_shared<CameraActor>(getGame());
 	mMouseCamera->initailize();*/
-	mFollowCamera = std::make_shared<FollowCameraActor>(getGame(), robot);
+	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), robot);
 	mFollowCamera->initailize();
 
 	////Create ParticleCreater
@@ -105,8 +105,11 @@ void GameScene::loadActorData()
 	//particle->initailize();
 }
 
-void GameScene::loadGameMap()
+void GameScene::loadGameMap(int stage)
 {
-	mGameMap = std::make_shared<GameMap>(getGame());
-	mGameMap->loadMap("Asset/Map/Stage1.txt");
+	mGameMap = std::make_shared<GameMap>(weak_from_this());
+	std::string file = "Asset/Map/Stage";
+	file += std::to_string(stage);
+	file += ".txt";
+	mGameMap->loadMap(file);
 }

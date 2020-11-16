@@ -24,6 +24,7 @@
 EditScene::EditScene(const std::weak_ptr<class Game>& game)
 	: Scene(game)
 	, mStage(1)
+	, mSaveButtonPos(Vector2(500.0f, -350.0f))
 {
 
 }
@@ -65,6 +66,12 @@ void EditScene::sceneInput()
 		scene->initailize();
 	}
 
+	if (game->getMouse()->getState(GLUT_LEFT_BUTTON) &&
+		game->getMouse()->getFirst(GLUT_LEFT_BUTTON))
+	{
+		checkButton(game->getMouse()->getPosition());
+	}
+
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_LEFT))
 	{
 		mStage--;
@@ -94,11 +101,11 @@ void EditScene::sceneUpdate(float deltatime)
 
 void EditScene::loadData()
 {
+	loadBoard();
 	if (!loadGameMap())
 	{
 		std::cerr << "Error : Load Map\n";
 	}
-	loadBoard();
 }
 
 void EditScene::unLoadData()
@@ -108,13 +115,18 @@ void EditScene::unLoadData()
 
 bool EditScene::loadGameMap()
 {
-	mGameMap = std::make_shared<GameMap>(getGame(), 30.0f);
+	auto newMap = std::make_shared<GameMap>(weak_from_this(), 30.0f);
 	std::string fileName = "Asset/Map/Stage";
 	fileName += std::to_string(mStage);
 	fileName += ".txt";
-	if (mGameMap->loadMap(fileName))
+	if (newMap->loadMap(fileName))
 	{
-		mEditor = std::make_unique<MapEditor>(getGame(), mGameMap);
+		mGameMap.swap(newMap);
+		mEditor = std::make_unique<MapEditor>(weak_from_this(), mGameMap);
+		mEditor->setLeftBoardPos(mLeftBoardPos);
+		mEditor->setLeftBoardTexSize(mLeftBoardTexSize);
+		mEditor->setRightBoardPos(mRightBoardPos);
+		mEditor->setRightBoardTexSize(mRightBoardTexSize);
 		return true;
 	}
 	return false;	
@@ -123,25 +135,53 @@ bool EditScene::loadGameMap()
 void EditScene::loadBoard()
 {
 	//Create Left Board
-	auto leftBoard = std::make_shared<Actor>(getGame());
-	leftBoard->setPosition(Vector3(-500.0f, 0.0f, 0.0f));
-	leftBoard->initailize();
+	auto actor = std::make_shared<Actor>(weak_from_this());
+	actor->setPosition(Vector3(-500.0f, 0.0f, 0.0f));
+	actor->initailize();
 
-	auto left = std::make_shared<SpriteComponent>(leftBoard, getGame().lock()->getRenderer());
-	left->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/left_board.png"));
-	left->initailize();	
+	auto image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
+	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/left_board.png"));
+	image->initailize();
+
+	mLeftBoardPos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, image->getTexHeight() / 2);
+	mLeftBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
 
 	//Create Right Board
-	auto rightBoard = std::make_shared<Actor>(getGame());
-	rightBoard->setPosition(Vector3(500.0f, 150.0f, 0.0f));
-	rightBoard->initailize();
+	actor = std::make_shared<Actor>(weak_from_this());
+	actor->setPosition(Vector3(500.0f, 50.0f, 0.0f));
+	actor->initailize();
 
-	auto right = std::make_shared<SpriteComponent>(rightBoard, getGame().lock()->getRenderer());
-	right->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/right_board.png"));
-	right->initailize();
+	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
+	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/right_board.png"));
+	image->initailize();
 
-	mEditor->setLeftBoardPos(Vector2(leftBoard->getPosition().x - left->getTexWidth() / 2, left->getTexHeight() / 2));
-	mEditor->setLeftBoardTexSize(Vector2(left->getTexWidth(), left->getTexHeight()));
-	mEditor->setRightBoardPos(Vector2(rightBoard->getPosition().x - right->getTexWidth() / 2, rightBoard->getPosition().y + right->getTexHeight() / 2));
-	mEditor->setRightBoardTexSize(Vector2(right->getTexWidth(), right->getTexHeight()));
+	mRightBoardPos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
+	mRightBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
+
+	//Create Button
+	actor = std::make_shared<Actor>(weak_from_this());
+	actor->setPosition(Vector3(500.0f, -290.0f, 0.0f));
+	actor->initailize();
+
+	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
+	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/New_button.png"));
+	image->initailize();
+	mButtonSize = Vector2(image->getTexWidth(), image->getTexHeight());
+
+	actor = std::make_shared<Actor>(weak_from_this());
+	actor->setPosition(Vector3(mSaveButtonPos.x, mSaveButtonPos.y, 0.0f));
+	actor->initailize();
+	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
+	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/Save_button.png"));
+	image->initailize();
+
+}
+
+void EditScene::checkButton(const Vector2& pos)
+{
+	if (mSaveButtonPos.x - mButtonSize.x / 2.0f < pos.x && pos.x < mSaveButtonPos.x + mButtonSize.x / 2.0f &&
+		mSaveButtonPos.y - mButtonSize.y / 2.0f < pos.y && pos.y < mSaveButtonPos.y + mButtonSize.y / 2.0f)
+	{
+		mGameMap->saveMap();
+	}
 }

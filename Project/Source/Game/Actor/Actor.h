@@ -3,11 +3,11 @@
 #include <vector>
 #include <string>
 #include "../Math/Math.h"
+#include "../Scene/Scene.h"
 
 class Actor : public std::enable_shared_from_this<Actor>
 {
 public:
-	using wptrGame = std::weak_ptr<class Game>;
 	enum class State
 	{
 		Active,
@@ -24,7 +24,7 @@ public:
 		Etc
 	};
 
-	Actor(const wptrGame& Game, Type type = Type::Object);
+	Actor(const std::weak_ptr<class Scene>& scene, Type type = Type::Object);
 	virtual ~Actor() noexcept;
 
 	virtual void initailize();
@@ -40,7 +40,7 @@ private:
 	bool mRechangeWorldTransform;
 
 	std::vector<std::shared_ptr<class Component>> mComponent;
-	wptrGame mGame;
+	std::weak_ptr<class Scene> mScene;
 
 public:
 	void update(float deltatime);
@@ -71,8 +71,10 @@ public:
 	Vector3 getSide() const { return Vector3::Transform(Vector3::UnitX, mRotation); }
 	Vector3 getUp() const { return Vector3::Transform(Vector3::UnitY, mRotation); }
 
-	const wptrGame& getGame() const { return mGame; }
-	wptrGame& getGame() { return const_cast<wptrGame&>(std::as_const(*this).getGame()); }
+	const std::weak_ptr<class Scene>& getScene() const { return mScene; }
+	std::weak_ptr<class Scene>& getScene() { return const_cast<std::weak_ptr<class Scene>&>(std::as_const(*this).getScene()); }
+	const std::weak_ptr<class Game>& getGame() const { return getScene().lock()->getGame(); }
+	std::weak_ptr<class Game>& getGame() { return const_cast<std::weak_ptr<class Game>&>(std::as_const(*this).getGame()); }
 
 	void addComponent(const std::shared_ptr<class Component>& component);
 	void removeComponent(const std::weak_ptr<class Component>& component);

@@ -14,7 +14,7 @@ constexpr unsigned int HashCode(const char* str)
 class GameMap : public std::enable_shared_from_this<GameMap>
 {
 public:
-	GameMap(const std::weak_ptr<class Game>& game, float tileSize = 200.0f, int mapSize = 20);
+	GameMap(const std::weak_ptr<class Scene>& scene, float tileSize = 200.0f, int mapSize = 20);
 	~GameMap() noexcept;
 
 	bool loadMap(const std::string& fileName);
@@ -30,7 +30,7 @@ public:
 	const std::vector<std::vector<std::weak_ptr<class Tile>>>& getTiles() { return mTiles; }
 
 private:
-	std::weak_ptr<class Game> mGame;
+	std::weak_ptr<class Scene> mScene;
 	std::string mFileName;
 	float mTileSize;
 	int mMapSize;
@@ -43,9 +43,9 @@ private:
 
 public:
 	const Vector3& getStartPosition() const { return mStartPosition; }
-	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>(mStartPosition.z - mPosition.z) / -mTileSize , static_cast<int>(mStartPosition.x - mPosition.x) / mTileSize }; }
+	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>((mStartPosition.z - mPosition.z) / -mTileSize) , static_cast<int>((mStartPosition.x - mPosition.x) / mTileSize) }; }
 	const Vector3& getEndPosition() const { return mEndPosition; }
-	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>(mEndPosition.z - mPosition.z) / -mTileSize, static_cast<int>(mEndPosition.x - mPosition.x) / mTileSize }; }
+	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>((mEndPosition.z - mPosition.z) / -mTileSize), static_cast<int>((mEndPosition.x - mPosition.x) / mTileSize) }; }
 	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
 	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
 };

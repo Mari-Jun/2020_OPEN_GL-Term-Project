@@ -13,6 +13,23 @@ Scene::Scene(const std::weak_ptr<class Game>& game)
 
 Scene::~Scene()
 {
+	for (auto& actors : mReadyActors)
+	{
+		for (auto& actor : actors.second)
+		{
+			actor.reset();
+		}
+	}
+	mReadyActors.clear();
+	for (auto& actors : mActors)
+	{
+		for (auto& actor : actors.second)
+		{
+			actor.reset();
+		}
+	}
+	mActors.clear();
+
 	mGame.lock()->removeScene(weak_from_this());
 }
 
@@ -173,4 +190,15 @@ void Scene::removeActor(const std::string& type, const std::weak_ptr<class Actor
 			actors.pop_back();
 		}
 	}
+}
+
+const std::vector<std::shared_ptr<class Actor>>& Scene::getActors(std::string type) const
+{
+	auto actors = mActors.find(type);
+	if (actors != mActors.end())
+	{
+		return actors->second;
+	}
+	std::vector<std::shared_ptr<class Actor>> ret;
+	return ret;
 }

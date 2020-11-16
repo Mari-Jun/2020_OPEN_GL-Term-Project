@@ -8,8 +8,8 @@
 #include "../../Graphics/Mesh/Mesh.h"
 #include "../PlaneActor.h"
 
-DefualtShape::DefualtShape(const std::weak_ptr<class Game>& game, Shape shape, bool collides)
-	: Actor(game)
+DefualtShape::DefualtShape(const std::weak_ptr<class Scene>& scene, Shape shape, bool collides)
+	: Actor(scene)
 	, mShape(shape)
 	, mCollides(collides)
 {
@@ -25,27 +25,29 @@ void DefualtShape::initailize()
 {
 	Actor::initailize();
 
+	auto game = getGame().lock();
+
 	//Create MeshComponent
 	std::shared_ptr<Mesh> mesh;
 	switch (mShape)
 	{
 	case DefualtShape::Shape::Box:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Box");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Box");
 		break;
 	case DefualtShape::Shape::Sphere:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Sphere");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Sphere");
 		break;
 	case DefualtShape::Shape::Slinder:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Slinder");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Slinder");
 		break;
 	case DefualtShape::Shape::Pyramid:
-		mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Pyramid");
+		mesh = game->getRenderer()->getMesh("Asset/Mesh/Pyramid");
 		break;
 	default:
 		break;
 	}
 
-	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
+	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), game->getRenderer());
 	mMeshComponent->initailize();
 	mMeshComponent->setMesh(mesh);
 	mMeshComponent->setColor(mMeshColor);
@@ -54,7 +56,7 @@ void DefualtShape::initailize()
 	//Create BoxComponent
 	if (mCollides)
 	{
-		mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), getGame().lock()->getPhysEngine());
+		mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), game->getPhysEngine());
 		mBoxComponent->setObjectBox(mesh->getBox());
 		mBoxComponent->initailize();
 	}

@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Game/Scene/Scene.h"
+#include "../../Game/Math/Math.h"
 
 class EditScene : public Scene
 {
@@ -21,4 +22,19 @@ private:
 	std::shared_ptr<class GameMap> mGameMap;
 	std::unique_ptr<class MapEditor> mEditor;
 	int mStage;
+
+	Vector2 mLeftBoardPos;
+	Vector2 mLeftBoardTexSize;
+	Vector2 mRightBoardPos;
+	Vector2 mRightBoardTexSize;
+	Vector2 mSaveButtonPos;
+	Vector2 mButtonSize;
+
+public:
+	const Vector2& getLeftBoardPos() const { return mLeftBoardPos; }
+	const Vector2& getLeftBoardTexSize() const { return mLeftBoardTexSize; }
+	const Vector2& getRightBoardPos() const { return mRightBoardPos; }
+	const Vector2& getRightBoardTexSize() const { return mRightBoardTexSize; }
+private:
+	void checkButton(const Vector2& pos);
 };

@@ -4,7 +4,7 @@
 class Snow : public Actor
 {
 public:
-	Snow(const std::weak_ptr<class Game>& game);
+	Snow(const std::weak_ptr<class Scene>& scene);
 	virtual ~Snow() noexcept;
 
 	virtual void initailize() override;

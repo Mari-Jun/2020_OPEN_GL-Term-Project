@@ -42,6 +42,7 @@ void Mouse::update()
 GLvoid mouseClickCallBack(int button, int state, int x, int y)
 {
 	Mouse::mState[button] = (state == GLUT_DOWN);
+	Mouse::mFirst[button] = (state == GLUT_DOWN);
 }
 
 GLvoid mouseClickMoveCallBack(int x, int y)
@@ -68,5 +69,5 @@ GLvoid mouseMoveCallBack(int x, int y)
 	}
 
 	Mouse::mPosition.x = static_cast<float>(x) - Window::getSize().x / 2.0f;
-	Mouse::mPosition.y = (static_cast<float>(y) - Window::getSize().y / 2.0f) /** -1.0f*/;
+	Mouse::mPosition.y = (static_cast<float>(y) - Window::getSize().y / 2.0f) * -1.0f;
 }

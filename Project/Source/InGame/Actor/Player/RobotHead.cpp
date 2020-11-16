@@ -4,8 +4,8 @@
 #include "../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../Game/Game.h"
 
-RobotHead::RobotHead(const std::weak_ptr<class Game>& game)
-	: Actor(game, Type::Player)
+RobotHead::RobotHead(const std::weak_ptr<class Scene>& scene)
+	: Actor(scene, Type::Player)
 {
 
 }

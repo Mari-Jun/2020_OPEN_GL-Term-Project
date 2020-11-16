@@ -32,7 +32,7 @@ private:
 	float mHDist;
 	float mVDist;
 	float mTargetDist;
-	
+
 	float mPitchSpeed;
 	float mYawSpeed;
 	float mMaxPitch;

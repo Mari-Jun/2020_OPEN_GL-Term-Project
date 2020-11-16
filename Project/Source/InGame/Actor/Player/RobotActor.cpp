@@ -11,8 +11,8 @@
 #include "../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../Game/Actor/PlaneActor.h"
 
-RobotActor::RobotActor(const std::weak_ptr<class Game>& game)
-	: Actor(game, Type::Player)
+RobotActor::RobotActor(const std::weak_ptr<class Scene>& scene)
+	: Actor(scene, Type::Player)
 	, mGravitySpeed(0.0f)
 	, mAnimation(false)
 {
@@ -45,21 +45,21 @@ void RobotActor::initailize()
 	mBoxComponent->initailize();
 
 	//Create Head
-	mHead = std::make_shared<RobotHead>(getGame());
+	mHead = std::make_shared<RobotHead>(getScene());
 	mHead->setScale(getScale());
 	mHead->initailize();
 
 	//Create Arm
-	mLeftArm = std::make_shared<RobotArm>(getGame(), true);
+	mLeftArm = std::make_shared<RobotArm>(getScene(), true);
 	mLeftArm->setScale(getScale());
 	mLeftArm->initailize();
 
-	mRightArm = std::make_shared<RobotArm>(getGame(), false);
+	mRightArm = std::make_shared<RobotArm>(getScene(), false);
 	mRightArm->setScale(getScale());
 	mRightArm->initailize();
 
 	//Create Leg
-	mLeftLeg = std::make_shared<RobotLeg>(getGame(), false);
+	mLeftLeg = std::make_shared<RobotLeg>(getScene(), false);
 	mLeftLeg->setScale(getScale());
 	//ÀÌ·± ´À³¦
 	auto leftLegPos = -1 * getUp() * (mLeftLeg->getScale().y + getScale().y) / 2 - getSide() * mLeftLeg->getScale().x;
@@ -67,7 +67,7 @@ void RobotActor::initailize()
 	mBoxComponent->updateObjectBox(leftLegPos - mLeftLeg->getScale() / 2);
 	mLeftLeg->initailize();
 
-	mRightLeg = std::make_shared<RobotLeg>(getGame(), true);
+	mRightLeg = std::make_shared<RobotLeg>(getScene(), true);
 	mRightLeg->setScale(getScale());
 	mRightLeg->initailize();
 }

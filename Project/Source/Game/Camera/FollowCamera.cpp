@@ -5,10 +5,9 @@
 FollowCamera::FollowCamera(const std::weak_ptr<class Actor>& owner, const std::weak_ptr<class Actor>& follower)
 	: CameraComponent(owner)
 	, mFollower(follower)
-	//, mCameraForward(follower.lock()->getForward())
 	, mHDist(70.0f)
 	, mVDist(30.0f)
-	, mTargetDist(20.0f)	
+	, mTargetDist(20.0f)
 	, mPitchSpeed(0.0f)
 	, mYawSpeed(0.0f)
 	, mMaxPitch(Math::Pi / 3.0f)
@@ -30,6 +29,7 @@ void FollowCamera::initailize()
 
 void FollowCamera::update(float deltatime)
 {
+
 	CameraComponent::update(deltatime);
 
 	auto owner = mOwner.lock();
@@ -76,7 +76,7 @@ Vector3 FollowCamera::updateCameraPos(Vector3& cameraForward)
 	auto follower = mFollower.lock();
 
 	Vector3 cameraPos = follower->getPosition();
-	cameraPos -= cameraForward * mHDist;
+	cameraPos -= cameraForward * (mHDist - Math::Abs(mPitch) * 25.0f);
 	cameraPos += Vector3::UnitY * mVDist;
 	return cameraPos;
 }

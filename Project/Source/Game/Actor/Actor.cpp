@@ -1,15 +1,16 @@
 #include "Actor.h"
 #include "..\Game.h"
+#include "../Scene/Scene.h"
 #include "..\Component\Component.h"
 
-Actor::Actor(const wptrGame& Game, Type type)
+Actor::Actor(const std::weak_ptr<class Scene>& scene, Type type)
 	: mState(State::Active)
 	, mType(type)
 	, mPosition(Vector3::Zero)
 	, mRotation(Quaternion::Identity)
 	, mScale(Vector3(1.0f, 1.0f, 1.0f))
-	, mGame(Game)
 	, mRechangeWorldTransform(true)
+	, mScene(scene)
 {
 
 }
@@ -21,12 +22,15 @@ Actor::~Actor()
 		comp.reset();
 	}
 	mComponent.clear();
-	mGame.lock()->removeActor(getTypeToString(), weak_from_this());
+	if (!mScene.expired())
+	{
+		mScene.lock()->removeActor(getTypeToString(), weak_from_this());
+	}
 }
 
 void Actor::initailize()
 {
-	mGame.lock()->addActor(getTypeToString(), shared_from_this());
+	mScene.lock()->addActor(getTypeToString(), shared_from_this());
 }
 
 void Actor::update(float deltatime)

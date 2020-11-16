@@ -4,8 +4,8 @@
 #include "../../../Game/Component/BoxComponent.h"
 #include "../../../Game/Game.h"
 
-Tile::Tile(const std::weak_ptr<class Game>& game, Type type)
-	: Actor(game)
+Tile::Tile(const std::weak_ptr<class Scene>& scene, Type type)
+	: Actor(scene)
 	, mType(type)
 {
 	
@@ -29,16 +29,6 @@ void Tile::initailize()
 	mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), getGame().lock()->getPhysEngine());
 	mBoxComponent->setObjectBox(mesh->getBox());
 	mBoxComponent->initailize();
-}
-
-void Tile::updateActor(float deltatime)
-{
-
-}
-
-void Tile::actorInput()
-{
-
 }
 
 std::shared_ptr<class Mesh> Tile::loadMesh() const

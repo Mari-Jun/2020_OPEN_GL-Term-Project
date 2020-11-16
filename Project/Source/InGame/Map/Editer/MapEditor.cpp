@@ -4,14 +4,15 @@
 #include "../GameMap.h"
 #include "../../../Game/Graphics/Window.h"
 #include "../../../Game/Game.h"
+#include "../../../Game/Scene/Scene.h"
 #include "../../Actor/Tile/Tile.h"
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Input/Mouse.h"
 #include "../../../Game/Graphics/Mesh/SpriteComponent.h"
 
 
-MapEditor::MapEditor(const std::weak_ptr<class Game>& game, const std::weak_ptr<class GameMap>& gameMap)
-	: mGame(game)
+MapEditor::MapEditor(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class GameMap>& gameMap)
+	: mScene(scene)
 	, mGameMap(gameMap)
 	, mSelectMapIndex({ 10,10 })
 	, mSelectBoardIndex({ -1,-1 })
@@ -22,24 +23,20 @@ MapEditor::MapEditor(const std::weak_ptr<class Game>& game, const std::weak_ptr<
 
 MapEditor::~MapEditor()
 {
-
+	mSelectorMap->setState(Actor::State::Dead);
+	mSelectorBoard->setState(Actor::State::Dead);
 }
 
 void MapEditor::editInput()
 {
-	auto game = mGame.lock();
+	auto game = mScene.lock()->getGame().lock();
 
 	if (game->getMouse()->getState(GLUT_LEFT_BUTTON))
 	{
 		mClickPos = game->getMouse()->getPosition();
-		mClickPos.y *= -1;
 		checkTileIndex();
 		checkLeftBoard();
 		checkRightBoard();
-	}
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_END))
-	{
-		mGameMap.lock()->saveMap();
 	}
 	if (game->getKeyBoard()->isKeyPressed('r') && game->getKeyBoard()->isKeyFirst('r'))
 	{
@@ -49,18 +46,20 @@ void MapEditor::editInput()
 
 void MapEditor::loadData()
 {
-	mSelectorMap = std::make_shared<Actor>(mGame);
+	auto game = mScene.lock()->getGame().lock();
+
+	mSelectorMap = std::make_shared<Actor>(mScene);
 	mSelectorMap->initailize();
-	auto borderMap = std::make_shared<SpriteComponent>(mSelectorMap, mGame.lock()->getRenderer());
-	borderMap->setTexture(mGame.lock()->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
+	auto borderMap = std::make_shared<SpriteComponent>(mSelectorMap, game->getRenderer());
+	borderMap->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderMap->initailize();
 
-	mSelectorBoard = std::make_shared<Actor>(mGame);
+	mSelectorBoard = std::make_shared<Actor>(mScene);
 	mSelectorBoard->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
 	mSelectorBoard->setScale(2.5f);
 	mSelectorBoard->initailize();
-	auto borderBoard = std::make_shared<SpriteComponent>(mSelectorBoard, mGame.lock()->getRenderer(), 6000);
-	borderBoard->setTexture(mGame.lock()->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
+	auto borderBoard = std::make_shared<SpriteComponent>(mSelectorBoard, game->getRenderer(), 600);
+	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderBoard->initailize();
 }
 

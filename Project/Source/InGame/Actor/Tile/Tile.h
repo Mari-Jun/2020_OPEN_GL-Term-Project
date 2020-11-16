@@ -17,13 +17,10 @@ public:
 		Tower_Ballista, Tower_Cannon, Tower_Catapult
 	};
 
-	Tile(const std::weak_ptr<class Game>& game, Type type = Type::Basic);
+	Tile(const std::weak_ptr<class Scene>& scene, Type type = Type::Basic);
 	virtual ~Tile() noexcept;
 
 	virtual void initailize() override;
-
-	virtual void updateActor(float deltatime) override;
-	virtual void actorInput() override;
 
 	std::shared_ptr<class Mesh> loadMesh() const;
 

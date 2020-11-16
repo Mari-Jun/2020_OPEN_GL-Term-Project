@@ -6,8 +6,8 @@
 #include "../../Camera/FollowCamera.h"
 
 
-FollowCameraActor::FollowCameraActor(const std::weak_ptr<class Game>& game, const std::weak_ptr<class Actor>& follower)
-	: Actor(game)
+FollowCameraActor::FollowCameraActor(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower)
+	: Actor(scene)
 	, mFollower(follower)
 {
 
@@ -41,6 +41,7 @@ void FollowCameraActor::actorInput()
 
 	//Mouse Rotate
 	Vector2 mouseRelativePos = game->getMouse()->getPosition() - game->getMouse()->getOriginPosition();
+	mouseRelativePos.y *= -1;
 
 	const float maxMouseSpeed = 500.0f;
 

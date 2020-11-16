@@ -4,8 +4,8 @@
 #include "../../../Game/Actor/Defualt/DefualtShape.h"
 #include "../../../Game/Game.h"
 
-Snow::Snow(const std::weak_ptr<class Game>& game)
-	: Actor(game)
+Snow::Snow(const std::weak_ptr<class Scene>& scene)
+	: Actor(scene)
 {
 
 }
