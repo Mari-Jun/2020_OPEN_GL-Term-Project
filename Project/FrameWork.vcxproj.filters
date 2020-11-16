@@ -204,6 +204,9 @@
     <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Arrow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -402,6 +405,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Arrow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

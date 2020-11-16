@@ -101,7 +101,6 @@ void FollowCameraActor::actorInput()
 				rad *= -1;
 
 			actor->setRotation(Quaternion::Concatenate(actor->getRotation(), Quaternion(actor->getUp(), rad)));
-			b = actor->getForward();
 		}
 	}
 }
