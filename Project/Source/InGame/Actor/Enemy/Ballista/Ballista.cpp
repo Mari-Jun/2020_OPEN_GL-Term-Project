@@ -16,10 +16,10 @@ Ballista::~Ballista()
 void Ballista::initailize()
 {
 	EnemyTower::initailize();
-	mBow = std::make_shared<Bow>(getScene());
+	/*mBow = std::make_shared<Bow>(getScene());
 	mBow->setScale(getScale());
 	mBow->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 23.0f);
-	mBow->initailize();
+	mBow->initailize();*/
 }
 
 void Ballista::updateActor(float deltatime)
