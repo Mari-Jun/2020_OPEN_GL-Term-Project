@@ -66,10 +66,8 @@ void Bow::attack()
 
 	auto toVec = getTarget().lock()->getPosition() - getPosition();
 	toVec.Normalize();
-	float angle = Math::Acos(Vector3::Dot(Vector3::UnitZ, toVec));
-	auto side = Vector3::Cross(Vector3::UnitZ, toVec);
-	side.Normalize();
-	arrow->setRotation(Quaternion(side, angle));
+	arrow->rotateToNewForward(toVec);
+
 	arrow->setPosition(getPosition());
 	arrow->initailize();
 

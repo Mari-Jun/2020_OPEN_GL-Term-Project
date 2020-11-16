@@ -61,10 +61,10 @@ void Arrow::collide()
 {
 	updateWorldTransform();
 
-	auto worldTransform = Matrix4::CreateScale(getScale());
-	worldTransform *= Matrix4::CreateFromQuaternion(getRotation());
-	worldTransform *= Matrix4::CreateTranslation(getPosition());
-
+	//localLine to worldLine
+	Matrix4 worldTransform;
+	convertWorldTransform(worldTransform);
+	
 	auto worldLine = LineSegment
 	(
 		Vector3::Transform(mLine.mStart, worldTransform),
