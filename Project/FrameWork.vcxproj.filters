@@ -183,12 +183,6 @@
     <ClCompile Include="Source\InGame\Info\GameInfo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\EnemyTower.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Ballista.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Cannon.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -199,6 +193,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Ballista.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\EnemyTower.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -380,12 +383,6 @@
     <ClInclude Include="Source\InGame\Info\GameInfo.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\EnemyTower.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Ballista.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Cannon.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -396,6 +393,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Ballista.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\EnemyTower.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

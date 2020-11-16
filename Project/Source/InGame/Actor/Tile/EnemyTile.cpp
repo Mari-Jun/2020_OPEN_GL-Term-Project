@@ -4,9 +4,9 @@
 #include "../../../Game/Component/BoxComponent.h"
 #include "../../../Game/Game.h"
 
-#include "../../Actor/Enemy/Tower/EnemyTower.h"
+#include "../../Actor/Enemy/EnemyTower.h"
 #include "../../Actor/Enemy/Tower/Blaster.h"
-#include "../../Actor/Enemy/Tower/Ballista.h"
+#include "../../Actor/Enemy/Ballista/Ballista.h"
 #include "../../Actor/Enemy/Tower/Cannon.h"
 #include "../../Actor/Enemy/Tower/Catapult.h"
 
@@ -31,11 +31,10 @@ void EnemyTile::initailize()
 	case Tile::Type::Tower_Blaster : mEnemy = std::make_shared<Blaster>(getScene()); break;
 	case Tile::Type::Tower_Cannon: mEnemy = std::make_shared<Cannon>(getScene()); break;
 	case Tile::Type::Tower_Catapult: mEnemy = std::make_shared<Catapult>(getScene()); break;
-	default:
-		break;
+	default: break;
 	}
 
-	mEnemy->setScale(getScale());
+	mEnemy->setScale(getScale() * 1.5f);
 	mEnemy->setPosition(getPosition() + Vector3::UnitY * getScale().y);
 	mEnemy->initailize();
 }

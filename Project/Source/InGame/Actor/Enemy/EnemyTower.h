@@ -1,12 +1,12 @@
 #pragma once
-#include "../../../../Game/Actor/Actor.h"
+#include "../../../Game/Actor/Actor.h"
 
 class EnemyTower : public Actor
 {
 public:
 	enum class Type
 	{
-		Ballista,
+		Ballista, Ballista_Bow,
 		Blaster,
 		Cannon,
 		Catapult
@@ -22,7 +22,9 @@ public:
 
 private:
 	std::shared_ptr<class Mesh> loadMesh() const;
-	void chasePlayer(float deltatime);
+
+protected:
+	Vector3 chasePlayer();
 
 private:
 	Type mType;

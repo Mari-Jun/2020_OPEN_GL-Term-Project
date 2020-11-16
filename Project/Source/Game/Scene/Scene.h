@@ -43,4 +43,5 @@ public:
 	void setState(State state) { mState = state; }
 	const std::weak_ptr<class Game>& getGame() const { return mGame; }
 	std::weak_ptr<class Game>& getGame() { return const_cast<std::weak_ptr<class Game>&>(std::as_const(*this).getGame()); }
+	const std::vector<std::shared_ptr<class Actor>>& getActors(std::string type) const;
 };

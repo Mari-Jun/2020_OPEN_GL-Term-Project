@@ -191,3 +191,14 @@ void Scene::removeActor(const std::string& type, const std::weak_ptr<class Actor
 		}
 	}
 }
+
+const std::vector<std::shared_ptr<class Actor>>& Scene::getActors(std::string type) const
+{
+	auto actors = mActors.find(type);
+	if (actors != mActors.end())
+	{
+		return actors->second;
+	}
+	std::vector<std::shared_ptr<class Actor>> ret;
+	return ret;
+}

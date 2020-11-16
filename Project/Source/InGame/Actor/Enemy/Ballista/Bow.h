@@ -1,11 +1,11 @@
 #pragma once
-#include "EnemyTower.h"	
+#include "../EnemyTower.h"	
 
-class Ballista : public EnemyTower
+class Bow: public EnemyTower
 {
 public:
-	Ballista(const std::weak_ptr<class Scene>& scene);
-	virtual ~Ballista() noexcept;
+	Bow(const std::weak_ptr<class Scene>& scene);
+	virtual ~Bow() noexcept;
 
 	virtual void initailize() override;
 
@@ -13,5 +13,5 @@ public:
 	virtual void actorInput() override;
 
 private:
-	
+	float mAttackDelay;
 };
