@@ -98,11 +98,11 @@ void GameScene::loadActorData()
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), robot);
 	mFollowCamera->initailize();
 
-	////Create ParticleCreater
-	//auto particle = std::make_shared<ParticleCreater>(getGame());
-	//particle->setPosition(Vector3(0.0f, 500.0f, 400.0f));
-	//particle->setScale(400.0f);
-	//particle->initailize();
+	//Create ParticleCreater
+	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
+	particle->setPosition(robot->getPosition());
+	particle->setScale(300.0f);
+	particle->initailize();
 }
 
 void GameScene::loadGameMap(int stage)

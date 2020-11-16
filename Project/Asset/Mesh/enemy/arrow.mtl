@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 颇老 积己凳: 15.11.2020 20:34:25
+# 颇老 积己凳: 16.11.2020 20:07:23
 
-newmtl arrow_7___Default
+newmtl arrow_arrow_7___Default
 	Ns 10.0000
 	Ni 1.5000
 	d 1.0000
@@ -13,7 +13,7 @@ newmtl arrow_7___Default
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
 
-newmtl arrow_8___Default
+newmtl arrow_arrow_8___Default
 	Ns 10.0000
 	Ni 1.5000
 	d 0.8000
@@ -25,7 +25,7 @@ newmtl arrow_8___Default
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
 
-newmtl arrow_9___Default
+newmtl arrow_arrow_9___Default
 	Ns 50.0000
 	Ni 1.5000
 	d 1.0000
