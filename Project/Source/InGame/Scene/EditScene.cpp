@@ -13,6 +13,7 @@
 #include "../../Game/Actor/Defualt/DefualtShape.h"
 #include "../../Game/Graphics/Mesh/MeshComponent.h"
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
+#include "../../Game/Sound/Sound.h"
 
 #include "../Actor/Player/RobotActor.h"
 #include "../Actor/Particle/ParticleCreater.h"
@@ -63,6 +64,8 @@ void EditScene::sceneInput()
 	{
 		setState(State::Dead);
 		auto scene = std::make_shared<GameScene>(getGame());
+
+		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::Name::Game));
 		scene->initailize();
 	}
 

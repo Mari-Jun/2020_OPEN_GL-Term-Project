@@ -31,6 +31,8 @@ void Snow::initailize()
 
 void Snow::updateActor(float deltatime)
 {
+	setPosition(getPosition());
+
 	float upSpeed = -200.0f;
 
 	mMoveComponent->setUpSpeed(upSpeed);
@@ -38,6 +40,7 @@ void Snow::updateActor(float deltatime)
 	if (getPosition().y <= -30.0f)
 	{
 		setState(State::Dead);
+		//setState(State::Dead);
 	}
 }
 

@@ -13,10 +13,5 @@ public:
 	virtual void actorInput() override;
 
 private:
-	void attack();
-	void attackMotion();
-
-private:
 	float mAttackDelay;
-	float mCurDelay;
 };
