@@ -68,6 +68,7 @@ void EnemyTower::findPlayer()
 	{
 		auto dist = p->getPosition() - getPosition();
 		auto length = dist.Length();
+
 		if (maxLength > length)
 		{
 			mTarget = p;

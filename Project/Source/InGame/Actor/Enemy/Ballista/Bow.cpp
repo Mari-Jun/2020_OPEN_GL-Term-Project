@@ -1,5 +1,5 @@
 #include "Bow.h"
-#include "Arrow.h"
+#include "../Projectile/Arrow.h"
 #include "../../../../Game/Game.h"
 
 Bow::Bow(const std::weak_ptr<class Scene>& scene)
@@ -7,12 +7,12 @@ Bow::Bow(const std::weak_ptr<class Scene>& scene)
 	, mAttackDelay(1.0f)
 	, mCurDelay(mAttackDelay)
 {
-	std::cout << "³­Á×ÅÃ\n";
+
 }
 
 Bow::~Bow()
 {
-	std::cout << "³­Á×ÅÃ\n";
+
 }
 
 void Bow::initailize()

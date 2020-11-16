@@ -153,9 +153,10 @@
     <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp" />
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Arrow.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Ballista.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Projectile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Blaster.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Cannon.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Catapult.cpp" />
@@ -219,9 +220,10 @@
     <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h" />
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
-    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Arrow.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Ballista.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Projectile.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Blaster.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Cannon.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Catapult.h" />
