@@ -6,7 +6,7 @@
 #include "Scene/Scene.h"
 #include "Game.h"
 #include "../InGame/Scene/LoadingScene.h"
-
+#include "Sound/Sound.h"
 
 Game::Game()
 	: mKeyBoard(nullptr)
@@ -62,6 +62,9 @@ bool Game::initialize(int argc, char** argv)
 	auto scene = std::make_shared<LoadingScene>(weak_from_this());
 	scene->initailize();
 	scene->loadData();
+
+	//Create Sound
+	mSound = std::make_shared<Sound>();
 
 	return true;
 }

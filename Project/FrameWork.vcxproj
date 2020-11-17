@@ -72,6 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,6 +155,7 @@
     <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp" />
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
+    <ClCompile Include="Source\Game\Sound\Sound.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Ballista.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp" />
@@ -220,6 +223,7 @@
     <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h" />
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
+    <ClInclude Include="Source\Game\Sound\Sound.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Ballista.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h" />
