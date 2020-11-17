@@ -204,7 +204,10 @@
     <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Sound\Sound.cpp">
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Projectile.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -407,7 +410,10 @@
     <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Sound\Sound.h">
+    <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Projectile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

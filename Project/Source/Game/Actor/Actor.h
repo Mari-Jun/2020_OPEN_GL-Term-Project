@@ -56,6 +56,7 @@ public:
 	std::string getTypeToString(Type type) const;
 
 	void updateWorldTransform();
+	void convertWorldTransform(Matrix4& worldTransform);
 	void rotateToNewForward(const Vector3& forward);
 	const Matrix4 getWorldTransform() const { return mWorldTransform; }
 
