@@ -1,7 +1,7 @@
 #pragma once
-#include "../EnemyTower.h"	
+#include "../Weapon.h"	
 
-class Cannon : public EnemyTower
+class Cannon : public Weapon
 {
 public:
 	Cannon(const std::weak_ptr<class Scene>& scene);
@@ -12,6 +12,6 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
-private:
-
+	virtual void attack();
+	virtual void attackMotion();
 };

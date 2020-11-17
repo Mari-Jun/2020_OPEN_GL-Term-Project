@@ -6,7 +6,7 @@ class EnemyTower : public Actor
 public:
 	enum class Type
 	{
-		Ballista, Ballista_Bow,
+		Ballista,
 		Blaster,
 		Cannon,
 		Catapult
@@ -22,6 +22,7 @@ public:
 
 private:
 	std::shared_ptr<class Mesh> loadMesh() const;
+	void createWeapon();
 	void findPlayer();
 	void chasePlayer();	
 
@@ -29,13 +30,9 @@ private:
 	Type mType;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
-	std::weak_ptr<class Actor> mTarget;
-	float mAttackRange;
+	std::weak_ptr<class Weapon> mWeapon;
 
 public:
 	Type getType() const { return mType; }
 	std::string getTypeToString() const;
-	const std::weak_ptr<class Actor>& getTarget() const { return mTarget; }
-	float getAttackRange() const { return mAttackRange; }
-	void setAttackRange(float range) { mAttackRange = range; }
 };

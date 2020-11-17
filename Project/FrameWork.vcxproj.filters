@@ -183,25 +183,10 @@
     <ClCompile Include="Source\InGame\Info\GameInfo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Cannon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Blaster.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Catapult.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Ballista.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InGame\Actor\Enemy\EnemyTower.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Projectile.cpp">
@@ -211,6 +196,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Sound\Sound.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Ballista.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Blaster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Cannon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Catapult.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,25 +392,10 @@
     <ClInclude Include="Source\InGame\Info\GameInfo.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Cannon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Blaster.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Catapult.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Ballista.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Enemy\EnemyTower.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Projectile.h">
@@ -420,6 +405,21 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Sound\Sound.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Ballista.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Blaster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Cannon.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Catapult.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

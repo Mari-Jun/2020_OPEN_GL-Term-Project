@@ -80,7 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -127,7 +128,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -157,13 +158,13 @@
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
     <ClCompile Include="Source\Game\Sound\Sound.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Ballista.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Enemy\Ballista\Bow.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Ballista.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Projectile.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Blaster.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Cannon.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Catapult.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Blaster.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Cannon.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Catapult.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\EnemyTower.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\RobotActor.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\RobotArm.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\RobotHead.cpp" />
@@ -225,13 +226,13 @@
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
     <ClInclude Include="Source\Game\Sound\Sound.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
-    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Ballista.h" />
-    <ClInclude Include="Source\InGame\Actor\Enemy\Ballista\Bow.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Ballista.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Projectile.h" />
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Blaster.h" />
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Cannon.h" />
-    <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Catapult.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Blaster.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Cannon.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Catapult.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\EnemyTower.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon.h" />
     <ClInclude Include="Source\InGame\Actor\Player\RobotActor.h" />
     <ClInclude Include="Source\InGame\Actor\Player\RobotArm.h" />
     <ClInclude Include="Source\InGame\Actor\Player\RobotHead.h" />
