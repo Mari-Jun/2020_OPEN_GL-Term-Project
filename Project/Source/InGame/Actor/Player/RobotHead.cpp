@@ -5,7 +5,7 @@
 #include "../../../Game/Game.h"
 
 RobotHead::RobotHead(const std::weak_ptr<class Scene>& scene)
-	: Actor(scene, Type::Etc)
+	: Actor(scene, Type::Player)
 {
 
 }

@@ -13,6 +13,7 @@
 #include "../../Game/Actor/Defualt/DefualtShape.h"
 #include "../../Game/Graphics/Mesh/MeshComponent.h"
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
+#include "../../Game/Sound/Sound.h"
 
 #include "../Actor/Player/RobotActor.h"
 #include "../Actor/Particle/ParticleCreater.h"
@@ -62,8 +63,11 @@ void GameScene::sceneInput()
 	}
 	if (game->getKeyBoard()->isKeyPressed('x'))
 	{
+		
+
 		setState(State::Dead);
 		auto scene = std::make_shared<EditScene>(getGame());
+		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::Name::Edit));
 		scene->initailize();
 	}
 }
@@ -98,11 +102,11 @@ void GameScene::loadActorData()
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), robot);
 	mFollowCamera->initailize();
 
-	//Create ParticleCreater
-	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
-	particle->setPosition(robot->getPosition());
-	particle->setScale(300.0f);
-	particle->initailize();
+	////Create ParticleCreater
+	//auto particle = std::make_shared<ParticleCreater>(getGame());
+	//particle->setPosition(Vector3(0.0f, 500.0f, 400.0f));
+	//particle->setScale(400.0f);
+	//particle->initailize();
 }
 
 void GameScene::loadGameMap(int stage)

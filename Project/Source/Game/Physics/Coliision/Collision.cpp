@@ -194,36 +194,6 @@ bool Intersect(const LineSegment& l, const AABB& b, float& outT,
 	return false;
 }
 
-bool Intersect(const LineSegment& l, const AABB& b)
-{
-	//화살과 플레이어의 충돌을 위한 Intersect
-	std::vector<std::pair<float, Vector3>> tValues;
-	TestSidePlane(l.mStart.x, l.mEnd.x, b.mMin.x, Vector3::NegUnitX, tValues);
-	TestSidePlane(l.mStart.x, l.mEnd.x, b.mMax.x, Vector3::UnitX, tValues);
-	TestSidePlane(l.mStart.y, l.mEnd.y, b.mMin.y, Vector3::NegUnitY, tValues);
-	TestSidePlane(l.mStart.y, l.mEnd.y, b.mMax.y, Vector3::UnitY, tValues);
-	TestSidePlane(l.mStart.z, l.mEnd.z, b.mMin.z, Vector3::NegUnitZ, tValues);
-	TestSidePlane(l.mStart.z, l.mEnd.z, b.mMax.z, Vector3::UnitZ, tValues);
-
-	std::sort(tValues.begin(), tValues.end(), [](
-		const std::pair<float, Vector3>& a,
-		const std::pair<float, Vector3>& b) {
-			return a.first < b.first;
-		});
-
-	Vector3 point;
-	for (auto& t : tValues)
-	{
-		point = l.PointOnSegment(t.first);
-		if (b.Contains(point))
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
 bool SweptSphere(const Sphere& P0, const Sphere& P1,
 	const Sphere& Q0, const Sphere& Q1, float& outT)
 {
