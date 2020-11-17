@@ -87,21 +87,6 @@ void FollowCameraActor::actorInput()
 
 	if (updateFollower)
 	{
-		a.y = b.y = 0.0f;
-		a.Normalize();
-		b.Normalize();
-
-		float rad = Vector3::Dot(a, b);
-		rad = Math::Clamp(rad, -1.0f, 1.0f);
-		rad = Math::Acos(rad);
-
-		if (!Math::NearZero(rad))
-		{
-			if (Vector3::Cross(a, b).y > 0.0f)
-				rad *= -1;
-
-			actor->setRotation(Quaternion::Concatenate(actor->getRotation(), Quaternion(actor->getUp(), rad)));
-			b = actor->getForward();
-		}
+		actor->rotateToNewForward(a);
 	}
 }

@@ -81,28 +81,34 @@ void Actor::updateWorldTransform()
 	{
 		//Change Actor World
 		mRechangeWorldTransform = false;
-		mWorldTransform = Matrix4::CreateScale(mScale);
-		mWorldTransform *= Matrix4::CreateFromQuaternion(mRotation);
-		mWorldTransform *= Matrix4::CreateTranslation(mPosition);
+		convertWorldTransform(mWorldTransform);
 
 		//Change Component World
-		for (auto comp : mComponent)
+		for (const auto& comp : mComponent)
 		{
 			comp->updateWorldTransForm();
 		}
 	}
 }
 
+void Actor::convertWorldTransform(Matrix4& worldTransform)
+{
+	worldTransform = Matrix4::CreateScale(mScale);
+	worldTransform *= Matrix4::CreateFromQuaternion(mRotation);
+	worldTransform *= Matrix4::CreateTranslation(mPosition);
+}
+
 void Actor::rotateToNewForward(const Vector3& forward)
 {
-	float dot = Vector3::Dot(Vector3::UnitX, forward);
+	float dot = Vector3::Dot(Vector3::UnitZ, forward);
 	float angle = Math::Acos(dot);
 
-	//진행 방향이 +X라면
+	//진행 방향이 +Z라면
 	if (dot > 0.9999f)
 	{
 		setRotation(Quaternion::Identity);
 	}
+	//진행 방향이 -Z라면
 	else if (dot < -0.9999f)
 	{
 		setRotation(Quaternion(Vector3::UnitY, Math::Pi));
@@ -110,7 +116,7 @@ void Actor::rotateToNewForward(const Vector3& forward)
 	else
 	{
 		//외적을 통해 얻은 축을 기준으로 회전
-		Vector3 axis = Vector3::Cross(Vector3::UnitX, forward);
+		Vector3 axis = Vector3::Cross(Vector3::UnitZ, forward);
 		axis.Normalize();
 		setRotation(Quaternion(axis, angle));
 	}
