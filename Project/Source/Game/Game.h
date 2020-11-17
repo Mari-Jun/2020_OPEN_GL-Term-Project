@@ -18,6 +18,7 @@ private:
 	std::shared_ptr<class PhysEngine> mPhysEngine;
 	std::unique_ptr<class KeyBoard> mKeyBoard;
 	std::unique_ptr<class Mouse> mMouse;
+	std::shared_ptr<class Sound> mSound;
 
 	bool mIsRunning;
 	bool mIsPaused;
@@ -37,6 +38,7 @@ public:
 	const std::shared_ptr<class PhysEngine>& getPhysEngine() const { return mPhysEngine; }
 	const std::unique_ptr<class KeyBoard>& getKeyBoard() const { return mKeyBoard; }
 	const std::unique_ptr<class Mouse>& getMouse() const { return mMouse; }
+	const std::shared_ptr<class Sound>& getSound() const { return mSound; }
 
 	void revertScene(const std::shared_ptr<class Scene>& scene);
 	void clearScene();

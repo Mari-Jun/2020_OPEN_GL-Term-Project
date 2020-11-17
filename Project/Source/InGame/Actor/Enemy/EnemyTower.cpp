@@ -8,7 +8,6 @@
 EnemyTower::EnemyTower(const std::weak_ptr<class Scene>& scene, Type type)
 	: Actor(scene)
 	, mType(type)
-	, mAttackRange(600.0f)
 {
 
 }
@@ -34,8 +33,7 @@ void EnemyTower::initailize()
 
 void EnemyTower::updateActor(float deltatime)
 {
-	findPlayer();
-	chasePlayer();
+
 }
 
 void EnemyTower::actorInput()
@@ -58,53 +56,49 @@ std::shared_ptr<class Mesh> EnemyTower::loadMesh() const
 	return getGame().lock()->getRenderer()->getMesh(meshName);
 }
 
-void EnemyTower::findPlayer()
+Vector3 EnemyTower::chasePlayer()
 {
 	const auto& players = getScene().lock()->getActors(Actor::getTypeToString(Actor::Type::Player));
-	mTarget.reset();
-	float maxLength = mAttackRange;
+
+	std::weak_ptr<class Actor> player;
+	float maxLength = 0.0f;
+	Vector3 toVec;
 
 	for (const auto& p : players)
 	{
 		auto dist = p->getPosition() - getPosition();
-		auto length = dist.Length();
-
-		if (maxLength > length)
+		auto length = dist.LengthSq();
+		if (maxLength < length)
 		{
-			mTarget = p;
+			toVec = dist;
+			player = p;
 			maxLength = length;
 		}
 	}
-}
 
-void EnemyTower::chasePlayer()
-{	
 	float angluarSpeed = 0.0f;
+	
+	auto a = toVec;
+	auto b = getForward();
 
-	if (!mTarget.expired())
+	a.y = b.y = 0.0f;
+	a.Normalize();
+	b.Normalize();
+
+	auto rad = Math::Acos(Vector3::Dot(a, b));
+
+	if (!Math::NearZero(rad))
 	{
-		Vector3 toVec = mTarget.lock()->getPosition() - getPosition();
-		toVec.Normalize();
-
-		auto a = toVec;
-		auto b = getForward();
-
-		a.y = b.y = 0.0f;
-		a.Normalize();
-		b.Normalize();
-
-		auto rad = Math::Acos(Vector3::Dot(a, b));
-
-		if (!Math::NearZero(rad))
-		{
-			if (Vector3::Cross(a, b).y > 0.0f)
-				angluarSpeed = -1.0f;
-			else
-				angluarSpeed = 1.0f;
-		}
+		if (Vector3::Cross(a, b).y > 0.0f)
+			angluarSpeed = -0.5f;
+		else
+			angluarSpeed = 0.5f;
 	}
 
 	mMoveComponent->setAngularSpeed(angluarSpeed);
+
+	toVec.Normalize();
+	return toVec;
 }
 
 std::string EnemyTower::getTypeToString() const
