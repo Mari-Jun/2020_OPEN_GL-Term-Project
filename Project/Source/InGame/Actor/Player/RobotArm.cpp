@@ -5,7 +5,7 @@
 #include "../../../Game/Game.h"
 
 RobotArm::RobotArm(const std::weak_ptr<class Scene>& scene, bool left)
-	: Actor(scene, Type::Player)
+	: Actor(scene, Type::Etc)
 	, mLeft(left)
 	, mRot(0.0f)
 	, mRotSpeed(mLeft ? 300.0f : -300.0f)

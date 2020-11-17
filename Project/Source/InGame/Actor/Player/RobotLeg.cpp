@@ -5,7 +5,7 @@
 #include "../../../Game/Game.h"
 
 RobotLeg::RobotLeg(const std::weak_ptr<class Scene>& scene, bool left)
-	: Actor(scene, Type::Player)
+	: Actor(scene, Type::Etc)
 	, mLeft(left)
 	, mMove(false)
 	, mRot(0.0f)
