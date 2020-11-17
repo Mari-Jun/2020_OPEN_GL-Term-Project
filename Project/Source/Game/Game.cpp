@@ -175,10 +175,10 @@ void Game::update()
 	static int fpsTime = 0;
 	int time = glutGet(GLUT_ELAPSED_TIME);
 	float deltatime = (time - oldTime) / 1000.0f;
-	oldTime = time;
 
 	if (deltatime >= 0.016f)
 	{
+		oldTime = time;
 		Fps++;
 
 		if (time - fpsTime > 1000)
