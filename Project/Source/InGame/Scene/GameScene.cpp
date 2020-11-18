@@ -21,8 +21,9 @@
 #include "../Map/GameMap.h"
 
 
-GameScene::GameScene(const std::weak_ptr<class Game>& game)
+GameScene::GameScene(const std::weak_ptr<class Game>& game, int stage)
 	: Scene(game)
+	, mStage(stage)
 {
 
 }
@@ -61,11 +62,11 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<LoadingScene>(getGame());
 		scene->initailize();
 	}
-	if (game->getKeyBoard()->isKeyPressed('x'))
+	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
 		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Edit));
-		auto scene = std::make_shared<EditScene>(getGame());
+		auto scene = std::make_shared<EditScene>(getGame(), mStage);
 		scene->initailize();
 	}
 }
@@ -77,7 +78,7 @@ void GameScene::sceneUpdate(float deltatime)
 
 void GameScene::loadData()
 {
-	loadGameMap(1);
+	loadGameMap();
 	loadActorData();
 }
 
@@ -107,11 +108,11 @@ void GameScene::loadActorData()
 	particle->initailize();
 }
 
-void GameScene::loadGameMap(int stage)
+void GameScene::loadGameMap()
 {
 	mGameMap = std::make_shared<GameMap>(weak_from_this());
 	std::string file = "Asset/Map/Stage";
-	file += std::to_string(stage);
+	file += std::to_string(mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
 }

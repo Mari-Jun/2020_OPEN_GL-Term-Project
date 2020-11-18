@@ -121,6 +121,7 @@ void EnemyTower::findPlayer()
 {
 	const auto& players = getScene().lock()->getActors(Actor::getTypeToString(Actor::Type::Player));
 	float maxLength = mWeapon.lock()->getAttackRange();
+	std::shared_ptr<class Actor> target = nullptr;
 
 	for (const auto& p : players)
 	{
@@ -129,10 +130,12 @@ void EnemyTower::findPlayer()
 
 		if (maxLength > length)
 		{
-			mWeapon.lock()->setTarget(p);
+			target = p;
 			maxLength = length;
 		}
 	}
+
+	mWeapon.lock()->setTarget(target);
 }
 
 void EnemyTower::chasePlayer()

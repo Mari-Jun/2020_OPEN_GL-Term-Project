@@ -33,6 +33,7 @@ private:
 	std::shared_ptr<class RobotLeg> mRightLeg;
 
 public:
+	void setPlayerTexture(const std::string& fileName);
 	float getMoveSpeed() const { return mMoveSpeed; }
 	void setMoveSpeed(float speed) { mMoveSpeed = speed; }
 	float getGravitySpeed() const { return mGravitySpeed; }

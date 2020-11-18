@@ -30,7 +30,6 @@ void Player::initailize()
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/PlayerBody");
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mMeshComponent->setMesh(mesh);
-	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
 	mMeshComponent->initailize();
 
 	//Create MoveComponent
@@ -165,4 +164,9 @@ void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 			}
 		}
 	}
+}
+
+void Player::setPlayerTexture(const std::string& fileName)
+{
+	mMeshComponent->setTexture(fileName);
 }

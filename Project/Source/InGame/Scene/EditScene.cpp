@@ -21,9 +21,9 @@
 #include "../Map/Editer/MapEditor.h"
 
 
-EditScene::EditScene(const std::weak_ptr<class Game>& game)
+EditScene::EditScene(const std::weak_ptr<class Game>& game, int stage)
 	: Scene(game)
-	, mStage(1)
+	, mStage(stage)
 	, mSaveButtonPos(Vector2(500.0f, -350.0f))
 {
 
@@ -59,11 +59,11 @@ void EditScene::sceneInput()
 
 	auto game = getGame().lock();
 
-	if (game->getKeyBoard()->isKeyPressed('x'))
+	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
 		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
-		auto scene = std::make_shared<GameScene>(getGame());
+		auto scene = std::make_shared<GameScene>(getGame(), mStage);
 		scene->initailize();
 	}
 

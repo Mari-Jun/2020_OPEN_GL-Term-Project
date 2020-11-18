@@ -17,6 +17,7 @@ ControlPlayer::~ControlPlayer()
 void ControlPlayer::initailize()
 {
 	Player::initailize();
+	setPlayerTexture("Asset/Mesh/Player/skin_man.png");
 }
 
 void ControlPlayer::updateActor(float deltatime)
