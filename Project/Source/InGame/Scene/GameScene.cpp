@@ -15,14 +15,15 @@
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
 #include "../../Game/Sound/Sound.h"
 
-#include "../Actor/Player/RobotActor.h"
+#include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
 
 
-GameScene::GameScene(const std::weak_ptr<class Game>& game)
+GameScene::GameScene(const std::weak_ptr<class Game>& game, int stage)
 	: Scene(game)
+	, mStage(stage)
 {
 
 }
@@ -61,11 +62,11 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<LoadingScene>(getGame());
 		scene->initailize();
 	}
-	if (game->getKeyBoard()->isKeyPressed('x'))
+	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
 		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Edit));
-		auto scene = std::make_shared<EditScene>(getGame());
+		auto scene = std::make_shared<EditScene>(getGame(), mStage);
 		scene->initailize();
 	}
 }
@@ -77,7 +78,7 @@ void GameScene::sceneUpdate(float deltatime)
 
 void GameScene::loadData()
 {
-	loadGameMap(1);
+	loadGameMap();
 	loadActorData();
 }
 
@@ -89,29 +90,29 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	auto robot = std::make_shared<RobotActor>(weak_from_this());
-	robot->setScale(1.5f);
-	robot->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
-	robot->initailize();
+	auto control = std::make_shared<ControlPlayer>(weak_from_this());
+	control->setScale(1.5f);
+	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	control->initailize();
 
 	//Create CameraActor
 	/*mMouseCamera = std::make_shared<CameraActor>(getGame());
 	mMouseCamera->initailize();*/
-	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), robot);
+	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
 	mFollowCamera->initailize();
 
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
-	particle->setPosition(robot->getPosition());
+	particle->setPosition(control->getPosition());
 	particle->setScale(300.0f);
 	particle->initailize();
 }
 
-void GameScene::loadGameMap(int stage)
+void GameScene::loadGameMap()
 {
 	mGameMap = std::make_shared<GameMap>(weak_from_this());
 	std::string file = "Asset/Map/Stage";
-	file += std::to_string(stage);
+	file += std::to_string(mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
 }

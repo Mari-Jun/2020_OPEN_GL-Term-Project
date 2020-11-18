@@ -4,7 +4,7 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(const std::weak_ptr<class Game>& game);
+	GameScene(const std::weak_ptr<class Game>& game, int stage = 1);
 	virtual ~GameScene();
 
 	virtual void initailize();
@@ -15,9 +15,10 @@ public:
 	virtual void loadData();
 	virtual void unLoadData();
 	void loadActorData();
-	void loadGameMap(int stage);
+	void loadGameMap();
 
 private:
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;
 	std::shared_ptr<class GameMap> mGameMap;
+	int mStage;
 };
