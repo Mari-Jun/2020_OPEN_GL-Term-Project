@@ -16,8 +16,10 @@ public:
 	virtual void unLoadData();
 	void loadActorData();
 	void loadGameMap(int stage);
+	void loadAi();
 
 private:
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;
 	std::shared_ptr<class GameMap> mGameMap;
+	std::shared_ptr<class MinionAi> mMinionAi;
 };

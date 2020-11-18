@@ -164,6 +164,7 @@
     <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Cannon.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Tower\Catapult.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\EnemyTower.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Minion\Minion.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\RobotActor.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\RobotArm.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\RobotHead.cpp" />
@@ -206,6 +207,7 @@
     <ClCompile Include="Source\Game\Physics\Coliision\Sphere.cpp" />
     <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp" />
+    <ClCompile Include="Source\InGame\Ai\Minion\MInionAi.cpp" />
     <ClCompile Include="Source\InGame\Info\GameInfo.cpp" />
     <ClCompile Include="Source\InGame\Map\Editer\MapEditor.cpp" />
     <ClCompile Include="Source\InGame\Map\GameMap.cpp" />
@@ -232,6 +234,7 @@
     <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Cannon.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Tower\Catapult.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\EnemyTower.h" />
+    <ClInclude Include="Source\InGame\Actor\Minion\Minion.h" />
     <ClInclude Include="Source\InGame\Actor\Player\RobotActor.h" />
     <ClInclude Include="Source\InGame\Actor\Player\RobotArm.h" />
     <ClInclude Include="Source\InGame\Actor\Player\RobotHead.h" />
@@ -278,6 +281,7 @@
     <ClInclude Include="Source\Game\Physics\Coliision\Sphere.h" />
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h" />
+    <ClInclude Include="Source\InGame\Ai\Minion\MinionAi.h" />
     <ClInclude Include="Source\InGame\Info\GameInfo.h" />
     <ClInclude Include="Source\InGame\Map\Editer\MapEditor.h" />
     <ClInclude Include="Source\InGame\Map\GameMap.h" />

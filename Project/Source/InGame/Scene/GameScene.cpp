@@ -19,7 +19,7 @@
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
-
+#include "../Ai/Minion/MinionAi.h"
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game)
 	: Scene(game)
@@ -79,6 +79,7 @@ void GameScene::loadData()
 {
 	loadGameMap(1);
 	loadActorData();
+	loadAi();
 }
 
 void GameScene::unLoadData()
@@ -93,6 +94,12 @@ void GameScene::loadActorData()
 	robot->setScale(1.5f);
 	robot->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
 	robot->initailize();
+
+	//
+	auto minion = std::make_shared<RobotActor>(weak_from_this());
+	minion->setScale(1.5f);
+	minion->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	minion->initailize();
 
 	//Create CameraActor
 	/*mMouseCamera = std::make_shared<CameraActor>(getGame());
@@ -114,4 +121,10 @@ void GameScene::loadGameMap(int stage)
 	file += std::to_string(stage);
 	file += ".txt";
 	mGameMap->loadMap(file);
+}
+
+void GameScene::loadAi()
+{
+	mMinionAi = std::make_shared<MinionAi>(mGameMap->getTiles(), mGameMap->getStartPosIndex(), mGameMap->getEndPosIndex());
+
 }
