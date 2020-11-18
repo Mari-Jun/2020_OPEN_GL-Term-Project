@@ -1,8 +1,8 @@
 #include "RobotArm.h"
-#include "../../../Game/Component/BoxComponent.h"
-#include "../../../Game/Graphics/Mesh/MeshComponent.h"
-#include "../../../Game/Graphics/Mesh/Mesh.h"
-#include "../../../Game/Game.h"
+#include "../../../../Game/Component/BoxComponent.h"
+#include "../../../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../../../Game/Graphics/Mesh/Mesh.h"
+#include "../../../../Game/Game.h"
 
 RobotArm::RobotArm(const std::weak_ptr<class Scene>& scene, bool left)
 	: Actor(scene, Type::Etc)

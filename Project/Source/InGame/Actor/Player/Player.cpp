@@ -1,7 +1,7 @@
-#include "RobotActor.h"
-#include "RobotHead.h"
-#include "RobotArm.h"
-#include "RobotLeg.h"
+#include "Player.h"
+#include "Robot/RobotHead.h"
+#include "Robot/RobotArm.h"
+#include "Robot/RobotLeg.h"
 #include "../../../Game/Graphics/Window.h"
 #include "../../../Game/Game.h"
 #include "../../../Game/Component/MoveComponent.h"
@@ -9,22 +9,20 @@
 #include "../../../Game/Graphics/Mesh/MeshComponent.h"
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
-#include "../../../Game/Actor/PlaneActor.h"
-
-RobotActor::RobotActor(const std::weak_ptr<class Scene>& scene)
+Player::Player(const std::weak_ptr<class Scene>& scene)
 	: Actor(scene, Type::Player)
+	, mMoveSpeed(200.0f)
 	, mGravitySpeed(0.0f)
-	, mAnimation(false)
 {
 
 }
 
-RobotActor::~RobotActor()
+Player::~Player()
 {
-	
+
 }
 
-void RobotActor::initailize()
+void Player::initailize()
 {
 	Actor::initailize();
 
@@ -72,21 +70,15 @@ void RobotActor::initailize()
 	mRightLeg->initailize();
 }
 
-void RobotActor::updateActor(float deltatime)
+void Player::updateActor(float deltatime)
 {
-	//중력 설정
-	if (mGravitySpeed > -10000.0f)
-		mGravitySpeed -= 100.0f;
-
-	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
-	mMoveComponent->setForwardSpeed( mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
-	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
+	updateGravity(deltatime);
 
 	collides(mBoxComponent);
 
 	mHead->setRotation(getRotation());
 	mHead->setPosition(getPosition());
-	
+
 	mLeftArm->setRotation(getRotation());
 	mLeftArm->setPosition(getPosition());
 
@@ -98,40 +90,38 @@ void RobotActor::updateActor(float deltatime)
 
 	mRightLeg->setPosition(getPosition());
 	mRightLeg->setRotation(getRotation());
-}
 
-void RobotActor::actorInput()
-{
-	auto game = getGame().lock();
-
-	float forwardSpeed = 0.0f;
-
-	if (game->getKeyBoard()->isKeyPressed('w') ||
-		game->getKeyBoard()->isKeyPressed('a') ||
-		game->getKeyBoard()->isKeyPressed('s') ||
-		game->getKeyBoard()->isKeyPressed('d'))
+	if (mMoveSpeed != 0.0f)
 	{
-		forwardSpeed = 100.0f;
 		mLeftArm->setMove(true);
 		mRightArm->setMove(true);
 		mLeftLeg->setMove(true);
 		mRightLeg->setMove(true);
 	}
-
-	if (game->getKeyBoard()->isKeyPressed(32))
-	{
-		mGravitySpeed = 2000.0f;
-	}
-
-	mMoveComponent->setForwardSpeed(forwardSpeed);
 }
 
-void RobotActor::collides(const std::weak_ptr<BoxComponent>& bComp)
+void Player::actorInput()
+{
+	
+}
+
+void Player::updateGravity(float deltatime)
+{
+	//중력 설정
+	if (mGravitySpeed > -10000.0f)
+		mGravitySpeed -= 100.0f;
+
+	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
+	mMoveComponent->setForwardSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
+	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
+}
+
+void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 {
 	updateWorldTransform();
 
 	AABB robotBox = bComp.lock()->getWorldBox();
-	
+
 	Vector3 pos = getPosition();
 
 	auto allBoxes = getGame().lock()->getPhysEngine()->getBoxes();

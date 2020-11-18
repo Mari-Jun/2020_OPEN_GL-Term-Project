@@ -15,7 +15,7 @@
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
 #include "../../Game/Sound/Sound.h"
 
-#include "../Actor/Player/RobotActor.h"
+#include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
@@ -89,20 +89,20 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	auto robot = std::make_shared<RobotActor>(weak_from_this());
-	robot->setScale(1.5f);
-	robot->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
-	robot->initailize();
+	auto control = std::make_shared<ControlPlayer>(weak_from_this());
+	control->setScale(1.5f);
+	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	control->initailize();
 
 	//Create CameraActor
 	/*mMouseCamera = std::make_shared<CameraActor>(getGame());
 	mMouseCamera->initailize();*/
-	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), robot);
+	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
 	mFollowCamera->initailize();
 
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
-	particle->setPosition(robot->getPosition());
+	particle->setPosition(control->getPosition());
 	particle->setScale(300.0f);
 	particle->initailize();
 }

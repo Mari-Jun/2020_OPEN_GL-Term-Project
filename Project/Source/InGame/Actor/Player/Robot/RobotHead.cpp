@@ -1,8 +1,8 @@
 #include "RobotHead.h"
-#include "../../../Game/Component/BoxComponent.h"
-#include "../../../Game/Graphics/Mesh/MeshComponent.h"
-#include "../../../Game/Graphics/Mesh/Mesh.h"
-#include "../../../Game/Game.h"
+#include "../../../../Game/Component/BoxComponent.h"
+#include "../../../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../../../Game/Graphics/Mesh/Mesh.h"
+#include "../../../../Game/Game.h"
 
 RobotHead::RobotHead(const std::weak_ptr<class Scene>& scene)
 	: Actor(scene, Type::Etc)
