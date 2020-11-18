@@ -76,5 +76,4 @@ GLvoid reshapeCallBack(int width, int height)
 GLvoid entryCallBack(int state)
 {
 	Window::mEntry = state;
-	std::cout << state << std::endl;
 }
