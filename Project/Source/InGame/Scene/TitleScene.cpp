@@ -1,6 +1,7 @@
 #include <string>
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "EditScene.h"
 #include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
@@ -61,6 +62,10 @@ void TitleScene::loadData()
 	ui->initailize();
 	auto texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/PlayButton.png");
 	ui->addButton([this]() {changeToGameScene(); }, Vector2(0.0f, 0.0f), texture);
+	texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/EditButton.png");
+	ui->addButton([this]() {changeToEditScene(); }, Vector2(0.0f, -150.0f), texture);
+	texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/QuitButton.png");
+	ui->addButton([this]() {quitGame(); }, Vector2(0.0f, -300.0f), texture);
 }
 
 void TitleScene::unLoadData()
@@ -73,6 +78,13 @@ void TitleScene::changeToGameScene()
 	auto scene = std::make_shared<GameScene>(getGame());
 	scene->initailize();
 	setState(State::Dead);
+}
+
+void TitleScene::changeToEditScene()
+{
+	setState(State::Dead);
+	auto scene = std::make_shared<EditScene>(getGame(), mStage);
+	scene->initailize();
 }
 
 void TitleScene::quitGame()

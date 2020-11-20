@@ -21,5 +21,6 @@ private:
 
 private:
 	void changeToGameScene();
+	void changeToEditScene();
 	void quitGame();
 };
