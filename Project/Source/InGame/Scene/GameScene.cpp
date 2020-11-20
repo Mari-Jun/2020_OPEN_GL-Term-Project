@@ -48,6 +48,9 @@ void GameScene::initailize()
 	auto windowSize = game->getRenderer()->getWindow()->getSize();
 	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 25.0f, 1000.0f);
 	game->getRenderer()->setProjectionMatrix(projection);
+
+	//Set Sound
+	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
 }
 
 void GameScene::sceneInput()
@@ -65,7 +68,6 @@ void GameScene::sceneInput()
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
-		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Edit));
 		auto scene = std::make_shared<EditScene>(getGame(), mStage);
 		scene->initailize();
 	}

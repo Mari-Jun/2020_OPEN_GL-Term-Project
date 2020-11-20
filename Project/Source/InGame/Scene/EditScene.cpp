@@ -45,6 +45,9 @@ void EditScene::initailize()
 	auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5000.0f);
 	getGame().lock()->getRenderer()->setViewMatrix(view);
 	getGame().lock()->getRenderer()->setProjectionMatrix(projection);
+
+	//Set Sound
+	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Edit));
 }
 
 void EditScene::sceneInput()
@@ -56,7 +59,6 @@ void EditScene::sceneInput()
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
-		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
 		auto scene = std::make_shared<GameScene>(getGame(), mStage);
 		scene->initailize();
 	}
