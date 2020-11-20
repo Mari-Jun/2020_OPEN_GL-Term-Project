@@ -9,6 +9,7 @@
 #include "../../Game/Input/Mouse.h"
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
 #include "../../Game/Sound/Sound.h"
+#include "../../Game/UI/UI.h"
 
 
 
@@ -46,13 +47,6 @@ void TitleScene::sceneInput()
 	Scene::sceneInput();
 
 	auto game = getGame().lock();
-
-
-	if (game->getMouse()->getState(GLUT_LEFT_BUTTON) &&
-		game->getMouse()->getFirst(GLUT_LEFT_BUTTON))
-	{
-	
-	}
 }
 
 void TitleScene::sceneUpdate(float deltatime)
@@ -62,10 +56,27 @@ void TitleScene::sceneUpdate(float deltatime)
 
 void TitleScene::loadData()
 {
-
+	//Create UI
+	auto ui = std::make_shared<UI>(weak_from_this(), getGame().lock()->getRenderer());
+	ui->initailize();
+	auto texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/PlayButton.png");
+	ui->addButton([this]() {changeToGameScene(); }, Vector2(0.0f, 0.0f), texture);
 }
 
 void TitleScene::unLoadData()
 {
 
+}
+
+void TitleScene::changeToGameScene()
+{
+	auto scene = std::make_shared<GameScene>(getGame());
+	scene->initailize();
+	setState(State::Dead);
+}
+
+void TitleScene::quitGame()
+{
+	setState(State::Dead);
+	getGame().lock()->shutDown();
 }

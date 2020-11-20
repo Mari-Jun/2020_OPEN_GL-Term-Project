@@ -28,6 +28,8 @@ public:
 	
 	void addActor(const std::string& type, const std::shared_ptr<class Actor>& actor);
 	void removeActor(const std::string& type, const std::weak_ptr<class Actor>& actor);
+	void addUI(const std::shared_ptr<class UI>& ui);
+	void removeUI(const std::weak_ptr<class UI>& ui);
 
 private:
 	State mState;
@@ -35,6 +37,7 @@ private:
 
 	std::unordered_map<std::string, std::vector<std::shared_ptr<class Actor>>> mActors;
 	std::unordered_map<std::string, std::vector<std::shared_ptr<class Actor>>> mReadyActors;
+	std::vector<std::shared_ptr<class UI>> mUserInterfaces;
 
 	bool mIsUpdateActor;
 
@@ -44,4 +47,5 @@ public:
 	const std::weak_ptr<class Game>& getGame() const { return mGame; }
 	std::weak_ptr<class Game>& getGame() { return const_cast<std::weak_ptr<class Game>&>(std::as_const(*this).getGame()); }
 	const std::vector<std::shared_ptr<class Actor>>& getActors(std::string type) const;
+	const std::vector<std::shared_ptr<class UI>>& getUserInterfaces() const { return mUserInterfaces; }
 };

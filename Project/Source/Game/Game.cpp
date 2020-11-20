@@ -164,7 +164,6 @@ void Game::processInput()
 		}
 	}
 	mIsUpdateScene = false;
-
 }
 
 void Game::update()

@@ -2,6 +2,7 @@
 #include "../Graphics/Renderer/Renderer.h"
 #include "../Game.h"
 #include "../Actor/Actor.h"
+#include "../UI/UI.h"
 
 Scene::Scene(const std::weak_ptr<class Game>& game)
 	: mState(State::Active)
@@ -30,6 +31,12 @@ Scene::~Scene()
 	}
 	mActors.clear();
 
+	for (auto& ui : mUserInterfaces)
+	{
+		ui.reset();
+	}
+	mUserInterfaces.clear();
+
 	mGame.lock()->removeScene(weak_from_this());
 }
 
@@ -52,6 +59,12 @@ void Scene::sceneInput()
 		}
 	}
 	mIsUpdateActor = false;
+
+	if (!mUserInterfaces.empty() &&
+		mUserInterfaces.back()->getState() == UI::State::Active)
+	{
+		mUserInterfaces.back()->processInput();
+	}
 }
 
 void Scene::sceneUpdate(float deltatime)
@@ -110,6 +123,27 @@ void Scene::sceneUpdate(float deltatime)
 	deadActor.clear();
 
 	mIsUpdateActor = false;
+
+	for (const auto& ui : mUserInterfaces)
+	{
+		if (ui->getState() == UI::State::Active)
+		{
+			ui->update(deltatime);
+		}
+	}
+
+	auto iter = mUserInterfaces.begin();
+	while (iter != mUserInterfaces.end())
+	{
+		if ((*iter)->getState() == UI::State::Dead)
+		{
+			iter = mUserInterfaces.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+	}
 
 	mGame.lock()->getRenderer()->update(deltatime);
 }
@@ -189,6 +223,22 @@ void Scene::removeActor(const std::string& type, const std::weak_ptr<class Actor
 			std::iter_swap(iter, actors.end() - 1);
 			actors.pop_back();
 		}
+	}
+}
+
+void Scene::addUI(const std::shared_ptr<class UI>& ui)
+{
+	mUserInterfaces.emplace_back(ui);
+}
+
+void Scene::removeUI(const std::weak_ptr<class UI>& ui)
+{
+	auto iter = std::find_if(mUserInterfaces.begin(), mUserInterfaces.end(),
+		[&ui](const std::weak_ptr<UI>& u)
+		{return ui.lock() == u.lock(); });
+	if (iter != mUserInterfaces.end())
+	{
+		mUserInterfaces.erase(iter);
 	}
 }
 

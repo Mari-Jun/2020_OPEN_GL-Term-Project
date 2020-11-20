@@ -18,4 +18,8 @@ public:
 
 private:
 	int mStage; //юс╫ц
+
+private:
+	void changeToGameScene();
+	void quitGame();
 };
