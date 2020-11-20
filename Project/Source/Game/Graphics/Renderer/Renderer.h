@@ -34,6 +34,9 @@ public:
 	void addBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component);
 	void removeBillBoardComponent(const std::weak_ptr<class BillBoardComponent>& component);
 
+	void addUI(const std::weak_ptr<class UI>& ui);
+	void removeUI(const std::weak_ptr<class UI>& ui);
+
 private:
 	bool loadShader();
 	void createSpriteVertex();
@@ -48,6 +51,8 @@ private:
 	std::vector<std::weak_ptr<class AlphaComponent>> mAlphaComponent;
 	std::vector<std::weak_ptr<class SpriteComponent>> mSpriteComponent;
 	std::vector<std::weak_ptr<class BillBoardComponent>> mBillBoardComponent;
+
+	std::vector<std::weak_ptr<class UI>> mUserInterfaces;
 
 	std::weak_ptr<class Game> mGame;
 
@@ -77,4 +82,5 @@ private:
 	void drawBillBoardComponent();
 	void drawAlphaComponent();
 	void drawSpriteComponent();
+	void drawUserInterface();
 };

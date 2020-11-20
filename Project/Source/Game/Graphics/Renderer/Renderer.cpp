@@ -11,6 +11,7 @@
 #include "Renderer.h"
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
+#include "../../UI/UI.h"
 
 Renderer::Renderer(const std::weak_ptr<class Game>& game)
 	: mGame(game)
@@ -95,7 +96,9 @@ void Renderer::draw()
 	drawLineComponent();
 	drawAlphaComponent();
 	drawBillBoardComponent();
+
 	drawSpriteComponent();
+	drawUserInterface();
 	
 	mWindow->swapBuffer();
 }
@@ -166,6 +169,14 @@ void Renderer::drawSpriteComponent()
 	for (const auto& sComp : mSpriteComponent)
 	{
 		sComp.lock()->draw(mSpriteShader);
+	}
+}
+
+void Renderer::drawUserInterface()
+{
+	for (const auto& ui : mUserInterfaces)
+	{
+		ui.lock()->draw(mSpriteShader);
 	}
 }
 
@@ -260,6 +271,23 @@ void Renderer::removeBillBoardComponent(const std::weak_ptr<class BillBoardCompo
 	if (iter != mBillBoardComponent.end())
 	{
 		mBillBoardComponent.erase(iter);
+	}
+}
+
+void Renderer::addUI(const std::weak_ptr<class UI>& ui)
+{
+	mUserInterfaces.emplace_back(ui);
+}
+
+void Renderer::removeUI(const std::weak_ptr<class UI>& ui)
+{
+	auto iter = std::find_if(mUserInterfaces.begin(), mUserInterfaces.end(),
+		[&ui](const std::weak_ptr<UI>& u)
+		{return ui.lock() == u.lock(); });
+
+	if (iter != mUserInterfaces.end())
+	{
+		mUserInterfaces.erase(iter);
 	}
 }
 

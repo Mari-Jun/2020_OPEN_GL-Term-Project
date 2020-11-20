@@ -1,5 +1,6 @@
 #include "LoadingScene.h"
 #include "GameScene.h"
+#include "TitleScene.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
 #include "../../Game/Sound/Sound.h"
@@ -37,8 +38,7 @@ void LoadingScene::sceneUpdate(float deltatime)
 	//Á¶°Ç
 	if (count > 50)
 	{
-		game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
-		auto scene = std::make_shared<GameScene>(getGame());
+		auto scene = std::make_shared<TitleScene>(getGame());
 		scene->initailize();
 		setState(State::Dead);
 	}
