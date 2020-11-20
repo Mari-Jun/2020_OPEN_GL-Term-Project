@@ -219,10 +219,10 @@
     <ClCompile Include="Source\InGame\Scene\TitleScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\UI\Button.cpp">
+    <ClCompile Include="Source\Game\UI\Button.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\UI\UI.cpp">
+    <ClCompile Include="Source\Game\UI\UI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -440,10 +440,10 @@
     <ClInclude Include="Source\InGame\Scene\TitleScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\UI\Button.h">
+    <ClInclude Include="Source\Game\UI\Button.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\UI\UI.h">
+    <ClInclude Include="Source\Game\UI\UI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

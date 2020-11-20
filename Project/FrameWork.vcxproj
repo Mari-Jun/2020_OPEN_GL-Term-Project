@@ -217,8 +217,8 @@
     <ClCompile Include="Source\Game\Scene\Scene.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\Tile.cpp" />
     <ClCompile Include="Source\InGame\Scene\TitleScene.cpp" />
-    <ClCompile Include="Source\InGame\UI\Button.cpp" />
-    <ClCompile Include="Source\InGame\UI\UI.cpp" />
+    <ClCompile Include="Source\Game\UI\Button.cpp" />
+    <ClCompile Include="Source\Game\UI\UI.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -293,8 +293,8 @@
     <ClInclude Include="Source\Game\Scene\Scene.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\Tile.h" />
     <ClInclude Include="Source\InGame\Scene\TitleScene.h" />
-    <ClInclude Include="Source\InGame\UI\Button.h" />
-    <ClInclude Include="Source\InGame\UI\UI.h" />
+    <ClInclude Include="Source\Game\UI\Button.h" />
+    <ClInclude Include="Source\Game\UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />
