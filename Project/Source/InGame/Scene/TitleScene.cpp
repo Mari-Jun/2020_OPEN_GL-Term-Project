@@ -61,11 +61,12 @@ void TitleScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {mSceneHelper->changeToGameScene(); }, Vector2(0.0f, 0.0f), "Asset/Image/TitleScene/PlayButton");
-	ui->addButton([this]() {mSceneHelper->notYet(); }, Vector2(0.0f, -150.0f), "Asset/Image/TitleScene/HelpButton");
-	ui->addButton([this]() {mSceneHelper->quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/TitleScene/QuitButton");
-	ui->addButton([this]() {mSceneHelper->changeToEditScene(); }, Vector2(400.0f, -300.0f), "Asset/Image/TitleScene/EditButton");
-	ui->addButton([this]() {mSceneHelper->notYet(); }, Vector2(-400.0f, -300.0f), "Asset/Image/TitleScene/ShopButton");
+	ui->addButton([this]() {mSceneHelper->changeToGameScene(); }, Vector2(0.0f, 30.0f), "Asset/Image/Button/PlayButton");
+	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -80.0f), "Asset/Image/Button/SaveButton");
+	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -190.0f), "Asset/Image/Button/HelpButton");
+	ui->addButton([this]() {mSceneHelper->quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/Button/QuitButton");
+	ui->addButton([this]() {mSceneHelper->changeToEditScene(); }, Vector2(500.0f, -300.0f), "Asset/Image/Button/EditButton");
+	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/ShopButton");
 }
 
 void TitleScene::unLoadData()

@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <string>
 
 class SceneHelper
 {
@@ -11,7 +12,7 @@ public:
 	void changeToGameScene();
 	void changeToEditScene();
 	void quitGame();
-	void notYet();
+	void createDialog(const std::string& typeName);
 
 private:
 	std::weak_ptr<class Scene> mScene;

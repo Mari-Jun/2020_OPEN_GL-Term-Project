@@ -158,10 +158,7 @@ void Game::processInput()
 	mIsUpdateScene = true;
 	for (auto scene : mScene)
 	{
-		if (scene->getState() == Scene::State::Active)
-		{
-			scene->sceneInput();
-		}
+		scene->processInput();
 	}
 	mIsUpdateScene = false;
 }
@@ -189,10 +186,7 @@ void Game::update()
 		mIsUpdateScene = true;
 		for (const auto& scene : mScene)
 		{
-			if (scene->getState() == Scene::State::Active)
-			{
-				scene->sceneUpdate(deltatime);
-			}
+			scene->update(deltatime);
 		}
 		mIsUpdateScene = false;
 
@@ -216,11 +210,11 @@ void Game::update()
 			scene.reset();
 		}
 		deadScene.clear();
-
-		//Mouse, Keyboard Reset
-		mMouse->update();
-		mKeyBoard->update();
 	}
+
+	//Mouse, Keyboard Reset
+	mMouse->update();
+	mKeyBoard->update();
 }
 
 void Game::draw()
