@@ -23,7 +23,7 @@ public:
 	virtual void draw(std::unique_ptr<class Shader>& shader);
 
 	void drawTexture(std::unique_ptr<class Shader>& shader, const std::shared_ptr<class Texture>& texture, const Vector2& pos);
-	void addButton(std::function<void()> click, const Vector2& pos, const std::shared_ptr<class Texture>& texture);
+	void addButton(std::function<void()> click, const Vector2& pos, const std::string& fileName);
 
 	void closeUI();
 

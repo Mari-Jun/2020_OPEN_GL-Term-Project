@@ -61,16 +61,11 @@ void TitleScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	auto texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/PlayButton.png");
-	ui->addButton([this]() {changeToGameScene(); }, Vector2(0.0f, 0.0f), texture);
-	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/HelpButton.png");
-	ui->addButton([this]() {notYet(); }, Vector2(0.0f, -150.0f), texture);
-	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/QuitButton.png");
-	ui->addButton([this]() {quitGame(); }, Vector2(0.0f, -300.0f), texture);
-	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/EditButton.png");
-	ui->addButton([this]() {changeToEditScene(); }, Vector2(400.0f, -300.0f), texture);
-	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/ShopButton.png");
-	ui->addButton([this]() {notYet(); }, Vector2(-400.0f, -300.0f), texture);
+	ui->addButton([this]() {changeToGameScene(); }, Vector2(0.0f, 0.0f), "Asset/Image/TitleScene/PlayButton");
+	ui->addButton([this]() {notYet(); }, Vector2(0.0f, -150.0f), "Asset/Image/TitleScene/HelpButton");
+	ui->addButton([this]() {quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/TitleScene/QuitButton");
+	ui->addButton([this]() {changeToEditScene(); }, Vector2(400.0f, -300.0f), "Asset/Image/TitleScene/EditButton");
+	ui->addButton([this]() {notYet(); }, Vector2(-400.0f, -300.0f), "Asset/Image/TitleScene/ShopButton");
 }
 
 void TitleScene::unLoadData()

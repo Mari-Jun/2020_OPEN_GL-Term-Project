@@ -8,7 +8,7 @@
 class Button
 {
 public:
-	Button(std::function<void()> click, const Vector2& pos, const std::shared_ptr<class Texture>& texture);
+	Button(std::function<void()> click, const Vector2& pos);
 	~Button();
 
 	virtual void initailize();
@@ -21,9 +21,13 @@ public:
 private:
 	std::function<void()> mClick;
 	Vector2 mPosition;
-	std::shared_ptr<class Texture> mTexture;
+	std::shared_ptr<class Texture> mTexture[2];
 	Vector2 mRange;
+	bool mOnButton;
 
 public:
 	const Vector2& getPosition() const { return mPosition; }
+	void setTexture(const std::shared_ptr<class Texture>& textureOff, const std::shared_ptr<class Texture>& textureOn);
+	bool getOnButton() const { return mOnButton; }
+	void setOnButton(bool on) { mOnButton = on; }
 };

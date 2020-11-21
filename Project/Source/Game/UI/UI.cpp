@@ -39,13 +39,28 @@ void UI::update(float deltatime)
 void UI::processInput()
 {
 	const auto& mousePos = mScene.lock()->getGame().lock()->getMouse()->getPosition();
-	auto click = mScene.lock()->getGame().lock()->getMouse()->getState(GLUT_LEFT_BUTTON) && 
-		mScene.lock()->getGame().lock()->getMouse()->getFirst(GLUT_LEFT_BUTTON);
 	for (const auto& button : mButtons)
 	{
-		if (button->containMouse(mousePos) && click)
+		if (button->containMouse(mousePos))
 		{
-			button->click();
+			button->setOnButton(true);
+		}
+		else
+		{
+			button->setOnButton(false);
+		}
+	}
+
+	auto click = mScene.lock()->getGame().lock()->getMouse()->getState(GLUT_LEFT_BUTTON) &&
+		mScene.lock()->getGame().lock()->getMouse()->getFirst(GLUT_LEFT_BUTTON);
+	if (click)
+	{
+		for (const auto& button : mButtons)
+		{
+			if (button->getOnButton())
+			{
+				button->click();
+			}
 		}
 	}
 }
@@ -74,9 +89,11 @@ void UI::drawTexture(std::unique_ptr<Shader>& shader, const std::shared_ptr<clas
 	}
 }
 
-void UI::addButton(std::function<void()> click, const Vector2& pos, const std::shared_ptr<Texture>& texture)
+void UI::addButton(std::function<void()> click, const Vector2& pos, const std::string& fileName)
 {
-	auto button = std::make_shared<Button>(click, pos, texture);
+	auto game = mScene.lock()->getGame().lock();
+	auto button = std::make_shared<Button>(click, pos);
+	button->setTexture(game->getRenderer()->getTexture(fileName + ".png"), game->getRenderer()->getTexture(fileName + "On.png"));
 	mButtons.emplace_back(button);
 }
 
