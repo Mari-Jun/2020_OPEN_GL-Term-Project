@@ -4,9 +4,10 @@
 #include "../Game.h"
 #include "../Input/Mouse.h"
 #include "../Graphics/Texture/Texture.h"
+#include "../Graphics/Shader/Shader.h"
 
 UI::UI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render)
-	: mState(State::Active)
+	: mState(UIState::Active)
 	, mScene(scene)
 	, mRenderer(render)
 {
@@ -21,10 +22,6 @@ UI::~UI()
 	}
 	mButtons.clear();
 
-	if (!mScene.expired())
-	{
-		mScene.lock()->removeUI(weak_from_this());
-	}
 	mRenderer.lock()->removeUI(weak_from_this());
 }
 
@@ -55,9 +52,25 @@ void UI::processInput()
 
 void UI::draw(std::unique_ptr<Shader>& shader)
 {
+	drawTexture(shader, mBackground, mBackgroundPos);	
+
 	for (const auto& button : mButtons)
 	{
 		button->draw(shader);
+	}
+}
+
+void UI::drawTexture(std::unique_ptr<Shader>& shader, const std::shared_ptr<class Texture>& texture, const Vector2& pos)
+{
+	if (texture)
+	{
+		Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(texture->getWidth()), static_cast<float>(texture->getHeight()), 1.0f);
+		Matrix4 world = scaleMat * Matrix4::CreateTranslation(Vector3(pos.x, pos.y, 0.0f));
+		shader->setMatrixUniform("uWorldTransform", world);
+
+		texture->setActive();
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
 }
 
@@ -65,4 +78,9 @@ void UI::addButton(std::function<void()> click, const Vector2& pos, const std::s
 {
 	auto button = std::make_shared<Button>(click, pos, texture);
 	mButtons.emplace_back(button);
+}
+
+void UI::closeUI()
+{
+	mState = UIState::Dead;
 }

@@ -11,7 +11,7 @@
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
 #include "../../Game/Sound/Sound.h"
 #include "../../Game/UI/UI.h"
-
+#include "../UI/NotYetUI.h"
 
 
 TitleScene::TitleScene(const std::weak_ptr<class Game>& game, int stage)
@@ -58,14 +58,19 @@ void TitleScene::sceneUpdate(float deltatime)
 void TitleScene::loadData()
 {
 	//Create UI
-	auto ui = std::make_shared<UI>(weak_from_this(), getGame().lock()->getRenderer());
+	auto game = getGame().lock();
+	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	auto texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/PlayButton.png");
+	auto texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/PlayButton.png");
 	ui->addButton([this]() {changeToGameScene(); }, Vector2(0.0f, 0.0f), texture);
-	texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/EditButton.png");
-	ui->addButton([this]() {changeToEditScene(); }, Vector2(0.0f, -150.0f), texture);
-	texture = getGame().lock()->getRenderer()->getTexture("Asset/Image/TitleScene/QuitButton.png");
+	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/HelpButton.png");
+	ui->addButton([this]() {notYet(); }, Vector2(0.0f, -150.0f), texture);
+	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/QuitButton.png");
 	ui->addButton([this]() {quitGame(); }, Vector2(0.0f, -300.0f), texture);
+	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/EditButton.png");
+	ui->addButton([this]() {changeToEditScene(); }, Vector2(400.0f, -300.0f), texture);
+	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/ShopButton.png");
+	ui->addButton([this]() {notYet(); }, Vector2(-400.0f, -300.0f), texture);
 }
 
 void TitleScene::unLoadData()
@@ -91,4 +96,11 @@ void TitleScene::quitGame()
 {
 	setState(State::Dead);
 	getGame().lock()->shutDown();
+}
+
+void TitleScene::notYet()
+{
+	auto game = getGame().lock();
+	auto ui = std::make_shared<NotYetUI>(weak_from_this(), game->getRenderer());
+	ui->initailize();
 }

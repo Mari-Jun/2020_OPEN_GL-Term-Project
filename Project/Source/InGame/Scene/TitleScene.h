@@ -23,4 +23,5 @@ private:
 	void changeToGameScene();
 	void changeToEditScene();
 	void quitGame();
+	void notYet();
 };
