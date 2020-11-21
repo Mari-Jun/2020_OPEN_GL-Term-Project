@@ -1,7 +1,5 @@
 #include <string>
 #include "TitleScene.h"
-#include "GameScene.h"
-#include "EditScene.h"
 #include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
@@ -11,7 +9,7 @@
 #include "../../Game/Graphics/Mesh/SpriteComponent.h"
 #include "../../Game/Sound/Sound.h"
 #include "../../Game/UI/UI.h"
-#include "../UI/NotYetUI.h"
+#include "../UI/SceneHelper.h"
 
 
 TitleScene::TitleScene(const std::weak_ptr<class Game>& game, int stage)
@@ -57,45 +55,20 @@ void TitleScene::sceneUpdate(float deltatime)
 
 void TitleScene::loadData()
 {
+	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
+
 	//Create UI
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {changeToGameScene(); }, Vector2(0.0f, 0.0f), "Asset/Image/TitleScene/PlayButton");
-	ui->addButton([this]() {notYet(); }, Vector2(0.0f, -150.0f), "Asset/Image/TitleScene/HelpButton");
-	ui->addButton([this]() {quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/TitleScene/QuitButton");
-	ui->addButton([this]() {changeToEditScene(); }, Vector2(400.0f, -300.0f), "Asset/Image/TitleScene/EditButton");
-	ui->addButton([this]() {notYet(); }, Vector2(-400.0f, -300.0f), "Asset/Image/TitleScene/ShopButton");
+	ui->addButton([this]() {mSceneHelper->changeToGameScene(); }, Vector2(0.0f, 0.0f), "Asset/Image/TitleScene/PlayButton");
+	ui->addButton([this]() {mSceneHelper->notYet(); }, Vector2(0.0f, -150.0f), "Asset/Image/TitleScene/HelpButton");
+	ui->addButton([this]() {mSceneHelper->quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/TitleScene/QuitButton");
+	ui->addButton([this]() {mSceneHelper->changeToEditScene(); }, Vector2(400.0f, -300.0f), "Asset/Image/TitleScene/EditButton");
+	ui->addButton([this]() {mSceneHelper->notYet(); }, Vector2(-400.0f, -300.0f), "Asset/Image/TitleScene/ShopButton");
 }
 
 void TitleScene::unLoadData()
 {
 
-}
-
-void TitleScene::changeToGameScene()
-{
-	auto scene = std::make_shared<GameScene>(getGame());
-	scene->initailize();
-	setState(State::Dead);
-}
-
-void TitleScene::changeToEditScene()
-{
-	setState(State::Dead);
-	auto scene = std::make_shared<EditScene>(getGame(), mStage);
-	scene->initailize();
-}
-
-void TitleScene::quitGame()
-{
-	setState(State::Dead);
-	getGame().lock()->shutDown();
-}
-
-void TitleScene::notYet()
-{
-	auto game = getGame().lock();
-	auto ui = std::make_shared<NotYetUI>(weak_from_this(), game->getRenderer());
-	ui->initailize();
 }

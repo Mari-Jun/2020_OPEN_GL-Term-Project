@@ -133,7 +133,7 @@ void EditScene::loadBoard()
 {
 	//Create Left Board
 	auto actor = std::make_shared<Actor>(weak_from_this());
-	actor->setPosition(Vector3(-500.0f, 0.0f, 0.0f));
+	actor->setPosition(Vector3(-500.0f, 50.0f, 0.0f));
 	actor->initailize();
 
 	auto image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
@@ -145,7 +145,7 @@ void EditScene::loadBoard()
 
 	//Create Right Board
 	actor = std::make_shared<Actor>(weak_from_this());
-	actor->setPosition(Vector3(500.0f, 50.0f, 0.0f));
+	actor->setPosition(Vector3(500.0f, 100.0f, 0.0f));
 	actor->initailize();
 
 	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());

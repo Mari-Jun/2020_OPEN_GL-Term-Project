@@ -17,11 +17,6 @@ public:
 	virtual void unLoadData();
 
 private:
+	std::unique_ptr<class SceneHelper> mSceneHelper;
 	int mStage; //юс╫ц
-
-private:
-	void changeToGameScene();
-	void changeToEditScene();
-	void quitGame();
-	void notYet();
 };

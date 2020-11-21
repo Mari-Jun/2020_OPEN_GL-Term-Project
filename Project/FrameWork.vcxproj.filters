@@ -234,6 +234,9 @@
     <ClCompile Include="Source\InGame\Actor\Player\Type\DefaultMinion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InGame\UI\SceneHelper.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -462,6 +465,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Player\Type\DefaultMinion.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\UI\SceneHelper.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
