@@ -4,7 +4,13 @@
 class Player : public Actor
 {
 public:
-	Player(const std::weak_ptr<class Scene>& scene);
+	enum class PlayerType
+	{
+		Control,
+		Defualt
+	};
+
+	Player(const std::weak_ptr<class Scene>& scene, PlayerType type = PlayerType::Defualt);
 	virtual ~Player() noexcept;
 
 	virtual void initailize() override;
@@ -17,6 +23,7 @@ public:
 	void collides(const std::weak_ptr<class BoxComponent>& bComp);
 
 private:
+	PlayerType mType;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 	float mMoveSpeed;
@@ -33,6 +40,7 @@ private:
 	std::shared_ptr<class RobotLeg> mRightLeg;
 
 public:
+	PlayerType getType() const { return mType; }
 	void setPlayerTexture(const std::string& fileName);
 	float getMoveSpeed() const { return mMoveSpeed; }
 	void setMoveSpeed(float speed) { mMoveSpeed = speed; }

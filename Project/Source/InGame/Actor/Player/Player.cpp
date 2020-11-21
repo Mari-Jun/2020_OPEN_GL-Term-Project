@@ -9,8 +9,9 @@
 #include "../../../Game/Graphics/Mesh/MeshComponent.h"
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
-Player::Player(const std::weak_ptr<class Scene>& scene)
+Player::Player(const std::weak_ptr<class Scene>& scene, PlayerType type)
 	: Actor(scene, Type::Player)
+	, mType(type)
 	, mMoveSpeed(200.0f)
 	, mGravitySpeed(0.0f)
 {
@@ -168,5 +169,12 @@ void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 
 void Player::setPlayerTexture(const std::string& fileName)
 {
+	auto index = static_cast<int>(mType);
 	mMeshComponent->setTexture(fileName);
+	mMeshComponent->setTextureIndex(index);
+	mLeftArm->setPlayerTexture(fileName, index);
+	mRightArm->setPlayerTexture(fileName, index);
+	mLeftLeg->setPlayerTexture(fileName, index);
+	mRightLeg->setPlayerTexture(fileName, index);
+	mHead->setPlayerTexture(fileName, index);
 }

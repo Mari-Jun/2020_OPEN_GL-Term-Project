@@ -26,7 +26,6 @@ void RobotArm::initailize()
 	std::string arm = mLeft ? "PlayerLArm" : "PlayerRArm";
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/" + arm);
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
 	mMeshComponent->setMesh(mesh);
 	mMeshComponent->initailize();
 }
@@ -69,4 +68,10 @@ void RobotArm::updateActor(float deltatime)
 void RobotArm::actorInput()
 {
 
+}
+
+void RobotArm::setPlayerTexture(const std::string& fileName, int index)
+{
+	mMeshComponent->setTexture(fileName);
+	mMeshComponent->setTextureIndex(index);
 }

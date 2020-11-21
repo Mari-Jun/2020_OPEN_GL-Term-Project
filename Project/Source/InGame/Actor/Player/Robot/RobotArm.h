@@ -21,4 +21,7 @@ private:
 	bool mMove;
 	float mRot;
 	float mRotSpeed;
+
+public:
+	void setPlayerTexture(const std::string& fileName, int index);
 };
