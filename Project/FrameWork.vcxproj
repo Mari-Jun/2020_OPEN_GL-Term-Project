@@ -220,7 +220,8 @@
     <ClCompile Include="Source\InGame\Scene\TitleScene.cpp" />
     <ClCompile Include="Source\Game\UI\Button.cpp" />
     <ClCompile Include="Source\Game\UI\UI.cpp" />
-    <ClCompile Include="Source\InGame\UI\NotYetUI.cpp" />
+    <ClCompile Include="Source\InGame\UI\DialogUI.cpp" />
+    <ClCompile Include="Source\InGame\UI\SceneHelper.cpp" />
     <ClCompile Include="Source\InGame\UI\TitleUI.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
@@ -299,7 +300,8 @@
     <ClInclude Include="Source\InGame\Scene\TitleScene.h" />
     <ClInclude Include="Source\Game\UI\Button.h" />
     <ClInclude Include="Source\Game\UI\UI.h" />
-    <ClInclude Include="Source\InGame\UI\NotYetUI.h" />
+    <ClInclude Include="Source\InGame\UI\DialogUI.h" />
+    <ClInclude Include="Source\InGame\UI\SceneHelper.h" />
     <ClInclude Include="Source\InGame\UI\TitleUI.h" />
   </ItemGroup>
   <ItemGroup>

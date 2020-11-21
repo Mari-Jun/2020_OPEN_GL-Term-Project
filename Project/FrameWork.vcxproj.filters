@@ -228,10 +228,13 @@
     <ClCompile Include="Source\InGame\UI\TitleUI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\UI\NotYetUI.cpp">
+    <ClCompile Include="Source\InGame\Actor\Player\Type\DefaultMinion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Player\Type\DefaultMinion.cpp">
+    <ClCompile Include="Source\InGame\UI\SceneHelper.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\UI\DialogUI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -458,10 +461,13 @@
     <ClInclude Include="Source\InGame\UI\TitleUI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\UI\NotYetUI.h">
+    <ClInclude Include="Source\InGame\Actor\Player\Type\DefaultMinion.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Player\Type\DefaultMinion.h">
+    <ClInclude Include="Source\InGame\UI\SceneHelper.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\UI\DialogUI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

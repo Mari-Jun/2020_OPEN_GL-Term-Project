@@ -45,6 +45,14 @@ void Scene::initailize()
 	mGame.lock()->addScene(shared_from_this());
 }
 
+void Scene::processInput()
+{
+	if (mState == State::Active)
+	{
+		sceneInput();
+	}
+	uiInput();
+}
 void Scene::sceneInput()
 {
 	mGame.lock()->getRenderer()->processInput();
@@ -58,12 +66,43 @@ void Scene::sceneInput()
 			actor->processInput();
 		}
 	}
-	mIsUpdateActor = false;
+	mIsUpdateActor = false;	
+}
 
+void Scene::uiInput()
+{
 	if (!mUserInterfaces.empty() &&
 		mUserInterfaces.back()->getState() == UI::UIState::Active)
 	{
 		mUserInterfaces.back()->processInput();
+	}
+}
+
+void Scene::update()
+{
+	static int Fps = 0;
+	static int oldTime = 0;
+	static int fpsTime = 0;
+	int time = glutGet(GLUT_ELAPSED_TIME);
+	float deltatime = (time - oldTime) / 1000.0f;
+
+	if (deltatime >= 0.016f)
+	{
+		oldTime = time;
+		Fps++;
+
+		if (time - fpsTime > 1000)
+		{
+			std::cout << "ÇÁ·¹ÀÓ : " << Fps << std::endl;
+			Fps = 0;
+			fpsTime = time;
+		}
+
+		if (mState == Scene::State::Active)
+		{
+			sceneUpdate(deltatime);
+		}
+		uiUpdate(deltatime);	
 	}
 }
 
@@ -103,14 +142,14 @@ void Scene::sceneUpdate(float deltatime)
 				{
 					std::vector<std::shared_ptr<class Actor>> ret;
 					ret.emplace_back(std::move(actor));
-					deadActor.insert({actors.first, ret});
+					deadActor.insert({ actors.first, ret });
 				}
 				else
 				{
 					iter->second.emplace_back(std::move(actor));
 				}
 			}
-		}		
+		}
 	}
 
 	for (auto& actors : deadActor)
@@ -124,6 +163,11 @@ void Scene::sceneUpdate(float deltatime)
 
 	mIsUpdateActor = false;
 
+	mGame.lock()->getRenderer()->update(deltatime);
+}
+
+void Scene::uiUpdate(float deltatime)
+{
 	for (const auto& ui : mUserInterfaces)
 	{
 		if (ui->getState() == UI::UIState::Active)
@@ -144,8 +188,6 @@ void Scene::sceneUpdate(float deltatime)
 			++iter;
 		}
 	}
-
-	mGame.lock()->getRenderer()->update(deltatime);
 }
 
 void Scene::draw()

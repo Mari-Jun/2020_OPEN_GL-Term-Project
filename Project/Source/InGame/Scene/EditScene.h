@@ -21,6 +21,7 @@ public:
 private:
 	std::shared_ptr<class GameMap> mGameMap;
 	std::unique_ptr<class MapEditor> mEditor;
+	std::unique_ptr<class SceneHelper> mSceneHelper;
 	int mStage;
 
 	Vector2 mLeftBoardPos;
@@ -35,6 +36,4 @@ public:
 	const Vector2& getLeftBoardTexSize() const { return mLeftBoardTexSize; }
 	const Vector2& getRightBoardPos() const { return mRightBoardPos; }
 	const Vector2& getRightBoardTexSize() const { return mRightBoardTexSize; }
-private:
-	void checkButton(const Vector2& pos);
 };

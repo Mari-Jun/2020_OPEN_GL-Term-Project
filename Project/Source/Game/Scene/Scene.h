@@ -19,8 +19,14 @@ public:
 
 	virtual void initailize();
 
+	void processInput();
 	virtual void sceneInput();
+	void uiInput();
+
+	void update();
 	virtual void sceneUpdate(float deltatime);
+	void uiUpdate(float deltatime);
+
 	void draw();
 
 	virtual void loadData();
