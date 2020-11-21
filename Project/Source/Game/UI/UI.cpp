@@ -82,6 +82,5 @@ void UI::addButton(std::function<void()> click, const Vector2& pos, const std::s
 
 void UI::closeUI()
 {
-	std::cout << "¤·¾Ó\n";
 	mState = UIState::Dead;
 }

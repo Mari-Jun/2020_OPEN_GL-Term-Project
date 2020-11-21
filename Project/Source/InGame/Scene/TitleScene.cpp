@@ -70,7 +70,7 @@ void TitleScene::loadData()
 	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/EditButton.png");
 	ui->addButton([this]() {changeToEditScene(); }, Vector2(400.0f, -300.0f), texture);
 	texture = game->getRenderer()->getTexture("Asset/Image/TitleScene/ShopButton.png");
-	ui->addButton([this]() {changeToEditScene(); }, Vector2(-400.0f, -300.0f), texture);
+	ui->addButton([this]() {notYet(); }, Vector2(-400.0f, -300.0f), texture);
 }
 
 void TitleScene::unLoadData()

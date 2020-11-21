@@ -20,7 +20,10 @@ void NotYetUI::initailize()
 
 	auto game = mScene.lock()->getGame().lock();
 	auto texture = game->getRenderer()->getTexture("Asset/Image/OKButton.png");
-	addButton([this]() {closeUI(); }, Vector2(0.0f, 0.0f), texture);
+	addButton([this]() {closeUI(); }, Vector2(0.0f, -100.0f), texture);
+
+	mBackground = game->getRenderer()->getTexture("Asset/Image/NotYet.png");
+	mBackgroundPos = Vector2(0.0f, 0.0f);
 }
 
 void NotYetUI::processInput()
