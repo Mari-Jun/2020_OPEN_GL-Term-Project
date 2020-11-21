@@ -27,7 +27,6 @@ void RobotLeg::initailize()
 	std::string leg = mLeft ? "PlayerLLeg" : "PlayerRLeg";
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Player/" + leg);
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mMeshComponent->setTexture("Asset/Mesh/Player/skin_man.png");
 	mMeshComponent->setMesh(mesh);
 	mMeshComponent->initailize();
 }
@@ -70,4 +69,10 @@ void RobotLeg::updateActor(float deltatime)
 void RobotLeg::actorInput()
 {
 
+}
+
+void RobotLeg::setPlayerTexture(const std::string& fileName, int index)
+{
+	mMeshComponent->setTexture(fileName);
+	mMeshComponent->setTextureIndex(index);
 }

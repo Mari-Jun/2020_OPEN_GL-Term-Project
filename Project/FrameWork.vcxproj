@@ -207,6 +207,7 @@
     <ClCompile Include="Source\Game\Physics\Coliision\Plane.cpp" />
     <ClCompile Include="Source\Game\Physics\Coliision\Sphere.cpp" />
     <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Player\Type\DefaultMinion.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp" />
     <ClCompile Include="Source\InGame\Info\GameInfo.cpp" />
     <ClCompile Include="Source\InGame\Map\Editer\MapEditor.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="Source\Game\Physics\Coliision\Plane.h" />
     <ClInclude Include="Source\Game\Physics\Coliision\Sphere.h" />
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
+    <ClInclude Include="Source\InGame\Actor\Player\Type\DefaultMinion.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h" />
     <ClInclude Include="Source\InGame\Info\GameInfo.h" />
     <ClInclude Include="Source\InGame\Map\Editer\MapEditor.h" />

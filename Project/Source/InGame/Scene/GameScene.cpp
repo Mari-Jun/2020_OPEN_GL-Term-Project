@@ -7,15 +7,12 @@
 #include "../../Game/Actor/Actor.h"
 #include "../../Game/Input/KeyBoard.h"
 #include "../../Game/Input/Mouse.h"
-#include "../../Game/Actor/PlaneActor.h"
 #include "../../Game/Actor/Camera/CameraActor.h"
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
-#include "../../Game/Actor/Defualt/DefualtShape.h"
-#include "../../Game/Graphics/Mesh/MeshComponent.h"
-#include "../../Game/Graphics/Mesh/SpriteComponent.h"
 #include "../../Game/Sound/Sound.h"
 
 #include "../Actor/Player/Type/ControlPlayer.h"
+#include "../Actor/Player/Type/DefaultMinion.h"
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
@@ -98,8 +95,6 @@ void GameScene::loadActorData()
 	control->initailize();
 
 	//Create CameraActor
-	/*mMouseCamera = std::make_shared<CameraActor>(getGame());
-	mMouseCamera->initailize();*/
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
 	mFollowCamera->initailize();
 
@@ -108,6 +103,12 @@ void GameScene::loadActorData()
 	particle->setPosition(control->getPosition());
 	particle->setScale(300.0f);
 	particle->initailize();
+
+	//Create Minion
+	auto minion = std::make_shared<DefaultMinion>(weak_from_this());
+	minion->setScale(1.5f);
+	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
+	minion->initailize();
 }
 
 void GameScene::loadGameMap()

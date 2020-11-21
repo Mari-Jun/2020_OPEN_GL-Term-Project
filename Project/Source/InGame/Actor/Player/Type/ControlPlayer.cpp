@@ -4,7 +4,7 @@
 #include "../../../../Game/Component/MoveComponent.h"
 
 ControlPlayer::ControlPlayer(const std::weak_ptr<class Scene>& scene)
-	: Player(scene)
+	: Player(scene, PlayerType::Control)
 {
 
 }

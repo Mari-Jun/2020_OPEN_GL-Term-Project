@@ -60,6 +60,8 @@ bool Texture::load(const std::string& fileName)
 	
 	mName = fileName;
 
+	std::cerr << fileName << " load complete\n";
+
 	return true;
 }
 
@@ -71,7 +73,7 @@ void Texture::CreateForRendering(int width, int height, unsigned int format)
 	glGenTextures(1, &mTextureID);
 	glBindTexture(GL_TEXTURE_2D, mTextureID);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, format, mWidth, mHeight, 0, GL_RGB, GL_FLOAT, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, mWidth, mHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
