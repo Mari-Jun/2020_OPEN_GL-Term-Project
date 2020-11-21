@@ -23,7 +23,7 @@ public:
 	virtual void sceneInput();
 	void uiInput();
 
-	void update(float deltatime);
+	void update();
 	virtual void sceneUpdate(float deltatime);
 	void uiUpdate(float deltatime);
 

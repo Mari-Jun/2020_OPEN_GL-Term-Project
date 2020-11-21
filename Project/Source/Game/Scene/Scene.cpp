@@ -78,13 +78,32 @@ void Scene::uiInput()
 	}
 }
 
-void Scene::update(float deltatime)
+void Scene::update()
 {
-	if (mState == Scene::State::Active)
+	static int Fps = 0;
+	static int oldTime = 0;
+	static int fpsTime = 0;
+	int time = glutGet(GLUT_ELAPSED_TIME);
+	float deltatime = (time - oldTime) / 1000.0f;
+
+	if (deltatime >= 0.016f)
 	{
-		sceneUpdate(deltatime);
+		oldTime = time;
+		Fps++;
+
+		if (time - fpsTime > 1000)
+		{
+			std::cout << "ÇÁ·¹ÀÓ : " << Fps << std::endl;
+			Fps = 0;
+			fpsTime = time;
+		}
+
+		if (mState == Scene::State::Active)
+		{
+			sceneUpdate(deltatime);
+		}
+		uiUpdate(deltatime);	
 	}
-	uiUpdate(deltatime);
 }
 
 void Scene::sceneUpdate(float deltatime)

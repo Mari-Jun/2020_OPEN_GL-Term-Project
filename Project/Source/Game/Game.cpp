@@ -165,52 +165,33 @@ void Game::processInput()
 
 void Game::update()
 {
-	static int Fps = 0;
-	static int oldTime = 0;
-	static int fpsTime = 0;
-	int time = glutGet(GLUT_ELAPSED_TIME);
-	float deltatime = (time - oldTime) / 1000.0f;
-
-	if (deltatime >= 0.016f)
+	mIsUpdateScene = true;
+	for (const auto& scene : mScene)
 	{
-		oldTime = time;
-		Fps++;
-
-		if (time - fpsTime > 1000)
-		{
-			std::cout << "ÇÁ·¹ÀÓ : " << Fps << std::endl;
-			Fps = 0;
-			fpsTime = time;
-		}
-
-		mIsUpdateScene = true;
-		for (const auto& scene : mScene)
-		{
-			scene->update(deltatime);
-		}
-		mIsUpdateScene = false;
-
-		for (const auto& scene : mReadyScene)
-		{
-			mScene.emplace_back(scene);
-		}
-		mReadyScene.clear();
-
-		std::vector<std::shared_ptr<Scene>> deadScene;
-		for (auto& scene : mScene)
-		{
-			if (scene->getState() == Scene::State::Dead)
-			{
-				deadScene.emplace_back(std::move(scene));
-			}
-		}
-
-		for (auto& scene : deadScene)
-		{
-			scene.reset();
-		}
-		deadScene.clear();
+		scene->update();
 	}
+	mIsUpdateScene = false;
+
+	for (const auto& scene : mReadyScene)
+	{
+		mScene.emplace_back(scene);
+	}
+	mReadyScene.clear();
+
+	std::vector<std::shared_ptr<Scene>> deadScene;
+	for (auto& scene : mScene)
+	{
+		if (scene->getState() == Scene::State::Dead)
+		{
+			deadScene.emplace_back(std::move(scene));
+		}
+	}
+
+	for (auto& scene : deadScene)
+	{
+		scene.reset();
+	}
+	deadScene.clear();
 
 	//Mouse, Keyboard Reset
 	mMouse->update();
