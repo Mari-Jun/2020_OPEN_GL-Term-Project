@@ -7,7 +7,7 @@
 class UI : public std::enable_shared_from_this<UI>
 {
 public:
-	enum class State
+	enum class UIState
 	{
 		Active,
 		Dead
@@ -16,17 +16,19 @@ public:
 	UI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render);
 	virtual ~UI() noexcept;
 
-	void initailize();
+	virtual void initailize();
 
-	void update(float deltatime);
-	void processInput();
-	void draw(std::unique_ptr<class Shader>& shader);
+	virtual void update(float deltatime);
+	virtual void processInput();
+	virtual void draw(std::unique_ptr<class Shader>& shader);
+
 	void drawTexture(std::unique_ptr<class Shader>& shader, const std::shared_ptr<class Texture>& texture, const Vector2& pos);
-
 	void addButton(std::function<void()> click, const Vector2& pos, const std::shared_ptr<class Texture>& texture);
 
-private:
-	State mState;
+	void closeUI();
+
+protected:
+	UIState mState;
 	std::weak_ptr<class Scene> mScene;
 	std::weak_ptr<class Renderer> mRenderer;
 	std::vector<std::shared_ptr<class Button>> mButtons;
@@ -35,9 +37,6 @@ private:
 	Vector2 mBackgroundPos;
 
 public:
-	State getState() const { return mState; }
+	UIState getState() const { return mState; }
 	void setBackgroundTexture(const std::shared_ptr<class Texture>& texture) { mBackground = texture; }
-
-	void closeUI();
-	void notYet();
 };

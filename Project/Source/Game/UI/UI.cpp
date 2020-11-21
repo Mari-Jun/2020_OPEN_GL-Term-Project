@@ -7,7 +7,7 @@
 #include "../Graphics/Shader/Shader.h"
 
 UI::UI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render)
-	: mState(State::Active)
+	: mState(UIState::Active)
 	, mScene(scene)
 	, mRenderer(render)
 {
@@ -22,10 +22,6 @@ UI::~UI()
 	}
 	mButtons.clear();
 
-	if (!mScene.expired())
-	{
-		mScene.lock()->removeUI(weak_from_this());
-	}
 	mRenderer.lock()->removeUI(weak_from_this());
 }
 
@@ -86,15 +82,6 @@ void UI::addButton(std::function<void()> click, const Vector2& pos, const std::s
 
 void UI::closeUI()
 {
-	std::cout << "¤·³¶¶ö¤·\n";
-	mState = State::Dead;
-}
-
-void UI::notYet()
-{
-	auto game = mScene.lock()->getGame().lock();
-	auto ui = std::make_shared<UI>(mScene, game->getRenderer());
-	ui->initailize();
-	auto texture = game->getRenderer()->getTexture("Asset/Image/OKButton.png");
-	ui->addButton([ui]() {ui->closeUI(); }, Vector2(0.0f, 0.0f), texture);
+	std::cout << "¤·¾Ó\n";
+	mState = UIState::Dead;
 }

@@ -61,7 +61,7 @@ void Scene::sceneInput()
 	mIsUpdateActor = false;
 
 	if (!mUserInterfaces.empty() &&
-		mUserInterfaces.back()->getState() == UI::State::Active)
+		mUserInterfaces.back()->getState() == UI::UIState::Active)
 	{
 		mUserInterfaces.back()->processInput();
 	}
@@ -126,7 +126,7 @@ void Scene::sceneUpdate(float deltatime)
 
 	for (const auto& ui : mUserInterfaces)
 	{
-		if (ui->getState() == UI::State::Active)
+		if (ui->getState() == UI::UIState::Active)
 		{
 			ui->update(deltatime);
 		}
@@ -135,7 +135,7 @@ void Scene::sceneUpdate(float deltatime)
 	auto iter = mUserInterfaces.begin();
 	while (iter != mUserInterfaces.end())
 	{
-		if ((*iter)->getState() == UI::State::Dead)
+		if ((*iter)->getState() == UI::UIState::Dead)
 		{
 			iter = mUserInterfaces.erase(iter);
 		}
@@ -229,17 +229,6 @@ void Scene::removeActor(const std::string& type, const std::weak_ptr<class Actor
 void Scene::addUI(const std::shared_ptr<class UI>& ui)
 {
 	mUserInterfaces.emplace_back(ui);
-}
-
-void Scene::removeUI(const std::weak_ptr<class UI>& ui)
-{
-	auto iter = std::find_if(mUserInterfaces.begin(), mUserInterfaces.end(),
-		[&ui](const std::weak_ptr<UI>& u)
-		{return ui.lock() == u.lock(); });
-	if (iter != mUserInterfaces.end())
-	{
-		mUserInterfaces.erase(iter);
-	}
 }
 
 const std::vector<std::shared_ptr<class Actor>>& Scene::getActors(std::string type) const
