@@ -22,6 +22,10 @@ public:
 	virtual void processInput();
 	virtual void draw(std::unique_ptr<class Shader>& shader);
 
+	void update(float deltatime);
+	void processInput();
+	void draw(std::unique_ptr<class Shader>& shader);
+
 	void drawTexture(std::unique_ptr<class Shader>& shader, const std::shared_ptr<class Texture>& texture, const Vector2& pos);
 	void addButton(std::function<void()> click, const Vector2& pos, const std::shared_ptr<class Texture>& texture);
 
@@ -32,9 +36,6 @@ protected:
 	std::weak_ptr<class Scene> mScene;
 	std::weak_ptr<class Renderer> mRenderer;
 	std::vector<std::shared_ptr<class Button>> mButtons;
-
-	std::shared_ptr<class Texture> mBackground;
-	Vector2 mBackgroundPos;
 
 public:
 	UIState getState() const { return mState; }
