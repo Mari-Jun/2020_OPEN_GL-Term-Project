@@ -13,6 +13,7 @@
 
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Player/Type/DefaultMinion.h"
+#include "../Actor/Player/Type/MinionAi/MinionAi.h"
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
@@ -105,10 +106,11 @@ void GameScene::loadActorData()
 	particle->initailize();
 
 	//Create Minion
-	auto minion = std::make_shared<DefaultMinion>(weak_from_this());
+	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mMinionAi);
 	minion->setScale(1.5f);
 	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
 	minion->initailize();
+
 }
 
 void GameScene::loadGameMap()
@@ -118,4 +120,8 @@ void GameScene::loadGameMap()
 	file += std::to_string(mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
+
+	mMinionAi = std::make_shared<MinionAi>(weak_from_this());
+	mMinionAi->initailize(mGameMap->getTiles(), mGameMap->getStartPosIndex(), mGameMap->getEndPosIndex(),mGameMap->getTileSize(),mGameMap->getMapSize());
+	
 }
