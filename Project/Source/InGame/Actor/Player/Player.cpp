@@ -45,6 +45,15 @@ void Player::initailize()
 	mBoxComponent->setObjectBox(mesh->getBox());
 	mBoxComponent->initailize();
 
+	//Create HealthBar
+	mHealthBar = std::make_shared<Actor>(getScene(), Type::Ui);
+	auto hp = std::make_shared<BillBoardComponent>(mHealthBar, getGame().lock()->getRenderer());
+	hp->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Player/RedBar.png"));
+	hp->initailize();
+	mHealthBar->setScale(10.0f);
+	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
+	mHealthBar->initailize();
+
 	//Create Head
 	mHead = std::make_shared<RobotHead>(getScene());
 	mHead->setScale(getScale());
@@ -78,6 +87,8 @@ void Player::updateActor(float deltatime)
 	updateGravity(deltatime);
 
 	collides(mBoxComponent);
+
+	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
 
 	mHead->setRotation(getRotation());
 	mHead->setPosition(getPosition());

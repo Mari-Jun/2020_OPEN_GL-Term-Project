@@ -35,7 +35,7 @@ private:
 	PlayerStat mStat;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
-
+	std::shared_ptr<class Actor> mHealthBar;
 	float mMoveSpeed;
 	float mGravitySpeed;
 

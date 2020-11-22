@@ -97,6 +97,7 @@ void Renderer::draw()
 	drawAlphaComponent();
 	drawBillBoardComponent();
 
+
 	drawSpriteComponent();
 	drawUserInterface();
 	
@@ -138,11 +139,8 @@ void Renderer::drawMeshComponent()
 
 void Renderer::drawBillBoardComponent()
 {
-	//mMeshShader->setActive();
-	//mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
-	/*createBillBoardVertex();
-	mBillBoardVertex->setActive();*/
-	mSpriteVertex->setActive();
+	createBillBoardVertex();
+	mBillBoardVertex->setActive();
 	for (const auto& bComp : mBillBoardComponent)
 	{
 		bComp.lock()->draw(mMeshShader);
@@ -353,10 +351,13 @@ void Renderer::createBillBoardVertex()
 	Vector3 right = Vector3(mView.mat[0][0], mView.mat[0][1], mView.mat[0][2]);
 	Vector3 up = Vector3(mView.mat[1][0], mView.mat[1][1], mView.mat[1][2]);
 
-	vertex[0].position = right * -0.5f + up * -0.5f;
-	vertex[1].position = right * -0.5f + up * 0.5f;
-	vertex[2].position = right * 0.5f + up * 0.5f;
-	vertex[3].position = right * 0.5f + up * -0.5f;
+	Matrix4 pW = mInvertView;
+	pW.mat[3][0] = pW.mat[3][1] = pW.mat[3][2] = 0.0f;
+
+	vertex[0].position = Vector3::Transform(Vector3(-0.5f, -0.5f, 0.0f), pW);
+	vertex[1].position = Vector3::Transform(Vector3(-0.5f, 0.5f, 0.0f), pW);
+	vertex[2].position = Vector3::Transform(Vector3(0.5f, 0.5f, 0.0f), pW);
+	vertex[3].position = Vector3::Transform(Vector3(0.5f, -0.5f, 0.0f), pW);
 	vertex[0].normal = Vector3(0.0f, 0.0f, 1.0f);
 	vertex[1].normal = Vector3(0.0f, 0.0f, 1.0f);
 	vertex[2].normal = Vector3(0.0f, 0.0f, 1.0f);
