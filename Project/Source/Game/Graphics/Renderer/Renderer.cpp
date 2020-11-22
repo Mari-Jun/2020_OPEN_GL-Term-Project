@@ -139,11 +139,14 @@ void Renderer::drawMeshComponent()
 
 void Renderer::drawBillBoardComponent()
 {
-	createBillBoardVertex();
-	mBillBoardVertex->setActive();
+	mBillBoardShader->setActive();
+	mBillBoardShader->setMatrixUniform("uViewProj", mView * mProjection);
+	mLight->setLightShader(mView, mBillBoardShader);
+	//createBillBoardVertex();
+	mSpriteVertex->setActive();
 	for (const auto& bComp : mBillBoardComponent)
 	{
-		bComp.lock()->draw(mMeshShader);
+		bComp.lock()->draw(mBillBoardShader);
 	}
 }
 
@@ -317,6 +320,14 @@ bool Renderer::loadShader()
 	mProjection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), getWindow()->getSize().x, getWindow()->getSize().y, 25.0f, 1000.0f);
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 
+	mBillBoardShader = std::make_unique<Shader>();
+	if (!mBillBoardShader->load("Source/Game/Graphics/Shader/Board.vert", "Source/Game/Graphics/Shader/Phong.frag"))
+	{
+		return false;
+	}
+	mBillBoardShader->setActive();
+	mBillBoardShader->setMatrixUniform("uViewProj", mView * mProjection);
+
 	return true;
 }
 
@@ -344,34 +355,11 @@ void Renderer::createSpriteVertex()
 	mSpriteVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
 }
 
-void Renderer::createBillBoardVertex()
+void Renderer::setInvertView()
 {
-	std::vector<Vertex> vertex(4);
-
-	Vector3 right = Vector3(mView.mat[0][0], mView.mat[0][1], mView.mat[0][2]);
-	Vector3 up = Vector3(mView.mat[1][0], mView.mat[1][1], mView.mat[1][2]);
-
-	Matrix4 pW = mInvertView;
-	pW.mat[3][0] = pW.mat[3][1] = pW.mat[3][2] = 0.0f;
-
-	vertex[0].position = Vector3::Transform(Vector3(-0.5f, -0.5f, 0.0f), pW);
-	vertex[1].position = Vector3::Transform(Vector3(-0.5f, 0.5f, 0.0f), pW);
-	vertex[2].position = Vector3::Transform(Vector3(0.5f, 0.5f, 0.0f), pW);
-	vertex[3].position = Vector3::Transform(Vector3(0.5f, -0.5f, 0.0f), pW);
-	vertex[0].normal = Vector3(0.0f, 0.0f, 1.0f);
-	vertex[1].normal = Vector3(0.0f, 0.0f, 1.0f);
-	vertex[2].normal = Vector3(0.0f, 0.0f, 1.0f);
-	vertex[3].normal = Vector3(0.0f, 0.0f, 1.0f);
-	vertex[0].texcoord = Vector2(0.0f, 0.0f);
-	vertex[1].texcoord = Vector2(0.0f, 1.0f);
-	vertex[2].texcoord = Vector2(1.0f, 1.0f);
-	vertex[3].texcoord = Vector2(1.0f, 0.0f);
-
-	std::vector<unsigned int> index = {
-		0, 1, 2, 0, 2, 3
-	};
-
-	mBillBoardVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
+	mInvertView = mView;
+	mInvertView.Invert();
+	mInvertView.mat[3][0] = mInvertView.mat[3][1] = mInvertView.mat[3][2] = 0.0f;
 }
 
 std::shared_ptr<class Texture> Renderer::getTexture(const std::string& fileName)

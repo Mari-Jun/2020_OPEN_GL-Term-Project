@@ -50,7 +50,7 @@ void Player::initailize()
 	auto hp = std::make_shared<BillBoardComponent>(mHealthBar, getGame().lock()->getRenderer());
 	hp->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Player/RedBar.png"));
 	hp->initailize();
-	mHealthBar->setScale(10.0f);
+	mHealthBar->setScale(0.1f);
 	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
 	mHealthBar->initailize();
 
