@@ -222,6 +222,7 @@
     <ClCompile Include="Source\Game\UI\Button.cpp" />
     <ClCompile Include="Source\Game\UI\UI.cpp" />
     <ClCompile Include="Source\InGame\UI\DialogUI.cpp" />
+    <ClCompile Include="Source\InGame\UI\HUD\GameHUD.cpp" />
     <ClCompile Include="Source\InGame\UI\SceneHelper.cpp" />
     <ClCompile Include="Source\InGame\UI\TitleUI.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="Source\Game\UI\Button.h" />
     <ClInclude Include="Source\Game\UI\UI.h" />
     <ClInclude Include="Source\InGame\UI\DialogUI.h" />
+    <ClInclude Include="Source\InGame\UI\HUD\GameHUD.h" />
     <ClInclude Include="Source\InGame\UI\SceneHelper.h" />
     <ClInclude Include="Source\InGame\UI\TitleUI.h" />
   </ItemGroup>

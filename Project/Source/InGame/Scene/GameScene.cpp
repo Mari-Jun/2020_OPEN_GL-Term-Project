@@ -17,6 +17,7 @@
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
+#include "../UI/HUD/GameHUD.h"
 
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game, int stage)
@@ -80,6 +81,7 @@ void GameScene::loadData()
 {
 	loadGameMap();
 	loadActorData();
+	loadUI();
 }
 
 void GameScene::unLoadData()
@@ -110,7 +112,6 @@ void GameScene::loadActorData()
 	minion->setScale(1.5f);
 	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
 	minion->initailize();
-
 }
 
 void GameScene::loadGameMap()
@@ -123,5 +124,10 @@ void GameScene::loadGameMap()
 
 	mMinionAi = std::make_shared<MinionAi>(weak_from_this());
 	mMinionAi->initailize(mGameMap->getTiles(), mGameMap->getStartPosIndex(), mGameMap->getEndPosIndex(),mGameMap->getTileSize(),mGameMap->getMapSize());
-	
+}
+
+void GameScene::loadUI()
+{
+	auto gameHUD = std::make_shared<GameHUD>(weak_from_this(), getGame().lock()->getRenderer());
+	gameHUD->initailize();
 }

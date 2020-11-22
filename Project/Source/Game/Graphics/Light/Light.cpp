@@ -20,7 +20,7 @@ Light::~Light()
 void Light::initailize()
 {
 	//Set Light
-	mAmbientLight = Vector3(0.1f, 0.1f, 0.1f);
+	mAmbientLight = Vector3(0.2f, 0.2f, 0.2f);
 
 	DirectionalLight dirLight = loadDirectionalLight();
 	mDirLight.push_back(dirLight);
