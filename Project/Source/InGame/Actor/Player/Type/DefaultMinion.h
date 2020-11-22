@@ -28,6 +28,5 @@ private:
 	Vector3 Repos;
 	Vector3 deltarepos;
 	Vector3 oldrepos;
-	int flag = 0;
 
 };
