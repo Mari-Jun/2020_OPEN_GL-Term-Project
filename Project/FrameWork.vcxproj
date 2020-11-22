@@ -310,6 +310,7 @@
     <None Include="Source\Game\Graphics\Shader\Board.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
+    <None Include="Source\Game\Graphics\Shader\Phong2.frag" />
     <None Include="Source\Game\Graphics\Shader\Sprite.frag" />
     <None Include="Source\Game\Graphics\Shader\Sprite.vert" />
   </ItemGroup>
