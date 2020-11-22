@@ -8,7 +8,32 @@ struct DirectionalLight
 	Vector3 direction;
 	Vector3 diffuseColor;
 	Vector3 specularColor;
-	float intensity;
+};
+
+struct PointLight
+{
+	Vector3 position;
+	Vector3 diffuseColor;
+	Vector3 specularColor;
+
+	float constant;
+	float linear;
+	float quadratic;
+};
+
+struct SpotLight
+{
+	Vector3 position;
+	Vector3 direciton;
+	Vector3 diffuseColor;
+	Vector3 specularColor;
+
+	float cutOff;
+	float outCutOff;
+
+	float constant;
+	float linear;
+	float quadratic;
 };
 
 class Light
@@ -31,8 +56,12 @@ private:
 	std::weak_ptr<class Renderer> mRenderer;
 	Vector3 mAmbientLight;
 	std::vector<struct DirectionalLight> mDirLight;
+	std::vector<struct PointLight> mPointLight;
+	std::vector<struct SpotLight> mSpotLight;
 	bool mIsRot[3];
 	bool mAnimation;
 };
 
 DirectionalLight loadDirectionalLight();
+PointLight loadPointLight();
+SpotLight loadSpotLight();

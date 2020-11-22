@@ -69,6 +69,12 @@ void Shader::SetFloatUniform(const char* name, float value)
 	glUniform1f(location, value);
 }
 
+void Shader::SetIntUniform(const char* name, int value)
+{
+	GLint location = glGetUniformLocation(mShaderProgram, name);
+	glUniform1i(location, value);
+}
+
 bool Shader::compileShader(const std::string& fileName, GLenum shaderType, GLint& shader)
 {
 	//Open shader file
