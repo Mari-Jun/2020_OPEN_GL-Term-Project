@@ -92,10 +92,11 @@ void Renderer::draw()
 {
 	mWindow->clear();
 
-	drawMeshComponent();
 	drawLineComponent();
+	drawMeshComponent();
 	drawAlphaComponent();
 	drawBillBoardComponent();
+
 
 	drawSpriteComponent();
 	drawUserInterface();
@@ -138,8 +139,8 @@ void Renderer::drawMeshComponent()
 
 void Renderer::drawBillBoardComponent()
 {
-	mMeshShader->setMatrixUniform("uViewProj", mProjection);
-	mSpriteVertex->setActive();
+	createBillBoardVertex();
+	mBillBoardVertex->setActive();
 	for (const auto& bComp : mBillBoardComponent)
 	{
 		bComp.lock()->draw(mMeshShader);
@@ -341,6 +342,36 @@ void Renderer::createSpriteVertex()
 	};
 
 	mSpriteVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
+}
+
+void Renderer::createBillBoardVertex()
+{
+	std::vector<Vertex> vertex(4);
+
+	Vector3 right = Vector3(mView.mat[0][0], mView.mat[0][1], mView.mat[0][2]);
+	Vector3 up = Vector3(mView.mat[1][0], mView.mat[1][1], mView.mat[1][2]);
+
+	Matrix4 pW = mInvertView;
+	pW.mat[3][0] = pW.mat[3][1] = pW.mat[3][2] = 0.0f;
+
+	vertex[0].position = Vector3::Transform(Vector3(-0.5f, -0.5f, 0.0f), pW);
+	vertex[1].position = Vector3::Transform(Vector3(-0.5f, 0.5f, 0.0f), pW);
+	vertex[2].position = Vector3::Transform(Vector3(0.5f, 0.5f, 0.0f), pW);
+	vertex[3].position = Vector3::Transform(Vector3(0.5f, -0.5f, 0.0f), pW);
+	vertex[0].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[1].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[2].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[3].normal = Vector3(0.0f, 0.0f, 1.0f);
+	vertex[0].texcoord = Vector2(0.0f, 0.0f);
+	vertex[1].texcoord = Vector2(0.0f, 1.0f);
+	vertex[2].texcoord = Vector2(1.0f, 1.0f);
+	vertex[3].texcoord = Vector2(1.0f, 0.0f);
+
+	std::vector<unsigned int> index = {
+		0, 1, 2, 0, 2, 3
+	};
+
+	mBillBoardVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
 }
 
 std::shared_ptr<class Texture> Renderer::getTexture(const std::string& fileName)

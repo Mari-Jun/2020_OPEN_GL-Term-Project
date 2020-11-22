@@ -100,8 +100,8 @@ void GameScene::loadActorData()
 
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
-	particle->setPosition(control->getPosition());
 	particle->setScale(300.0f);
+	particle->setPosition(control->getPosition() + Vector3::UnitY * 200.0f);
 	particle->initailize();
 
 	//Create Minion

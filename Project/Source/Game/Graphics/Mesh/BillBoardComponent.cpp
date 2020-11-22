@@ -31,7 +31,10 @@ void BillBoardComponent::draw(std::unique_ptr<Shader>& shader)
 {
 	if (mTexture)
 	{
-		shader->setMatrixUniform("uWorldTransform", mOwner.lock()->getWorldTransform());
+		Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(mTexWidth), static_cast<float>(mTexHeight), 1.0f);
+		Matrix4 pi = mOwner.lock()->getWorldTransform();
+
+		shader->setMatrixUniform("uWorldTransform", pi);
 		shader->SetVectorUniform("uAmbientLight", Vector3(1.0f, 1.0f, 1.0f));
 		shader->SetVectorUniform("uColor", Vector3(1.0f, 1.0f, 1.0f));
 

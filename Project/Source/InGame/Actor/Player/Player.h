@@ -1,6 +1,14 @@
 #pragma once
 #include "../../../Game/Actor/Actor.h"
 
+struct PlayerStat
+{
+	float mHp;
+	float mMaxHp;
+	float mDef;
+	float mSpeed;
+};
+
 class Player : public Actor
 {
 public:
@@ -24,8 +32,10 @@ public:
 
 private:
 	PlayerType mType;
+	PlayerStat mStat;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
+	std::shared_ptr<class Actor> mHealthBar;
 	float mMoveSpeed;
 	float mGravitySpeed;
 
