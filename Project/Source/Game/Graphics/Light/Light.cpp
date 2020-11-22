@@ -23,13 +23,13 @@ void Light::initailize()
 	mAmbientLight = Vector3(0.1f, 0.1f, 0.1f);
 
 	DirectionalLight dirLight = loadDirectionalLight();
-	//mDirLight.push_back(dirLight);
+	mDirLight.push_back(dirLight);
 
-	PointLight pLight = loadPointLight();
-	mPointLight.push_back(pLight);
+	//PointLight pLight = loadPointLight();
+	//mPointLight.push_back(pLight);
 
-	SpotLight sLight = loadSpotLight();
-	mSpotLight.push_back(sLight);
+	//SpotLight sLight = loadSpotLight();
+	//mSpotLight.push_back(sLight);
 }
 
 void Light::update(float deltatime)
