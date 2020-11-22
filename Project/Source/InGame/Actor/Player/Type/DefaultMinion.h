@@ -11,4 +11,7 @@ public:
 
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
+
+private:
+	std::shared_ptr<class Actor> mHealthBar;
 };

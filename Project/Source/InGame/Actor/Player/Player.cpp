@@ -7,10 +7,13 @@
 #include "../../../Game/Component/MoveComponent.h"
 #include "../../../Game/Component/BoxComponent.h"
 #include "../../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../../Game/Graphics/Mesh/BillBoardComponent.h"	
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
+
 Player::Player(const std::weak_ptr<class Scene>& scene, PlayerType type)
 	: Actor(scene, Type::Player)
+	, mStat({})
 	, mType(type)
 	, mMoveSpeed(200.0f)
 	, mGravitySpeed(0.0f)

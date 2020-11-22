@@ -40,6 +40,7 @@ public:
 private:
 	bool loadShader();
 	void createSpriteVertex();
+	void createBillBoardVertex();
 	
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
@@ -59,16 +60,21 @@ private:
 	std::unique_ptr<class Shader> mMeshShader;
 	std::unique_ptr<class Shader> mSpriteShader;
 	std::unique_ptr<class VertexArray> mSpriteVertex;
+	std::unique_ptr<class VertexArray> mBillBoardVertex;
 	
 	Matrix4 mView;
+	Matrix4 mInvertView;
 	Matrix4 mProjection;
 
 	std::unique_ptr<class Light> mLight;
 	std::unique_ptr<class Window> mWindow;
 
 public:
-	void setViewMatrix(const Matrix4& view) { mView = view; }
+	void setViewMatrix(const Matrix4& view) { mView = view; setInvertView(); }
+	void setInvertView() { mInvertView = mView; mInvertView.Invert(); }
 	void setProjectionMatrix(const Matrix4& projection) { mProjection = projection; }
+	const Matrix4& getViewMatrix() const { return mView; }
+	const Matrix4& getInvertViewMatrix() const { return mInvertView; }
 
 	const std::weak_ptr<class Game>& getGame() const { return mGame; }
 	std::shared_ptr<class Texture> getTexture(const std::string& fileName);
