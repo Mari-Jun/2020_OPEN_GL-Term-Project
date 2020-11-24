@@ -13,13 +13,14 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
-	virtual void setStat(PlayerInfo info) override;
-
 private:
 	std::weak_ptr<class MinionAi> AiWay;
 	std::pair<int, int> target;
 	int targetIndex = -1;
 	Vector3 targetPos;
+
+private:
+	virtual void setStat(PlayerInfo info) override;
 
 private:
 	void moveforDFS();

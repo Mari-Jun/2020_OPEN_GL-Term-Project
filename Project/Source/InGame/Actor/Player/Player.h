@@ -27,10 +27,7 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
-	void updateGravity(float deltatime);
-
 	void collides(const std::weak_ptr<class BoxComponent>& bComp);
-	virtual void setStat(PlayerInfo info);
 
 private:
 	PlayerType mType;
@@ -39,20 +36,27 @@ private:
 	std::shared_ptr<class Actor> mHealthBar;
 	float mGravitySpeed;
 
-protected:
-	PlayerStat mStat;
-	std::shared_ptr<class MoveComponent> mMoveComponent;
-
-private:
 	std::shared_ptr<class RobotHead> mHead;
 	std::shared_ptr<class RobotArm> mLeftArm;
 	std::shared_ptr<class RobotArm> mRightArm;
 	std::shared_ptr<class RobotLeg> mLeftLeg;
 	std::shared_ptr<class RobotLeg> mRightLeg;
 
+private:
+	void updateGravity(float deltatime);
+	void updateBody();
+	virtual void setStat(PlayerInfo info);
+
+protected:
+	PlayerStat mStat;
+	std::shared_ptr<class MoveComponent> mMoveComponent;
+
 public:
 	PlayerType getType() const { return mType; }
 	void setPlayerTexture(const std::string& fileName);
 	float getGravitySpeed() const { return mGravitySpeed; }
 	void setGravitySpeed(float speed) { mGravitySpeed = speed; }
+
+	void decreaseHp(float damage);
+	void increaseHp(float hill);
 };
