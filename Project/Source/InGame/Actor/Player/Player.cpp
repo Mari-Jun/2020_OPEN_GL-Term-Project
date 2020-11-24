@@ -17,7 +17,7 @@ Player::Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info, PlayerT
 	, mType(type)
 	, mGravitySpeed(0.0f)
 {
-	
+
 }
 
 Player::~Player()
@@ -82,8 +82,32 @@ void Player::updateActor(float deltatime)
 
 	collides(mBoxComponent);
 
+	mHealthBar->setScale(Vector3(0.1f, 0.1f, 0.1f) - 0.1f * Vector3(1.0f, 0.0f, 1.0f) * (1.0f - (mStat.mHp) / mStat.mMaxHp));
 	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
+	
 
+	updateBody();
+}
+
+void Player::actorInput()
+{
+	
+}
+
+void Player::updateGravity(float deltatime)
+{
+	//중력 설정
+	if (mGravitySpeed > -10000.0f)
+		mGravitySpeed -= 100.0f;
+
+	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
+	mMoveComponent->setForwardSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
+	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
+}
+
+
+void Player::updateBody()
+{
 	mHead->setRotation(getRotation());
 	mHead->setPosition(getPosition());
 
@@ -106,22 +130,6 @@ void Player::updateActor(float deltatime)
 		mLeftLeg->setMove(true);
 		mRightLeg->setMove(true);
 	}
-}
-
-void Player::actorInput()
-{
-	
-}
-
-void Player::updateGravity(float deltatime)
-{
-	//중력 설정
-	if (mGravitySpeed > -10000.0f)
-		mGravitySpeed -= 100.0f;
-
-	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
-	mMoveComponent->setForwardSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
-	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
 }
 
 void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
@@ -177,7 +185,7 @@ void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 
 void Player::setStat(PlayerInfo info)
 {
-	std::cout << ":???\n";
+
 }
 
 void Player::setPlayerTexture(const std::string& fileName)
@@ -190,4 +198,15 @@ void Player::setPlayerTexture(const std::string& fileName)
 	mLeftLeg->setPlayerTexture(fileName, index);
 	mRightLeg->setPlayerTexture(fileName, index);
 	mHead->setPlayerTexture(fileName, index);
+}
+
+void Player::decreaseHp(float damage)
+{
+	damage = damage - damage / 100.0f * 5 * mStat.mDef;
+	mStat.mHp = Math::Max(mStat.mHp - damage, 0.0f);
+}
+
+void Player::increaseHp(float hill)
+{
+	mStat.mHp = Math::Min(mStat.mHp + hill, mStat.mMaxHp);
 }

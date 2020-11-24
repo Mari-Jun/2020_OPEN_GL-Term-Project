@@ -12,5 +12,6 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
+private:
 	virtual void setStat(PlayerInfo info) override;
 };

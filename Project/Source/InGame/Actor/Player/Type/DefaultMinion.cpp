@@ -61,6 +61,8 @@ void DefaultMinion::setStat(PlayerInfo info)
 	case 1: mStat.mSpeed = 200.0f; break;
 	default: break;
 	}
+
+	mStat.mHp = mStat.mMaxHp;
 }
 
 

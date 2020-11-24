@@ -1,5 +1,5 @@
 Line 1 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 EndPoint 0 
+Type Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 EndPoint 0 
 Line 2 20
 Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 3 20
