@@ -14,10 +14,6 @@ public:
 	virtual void actorInput() override;
 
 	virtual void setStat(PlayerInfo info) override;
-	void moveforDFS();
-	void settingforDFS();
-	void SmoothRotate();
-	bool ChangeTarget();
 
 private:
 	std::weak_ptr<class MinionAi> AiWay;
@@ -27,6 +23,8 @@ private:
 
 private:
 	void moveforDFS();
+	void settingforDFS();
+	void SmoothRotate();
 	bool ChangeTarget();
 
 	Vector3 repos;
