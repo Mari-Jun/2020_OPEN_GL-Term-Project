@@ -29,14 +29,14 @@ void ControlPlayer::actorInput()
 {
 	auto game = getGame().lock();
 
-	setMoveSpeed(0.0f);
+	mStat.mSpeed = 0.0f;
 
 	if (game->getKeyBoard()->isKeyPressed('w') ||
 		game->getKeyBoard()->isKeyPressed('a') ||
 		game->getKeyBoard()->isKeyPressed('s') ||
 		game->getKeyBoard()->isKeyPressed('d'))
 	{
-		setMoveSpeed(200.0f);
+		mStat.mSpeed = 200.0f;
 	}
 
 	if (game->getKeyBoard()->isKeyPressed(32))
@@ -44,5 +44,5 @@ void ControlPlayer::actorInput()
 		setGravitySpeed(2000.0f);
 	}
 
-	mMoveComponent->setForwardSpeed(getMoveSpeed());
+	mMoveComponent->setForwardSpeed(mStat.mSpeed);
 }

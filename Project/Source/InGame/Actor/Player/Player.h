@@ -32,14 +32,13 @@ public:
 
 private:
 	PlayerType mType;
-	PlayerStat mStat;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 	std::shared_ptr<class Actor> mHealthBar;
-	float mMoveSpeed;
 	float mGravitySpeed;
 
 protected:
+	PlayerStat mStat;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
 
 private:
@@ -52,8 +51,6 @@ private:
 public:
 	PlayerType getType() const { return mType; }
 	void setPlayerTexture(const std::string& fileName);
-	float getMoveSpeed() const { return mMoveSpeed; }
-	void setMoveSpeed(float speed) { mMoveSpeed = speed; }
 	float getGravitySpeed() const { return mGravitySpeed; }
 	void setGravitySpeed(float speed) { mGravitySpeed = speed; }
 };

@@ -15,7 +15,6 @@ Player::Player(const std::weak_ptr<class Scene>& scene, PlayerType type)
 	: Actor(scene, Type::Player)
 	, mStat({})
 	, mType(type)
-	, mMoveSpeed(200.0f)
 	, mGravitySpeed(0.0f)
 {
 
@@ -105,7 +104,7 @@ void Player::updateActor(float deltatime)
 	mRightLeg->setPosition(getPosition());
 	mRightLeg->setRotation(getRotation());
 
-	if (mMoveSpeed != 0.0f)
+	if (mStat.mSpeed != 0.0f)
 	{
 		mLeftArm->setMove(true);
 		mRightArm->setMove(true);

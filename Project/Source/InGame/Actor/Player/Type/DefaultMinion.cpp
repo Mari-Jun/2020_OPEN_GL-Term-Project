@@ -23,7 +23,7 @@ void DefaultMinion::initailize()
 {
 	Player::initailize();
 	setPlayerTexture("Asset/Mesh/Player/skin_robot.png");
-	setMoveSpeed(200.0f);		
+	mStat.mSpeed = 200.0f;
 }
 
 void DefaultMinion::updateActor(float deltatime)
@@ -38,7 +38,7 @@ void DefaultMinion::actorInput()
 	auto game = getGame().lock();
 
 
-	mMoveComponent->setForwardSpeed(getMoveSpeed());
+	mMoveComponent->setForwardSpeed(mStat.mSpeed);
 }
 
 bool DefaultMinion::ChangeTarget()
@@ -77,7 +77,4 @@ void DefaultMinion::moveforDFS()
 	rotateToNewForward(repos);
 
 	targetIndex += 1;
-
-	
-
 }
