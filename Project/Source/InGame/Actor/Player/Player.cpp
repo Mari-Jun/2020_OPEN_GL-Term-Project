@@ -50,7 +50,6 @@ void Player::initailize()
 	hp->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Player/RedBar.png"));
 	hp->initailize();
 	mHealthBar->setScale(0.1f);
-	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
 	mHealthBar->initailize();
 
 	//Create Head
@@ -70,10 +69,6 @@ void Player::initailize()
 	//Create Leg
 	mLeftLeg = std::make_shared<RobotLeg>(getScene(), false);
 	mLeftLeg->setScale(getScale());
-	//ÀÌ·± ´À³¦
-	auto leftLegPos = -1 * getUp() * (mLeftLeg->getScale().y + getScale().y) / 2 - getSide() * mLeftLeg->getScale().x;
-	mBoxComponent->updateObjectBox(leftLegPos + mLeftLeg->getScale() / 2);
-	mBoxComponent->updateObjectBox(leftLegPos - mLeftLeg->getScale() / 2);
 	mLeftLeg->initailize();
 
 	mRightLeg = std::make_shared<RobotLeg>(getScene(), true);
