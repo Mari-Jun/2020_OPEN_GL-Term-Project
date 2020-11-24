@@ -110,6 +110,8 @@ void EditScene::loadData()
 		}, Vector2(500.0f, -300.0f), "Asset/Image/Button/SaveButton");
 	ui->addButton([this]() {mSceneHelper->changeToTitleScene(mInfo); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/HomeButton");
 
+
+	mEditor = std::make_unique<MapEditor>(weak_from_this());
 	loadBoard();
 	if (!loadGameMap())
 	{
@@ -131,11 +133,7 @@ bool EditScene::loadGameMap()
 	if (newMap->loadMap(fileName))
 	{
 		mGameMap.swap(newMap);
-		mEditor = std::make_unique<MapEditor>(weak_from_this(), mGameMap);
-		mEditor->setLeftBoardPos(mLeftBoardPos);
-		mEditor->setLeftBoardTexSize(mLeftBoardTexSize);
-		mEditor->setRightBoardPos(mRightBoardPos);
-		mEditor->setRightBoardTexSize(mRightBoardTexSize);
+		mEditor->setGameMap(mGameMap);		
 		return true;
 	}
 	return false;	
@@ -152,18 +150,22 @@ void EditScene::loadBoard()
 	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/left_board.png"));
 	image->initailize();
 
-	mLeftBoardPos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
-	mLeftBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
+	auto pos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
+	auto size = Vector2(image->getTexWidth(), image->getTexHeight());
+
+	mEditor->setBoard("Left", pos, size);
 
 	//Create Right Board
 	actor = std::make_shared<Actor>(weak_from_this());
-	actor->setPosition(Vector3(500.0f, 130.0f, 0.0f));
+	actor->setPosition(Vector3(500.0f, 230.0f, 0.0f));
 	actor->initailize();
 
 	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
 	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/right_board.png"));
 	image->initailize();
 
-	mRightBoardPos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
-	mRightBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
+	pos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
+	size = Vector2(image->getTexWidth(), image->getTexHeight());
+
+	mEditor->setBoard("Right", pos, size);
 }

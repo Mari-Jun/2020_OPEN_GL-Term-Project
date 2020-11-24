@@ -36,10 +36,11 @@ private:
 	int mMapSize;
 	Vector3 mPosition;
 	std::vector<std::vector<std::weak_ptr<class Tile>>> mTiles;
-
-private:
 	Vector3 mStartPosition;
 	Vector3 mEndPosition;
+
+private:
+	
 
 public:
 	const Vector3& getStartPosition() const { return mStartPosition; }

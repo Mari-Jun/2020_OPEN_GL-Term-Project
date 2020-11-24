@@ -11,12 +11,10 @@
 #include "../../../Game/Graphics/Mesh/SpriteComponent.h"
 
 
-MapEditor::MapEditor(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class GameMap>& gameMap)
+MapEditor::MapEditor(const std::weak_ptr<class Scene>& scene)
 	: mScene(scene)
-	, mGameMap(gameMap)
 	, mSelectMapIndex({ 10,10 })
 	, mSelectBoardIndex({ -1,-1 })
-	, mLeftBoardPos(Vector2::Zero)
 {
 	loadData();
 }
@@ -61,6 +59,30 @@ void MapEditor::loadData()
 	auto borderBoard = std::make_shared<SpriteComponent>(mSelectorBoard, game->getRenderer(), 600);
 	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderBoard->initailize();
+}
+
+void  MapEditor::setGameMap(const std::weak_ptr<class GameMap>& gameMap)
+{
+	mGameMap = gameMap;
+}
+
+void MapEditor::setBoard(const std::string& type, const Vector2& pos, const Vector2& size)
+{
+	if (type == "Left")
+	{
+		mLeftBoard.mPos = pos;
+		mLeftBoard.mSize = size;
+	}
+	else if (type == "Right")
+	{
+		mRightBoard.mPos = pos;
+		mRightBoard.mSize = size;
+	}
+	else
+	{
+		mTimeBoard.mPos = pos;
+		mTimeBoard.mSize = size;
+	}
 }
 
 void MapEditor::changeTile()
@@ -149,15 +171,15 @@ void MapEditor::checkLeftBoard()
 {
 	auto tileSize = 80.0f;
 
-	if (mLeftBoardPos.x < mClickPos.x && mClickPos.x < mLeftBoardPos.x + mLeftBoardTexSize.x &&
-		mLeftBoardPos.y > mClickPos.y && mClickPos.y > mLeftBoardPos.y - mLeftBoardTexSize.y)
+	if (mLeftBoard.mPos.x < mClickPos.x && mClickPos.x < mLeftBoard.mPos.x + mLeftBoard.mSize.x &&
+		mLeftBoard.mPos.y > mClickPos.y && mClickPos.y > mLeftBoard.mPos.y - mLeftBoard.mSize.y)
 	{		
 		mSelectBoardIndex = 
-		{ static_cast<int>((mLeftBoardPos.y - mClickPos.y) / 100.0f),
-			static_cast<int>((mClickPos.x - mLeftBoardPos.x) / 100.0f) };
+		{ static_cast<int>((mLeftBoard.mPos.y - mClickPos.y) / 100.0f),
+			static_cast<int>((mClickPos.x - mLeftBoard.mPos.x) / 100.0f) };
 
-		auto selectXPos = mLeftBoardPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mLeftBoardPos.y - 20 - mSelectBoardIndex.first * (15 + tileSize) - tileSize / 2;
+		auto selectXPos = mLeftBoard.mPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = mLeftBoard.mPos.y - 20 - mSelectBoardIndex.first * (15 + tileSize) - tileSize / 2;
 		mSelectorBoard->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
 	}
 }
@@ -166,15 +188,15 @@ void MapEditor::checkRightBoard()
 {
 	auto tileSize = 80.0f;
 
-	if (mRightBoardPos.x < mClickPos.x && mClickPos.x < mRightBoardPos.x + mRightBoardTexSize.x &&
-		mRightBoardPos.y > mClickPos.y && mClickPos.y > mRightBoardPos.y - mRightBoardTexSize.y)
+	if (mRightBoard.mPos.x < mClickPos.x && mClickPos.x < mRightBoard.mPos.x + mRightBoard.mSize.x &&
+		mRightBoard.mPos.y > mClickPos.y && mClickPos.y > mRightBoard.mPos.y - mRightBoard.mSize.y)
 	{
 		mSelectBoardIndex =
-		{ static_cast<int>((mRightBoardPos.y - mClickPos.y) / 100.0f) + 6,
-			static_cast<int>((mClickPos.x - mRightBoardPos.x) / 100.0f) };
+		{ static_cast<int>((mRightBoard.mPos.y - mClickPos.y) / 100.0f) + 6,
+			static_cast<int>((mClickPos.x - mRightBoard.mPos.x) / 100.0f) };
 
-		auto selectXPos = mRightBoardPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mRightBoardPos.y - 20 - (mSelectBoardIndex.first - 6) * (15 + tileSize) - tileSize / 2;
+		auto selectXPos = mRightBoard.mPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = mRightBoard.mPos.y - 20 - (mSelectBoardIndex.first - 6) * (15 + tileSize) - tileSize / 2;
 		mSelectorBoard->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
 	}
 }
