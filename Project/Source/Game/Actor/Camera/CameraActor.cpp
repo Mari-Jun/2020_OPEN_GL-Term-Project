@@ -66,6 +66,7 @@ void CameraActor::InputBasic()
 
 	float forwardSpeed = 0.0f;
 	float sideSpeed = 0.0f;
+	float upSpeed = 0.0f;
 	float angluarSpeed = 0.0f;
 
 	if (game->getKeyBoard()->isKeyPressed('w'))
@@ -92,16 +93,14 @@ void CameraActor::InputBasic()
 	{
 		angluarSpeed = Math::TwoPi / 5;
 	}
-	if (game->getKeyBoard()->isKeyPressed('r'))
+	if (game->getKeyBoard()->isKeyPressed(32))
 	{
-		Vector3 dis = Vector3(0.0f, 0.0f, 200.0f) - getPosition();
-		setPosition(getPosition() + dis);
-		setPosition(getPosition() - Vector3::Transform(dis, Quaternion(Vector3::UnitY, Math::ToRadians(1))));
-		setRotation(Quaternion::Concatenate(getRotation(), Quaternion(Vector3::UnitY, Math::ToRadians(1))));
+		upSpeed = 100.0f;
 	}
 
 	mMoveComponent->setForwardSpeed(forwardSpeed);
 	mMoveComponent->setSideSpeed(sideSpeed);
+	mMoveComponent->setUpSpeed(upSpeed);
 	mMoveComponent->setAngularSpeed(angluarSpeed);
 }
 
@@ -110,6 +109,7 @@ void CameraActor::InputMouse()
 	auto game = getGame().lock();
 
 	float forwardSpeed = 0.0f;
+	float upSpeed = 0.0f;
 	float sideSpeed = 0.0f;
 
 	//KeyBoard Move
@@ -129,9 +129,14 @@ void CameraActor::InputMouse()
 	{
 		sideSpeed = 300.0f;
 	}
+	if (game->getKeyBoard()->isKeyPressed(32))
+	{
+		upSpeed = 300.0f;
+	}
 
 	mMoveComponent->setForwardSpeed(forwardSpeed);
 	mMoveComponent->setSideSpeed(sideSpeed);
+	mMoveComponent->setUpSpeed(upSpeed);
 
 	float angluarSpeed = 0.0f;
 	float pitchSpeed = 0.0f;

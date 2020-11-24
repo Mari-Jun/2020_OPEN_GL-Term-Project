@@ -31,8 +31,7 @@ void MapEditor::editInput()
 {
 	auto game = mScene.lock()->getGame().lock();
 
-	if (game->getMouse()->getState(GLUT_LEFT_BUTTON) && 
-		game->getMouse()->getFirst(GLUT_LEFT_BUTTON))
+	if (game->getMouse()->getState(GLUT_RIGHT_BUTTON))
 	{
 		mClickPos = game->getMouse()->getPosition();
 		checkTileIndex();

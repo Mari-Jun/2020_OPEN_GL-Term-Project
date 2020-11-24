@@ -100,6 +100,8 @@ void GameScene::loadActorData()
 	//Create CameraActor
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
 	mFollowCamera->initailize();
+	/*auto mCamera = std::make_shared<CameraActor>(weak_from_this());
+	mCamera->initailize();*/
 
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
