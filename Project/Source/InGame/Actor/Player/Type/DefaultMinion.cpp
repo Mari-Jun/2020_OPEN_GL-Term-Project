@@ -6,12 +6,11 @@
 #include "MinionAi/MinionAi.h"
 #include <memory>
 
-DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class MinionAi>& ai)
-	: 
-	Player(scene),
-	AiWay(ai)
+DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionAi>& ai)
+	: Player(scene, info, PlayerType::Defualt)
+	, AiWay(ai)
 {
-
+	setStat(info);
 }
 
 DefaultMinion::~DefaultMinion()
@@ -39,21 +38,21 @@ void DefaultMinion::actorInput()
 	mMoveComponent->setForwardSpeed(mStat.mSpeed);
 }
 
-void DefaultMinion::setStat(int hpLevel, int defLevel, int speedLevel)
+void DefaultMinion::setStat(PlayerInfo info)
 {
-	switch (hpLevel)
+	switch (info.mHpLevel)
 	{
 	case 1: mStat.mMaxHp = 100.0f; break;
 	default: break;
 	}
 
-	switch (defLevel)
+	switch (info.mDefLevel)
 	{
 	case 1: mStat.mDef = 0.0f; break;
 	default: break;
 	}
 
-	switch (speedLevel)
+	switch (info.mSpeedLevel)
 	{
 	case 1: mStat.mSpeed = 200.0f; break;
 	default: break;

@@ -9,9 +9,9 @@ public:
 	SceneHelper(const std::weak_ptr<class Scene>& scene);
 	~SceneHelper() noexcept;
 
-	void changeToTitleScene(GameInfo info);
-	void changeToGameScene(GameInfo info);
-	void changeToEditScene(GameInfo info);
+	void changeToTitleScene(const GameInfo& info);
+	void changeToGameScene(const GameInfo& info);
+	void changeToEditScene(const GameInfo& info);
 	void quitGame();
 	void createDialog(const std::string& typeName);
 

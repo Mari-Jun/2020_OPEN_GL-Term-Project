@@ -240,9 +240,6 @@
     <ClCompile Include="Source\InGame\UI\HUD\GameHUD.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Scene\CommonScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -477,9 +474,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\UI\HUD\GameHUD.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Scene\CommonScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Info\GameInfo.h">

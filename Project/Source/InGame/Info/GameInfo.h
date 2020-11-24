@@ -1,9 +1,15 @@
 #pragma once
 
-struct GameInfo
+struct PlayerInfo
 {
-	int mStage;
 	int mHpLevel;
 	int mDefLevel;
 	int mSpeedLevel;
+};
+
+struct GameInfo
+{
+	int mStage;
+	PlayerInfo mControlInfo;
+	PlayerInfo mMinionInfo;	
 };

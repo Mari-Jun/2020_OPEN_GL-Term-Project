@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../Game/Actor/Actor.h"
+#include "../../Info/GameInfo.h"
 
 struct PlayerStat
 {
@@ -18,7 +19,7 @@ public:
 		Defualt
 	};
 
-	Player(const std::weak_ptr<class Scene>& scene, PlayerType type = PlayerType::Defualt);
+	Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info, PlayerType type = PlayerType::Defualt);
 	virtual ~Player() noexcept;
 
 	virtual void initailize() override;
@@ -29,7 +30,7 @@ public:
 	void updateGravity(float deltatime);
 
 	void collides(const std::weak_ptr<class BoxComponent>& bComp);
-	virtual void setStat(int hpLevel, int defLevel, int speedLevel);
+	virtual void setStat(PlayerInfo info);
 
 private:
 	PlayerType mType;

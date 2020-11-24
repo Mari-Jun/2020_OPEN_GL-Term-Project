@@ -11,13 +11,13 @@
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
 
-Player::Player(const std::weak_ptr<class Scene>& scene, PlayerType type)
+Player::Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info, PlayerType type)
 	: Actor(scene, Type::Player)
 	, mStat({})
 	, mType(type)
 	, mGravitySpeed(0.0f)
 {
-
+	
 }
 
 Player::~Player()
@@ -175,9 +175,9 @@ void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 	}
 }
 
-void Player::setStat(int hpLevel, int defLevel, int speedLevel)
+void Player::setStat(PlayerInfo info)
 {
-
+	std::cout << ":???\n";
 }
 
 void Player::setPlayerTexture(const std::string& fileName)

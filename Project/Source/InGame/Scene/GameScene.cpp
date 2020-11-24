@@ -92,7 +92,7 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	auto control = std::make_shared<ControlPlayer>(weak_from_this());
+	auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
 	control->setScale(1.5f);
 	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
 	control->initailize();
@@ -110,7 +110,7 @@ void GameScene::loadActorData()
 	particle->initailize();
 
 	//Create Minion
-	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mMinionAi);
+	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mInfo.mMinionInfo, mMinionAi);
 	minion->setScale(1.5f);
 	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
 	minion->initailize();
