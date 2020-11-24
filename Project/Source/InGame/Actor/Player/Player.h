@@ -29,6 +29,7 @@ public:
 	void updateGravity(float deltatime);
 
 	void collides(const std::weak_ptr<class BoxComponent>& bComp);
+	virtual void setStat(int hpLevel, int defLevel, int speedLevel);
 
 private:
 	PlayerType mType;

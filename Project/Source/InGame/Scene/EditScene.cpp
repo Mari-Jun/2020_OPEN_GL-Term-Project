@@ -16,10 +16,10 @@
 #include "../Map/Editer/MapEditor.h"
 #include "../UI/SceneHelper.h"
 
-EditScene::EditScene(const std::weak_ptr<class Game>& game, int stage)
+EditScene::EditScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
-	, mStage(stage)
-	, mSaveButtonPos(Vector2(500.0f, -350.0f))
+	, mInfo(info)
+	, mStage(mInfo.mStage)
 {
 
 }
@@ -59,8 +59,11 @@ void EditScene::sceneInput()
 
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
+		GameInfo ret = mInfo;
+		ret.mStage = mStage;
+
 		setState(State::Dead);
-		auto scene = std::make_shared<GameScene>(getGame(), mStage);
+		auto scene = std::make_shared<GameScene>(getGame(), ret);
 		scene->initailize();
 	}
 
@@ -105,7 +108,7 @@ void EditScene::loadData()
 		mSceneHelper->createDialog("Complete") :
 		mSceneHelper->createDialog("NoComplete"); 
 		}, Vector2(500.0f, -300.0f), "Asset/Image/Button/SaveButton");
-	ui->addButton([this]() {mSceneHelper->changeToTitleScene(); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/HomeButton");
+	ui->addButton([this]() {mSceneHelper->changeToTitleScene(mInfo); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/HomeButton");
 
 	loadBoard();
 	if (!loadGameMap())

@@ -175,6 +175,11 @@ void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 	}
 }
 
+void Player::setStat(int hpLevel, int defLevel, int speedLevel)
+{
+
+}
+
 void Player::setPlayerTexture(const std::string& fileName)
 {
 	auto index = static_cast<int>(mType);

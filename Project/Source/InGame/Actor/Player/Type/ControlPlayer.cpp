@@ -28,15 +28,14 @@ void ControlPlayer::updateActor(float deltatime)
 void ControlPlayer::actorInput()
 {
 	auto game = getGame().lock();
-
-	mStat.mSpeed = 0.0f;
+	auto speed = 0.0f;
 
 	if (game->getKeyBoard()->isKeyPressed('w') ||
 		game->getKeyBoard()->isKeyPressed('a') ||
 		game->getKeyBoard()->isKeyPressed('s') ||
 		game->getKeyBoard()->isKeyPressed('d'))
 	{
-		mStat.mSpeed = 200.0f;
+		speed = mStat.mSpeed;
 	}
 
 	if (game->getKeyBoard()->isKeyPressed(32))
@@ -44,5 +43,26 @@ void ControlPlayer::actorInput()
 		setGravitySpeed(2000.0f);
 	}
 
-	mMoveComponent->setForwardSpeed(mStat.mSpeed);
+	mMoveComponent->setForwardSpeed(speed);
+}
+
+void ControlPlayer::setStat(int hpLevel, int defLevel, int speedLevel)
+{
+	switch (hpLevel)
+	{
+	case 1: mStat.mMaxHp = 100.0f; break;
+	default: break;
+	}
+
+	switch (defLevel)
+	{
+	case 1: mStat.mDef = 0.0f; break;
+	default: break;
+	}
+
+	switch (speedLevel)
+	{
+	case 1: mStat.mSpeed = 200.0f; break;
+	default: break;
+	}
 }

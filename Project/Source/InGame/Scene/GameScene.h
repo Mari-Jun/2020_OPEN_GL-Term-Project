@@ -1,10 +1,11 @@
 #pragma once
+#include "../Info/GameInfo.h"
 #include "../../Game/Scene/Scene.h"
 
 class GameScene : public Scene
 {
 public:
-	GameScene(const std::weak_ptr<class Game>& game, int stage = 1);
+	GameScene(const std::weak_ptr<class Game>& game, GameInfo info);
 	virtual ~GameScene();
 
 	virtual void initailize();
@@ -19,7 +20,7 @@ private:
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;
 	std::shared_ptr<class GameMap> mGameMap;
 	std::shared_ptr<class MinionAi> mMinionAi;
-	int mStage;
+	GameInfo mInfo;
 
 private:
 	void loadActorData();

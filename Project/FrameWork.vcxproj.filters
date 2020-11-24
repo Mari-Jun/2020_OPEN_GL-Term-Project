@@ -168,9 +168,6 @@
     <ClCompile Include="Source\InGame\Scene\EditScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Info\GameInfo.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -241,6 +238,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Source\InGame\UI\HUD\GameHUD.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InGame\Scene\CommonScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -407,9 +407,6 @@
     <ClInclude Include="Source\InGame\Scene\EditScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Info\GameInfo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -480,6 +477,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\UI\HUD\GameHUD.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Scene\CommonScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Info\GameInfo.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

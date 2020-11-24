@@ -11,4 +11,6 @@ public:
 
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
+
+	virtual void setStat(int hpLevel, int defLevel, int speedLevel) override;
 };

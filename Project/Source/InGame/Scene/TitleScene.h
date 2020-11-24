@@ -1,11 +1,12 @@
 #pragma once
+#include "../Info/GameInfo.h"
 #include "../../Game/Scene/Scene.h"
 #include "../../Game/Math/Math.h"
 
 class TitleScene : public Scene
 {
 public:
-	TitleScene(const std::weak_ptr<class Game>& game, int stage = 1);
+	TitleScene(const std::weak_ptr<class Game>& game, GameInfo info);
 	virtual ~TitleScene();
 
 	virtual void initailize();
@@ -18,5 +19,5 @@ public:
 
 private:
 	std::unique_ptr<class SceneHelper> mSceneHelper;
-	int mStage; //юс╫ц
+	GameInfo mInfo;
 };

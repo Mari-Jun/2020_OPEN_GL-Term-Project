@@ -20,9 +20,9 @@
 #include "../UI/HUD/GameHUD.h"
 
 
-GameScene::GameScene(const std::weak_ptr<class Game>& game, int stage)
+GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
-	, mStage(stage)
+	, mInfo(info)
 {
 
 }
@@ -67,7 +67,7 @@ void GameScene::sceneInput()
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
-		auto scene = std::make_shared<EditScene>(getGame(), mStage);
+		auto scene = std::make_shared<EditScene>(getGame(), mInfo);
 		scene->initailize();
 	}
 }
@@ -120,7 +120,7 @@ void GameScene::loadGameMap()
 {
 	mGameMap = std::make_shared<GameMap>(weak_from_this());
 	std::string file = "Asset/Map/Stage";
-	file += std::to_string(mStage);
+	file += std::to_string(mInfo.mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
 

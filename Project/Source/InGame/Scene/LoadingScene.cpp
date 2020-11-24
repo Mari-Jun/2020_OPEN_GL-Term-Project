@@ -4,7 +4,7 @@
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
 #include "../../Game/Sound/Sound.h"
-
+#include "../Info/GameInfo.h"
 
 LoadingScene::LoadingScene(const std::weak_ptr<class Game>& game)
 	: Scene(game)
@@ -38,7 +38,9 @@ void LoadingScene::sceneUpdate(float deltatime)
 	//조건
 	if (count > 10)
 	{
-		auto scene = std::make_shared<TitleScene>(getGame());
+		GameInfo ret = { 1, 1, 1, 1 }; //나중에 게임 파일로 저장하고 불러와야함
+		
+		auto scene = std::make_shared<TitleScene>(getGame(), ret);
 		scene->initailize();
 		setState(State::Dead);
 	}

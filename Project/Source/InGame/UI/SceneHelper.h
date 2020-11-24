@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include "../Info/GameInfo.h"
 
 class SceneHelper
 {
@@ -8,9 +9,9 @@ public:
 	SceneHelper(const std::weak_ptr<class Scene>& scene);
 	~SceneHelper() noexcept;
 
-	void changeToTitleScene();
-	void changeToGameScene();
-	void changeToEditScene();
+	void changeToTitleScene(GameInfo info);
+	void changeToGameScene(GameInfo info);
+	void changeToEditScene(GameInfo info);
 	void quitGame();
 	void createDialog(const std::string& typeName);
 

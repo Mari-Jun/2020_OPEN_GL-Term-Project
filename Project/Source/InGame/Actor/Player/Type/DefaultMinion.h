@@ -12,8 +12,7 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
-	void moveforDFS();
-	bool ChangeTarget();
+	virtual void setStat(int hpLevel, int defLevel, int speedLevel) override;
 
 private:
 	std::weak_ptr<class MinionAi> AiWay;
@@ -21,4 +20,7 @@ private:
 	int targetIndex = 0;
 	Vector3 targetPos;
 
+private:
+	void moveforDFS();
+	bool ChangeTarget();
 };

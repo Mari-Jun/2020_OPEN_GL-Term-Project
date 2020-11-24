@@ -23,7 +23,6 @@ void DefaultMinion::initailize()
 {
 	Player::initailize();
 	setPlayerTexture("Asset/Mesh/Player/skin_robot.png");
-	mStat.mSpeed = 200.0f;
 }
 
 void DefaultMinion::updateActor(float deltatime)
@@ -37,9 +36,30 @@ void DefaultMinion::actorInput()
 {
 	auto game = getGame().lock();
 
-
 	mMoveComponent->setForwardSpeed(mStat.mSpeed);
 }
+
+void DefaultMinion::setStat(int hpLevel, int defLevel, int speedLevel)
+{
+	switch (hpLevel)
+	{
+	case 1: mStat.mMaxHp = 100.0f; break;
+	default: break;
+	}
+
+	switch (defLevel)
+	{
+	case 1: mStat.mDef = 0.0f; break;
+	default: break;
+	}
+
+	switch (speedLevel)
+	{
+	case 1: mStat.mSpeed = 200.0f; break;
+	default: break;
+	}
+}
+
 
 bool DefaultMinion::ChangeTarget()
 {
@@ -60,7 +80,6 @@ bool DefaultMinion::ChangeTarget()
 	return false;
 
 }
-
 
 void DefaultMinion::moveforDFS()
 {
