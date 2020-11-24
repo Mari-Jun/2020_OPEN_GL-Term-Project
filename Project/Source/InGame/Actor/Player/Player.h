@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../Game/Actor/Actor.h"
+#include "../../Info/GameInfo.h"
 
 struct PlayerStat
 {
@@ -18,7 +19,7 @@ public:
 		Defualt
 	};
 
-	Player(const std::weak_ptr<class Scene>& scene, PlayerType type = PlayerType::Defualt);
+	Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info, PlayerType type = PlayerType::Defualt);
 	virtual ~Player() noexcept;
 
 	virtual void initailize() override;
@@ -29,17 +30,17 @@ public:
 	void updateGravity(float deltatime);
 
 	void collides(const std::weak_ptr<class BoxComponent>& bComp);
+	virtual void setStat(PlayerInfo info);
 
 private:
 	PlayerType mType;
-	PlayerStat mStat;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 	std::shared_ptr<class Actor> mHealthBar;
-	float mMoveSpeed;
 	float mGravitySpeed;
 
 protected:
+	PlayerStat mStat;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
 
 private:
@@ -52,8 +53,6 @@ private:
 public:
 	PlayerType getType() const { return mType; }
 	void setPlayerTexture(const std::string& fileName);
-	float getMoveSpeed() const { return mMoveSpeed; }
-	void setMoveSpeed(float speed) { mMoveSpeed = speed; }
 	float getGravitySpeed() const { return mGravitySpeed; }
 	void setGravitySpeed(float speed) { mGravitySpeed = speed; }
 };

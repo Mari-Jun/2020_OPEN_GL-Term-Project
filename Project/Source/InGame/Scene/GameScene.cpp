@@ -17,11 +17,12 @@
 #include "../Actor/Particle/ParticleCreater.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
+#include "../UI/HUD/GameHUD.h"
 
 
-GameScene::GameScene(const std::weak_ptr<class Game>& game, int stage)
+GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
-	, mStage(stage)
+	, mInfo(info)
 {
 
 }
@@ -66,7 +67,7 @@ void GameScene::sceneInput()
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setState(State::Dead);
-		auto scene = std::make_shared<EditScene>(getGame(), mStage);
+		auto scene = std::make_shared<EditScene>(getGame(), mInfo);
 		scene->initailize();
 	}
 }
@@ -80,6 +81,7 @@ void GameScene::loadData()
 {
 	loadGameMap();
 	loadActorData();
+	loadUI();
 }
 
 void GameScene::unLoadData()
@@ -90,7 +92,7 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	auto control = std::make_shared<ControlPlayer>(weak_from_this());
+	auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
 	control->setScale(1.5f);
 	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
 	control->initailize();
@@ -98,6 +100,8 @@ void GameScene::loadActorData()
 	//Create CameraActor
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
 	mFollowCamera->initailize();
+	/*auto mCamera = std::make_shared<CameraActor>(weak_from_this());
+	mCamera->initailize();*/
 
 	//Create ParticleCreater
 	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
@@ -106,22 +110,26 @@ void GameScene::loadActorData()
 	particle->initailize();
 
 	//Create Minion
-	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mMinionAi);
+	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mInfo.mMinionInfo, mMinionAi);
 	minion->setScale(1.5f);
 	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
 	minion->initailize();
-
 }
 
 void GameScene::loadGameMap()
 {
 	mGameMap = std::make_shared<GameMap>(weak_from_this());
 	std::string file = "Asset/Map/Stage";
-	file += std::to_string(mStage);
+	file += std::to_string(mInfo.mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
 
 	mMinionAi = std::make_shared<MinionAi>(weak_from_this());
 	mMinionAi->initailize(mGameMap->getTiles(), mGameMap->getStartPosIndex(), mGameMap->getEndPosIndex(),mGameMap->getTileSize(),mGameMap->getMapSize());
-	
+}
+
+void GameScene::loadUI()
+{
+	auto gameHUD = std::make_shared<GameHUD>(weak_from_this(), getGame().lock()->getRenderer());
+	gameHUD->initailize();
 }

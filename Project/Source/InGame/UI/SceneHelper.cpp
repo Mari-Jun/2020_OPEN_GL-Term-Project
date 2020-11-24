@@ -18,23 +18,23 @@ SceneHelper::~SceneHelper()
 
 }
 
-void SceneHelper::changeToTitleScene()
+void SceneHelper::changeToTitleScene(const GameInfo& info)
 {
-	auto scene = std::make_shared<TitleScene>(mScene.lock()->getGame());
+	auto scene = std::make_shared<TitleScene>(mScene.lock()->getGame(), info);
 	scene->initailize();
 	mScene.lock()->setState(Scene::State::Dead);
 }
 
-void SceneHelper::changeToGameScene()
+void SceneHelper::changeToGameScene(const GameInfo& info)
 {
-	auto scene = std::make_shared<GameScene>(mScene.lock()->getGame());
+	auto scene = std::make_shared<GameScene>(mScene.lock()->getGame(), info);
 	scene->initailize();
 	mScene.lock()->setState(Scene::State::Dead);
 }
 
-void SceneHelper::changeToEditScene()
+void SceneHelper::changeToEditScene(const GameInfo& info)
 {
-	auto scene = std::make_shared<EditScene>(mScene.lock()->getGame());
+	auto scene = std::make_shared<EditScene>(mScene.lock()->getGame(), info);
 	scene->initailize();
 	mScene.lock()->setState(Scene::State::Dead);
 }
