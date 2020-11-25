@@ -14,4 +14,18 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();
+
+private:
+	std::shared_ptr<class Rock> mRock;
+	float moveY = 0.0;
+	float moveX = 0.0;
+	float moveZ = 0.0;
+	Vector3 forVec;
+public:
+	void reload();
+	void resetRock();
+	void initRock();
+	void initRock(Vector3);
+	void fire();
+
 };
