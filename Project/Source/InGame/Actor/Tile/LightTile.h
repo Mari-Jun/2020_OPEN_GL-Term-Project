@@ -13,4 +13,8 @@ public:
 
 private:
 	std::shared_ptr<class Actor> mLight;
+
+private:
+	void turnOnLight();
+	void turnOffLight();
 };

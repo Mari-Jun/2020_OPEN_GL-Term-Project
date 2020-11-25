@@ -56,16 +56,18 @@ public:
 	void resetAllLight();
 
 	void setAmbientLight(const Vector3& light) { mAmbientLight = light; }
-	void addDirectionalLight(const DirectionalLight& light);
-	void addPointLight(const PointLight& light);
-	void addSpotLight(const SpotLight& light);
+	void addDirectionalLight(const std::shared_ptr<DirectionalLight>& light);
+	void addPointLight(const std::shared_ptr<PointLight>& light);
+	void addSpotLight(const std::shared_ptr<SpotLight>& light);
+	void removePointLight(const std::shared_ptr<PointLight>& light);
+	void removeSpotLight(const std::shared_ptr<SpotLight>& light);
 
 private:
 	std::weak_ptr<class Renderer> mRenderer;
 	Vector3 mAmbientLight;
-	std::vector<struct DirectionalLight> mDirLight;
-	std::vector<struct PointLight> mPointLight;
-	std::vector<struct SpotLight> mSpotLight;
+	std::vector<std::shared_ptr<DirectionalLight>> mDirLight;
+	std::vector<std::shared_ptr<PointLight>> mPointLight;
+	std::vector<std::shared_ptr<SpotLight>> mSpotLight;
 	bool mIsRot[3];
 	bool mAnimation;
 };
