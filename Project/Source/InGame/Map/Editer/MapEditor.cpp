@@ -2,9 +2,9 @@
 #include <sstream>
 #include "MapEditor.h"
 #include "../GameMap.h"
+#include "../../Scene/EditScene.h"
 #include "../../../Game/Graphics/Window.h"
 #include "../../../Game/Game.h"
-#include "../../../Game/Scene/Scene.h"
 #include "../../Actor/Tile/Tile.h"
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Input/Mouse.h"
@@ -166,7 +166,7 @@ void MapEditor::changeTime()
 	default: break;
 	}
 
-	mGameMap.lock()->setTime(type);
+	std::dynamic_pointer_cast<EditScene>(mScene.lock())->loadGameMap(type);
 }
 
 

@@ -58,6 +58,7 @@ public:
 	void updateWorldTransform();
 	void convertWorldTransform(Matrix4& worldTransform);
 	void rotateToNewForward(const Vector3& forward);
+	void rotateToNewForwardNotY(const Vector3& forward);
 	const Matrix4 getWorldTransform() const { return mWorldTransform; }
 
 	const Vector3& getPosition() const { return mPosition; }
