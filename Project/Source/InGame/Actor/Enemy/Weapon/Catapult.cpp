@@ -6,7 +6,6 @@ Catapult::Catapult(const std::weak_ptr<class Scene>& scene)
 	: Weapon(scene)
 {
 	setAttackDelay(3.0f);
-	forVec = Vector3(0, 0, 0);
 }
 
 Catapult::~Catapult()
@@ -55,10 +54,6 @@ void Catapult::initRock(Vector3 toVec)
 	rotateToNewForward(toVec);
 }
 
-void Catapult::resetRock()
-{
-	mRock.reset();
-}
 
 void Catapult::updateActor(float deltatime)
 {
@@ -70,12 +65,10 @@ void Catapult::updateActor(float deltatime)
 	{
 		if (getCurDelay() == 0.0f)
 		{
-
 			attack();
 		}
 
 		attackMotion();
-
 
 	}
 
@@ -94,7 +87,6 @@ void Catapult::actorInput()
 
 void Catapult::attack()
 {
-	auto target = getTarget().lock();
 
 	fire();
 	
@@ -106,30 +98,22 @@ void Catapult::fire()
 	//여기에 발사된거를 스피드를 주고
 	mRock->setflag(true);
 	float Distxz = 0.0f;
-	float Disty = 0.0f;
-	if (!getTarget().expired())
-	{
-		auto toVec = getTarget().lock()->getPosition() - getPosition();
-		toVec.x = 0;
-		toVec.z = 0;
-		Disty = toVec.Length();
 
-		toVec = getTarget().lock()->getPosition() - getPosition();
-		toVec.y = 0.0f;
-		forVec = toVec;
-		Distxz = toVec.Length();
+	auto toVec = getTarget().lock()->getPosition() - getPosition();
+	toVec.y = 0.0f;
+	Distxz = toVec.Length();
 
+	toVec.Normalize();
+	mRock->rotateToNewForward(toVec);
 
-
-		toVec.Normalize();
-		mRock->rotateToNewForward(toVec);
-
-	}
+	//1.5초가 돌에서 플레이어까지 걸리는 시간 , y도 그렇게 구해줘야하는데 자유낙하방정식으로 들어가버려서 그냥 대충
+	//상수 넣으면서 계산했음 
 	mRock->setforwardSpeed(Distxz / 1.5f);
 	mRock->setupSpeed(350);
 
 
-	//다시 생성해서 캐터펄트가 관리를 하지 못하게 함 
+	//다시 생성해서 캐터펄트가 관리를 하지 못하게 함  사실 이 fire 구문 자체가 타겟이 있을때만 들어오는거라 무조건 타겟이 있긴함
+	// 아래 else문은 지워줘도 무방
 	if (!getTarget().expired())
 	{
 		//타겟이 정해져있다면 타겟기준으로 생성
@@ -143,11 +127,11 @@ void Catapult::fire()
 
 void Catapult::attackMotion()
 {
-	auto firetime = getAttackDelay() / 8;
+	auto AttackDelay_10percent = getAttackDelay() / 10;
 	// 
 
-
-	if (getCurDelay() > getAttackDelay() - 0.5)
+	//발사동작
+	if (getCurDelay() > getAttackDelay() - AttackDelay_10percent * 1.5f)
 	{
 		auto toVec = getTarget().lock()->getPosition() - getPosition();
 		toVec.y = 0.0f;
@@ -157,21 +141,10 @@ void Catapult::attackMotion()
 		if (moveY < 805)
 		{
 			moveY += 10.0f;
-			//moveX -= 20.0f;
 		}
-		/*if (forVec.x * forVec.z < 0)
-		{
-			if (moveY < 805)
-				moveY += 20.0f;
-		}
-		else {
-
-		}*/
-		//setPosition(getPosition() - getForward() * (2.0f - getCurDelay()) * 10.0f);
 	}
-	else
+	else//장전동작
 	{
-
 		auto toVec = getTarget().lock()->getPosition() - getPosition();
 		auto toRockVec = toVec;
 		toVec.y = 0.0f;
@@ -185,21 +158,7 @@ void Catapult::attackMotion()
 		mRock->setPosition(getPosition() - (toRockVec * 80));
 		mRock->rotateToNewForward(toRockVec);
 
-
-		/*auto toVec = Vector3(forVec.x, forVec.y - moveY, forVec.z);
-		toVec.Normalize();
-		rotateToNewForward(toVec);*/
-		/*if (moveY > 0)
-			moveY += -8.0f;*/
 		if(moveY - 5 >0)
 			moveY -= 5;
-		moveX = 0;
-		moveZ = 0;
-		//setPosition(getPosition() - getForward() * getCurDelay() * 90.0f);
 	}
-}
-
-void Catapult::reload()
-{
-	
 }
