@@ -1,10 +1,12 @@
 #include <fstream>
 #include <sstream>
+#include <cmath>
 #include "GameMap.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
 #include "../../Game/Graphics/Light/Light.h"
 #include "../Actor/Tile/Tile.h"
+#include "../Actor/Tile/LightTile.h"
 #include "../Actor/Tile/EnemyTile.h"
 
 GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int mapSize)
@@ -120,7 +122,7 @@ bool GameMap::saveMap()
 			mapFile << "Type ";
 			for (const auto& x : mTiles[y])
 			{
-				auto rot = Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), x.lock()->getRotation())));
+				auto rot = round(Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), x.lock()->getRotation()))));
 				mapFile << x.lock()->getTypeToString() << ' ' << rot * 2 << ' ';
 			}
 			mapFile << '\n';
@@ -141,6 +143,7 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	{
 	case HashCode("Basic"): tile = std::make_shared<Tile>(mScene); break;
 	case HashCode("Road"): tile = std::make_shared<Tile>(mScene, Tile::Type::Road); break;
+	case HashCode("Light"): tile = std::make_shared<LightTile>(mScene, Tile::Type::Light); break;
 	case HashCode("Rock"): tile = std::make_shared<Tile>(mScene, Tile::Type::Rock); break;
 	case HashCode("Hill"): tile = std::make_shared<Tile>(mScene, Tile::Type::Hill); break;
 	case HashCode("Crystal"): tile = std::make_shared<Tile>(mScene, Tile::Type::Crystal); break;

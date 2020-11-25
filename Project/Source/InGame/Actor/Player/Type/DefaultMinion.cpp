@@ -104,9 +104,7 @@ void DefaultMinion::SmoothRotate()
 				Vector3::Dot(repos, Repos);
 			}
 		}
-
-
-		rotateToNewForward(Repos);
+		rotateToNewForwardNotY(Repos);
 	}
 }
 
@@ -121,7 +119,7 @@ void DefaultMinion::moveforDFS()
 
 	repos = targetPos - oldtargetPos;
 	repos.Normalize();
-	rotateToNewForward(repos);
+	rotateToNewForwardNotY(repos);
 
 	targetIndex += 1;
 }

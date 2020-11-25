@@ -104,6 +104,7 @@ void MapEditor::changeTile()
 	{
 	case 0: type = "Road"; break;
 	case 1: type = "Basic"; break;
+	case 2: type = "Light"; break;
 	case 10: type = "Rock"; break;
 	case 11: type = "Hill"; break;
 	case 12: type = "Crystal"; break;

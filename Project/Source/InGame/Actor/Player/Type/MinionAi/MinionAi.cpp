@@ -11,7 +11,9 @@ bool MinionAi::isInside(int y, int x)
 	if (x < 0) return false;
 	if (x > 19) return false;
 	if (mWaypoint[y][x].visit == 1) return false;
-	if (!(mWaypoint[y][x].type == int(Tile::Type::Road) || mWaypoint[y][x].type == int(Tile::Type::EndPoint))) return false;
+	if (!(mWaypoint[y][x].type == int(Tile::Type::Road) || 
+		mWaypoint[y][x].type == int(Tile::Type::EndPoint) ||
+		mWaypoint[y][x].type == int(Tile::Type::Light))) return false;
 
 	return true;
 }
