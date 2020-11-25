@@ -143,7 +143,7 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	{
 	case HashCode("Basic"): tile = std::make_shared<Tile>(mScene); break;
 	case HashCode("Road"): tile = std::make_shared<Tile>(mScene, Tile::Type::Road); break;
-	case HashCode("Light"): tile = std::make_shared<LightTile>(mScene, Tile::Type::Light); break;
+	case HashCode("Light"): tile = std::make_shared<LightTile>(mScene, mScene.lock()->getGame().lock()->getRenderer()->getLight(), mTime); break;
 	case HashCode("Rock"): tile = std::make_shared<Tile>(mScene, Tile::Type::Rock); break;
 	case HashCode("Hill"): tile = std::make_shared<Tile>(mScene, Tile::Type::Hill); break;
 	case HashCode("Crystal"): tile = std::make_shared<Tile>(mScene, Tile::Type::Crystal); break;
@@ -198,7 +198,7 @@ void GameMap::addDirectionalLight()
 	
 	if (mTime == "Sunny")
 	{
-		light->setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
+		light->setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
 		dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 		dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 		dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
@@ -206,17 +206,17 @@ void GameMap::addDirectionalLight()
 	}
 	else if (mTime == "Sunset")
 	{
-		light->setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
-		dirLight.direction = Vector3(-1.0f, 0.1f, 0.0f);
+		light->setAmbientLight(Vector3(0.25f, 0.25f, 0.25f));
+		dirLight.direction = Vector3(-1.0f, 0.2f, 0.0f);
 		dirLight.diffuseColor = Vector3::Rgb(255.0f, 100.0f, 100.0f);
 		dirLight.specularColor = Vector3(0.9f, 0.9f, 0.9f);
-		dirLight.intensity = 0.7f;
+		dirLight.intensity = 1.0f;
 	}
 	else
 	{
-		light->setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
+		light->setAmbientLight(Vector3(0.1f, 0.1f, 0.1f));
 		dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
-		dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
+		dirLight.diffuseColor = Vector3(0.7f, 0.7f, 0.7f);
 		dirLight.specularColor = Vector3(0.3f, 0.3f, 0.3f);
 		dirLight.intensity = 0.1f;
 	}

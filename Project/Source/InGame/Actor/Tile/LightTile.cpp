@@ -5,60 +5,70 @@
 #include "../../../Game/Game.h"
 #include "../../../Game/Graphics/Light/Light.h"
 
-LightTile::LightTile(const std::weak_ptr<class Scene>& scene, Type type)
-	: Tile(scene, type)
+LightTile::LightTile(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Light>& light, const std::string& time)
+	: Tile(scene, Type::Light)
+	, mLight(light)
+	, mTime(time)
 {
 
 }
 
 LightTile::~LightTile()
 {
-	mLight->setState(State::Dead);
+	if (mTime != "Sunny")
+	{
+		turnOffLight();
+	}
+
+	mLightActor->setState(State::Dead);
 }
 
 void LightTile::initailize()
 {
 	Tile::initailize();
 
-	mLight = std::make_shared<Actor>(getScene());
-	mLight->setScale(getScale() * 0.5f);
-	mLight->setRotation(getRotation());
-	mLight->setPosition(getPosition() + getUp() * getScale().y * 0.1f + getSide() * getScale().x * 0.4f);
-	mLight->initailize();
+	mLightActor = std::make_shared<Actor>(getScene());
+	mLightActor->setScale(getScale() * 0.5f);
+	mLightActor->setRotation(getRotation());
+	mLightActor->setPosition(getPosition() + getUp() * getScale().y * 0.1f + getSide() * getScale().x * 0.4f);
+	mLightActor->initailize();
 
 	auto mesh = getGame().lock()->getRenderer()->getMesh("Asset/Mesh/Tile/Road/Tile_Light");
-	auto meshComp = std::make_shared<MeshComponent>(mLight, getGame().lock()->getRenderer());
+	auto meshComp = std::make_shared<MeshComponent>(mLightActor, getGame().lock()->getRenderer());
 	meshComp->setMesh(mesh);
 	meshComp->initailize();
-	auto box = std::make_shared<BoxComponent>(mLight, getGame().lock()->getPhysEngine());
+	auto box = std::make_shared<BoxComponent>(mLightActor, getGame().lock()->getPhysEngine());
 	box->setObjectBox(mesh->getBox());
 	box->initailize();
 
-	turnOnLight();
+	if (mTime != "Sunny")
+	{
+		turnOnLight();
+	}
 }
 
 void LightTile::updateActor(float deltatime)
 {
-	mLight->setRotation(getRotation());
-	mLight->setPosition(getPosition() + getUp() * getScale().y * 0.1f + getSide() * getScale().x * 0.4f);
+	mLightActor->setRotation(getRotation());
+	mLightActor->setPosition(getPosition() + getUp() * getScale().y * 0.1f + getSide() * getScale().x * 0.4f);
 }
 
 void LightTile::turnOnLight()
 {
-	const auto& light = getGame().lock()->getRenderer()->getLight();
-
 	PointLight pLight;
-	pLight.position = mLight->getPosition() + getUp() * getScale().x * 0.6f;
+	pLight.position = mLightActor->getPosition() + getUp() * getScale().x * 0.6f;
 	pLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 	pLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
 	pLight.constant = 1.0f;
-	pLight.linear = 0.0035f;
-	pLight.quadratic = 0.000055f;
+	pLight.linear = 0.007f;
+	pLight.quadratic = 0.0002f;
 
-	light->addPointLight(std::make_shared<PointLight>(pLight));
+	mPointLight = std::make_shared<PointLight>(pLight);
+
+	mLight.lock()->addPointLight(mPointLight);
 }
 
 void LightTile::turnOffLight()
 {
-
+	mLight.lock()->removePointLight(mPointLight);
 }

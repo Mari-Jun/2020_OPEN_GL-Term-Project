@@ -122,13 +122,10 @@ void DefaultMinion::moveforDFS()
 	repos = targetPos - oldtargetPos;
 	repos.Normalize();
 	rotateToNewForwardNotY(repos);
-
-	//targetIndex += 1;
 }
 
 void DefaultMinion::settingforDFS()
 {
-	std::cout << "ÀÎµ¦½º°ª" << targetIndex << std::endl;
 	targetIndex += 1;
 	if (targetIndex != 0)
 		oldrepos = repos;

@@ -59,15 +59,15 @@ public:
 	void addDirectionalLight(const std::shared_ptr<DirectionalLight>& light);
 	void addPointLight(const std::shared_ptr<PointLight>& light);
 	void addSpotLight(const std::shared_ptr<SpotLight>& light);
-	void removePointLight(const std::shared_ptr<PointLight>& light);
-	void removeSpotLight(const std::shared_ptr<SpotLight>& light);
+	void removePointLight(const std::weak_ptr<PointLight>& light);
+	void removeSpotLight(const std::weak_ptr<SpotLight>& light);
 
 private:
 	std::weak_ptr<class Renderer> mRenderer;
 	Vector3 mAmbientLight;
 	std::vector<std::shared_ptr<DirectionalLight>> mDirLight;
-	std::vector<std::shared_ptr<PointLight>> mPointLight;
-	std::vector<std::shared_ptr<SpotLight>> mSpotLight;
+	std::vector<std::weak_ptr<PointLight>> mPointLight;
+	std::vector<std::weak_ptr<SpotLight>> mSpotLight;
 	bool mIsRot[3];
 	bool mAnimation;
 };
