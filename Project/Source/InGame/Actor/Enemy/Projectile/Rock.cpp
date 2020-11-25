@@ -6,6 +6,8 @@
 #include "../../../../Game/Game.h"
 #include "../Weapon/Catapult.h"
 
+#include <random>
+
 Rock::Rock(const std::weak_ptr<class Scene>& scene)
 	: Projectile(scene, Type::Rock)
 	, mLine(Vector3::Zero, Vector3::Zero)
@@ -55,27 +57,17 @@ void Rock::updateActor(float deltatime)
 	}
 	collide();
 
-	if (getPosition().y <= -30.0f)
+	if (getPosition().y <= 10.0f)
 	{
 		setState(State::Dead);
 
-		/*mRock->setPosition(getPosition());
-		mRock->setScale(getScale());
-		mRock->setforwardSpeed(0);
-		mRock->setupSpeed(0);
-		mRock->initailize();
-		mRock->setScale(0.01);
-		*/
-		//auto rock = std::make_shared<Rock>(getScene());
-		//rock->setScale(getScale());
-
-		//auto toVec = Vector3(0, 0, 0);
-		//rock->rotateToNewForward(toVec);
-		//
-		//rock->setPosition(getPosition());
-		//rock->initailize();
-		//rock->setflag(1);
-		//rock->split = true;
+		if (split == false)
+		{
+			for (int i = 0; i < 12; ++i)	//i의 갯수는 파편의 개수
+			{
+				makeSplitRock();
+			}
+		}
 
 	}
 }
@@ -113,4 +105,28 @@ void Rock::collide()
 			}
 		}
 	}
+}
+
+
+void Rock::makeSplitRock()
+{
+	std::random_device rd;
+	std::mt19937 mersenne(rd());
+	std::uniform_int_distribution<int> Rxz(-100, 100);
+	std::uniform_int_distribution<int> RSpeed(50, 100);
+	std::uniform_int_distribution<int> RUpSpeed(200, 350);
+
+	auto rock = std::make_shared<Rock>(getScene());
+	rock->setScale(getScale() * 0.3);
+
+	auto toVec = Vector3(Rxz(mersenne), 0, Rxz(mersenne));
+	toVec.Normalize();
+	rock->rotateToNewForward(toVec);
+
+	rock->setforwardSpeed(RSpeed(mersenne));
+	rock->setupSpeed(RUpSpeed(mersenne));
+	rock->setPosition(getPosition() + Vector3(0, 20, 0));
+	rock->initailize();
+	rock->setflag(1);
+	rock->split = true;
 }
