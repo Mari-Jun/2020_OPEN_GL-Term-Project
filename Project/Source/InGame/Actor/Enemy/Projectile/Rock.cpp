@@ -6,6 +6,8 @@
 #include "../../../../Game/Game.h"
 #include "../Weapon/Catapult.h"
 
+#include <random>
+
 Rock::Rock(const std::weak_ptr<class Scene>& scene)
 	: Projectile(scene, Type::Rock)
 	, mLine(Vector3::Zero, Vector3::Zero)
@@ -55,7 +57,7 @@ void Rock::updateActor(float deltatime)
 	}
 	collide();
 
-	if (getPosition().y <= -30.0f)
+	if (getPosition().y <= 10.0f)
 	{
 		setState(State::Dead);
 
@@ -66,16 +68,30 @@ void Rock::updateActor(float deltatime)
 		mRock->initailize();
 		mRock->setScale(0.01);
 		*/
-		//auto rock = std::make_shared<Rock>(getScene());
-		//rock->setScale(getScale());
+		if (split == false)
+		{
+			std::random_device rd;
+			std::mt19937 mersenne(rd());
+			std::uniform_int_distribution<int> Rxz(-100, 100);
+			std::uniform_int_distribution<int> RSpeed(30, 70);
 
-		//auto toVec = Vector3(0, 0, 0);
-		//rock->rotateToNewForward(toVec);
-		//
-		//rock->setPosition(getPosition());
-		//rock->initailize();
-		//rock->setflag(1);
-		//rock->split = true;
+			for (int i = 0; i < 8; ++i)
+			{
+				auto rock = std::make_shared<Rock>(getScene());
+				rock->setScale(getScale() * 0.2);
+				
+				auto toVec = Vector3(Rxz(mersenne), 0, Rxz(mersenne));
+				toVec.Normalize();
+				rock->rotateToNewForward(toVec);
+
+				rock->setforwardSpeed(RSpeed(mersenne));
+				rock->setupSpeed(350);
+				rock->setPosition(getPosition() + Vector3(0, 10, 0));
+				rock->initailize();
+				rock->setflag(1);
+				rock->split = true;
+			}
+		}
 
 	}
 }
