@@ -1,4 +1,4 @@
-Time Sunny
+Time Sunset
 Line 1 20
 Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
 Line 2 20
