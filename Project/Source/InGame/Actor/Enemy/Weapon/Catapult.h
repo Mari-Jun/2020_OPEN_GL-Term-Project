@@ -20,6 +20,7 @@ private:
 	float moveY = 0.0;
 	float moveX = 0.0;
 	float moveZ = 0.0;
+	float mRockScaleTime = 1;
 	Vector3 forVec;
 public:
 	void reload();
