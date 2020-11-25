@@ -126,13 +126,13 @@ void EditScene::unLoadData()
 	
 }
 
-bool EditScene::loadGameMap()
+bool EditScene::loadGameMap(const std::string& time)
 {
 	auto newMap = std::make_shared<GameMap>(weak_from_this(), 30.0f);
 	std::string fileName = "Asset/Map/Stage";
 	fileName += std::to_string(mStage);
 	fileName += ".txt";
-	if (newMap->loadMap(fileName))
+	if (newMap->loadMap(fileName, time))
 	{
 		mGameMap.swap(newMap);
 		mEditor->setGameMap(mGameMap);		

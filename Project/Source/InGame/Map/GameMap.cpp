@@ -34,7 +34,7 @@ GameMap::~GameMap()
 	}
 }
 
-bool GameMap::loadMap(const std::string& fileName)
+bool GameMap::loadMap(const std::string& fileName, const std::string time)
 {
 	//Open Obj file
 	std::ifstream mapFile(fileName);
@@ -73,7 +73,14 @@ bool GameMap::loadMap(const std::string& fileName)
 		}
 		else if (prefix == "Time")
 		{
-			ss >> mTime;
+			if (time == "None")
+			{
+				ss >> mTime;
+			}
+			else
+			{
+				mTime = time;
+			}
 			addDirectionalLight();
 		}
 	}
@@ -188,6 +195,7 @@ void GameMap::addDirectionalLight()
 	
 	if (mTime == "Sunny")
 	{
+		light->setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
 		dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 		dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 		dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
@@ -195,17 +203,19 @@ void GameMap::addDirectionalLight()
 	}
 	else if (mTime == "Sunset")
 	{
-		dirLight.direction = Vector3(1.0f, -1.0f, 0.0f);
-		dirLight.diffuseColor = Vector3::Rgb(255.0f, 203.0f, 203.0f);
-		dirLight.specularColor = Vector3(0.6f, 0.6f, 0.6f);
-		dirLight.intensity = 1.0f;
+		light->setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
+		dirLight.direction = Vector3(-1.0f, 0.1f, 0.0f);
+		dirLight.diffuseColor = Vector3::Rgb(255.0f, 100.0f, 100.0f);
+		dirLight.specularColor = Vector3(0.9f, 0.9f, 0.9f);
+		dirLight.intensity = 0.7f;
 	}
 	else
 	{
+		light->setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
 		dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 		dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 		dirLight.specularColor = Vector3(0.3f, 0.3f, 0.3f);
-		dirLight.intensity = 0.2f;
+		dirLight.intensity = 0.1f;
 	}
 
 	light->addDirectionalLight(dirLight);

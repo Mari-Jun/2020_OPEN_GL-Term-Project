@@ -55,6 +55,7 @@ public:
 
 	void resetAllLight();
 
+	void setAmbientLight(const Vector3& light) { mAmbientLight = light; }
 	void addDirectionalLight(const DirectionalLight& light);
 	void addPointLight(const PointLight& light);
 	void addSpotLight(const SpotLight& light);
