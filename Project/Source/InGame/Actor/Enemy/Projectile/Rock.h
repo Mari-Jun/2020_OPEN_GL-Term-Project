@@ -20,6 +20,8 @@ private:
 	float forwardSpeed = 100.0f;
 	float upSpeed = -100.0f;
 	bool flag = false;	//false면 초기상태, true면 발사 상태 (움직인단 소리) 
+	bool split = false;	//false면 큰 상태, true면 쪼개진 상태 (더이상 안쪼개짐)
+
 public:
 	void setforwardSpeed(float Speed) { forwardSpeed = Speed; }
 	float getforwardSpeed() const { return forwardSpeed; }
