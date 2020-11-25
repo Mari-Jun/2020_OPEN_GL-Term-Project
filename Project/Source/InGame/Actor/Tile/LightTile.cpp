@@ -48,11 +48,11 @@ void LightTile::turnOnLight()
 	const auto& light = getGame().lock()->getRenderer()->getLight();
 
 	PointLight pLight;
-	pLight.position = mLight->getPosition() + getUp() * getScale().x * 0.5f;
+	pLight.position = mLight->getPosition() + getUp() * getScale().x * 0.6f;
 	pLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 	pLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
 	pLight.constant = 1.0f;
-	pLight.linear = 0.0035;
+	pLight.linear = 0.0035f;
 	pLight.quadratic = 0.000055f;
 
 	light->addPointLight(std::make_shared<PointLight>(pLight));

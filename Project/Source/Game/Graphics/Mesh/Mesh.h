@@ -5,6 +5,13 @@
 #include "../Shader/VertexArray.h"
 #include "../../Physics/Coliision/Collision.h"
 
+struct MTL
+{
+	Vector3 ambientColor;
+	Vector3 diffuseColor;
+	Vector3 specularColor;
+};
+
 class Mesh final
 {
 public:
@@ -12,7 +19,7 @@ public:
 	~Mesh();
 
 	bool load(const std::string& fileName);
-	bool load(const std::string& fileName, std::unordered_map<std::string, Vector3>& mtl);
+	bool load(const std::string& fileName, std::unordered_map<std::string, MTL>& mtl);
 	void unLoad();
 
 	const AABB& getBox() const { return mBox; }

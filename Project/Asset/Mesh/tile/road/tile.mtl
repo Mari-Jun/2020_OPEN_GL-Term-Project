@@ -1,8 +1,26 @@
-# Created by Kenney (www.kenney.nl)
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# ÆÄÀÏ »ý¼ºµÊ: 25.11.2020 22:28:45
 
-newmtl dirt
-Kd 0.9764706 0.7137255 0.4509804
+newmtl tile_dirt
+	Ns 30.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5500 0.5500 0.5500
+	Kd 0.9765 0.7137 0.4510
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
 
-newmtl foliage
-Kd 0.2666667 0.7098039 0.5529412
-
+newmtl tile_foliage
+	Ns 30.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5500 0.5500 0.5500
+	Kd 0.2667 0.7098 0.5529
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000

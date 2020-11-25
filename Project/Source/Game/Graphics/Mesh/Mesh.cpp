@@ -28,7 +28,7 @@ bool Mesh::load(const std::string& fileName)
 		return false;
 	}
 	
-	std::unordered_map<std::string, Vector3> mtl;
+	std::unordered_map<std::string, MTL> mtl;
 	if (!load(fileName, mtl))
 		return false;
 
@@ -118,7 +118,9 @@ bool Mesh::load(const std::string& fileName)
 		vertex[index].position = position[pIndex[index]];
 		vertex[index].texcoord = texcoord[tIndex[index]];
 		vertex[index].normal = normal[nIndex[index]];
-		vertex[index].color = mtl[mtlIndex[index]];
+		vertex[index].ambientColor = mtl[mtlIndex[index]].ambientColor;
+		vertex[index].diffuseColor = mtl[mtlIndex[index]].diffuseColor;
+		vertex[index].specularColor = mtl[mtlIndex[index]].specularColor;
 	}
 
 	setVertexArray(std::make_shared<VertexArray>(vertex, vertex.size(), pIndex, 0));
@@ -132,7 +134,7 @@ bool Mesh::load(const std::string& fileName)
 	return true;
 }
 
-bool Mesh::load(const std::string& fileName, std::unordered_map<std::string, Vector3>& mtl)
+bool Mesh::load(const std::string& fileName, std::unordered_map<std::string, MTL>& mtl)
 {
 	//Open Mtl file
 	std::string mtlName = fileName + ".mtl";
@@ -148,7 +150,7 @@ bool Mesh::load(const std::string& fileName, std::unordered_map<std::string, Vec
 	std::string line = "";
 	std::string prefix = "";
 	std::string name;
-	Vector3 vec3;
+	MTL color;
 	unsigned int tempUInt = 0;
 
 	while (std::getline(mtlFile, line))
@@ -161,11 +163,20 @@ bool Mesh::load(const std::string& fileName, std::unordered_map<std::string, Vec
 		{
 			ss >> name;
 		}
+		else if (prefix == "Ka")
+		{
+			ss >> color.ambientColor.x >> color.ambientColor.y >> color.ambientColor.z;
+		}
 		else if (prefix == "Kd")
 		{
-			ss >> vec3.x >> vec3.y >> vec3.z;
-			mtl.emplace(name, vec3);
+			ss >> color.diffuseColor.x >> color.diffuseColor.y >> color.diffuseColor.z;
 		}
+		else if (prefix == "Ks")
+		{
+			ss >> color.specularColor.x >> color.specularColor.y >> color.specularColor.z;
+			mtl.emplace(name, color);
+		}
+		
 	}
 
 	return true;

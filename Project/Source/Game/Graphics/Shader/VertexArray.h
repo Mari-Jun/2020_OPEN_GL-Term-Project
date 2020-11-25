@@ -8,7 +8,9 @@ struct Vertex
 	Vector3 position;
 	Vector2 texcoord;
 	Vector3 normal;
-	Vector3 color;
+	Vector3 ambientColor;
+	Vector3 diffuseColor;
+	Vector3 specularColor;
 };
 
 class VertexArray final
