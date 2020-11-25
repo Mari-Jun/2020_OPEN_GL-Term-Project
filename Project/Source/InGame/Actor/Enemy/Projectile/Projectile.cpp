@@ -51,7 +51,7 @@ std::shared_ptr<class Mesh> Projectile::loadMesh() const
 	switch (mType)
 	{
 	case Projectile::Type::Arrow: meshName = "Asset/Mesh/Enemy/Arrow"; break;
-	case Projectile::Type::CannonBall: meshName = "Asset/Mesh/Enemy/Arrow"; break;
+	case Projectile::Type::CannonBall: meshName = "Asset/Mesh/Enemy/cannonball"; break;
 	case Projectile::Type::Rock: meshName = "Asset/Mesh/Enemy/stone"; break;
 	case Projectile::Type::Raser: meshName = "Asset/Mesh/Enemy/Arrow"; break;
 	default: break;
