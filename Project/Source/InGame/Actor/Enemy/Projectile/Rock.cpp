@@ -65,17 +65,18 @@ void Rock::updateActor(float deltatime)
 		mRock->setupSpeed(0);
 		mRock->initailize();
 		mRock->setScale(0.01);
+		*/
+		//auto rock = std::make_shared<Rock>(getScene());
+		//rock->setScale(getScale());
 
-		auto rock = std::make_shared<Rock>(getScene());
-		rock->setScale(getScale());
+		//auto toVec = Vector3(0, 0, 0);
+		//rock->rotateToNewForward(toVec);
+		//
+		//rock->setPosition(getPosition());
+		//rock->initailize();
+		//rock->setflag(1);
+		//rock->split = true;
 
-		auto toVec = getTarget().lock()->getPosition() - getPosition();
-		toVec.Normalize();
-		rock->rotateToNewForward(toVec);
-		
-		rock->setPosition(getPosition());
-		rock->initailize();
-		rock->setflag(1);*/
 	}
 }
 
