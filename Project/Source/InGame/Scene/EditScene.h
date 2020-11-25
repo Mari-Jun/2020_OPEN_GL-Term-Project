@@ -17,7 +17,7 @@ public:
 	virtual void loadData();
 	virtual void unLoadData();
 	bool loadGameMap();
-	void loadBoard();
+	void loadBoard(std::string&& name, Vector3&& position);
 
 private:
 	std::shared_ptr<class GameMap> mGameMap;
@@ -25,15 +25,4 @@ private:
 	std::unique_ptr<class SceneHelper> mSceneHelper;
 	GameInfo mInfo;
 	int mStage;
-
-	Vector2 mLeftBoardPos;
-	Vector2 mLeftBoardTexSize;
-	Vector2 mRightBoardPos;
-	Vector2 mRightBoardTexSize;
-
-public:
-	const Vector2& getLeftBoardPos() const { return mLeftBoardPos; }
-	const Vector2& getLeftBoardTexSize() const { return mLeftBoardTexSize; }
-	const Vector2& getRightBoardPos() const { return mRightBoardPos; }
-	const Vector2& getRightBoardTexSize() const { return mRightBoardTexSize; }
 };

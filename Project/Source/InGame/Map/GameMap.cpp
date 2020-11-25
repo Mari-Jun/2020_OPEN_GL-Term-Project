@@ -1,7 +1,9 @@
 #include <fstream>
 #include <sstream>
 #include "GameMap.h"
+#include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
+#include "../../Game/Graphics/Light/Light.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Actor/Tile/EnemyTile.h"
 
@@ -13,6 +15,7 @@ GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int ma
 	, mPosition(Vector3(-mTileSize * mapSize / 2, 0.0f, mTileSize* mapSize / 2))
 	, mStartPosition(Vector3::Zero)
 	, mEndPosition(Vector3::Zero)
+	, mTime("Sunny")
 {
 	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }
@@ -68,6 +71,11 @@ bool GameMap::loadMap(const std::string& fileName)
 				addTile(tileName, y - 1, x, rot);
 			}
 		}
+		else if (prefix == "Time")
+		{
+			ss >> mTime;
+			addDirectionalLight();
+		}
 	}
 
 	std::cerr << fileName << " load complete\n";
@@ -96,6 +104,8 @@ bool GameMap::saveMap()
 		unsigned int y = 0;
 		unsigned int xSize = 0;
 		float rot = 0.0f;
+
+		mapFile << "Time " << mTime << '\n';
 
 		for (auto y = 0; y < mTiles.size(); y++)
 		{
@@ -166,4 +176,38 @@ void GameMap::rotTile(int y, int x)
 {
 	auto tile = mTiles[y][x].lock();
 	tile->setRotation(Quaternion::Concatenate(tile->getRotation(), Quaternion(Vector3::UnitY, Math::ToRadians(90.0f))));
+}
+
+void GameMap::addDirectionalLight()
+{
+	const auto& light = mScene.lock()->getGame().lock()->getRenderer()->getLight();
+
+	light->resetAllLight();
+	
+	DirectionalLight dirLight;
+	
+	if (mTime == "Sunny")
+	{
+		dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
+		dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
+		dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
+		dirLight.intensity = 1.0f;
+	}
+	else if (mTime == "Sunset")
+	{
+		dirLight.direction = Vector3(1.0f, -1.0f, 0.0f);
+		dirLight.diffuseColor = Vector3::Rgb(255.0f, 203.0f, 203.0f);
+		dirLight.specularColor = Vector3(0.6f, 0.6f, 0.6f);
+		dirLight.intensity = 1.0f;
+	}
+	else
+	{
+		dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
+		dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
+		dirLight.specularColor = Vector3(0.3f, 0.3f, 0.3f);
+		dirLight.intensity = 0.2f;
+	}
+
+	light->addDirectionalLight(dirLight);
+
 }

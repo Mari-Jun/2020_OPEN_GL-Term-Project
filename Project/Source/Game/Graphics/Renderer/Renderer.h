@@ -64,7 +64,7 @@ private:
 	Matrix4 mInvertView;
 	Matrix4 mProjection;
 
-	std::unique_ptr<class Light> mLight;
+	std::shared_ptr<class Light> mLight;
 	std::unique_ptr<class Window> mWindow;
 
 public:
@@ -78,6 +78,7 @@ public:
 	std::shared_ptr<class Texture> getTexture(const std::string& fileName);
 	std::shared_ptr<class Mesh> getMesh(const std::string& fileName);
 
+	const std::shared_ptr<class Light>& getLight() const { return mLight; }
 	const std::unique_ptr<class Window>& getWindow() const { return mWindow; }
 	
 private:

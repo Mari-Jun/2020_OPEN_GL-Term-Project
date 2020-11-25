@@ -110,7 +110,11 @@ void EditScene::loadData()
 		}, Vector2(500.0f, -300.0f), "Asset/Image/Button/SaveButton");
 	ui->addButton([this]() {mSceneHelper->changeToTitleScene(mInfo); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/HomeButton");
 
-	loadBoard();
+
+	mEditor = std::make_unique<MapEditor>(weak_from_this());
+	loadBoard("Left", Vector3(-500.0f, 80.0f, 0.0f));
+	loadBoard("Right", Vector3(500.0f, 230.0f, 0.0f));
+	loadBoard("Time", Vector3(500.0f, -30.0f, 0.0f));
 	if (!loadGameMap())
 	{
 		std::cerr << "Error : Load Map\n";
@@ -131,39 +135,26 @@ bool EditScene::loadGameMap()
 	if (newMap->loadMap(fileName))
 	{
 		mGameMap.swap(newMap);
-		mEditor = std::make_unique<MapEditor>(weak_from_this(), mGameMap);
-		mEditor->setLeftBoardPos(mLeftBoardPos);
-		mEditor->setLeftBoardTexSize(mLeftBoardTexSize);
-		mEditor->setRightBoardPos(mRightBoardPos);
-		mEditor->setRightBoardTexSize(mRightBoardTexSize);
+		mEditor->setGameMap(mGameMap);		
 		return true;
 	}
 	return false;	
 }
 
-void EditScene::loadBoard()
+void EditScene::loadBoard(std::string&& name, Vector3&& position)
 {
+	std::string fileName = "Asset/Image/EditScene/" + name + "_board.png";
 	//Create Left Board
 	auto actor = std::make_shared<Actor>(weak_from_this());
-	actor->setPosition(Vector3(-500.0f, 80.0f, 0.0f));
+	actor->setPosition(position);
 	actor->initailize();
 
 	auto image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
-	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/left_board.png"));
+	image->setTexture(getGame().lock()->getRenderer()->getTexture(fileName));
 	image->initailize();
 
-	mLeftBoardPos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
-	mLeftBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
+	auto pos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
+	auto size = Vector2(image->getTexWidth(), image->getTexHeight());
 
-	//Create Right Board
-	actor = std::make_shared<Actor>(weak_from_this());
-	actor->setPosition(Vector3(500.0f, 130.0f, 0.0f));
-	actor->initailize();
-
-	image = std::make_shared<SpriteComponent>(actor, getGame().lock()->getRenderer());
-	image->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/EditScene/right_board.png"));
-	image->initailize();
-
-	mRightBoardPos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
-	mRightBoardTexSize = Vector2(image->getTexWidth(), image->getTexHeight());
+	mEditor->setBoard(name, pos, size);
 }

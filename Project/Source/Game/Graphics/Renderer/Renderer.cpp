@@ -44,7 +44,7 @@ bool Renderer::initailize(const Vector2& size, std::string name)
 	createSpriteVertex();
 
 	//Create Z Rot Light
-	mLight = std::make_unique<Light>(weak_from_this());
+	mLight = std::make_shared<Light>(weak_from_this());
 	mLight->setRotation(2, true);
 	mLight->initailize();
 
