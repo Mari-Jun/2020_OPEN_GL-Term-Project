@@ -16,7 +16,7 @@ public:
 
 	virtual void loadData();
 	virtual void unLoadData();
-	bool loadGameMap();
+	bool loadGameMap(const std::string& time = "None");
 	void loadBoard(std::string&& name, Vector3&& position);
 
 private:

@@ -17,7 +17,7 @@ public:
 	GameMap(const std::weak_ptr<class Scene>& scene, float tileSize = 200.0f, int mapSize = 20);
 	~GameMap() noexcept;
 
-	bool loadMap(const std::string& fileName);
+	bool loadMap(const std::string& fileName, const std::string time = "None");
 	bool saveMap();
 
 	void addTile(const std::string& type, int y, int x, float rot);

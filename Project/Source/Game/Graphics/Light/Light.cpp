@@ -5,7 +5,7 @@
 #include "../../Input/KeyBoard.h"
 
 Light::Light(const std::weak_ptr<class Renderer>& render)
-	: mRenderer(render)
+	: mRenderer(render)	
 	, mIsRot{ false, false, false }
 	, mAnimation(false)
 {
@@ -19,18 +19,7 @@ Light::~Light()
 
 void Light::initailize()
 {
-	//Set Light
-	mAmbientLight = Vector3(0.2f, 0.2f, 0.2f);
-	//mAmbientLight = Vector3(1.0f, 1.0f, 1.0f);
 
-	/*DirectionalLight dirLight = loadDirectionalLight();
-	mDirLight.push_back(dirLight);*/
-
-	//PointLight pLight = loadPointLight();
-	//mPointLight.push_back(pLight);
-
-	//SpotLight sLight = loadSpotLight();
-	//mSpotLight.push_back(sLight);
 }
 
 void Light::update(float deltatime)
