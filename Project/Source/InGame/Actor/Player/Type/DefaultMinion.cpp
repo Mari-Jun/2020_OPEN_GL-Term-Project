@@ -69,6 +69,8 @@ void DefaultMinion::setStat(PlayerInfo info)
 bool DefaultMinion::ChangeTarget()
 {
 	Vector3 tmp = getPosition();
+	//if (targetIndex != -1)
+		//std::cout << "도로 값" << AiWay.lock()->getMinway()[targetIndex].first << ", " << AiWay.lock()->getMinway()[targetIndex].second << std::endl;
 	if (targetIndex == -1)
 	{
 		return true;
@@ -121,11 +123,12 @@ void DefaultMinion::moveforDFS()
 	repos.Normalize();
 	rotateToNewForwardNotY(repos);
 
-	targetIndex += 1;
+	//targetIndex += 1;
 }
 
 void DefaultMinion::settingforDFS()
 {
+	std::cout << "인덱스값" << targetIndex << std::endl;
 	targetIndex += 1;
 	if (targetIndex != 0)
 		oldrepos = repos;
