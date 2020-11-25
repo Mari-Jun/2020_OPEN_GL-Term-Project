@@ -4,6 +4,7 @@
 #include "../../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../../Game/Component/BoxComponent.h"
 #include "../../../../Game/Game.h"
+#include "../../Player/Player.h"
 
 Arrow::Arrow(const std::weak_ptr<class Scene>& scene)
 	: Projectile(scene, Type::Arrow)
@@ -79,7 +80,10 @@ void Arrow::collide()
 		{
 			if (Intersect(worldLine, b.lock()->getWorldBox()))
 			{
+				auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
+				owner->decreaseHp(5.0f);
 				setState(State::Dead);
+				
 				return;
 			}
 		}

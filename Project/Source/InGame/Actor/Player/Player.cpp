@@ -11,11 +11,10 @@
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
 
-Player::Player(const std::weak_ptr<class Scene>& scene, PlayerType type)
+Player::Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info, PlayerType type)
 	: Actor(scene, Type::Player)
 	, mStat({})
 	, mType(type)
-	, mMoveSpeed(200.0f)
 	, mGravitySpeed(0.0f)
 {
 
@@ -51,7 +50,6 @@ void Player::initailize()
 	hp->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Player/RedBar.png"));
 	hp->initailize();
 	mHealthBar->setScale(0.1f);
-	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
 	mHealthBar->initailize();
 
 	//Create Head
@@ -71,10 +69,6 @@ void Player::initailize()
 	//Create Leg
 	mLeftLeg = std::make_shared<RobotLeg>(getScene(), false);
 	mLeftLeg->setScale(getScale());
-	//ÀÌ·± ´À³¦
-	auto leftLegPos = -1 * getUp() * (mLeftLeg->getScale().y + getScale().y) / 2 - getSide() * mLeftLeg->getScale().x;
-	mBoxComponent->updateObjectBox(leftLegPos + mLeftLeg->getScale() / 2);
-	mBoxComponent->updateObjectBox(leftLegPos - mLeftLeg->getScale() / 2);
 	mLeftLeg->initailize();
 
 	mRightLeg = std::make_shared<RobotLeg>(getScene(), true);
@@ -88,30 +82,11 @@ void Player::updateActor(float deltatime)
 
 	collides(mBoxComponent);
 
+	mHealthBar->setScale(Vector3(0.1f, 0.1f, 0.1f) - 0.1f * Vector3(1.0f, 0.0f, 1.0f) * (1.0f - (mStat.mHp) / mStat.mMaxHp));
 	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
+	
 
-	mHead->setRotation(getRotation());
-	mHead->setPosition(getPosition());
-
-	mLeftArm->setRotation(getRotation());
-	mLeftArm->setPosition(getPosition());
-
-	mRightArm->setRotation(getRotation());
-	mRightArm->setPosition(getPosition());
-
-	mLeftLeg->setPosition(getPosition());
-	mLeftLeg->setRotation(getRotation());
-
-	mRightLeg->setPosition(getPosition());
-	mRightLeg->setRotation(getRotation());
-
-	if (mMoveSpeed != 0.0f)
-	{
-		mLeftArm->setMove(true);
-		mRightArm->setMove(true);
-		mLeftLeg->setMove(true);
-		mRightLeg->setMove(true);
-	}
+	updateBody();
 }
 
 void Player::actorInput()
@@ -128,6 +103,33 @@ void Player::updateGravity(float deltatime)
 	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
 	mMoveComponent->setForwardSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
 	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
+}
+
+
+void Player::updateBody()
+{
+	mHead->setRotation(getRotation());
+	mHead->setPosition(getPosition());
+
+	mLeftArm->setRotation(getRotation());
+	mLeftArm->setPosition(getPosition());
+
+	mRightArm->setRotation(getRotation());
+	mRightArm->setPosition(getPosition());
+
+	mLeftLeg->setPosition(getPosition());
+	mLeftLeg->setRotation(getRotation());
+
+	mRightLeg->setPosition(getPosition());
+	mRightLeg->setRotation(getRotation());
+
+	if (mStat.mSpeed != 0.0f)
+	{
+		mLeftArm->setMove(true);
+		mRightArm->setMove(true);
+		mLeftLeg->setMove(true);
+		mRightLeg->setMove(true);
+	}
 }
 
 void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
@@ -181,6 +183,11 @@ void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
 	}
 }
 
+void Player::setStat(PlayerInfo info)
+{
+
+}
+
 void Player::setPlayerTexture(const std::string& fileName)
 {
 	auto index = static_cast<int>(mType);
@@ -191,4 +198,15 @@ void Player::setPlayerTexture(const std::string& fileName)
 	mLeftLeg->setPlayerTexture(fileName, index);
 	mRightLeg->setPlayerTexture(fileName, index);
 	mHead->setPlayerTexture(fileName, index);
+}
+
+void Player::decreaseHp(float damage)
+{
+	damage = damage - damage / 100.0f * 5 * mStat.mDef;
+	mStat.mHp = Math::Max(mStat.mHp - damage, 0.0f);
+}
+
+void Player::increaseHp(float hill)
+{
+	mStat.mHp = Math::Min(mStat.mHp + hill, mStat.mMaxHp);
 }

@@ -20,10 +20,11 @@ Light::~Light()
 void Light::initailize()
 {
 	//Set Light
-	mAmbientLight = Vector3(0.1f, 0.1f, 0.1f);
+	mAmbientLight = Vector3(0.2f, 0.2f, 0.2f);
+	//mAmbientLight = Vector3(1.0f, 1.0f, 1.0f);
 
-	DirectionalLight dirLight = loadDirectionalLight();
-	mDirLight.push_back(dirLight);
+	/*DirectionalLight dirLight = loadDirectionalLight();
+	mDirLight.push_back(dirLight);*/
 
 	//PointLight pLight = loadPointLight();
 	//mPointLight.push_back(pLight);
@@ -80,7 +81,7 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 	{	
 		std::string name = "uDirLight[" + std::to_string(index) + "]";
 		shader->SetVectorUniform((name + ".direction").c_str(), mDirLight[index].direction);
-		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mDirLight[index].diffuseColor);
+		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mDirLight[index].diffuseColor * mDirLight[index].intensity);
 		shader->SetVectorUniform((name + ".specularColor").c_str(), mDirLight[index].specularColor);
 	}
 
@@ -116,12 +117,35 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 	shader->SetFloatUniform("uSpecBrightness", 64.0f);
 }
 
+void Light::resetAllLight()
+{
+	mDirLight.clear();
+	mPointLight.clear();
+	mSpotLight.clear();
+}
+
+void Light::addDirectionalLight(const DirectionalLight& light)
+{
+	mDirLight.emplace_back(light);
+}
+
+void Light::addPointLight(const PointLight& light)
+{
+	mPointLight.emplace_back(light);
+}
+
+void Light::addSpotLight(const SpotLight& light)
+{
+	mSpotLight.emplace_back(light);
+}
+
 DirectionalLight loadDirectionalLight()
 {
 	DirectionalLight dirLight;
 	dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 	dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 	dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
+	dirLight.intensity = 1.0f;
 	return dirLight;
 }
 

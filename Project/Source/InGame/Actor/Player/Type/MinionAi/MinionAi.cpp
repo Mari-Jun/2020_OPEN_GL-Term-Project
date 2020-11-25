@@ -69,8 +69,6 @@ void MinionAi::BFS()
 		result = mWaypoint[result.first][result.second].b_pos;
 	}
 	std::reverse(MinWay.begin(), MinWay.end());
-	std::cout << "¿Ï·á" << std::endl;
-
 }
 
 MinionAi::MinionAi(const std::weak_ptr<class Scene>& scene)

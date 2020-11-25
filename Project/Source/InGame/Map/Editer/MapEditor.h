@@ -5,16 +5,29 @@
 #include <iostream>
 #include "../../../Game/Math/Math.h"
 
+struct Board
+{
+	Vector2 mPos;
+	Vector2 mSize;
+};
+
+struct Selector
+{
+	std::shared_ptr<class Actor> mSelector;
+	std::pair<int, int> mIndex;
+};
 
 class MapEditor
 {
 public:
-	MapEditor(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class GameMap>& gameMap);
+	MapEditor(const std::weak_ptr<class Scene>& scene);
 	~MapEditor() noexcept;
 
 	void editInput();
-
 	void loadData();
+
+	void setGameMap(const std::weak_ptr<class GameMap>& gameMap);
+	void setBoard(const std::string& type, const Vector2& pos, const Vector2& size);
 
 private:
 	std::weak_ptr<class Scene> mScene;
@@ -27,28 +40,20 @@ private:
 	void rotateTile();
 	void changeStartTile();
 	void changeEndTile();
+	void changeTime();
 
 	void checkTileIndex();
-	void checkLeftBoard();
-	void checkRightBoard();
+	void checkBoard();
+	void checkTime();
 
 private:
-	//Map selector
-	std::shared_ptr<class Actor> mSelectorMap;
-	std::pair<int, int> mSelectMapIndex;
-	
-	//Board selector
 	static constexpr std::pair<int, int> mBoardMaxIndex = { 11, 3 };
-	std::shared_ptr<class Actor> mSelectorBoard;
-	std::pair<int, int> mSelectBoardIndex;
-	Vector2 mLeftBoardPos;
-	Vector2 mLeftBoardTexSize;
-	Vector2 mRightBoardPos;
-	Vector2 mRightBoardTexSize;
+	static constexpr std::pair<int, int> mTimeMaxIndex = { 2, 3 };
+	Selector mMapSelector;
+	Selector mBoardSelector;
+	Selector mTimeSelector;
 
-public:
-	void setLeftBoardPos(const Vector2& pos) { mLeftBoardPos = pos; }
-	void setLeftBoardTexSize(const Vector2& size) { mLeftBoardTexSize = size; }
-	void setRightBoardPos(const Vector2& pos) { mRightBoardPos = pos; }
-	void setRightBoardTexSize(const Vector2& size) { mRightBoardTexSize = size; }
+	Board mLeftBoard;
+	Board mRightBoard;
+	Board mTimeBoard;
 };
