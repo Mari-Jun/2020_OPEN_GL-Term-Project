@@ -26,7 +26,7 @@ void Light::update(float deltatime)
 {
 	if (mAnimation)
 	{
-		Vector3 dir = mDirLight[0].direction;
+		Vector3 dir = mDirLight[0]->direction;
 		if (mIsRot[0])
 		{
 			dir = Vector3::Transform(dir, Quaternion(Vector3::UnitX, Math::ToRadians(-1)));
@@ -39,7 +39,7 @@ void Light::update(float deltatime)
 		{
 			dir = Vector3::Transform(dir, Quaternion(Vector3::UnitZ, Math::ToRadians(-0.5f)));
 		}
-		mDirLight[0].direction = dir;
+		mDirLight[0]->direction = dir;
 	}
 }
 
@@ -69,9 +69,9 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 	for (auto index = 0; index < mDirLight.size(); index++)
 	{	
 		std::string name = "uDirLight[" + std::to_string(index) + "]";
-		shader->SetVectorUniform((name + ".direction").c_str(), mDirLight[index].direction);
-		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mDirLight[index].diffuseColor * mDirLight[index].intensity);
-		shader->SetVectorUniform((name + ".specularColor").c_str(), mDirLight[index].specularColor);
+		shader->SetVectorUniform((name + ".direction").c_str(), mDirLight[index]->direction);
+		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mDirLight[index]->diffuseColor * mDirLight[index]->intensity);
+		shader->SetVectorUniform((name + ".specularColor").c_str(), mDirLight[index]->specularColor);
 	}
 
 	//Point Light
@@ -79,12 +79,12 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 	for (auto index = 0; index < mPointLight.size(); index++)
 	{
 		std::string name = "uPointLight[" + std::to_string(index) + "]";
-		shader->SetVectorUniform((name + ".position").c_str(), mPointLight[index].position);
-		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mPointLight[index].diffuseColor);
-		shader->SetVectorUniform((name + ".specularColor").c_str(), mPointLight[index].specularColor);
-		shader->SetFloatUniform((name + ".constant").c_str(), mPointLight[index].constant);
-		shader->SetFloatUniform((name + ".linear").c_str(), mPointLight[index].linear);
-		shader->SetFloatUniform((name + ".quadratic").c_str(), mPointLight[index].quadratic);
+		shader->SetVectorUniform((name + ".position").c_str(), mPointLight[index]->position);
+		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mPointLight[index]->diffuseColor);
+		shader->SetVectorUniform((name + ".specularColor").c_str(), mPointLight[index]->specularColor);
+		shader->SetFloatUniform((name + ".constant").c_str(), mPointLight[index]->constant);
+		shader->SetFloatUniform((name + ".linear").c_str(), mPointLight[index]->linear);
+		shader->SetFloatUniform((name + ".quadratic").c_str(), mPointLight[index]->quadratic);
 	}
 
 	//Spot Light
@@ -92,15 +92,15 @@ void Light::setLightShader(Matrix4 view, const std::unique_ptr<class Shader>& sh
 	for (auto index = 0; index < mSpotLight.size(); index++)
 	{
 		std::string name = "uSpotLight[" + std::to_string(index) + "]";
-		shader->SetVectorUniform((name + ".position").c_str(), mSpotLight[index].position);
-		shader->SetVectorUniform((name + ".direction").c_str(), mSpotLight[index].direciton);
-		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mSpotLight[index].diffuseColor);
-		shader->SetVectorUniform((name + ".specularColor").c_str(), mSpotLight[index].specularColor);
-		shader->SetFloatUniform((name + ".constant").c_str(), mSpotLight[index].constant);
-		shader->SetFloatUniform((name + ".linear").c_str(), mSpotLight[index].linear);
-		shader->SetFloatUniform((name + ".quadratic").c_str(), mSpotLight[index].quadratic);
-		shader->SetFloatUniform((name + ".cutOff").c_str(), mSpotLight[index].cutOff);
-		shader->SetFloatUniform((name + ".outCutOff").c_str(), mSpotLight[index].outCutOff);
+		shader->SetVectorUniform((name + ".position").c_str(), mSpotLight[index]->position);
+		shader->SetVectorUniform((name + ".direction").c_str(), mSpotLight[index]->direciton);
+		shader->SetVectorUniform((name + ".diffuseColor").c_str(), mSpotLight[index]->diffuseColor);
+		shader->SetVectorUniform((name + ".specularColor").c_str(), mSpotLight[index]->specularColor);
+		shader->SetFloatUniform((name + ".constant").c_str(), mSpotLight[index]->constant);
+		shader->SetFloatUniform((name + ".linear").c_str(), mSpotLight[index]->linear);
+		shader->SetFloatUniform((name + ".quadratic").c_str(), mSpotLight[index]->quadratic);
+		shader->SetFloatUniform((name + ".cutOff").c_str(), mSpotLight[index]->cutOff);
+		shader->SetFloatUniform((name + ".outCutOff").c_str(), mSpotLight[index]->outCutOff);
 	}
 
 	shader->SetFloatUniform("uSpecBrightness", 64.0f);
@@ -113,19 +113,37 @@ void Light::resetAllLight()
 	mSpotLight.clear();
 }
 
-void Light::addDirectionalLight(const DirectionalLight& light)
+void Light::addDirectionalLight(const std::shared_ptr<DirectionalLight>& light)
 {
 	mDirLight.emplace_back(light);
 }
 
-void Light::addPointLight(const PointLight& light)
+void Light::addPointLight(const std::shared_ptr<PointLight>& light)
 {
 	mPointLight.emplace_back(light);
+	std::cout << "ÆÅ¼Å¹Ì\n";
 }
 
-void Light::addSpotLight(const SpotLight& light)
+void Light::addSpotLight(const std::shared_ptr<SpotLight>& light)
 {
 	mSpotLight.emplace_back(light);
+}
+
+void Light::removePointLight(const std::shared_ptr<PointLight>& light)
+{
+	auto iter = std::find(mPointLight.begin(), mPointLight.end(), light);
+	if (iter != mPointLight.end())
+	{
+		mPointLight.erase(iter);
+	}
+}
+void Light::removeSpotLight(const std::shared_ptr<SpotLight>& light)
+{
+	auto iter = std::find(mSpotLight.begin(), mSpotLight.end(), light);
+	if (iter != mSpotLight.end())
+	{
+		mSpotLight.erase(iter);
+	}
 }
 
 DirectionalLight loadDirectionalLight()

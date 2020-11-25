@@ -221,6 +221,6 @@ void GameMap::addDirectionalLight()
 		dirLight.intensity = 0.1f;
 	}
 
-	light->addDirectionalLight(dirLight);
+	light->addDirectionalLight(std::make_shared<DirectionalLight>(dirLight));
 
 }
