@@ -102,17 +102,17 @@ void Actor::rotateToNewForward(const Vector3& forward)
 {
 	rotateToNewForwardNotY(forward);
 
-	auto y = forward;
-	auto b = getForward();
-	auto dot = Vector3::Dot(y, b);
+	auto a = getForward();
+	auto b = forward;
+	auto dot = Vector3::Dot(a, b);
 	dot = Math::Clamp(dot, -1.0f, 1.0f);
 	dot = Math::Acos(dot);
 
 	if (!Math::NearZero(dot))
 	{
-		Vector3 axis = Vector3::Cross(y, b);
+		Vector3 axis = Vector3::Cross(a, b);
 		axis.Normalize();
-		setRotation(Quaternion::Concatenate(getRotation(), Quaternion(axis, -dot)));
+		setRotation(Quaternion::Concatenate(getRotation(), Quaternion(axis, dot)));
 	}
 }
 

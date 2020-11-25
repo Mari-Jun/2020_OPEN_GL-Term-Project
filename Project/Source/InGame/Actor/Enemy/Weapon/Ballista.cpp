@@ -30,7 +30,7 @@ void Ballista::updateActor(float deltatime)
 			attack();
 		}
 
-		//attackMotion();
+		attackMotion();
 
 		auto toVec = getTarget().lock()->getPosition() - getPosition();
 		toVec.Normalize();
