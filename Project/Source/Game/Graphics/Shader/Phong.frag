@@ -3,7 +3,9 @@
 //Vert에서 가져온 것들
 in vec2 fragTexCoord;
 in vec3 fragNormal;
-in vec3 fragColor;
+in vec3 fragAColor;
+in vec3 fragDColor;
+in vec3 fragSColor;
 in vec3 fragWorldPos;
 
 //색
@@ -55,7 +57,7 @@ uniform float uSpecBrightness;
 uniform vec3 uAmbientLight;
 
 #define NUM_DIR_LIGHTS 10
-#define NUM_POINT_LIGHTS 10
+#define NUM_POINT_LIGHTS 100
 #define NUM_SPOT_LIGHTS 10
 
 //Directional Light
@@ -81,10 +83,10 @@ vec3 calculDirLight(DirectionalLight light, vec3 N, vec3 V)
 	float NdotL = max(0.0, dot(N, L));
 
 	//라이트의 양을 결정
-	vec3 diffuseLight = light.diffuseColor * fragColor * NdotL;
+	vec3 diffuseLight = light.diffuseColor * fragDColor * NdotL;
 
 	//스펙큘러 라이트를 구함
-	vec3 specularLight = light.diffuseColor * light.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
+	vec3 specularLight = light.specularColor * fragDColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
 
 	return diffuseLight + specularLight;
 }
@@ -101,8 +103,8 @@ vec3 calculPointLight(PointLight light, vec3 pos, vec3 N, vec3 V)
 	//광원 방향과 노멀의 내적
 	float NdotL = max(0.0, dot(N, L));
 
-	vec3 diffuseLight = light.diffuseColor * fragColor * NdotL;
-	vec3 specularLight = light.diffuseColor * light.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
+	vec3 diffuseLight = light.diffuseColor * fragDColor * NdotL;
+	vec3 specularLight = light.specularColor * fragSColor * fragDColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
 
 	float dist = length(light.position - pos);
 	float attenuation = 1.0 / (light.constant + light.linear * dist + light.quadratic * (dist * dist));	
@@ -125,8 +127,8 @@ vec3 calculSpotLight(SpotLight light, vec3 pos, vec3 N, vec3 V)
 	//광원 방향과 노멀의 내적
 	float NdotL = max(0.0, dot(N, L));
 
-	vec3 diffuseLight = light.diffuseColor * fragColor * NdotL;
-	vec3 specularLight = light.diffuseColor * light.specularColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
+	vec3 diffuseLight = light.diffuseColor * fragDColor * NdotL;
+	vec3 specularLight = light.specularColor * fragSColor * fragDColor * pow(max(0.0, dot(R, V)), uSpecBrightness);
 
 	float dist = length(light.position - pos);
 	float attenuation = 1.0 / (light.constant + light.linear * dist + light.quadratic * (dist * dist));	
@@ -166,7 +168,7 @@ void main()
 	}
 
 	//앰비언트 라이트를 구함
-	vec3 ambientLight = uAmbientLight * fragColor;
+	vec3 ambientLight = uAmbientLight * fragAColor * fragDColor;
 
 	vec3 Phong = finalLight + ambientLight;
 	

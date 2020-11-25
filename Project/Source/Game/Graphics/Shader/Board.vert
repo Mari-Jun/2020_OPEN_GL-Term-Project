@@ -4,7 +4,9 @@
 layout (location = 0) in vec3 inPosition;
 layout (location = 1) in vec3 inNormal;
 layout (location = 2) in vec2 inTexCoord;
-layout (location = 3) in vec3 inColor;
+layout (location = 3) in vec3 inAmbientColor;
+layout (location = 4) in vec3 inDiffuseColor;
+layout (location = 5) in vec3 inSpecularColor;
 
 uniform vec3 uColor;
 uniform vec3 uTexSize;
@@ -16,7 +18,9 @@ uniform mat4 uViewProj;
 
 out vec2 fragTexCoord;
 out vec3 fragNormal;
-out vec3 fragColor;
+out vec3 fragAColor;
+out vec3 fragDColor;
+out vec3 fragSColor;
 
 //프래그먼트의 월드 공간 위치
 out vec3 fragWorldPos;
@@ -43,5 +47,6 @@ void main()
 	fragTexCoord = inTexCoord;
 
 	//컬러 전달
-	fragColor = uColor;
+	fragAColor = uColor;
+	fragDColor = uColor;
 }
