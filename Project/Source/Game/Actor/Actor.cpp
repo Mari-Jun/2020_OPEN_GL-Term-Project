@@ -100,25 +100,40 @@ void Actor::convertWorldTransform(Matrix4& worldTransform)
 
 void Actor::rotateToNewForward(const Vector3& forward)
 {
-	float dot = Vector3::Dot(Vector3::UnitZ, forward);
-	float angle = Math::Acos(dot);
+	rotateToNewForwardNotY(forward);
 
-	//진행 방향이 +Z라면
-	if (dot > 0.9999f)
+	auto y = forward;
+	auto b = getForward();
+	auto dot = Vector3::Dot(y, b);
+	dot = Math::Clamp(dot, -1.0f, 1.0f);
+	dot = Math::Acos(dot);
+
+	if (!Math::NearZero(dot))
 	{
-		setRotation(Quaternion::Identity);
-	}
-	//진행 방향이 -Z라면
-	else if (dot < -0.9999f)
-	{
-		setRotation(Quaternion(Vector3::UnitY, Math::Pi));
-	}
-	else
-	{
-		//외적을 통해 얻은 축을 기준으로 회전
-		Vector3 axis = Vector3::Cross(Vector3::UnitZ, forward);
+		Vector3 axis = Vector3::Cross(y, b);
 		axis.Normalize();
-		setRotation(Quaternion(axis, angle));
+		setRotation(Quaternion::Concatenate(getRotation(), Quaternion(axis, -dot)));
+	}
+}
+
+void Actor::rotateToNewForwardNotY(const Vector3& forward)
+{
+	auto a = forward;
+	auto b = getForward();
+	a.y = b.y = 0.0f;
+	a.Normalize();
+	b.Normalize();
+
+	float dot = Vector3::Dot(a, b);
+	dot = Math::Clamp(dot, -1.0f, 1.0f);
+	dot = Math::Acos(dot);
+
+	if (!Math::NearZero(dot))
+	{
+		if (Vector3::Cross(a, b).y > 0.0f)
+			dot *= -1;
+
+		setRotation(Quaternion::Concatenate(getRotation(), Quaternion(Vector3::UnitY, dot)));
 	}
 }
 

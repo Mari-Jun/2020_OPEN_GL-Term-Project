@@ -22,11 +22,11 @@ Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 SnowHill 0 SnowHill 0
 Line 11 20
 Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 SnowHill 0 SnowBasic 0 Basic 0 TreeDouble 0 Road 0 StartPoint 0 Road 0 TreeDouble 0 Basic 0 TreeDouble 0 Road 0 Hill 0 Basic 0 Basic 0 Basic 0 
 Line 12 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 SnowHill 0 SnowBasic 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 Road 0 Hill 0 Basic 0 Basic 0 Basic 0 
+Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 Road 0 SnowHill 0 SnowBasic 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 Hill 0 Basic 0 Basic 0 Basic 0 
 Line 13 20
 Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowCrystal 0 Road 0 SnowCrystal 0 SnowBasic 0 Basic 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 14 20
-Type SnowBasic 0 SnowBasic 0 SnowCrystal 0 SnowCrystal 0 Road 0 SnowCrystal 0 SnowBasic 0 Basic 0 Basic 0 Basic 0 TreeDouble 0 Road 0 TowerBallista 0 TowerCatapult 0 TowerCatapult 0 Road 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
+Type SnowBasic 0 SnowBasic 0 SnowCrystal 0 SnowCrystal 0 Road 0 SnowCrystal 0 SnowBasic 0 Basic 0 Basic 0 Basic 0 TreeDouble 0 Road 0 TowerBallista 0 TreeDouble 0 TreeDouble 0 Road 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 15 20
 Type SnowBasic 0 SnowBasic 0 SnowCrystal 0 Road 0 Road 0 SnowCrystal 0 SnowBasic 0 Basic 0 Basic 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 16 20

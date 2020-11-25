@@ -147,7 +147,7 @@ void EnemyTower::chasePlayer()
 		Vector3 toVec = target.lock()->getPosition() - getPosition();
 		toVec.y = 0.0f;
 		toVec.Normalize();
-		rotateToNewForward(toVec);
+		rotateToNewForwardNotY(toVec);
 	}
 }
 
