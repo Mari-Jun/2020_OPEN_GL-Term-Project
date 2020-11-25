@@ -13,16 +13,17 @@
 
 MapEditor::MapEditor(const std::weak_ptr<class Scene>& scene)
 	: mScene(scene)
-	, mSelectMapIndex({ 10,10 })
-	, mSelectBoardIndex({ -1,-1 })
+	, mMapSelector({ nullptr, {10, 10} })
+	, mBoardSelector({ nullptr, {-1, -1 } })
+	, mTimeSelector({ nullptr, {0, 0} })
 {
 	loadData();
 }
 
 MapEditor::~MapEditor()
 {
-	mSelectorMap->setState(Actor::State::Dead);
-	mSelectorBoard->setState(Actor::State::Dead);
+	mMapSelector.mSelector->setState(Actor::State::Dead);
+	mBoardSelector.mSelector->setState(Actor::State::Dead);
 }
 
 void MapEditor::editInput()
@@ -33,8 +34,8 @@ void MapEditor::editInput()
 	{
 		mClickPos = game->getMouse()->getPosition();
 		checkTileIndex();
-		checkLeftBoard();
-		checkRightBoard();
+		checkBoard();
+		checkTime();
 	}
 	if (game->getKeyBoard()->isKeyPressed('r') && game->getKeyBoard()->isKeyFirst('r'))
 	{
@@ -46,19 +47,29 @@ void MapEditor::loadData()
 {
 	auto game = mScene.lock()->getGame().lock();
 
-	mSelectorMap = std::make_shared<Actor>(mScene);
-	mSelectorMap->initailize();
-	auto borderMap = std::make_shared<SpriteComponent>(mSelectorMap, game->getRenderer());
+	mMapSelector.mSelector = std::make_shared<Actor>(mScene);
+	mMapSelector.mSelector->initailize();
+	auto borderMap = std::make_shared<SpriteComponent>(mMapSelector.mSelector, game->getRenderer());
 	borderMap->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderMap->initailize();
 
-	mSelectorBoard = std::make_shared<Actor>(mScene);
-	mSelectorBoard->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
-	mSelectorBoard->setScale(2.5f);
-	mSelectorBoard->initailize();
-	auto borderBoard = std::make_shared<SpriteComponent>(mSelectorBoard, game->getRenderer(), 600);
+	mBoardSelector.mSelector = std::make_shared<Actor>(mScene);
+	mBoardSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
+	mBoardSelector.mSelector->setScale(2.5f);
+	mBoardSelector.mSelector->initailize();
+	auto borderBoard = std::make_shared<SpriteComponent>(mBoardSelector.mSelector, game->getRenderer(), 600);
 	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderBoard->initailize();
+
+	mTimeSelector.mSelector = std::make_shared<Actor>(mScene);
+	mTimeSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
+	mTimeSelector.mSelector->setScale(2.5f);
+	mTimeSelector.mSelector->initailize();
+
+	auto borderTime = std::make_shared<SpriteComponent>(mTimeSelector.mSelector, game->getRenderer(), 600);
+	borderTime->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
+	borderTime->initailize();
+
 }
 
 void  MapEditor::setGameMap(const std::weak_ptr<class GameMap>& gameMap)
@@ -87,7 +98,7 @@ void MapEditor::setBoard(const std::string& type, const Vector2& pos, const Vect
 
 void MapEditor::changeTile()
 {
-	auto index = mSelectBoardIndex.first * 10 + mSelectBoardIndex.second;
+	auto index = mBoardSelector.mIndex.first * 10 + mBoardSelector.mIndex.second;
 	auto type = "";
 	switch (index)
 	{
@@ -120,13 +131,13 @@ void MapEditor::changeTile()
 	default: return;
 	}
 
-	mGameMap.lock()->removeTile(mSelectMapIndex.first, mSelectMapIndex.second);
-	mGameMap.lock()->addTile(type, mSelectMapIndex.first, mSelectMapIndex.second, 0);
+	mGameMap.lock()->removeTile(mMapSelector.mIndex.first, mMapSelector.mIndex.second);
+	mGameMap.lock()->addTile(type, mMapSelector.mIndex.first, mMapSelector.mIndex.second, 0);
 }
 
 void MapEditor::rotateTile()
 {
-	mGameMap.lock()->rotTile(mSelectMapIndex.first, mSelectMapIndex.second);
+	mGameMap.lock()->rotTile(mMapSelector.mIndex.first, mMapSelector.mIndex.second);
 }
 
 void MapEditor::changeStartTile()
@@ -143,6 +154,21 @@ void MapEditor::changeEndTile()
 	mGameMap.lock()->addTile("Basic", index.first, index.second, 0);
 }
 
+void MapEditor::changeTime()
+{
+	auto index = mTimeSelector.mIndex.first * 10 + mTimeSelector.mIndex.second;
+	auto type = "";
+	switch (index)
+	{
+	case 0: type = "Sunny"; break;
+	case 1: type = "Sunset"; break;
+	case 2: type = "Moon"; break;
+	default: break;
+	}
+
+	mGameMap.lock()->setTime(type);
+}
+
 
 void MapEditor::checkTileIndex()
 {
@@ -155,48 +181,61 @@ void MapEditor::checkTileIndex()
 	if (mapUpLeft.x < mClickPos.x && mClickPos.x < mapDownRight.x &&
 		mapUpLeft.z > mClickPos.y && mClickPos.y > mapDownRight.z)
 	{		
-		mSelectMapIndex = 
+		mMapSelector.mIndex =
 		{	static_cast<int>((mapUpLeft.z - mClickPos.y) / tileSize), 
 			static_cast<int>((mClickPos.x - mapUpLeft.x) / tileSize) };
 
-		auto selectXPos = mapPos.x + mSelectMapIndex.second * tileSize;
-		auto selectYPos = mapPos.z - mSelectMapIndex.first * tileSize;
-		mSelectorMap->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+		auto selectXPos = mapPos.x + mMapSelector.mIndex.second * tileSize;
+		auto selectYPos = mapPos.z - mMapSelector.mIndex.first * tileSize;
+		mMapSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
 
 		changeTile();
 	}
 }
 
-void MapEditor::checkLeftBoard()
+void MapEditor::checkBoard()
 {
 	auto tileSize = 80.0f;
 
 	if (mLeftBoard.mPos.x < mClickPos.x && mClickPos.x < mLeftBoard.mPos.x + mLeftBoard.mSize.x &&
 		mLeftBoard.mPos.y > mClickPos.y && mClickPos.y > mLeftBoard.mPos.y - mLeftBoard.mSize.y)
 	{		
-		mSelectBoardIndex = 
+		mBoardSelector.mIndex = 
 		{ static_cast<int>((mLeftBoard.mPos.y - mClickPos.y) / 100.0f),
 			static_cast<int>((mClickPos.x - mLeftBoard.mPos.x) / 100.0f) };
 
-		auto selectXPos = mLeftBoard.mPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mLeftBoard.mPos.y - 20 - mSelectBoardIndex.first * (15 + tileSize) - tileSize / 2;
-		mSelectorBoard->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+		auto selectXPos = mLeftBoard.mPos.x + 15 + mBoardSelector.mIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = mLeftBoard.mPos.y - 20 - mBoardSelector.mIndex.first * (15 + tileSize) - tileSize / 2;
+		mBoardSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
 	}
-}
-
-void MapEditor::checkRightBoard()
-{
-	auto tileSize = 80.0f;
-
-	if (mRightBoard.mPos.x < mClickPos.x && mClickPos.x < mRightBoard.mPos.x + mRightBoard.mSize.x &&
+	else if (mRightBoard.mPos.x < mClickPos.x && mClickPos.x < mRightBoard.mPos.x + mRightBoard.mSize.x &&
 		mRightBoard.mPos.y > mClickPos.y && mClickPos.y > mRightBoard.mPos.y - mRightBoard.mSize.y)
 	{
-		mSelectBoardIndex =
+		mBoardSelector.mIndex =
 		{ static_cast<int>((mRightBoard.mPos.y - mClickPos.y) / 100.0f) + 6,
 			static_cast<int>((mClickPos.x - mRightBoard.mPos.x) / 100.0f) };
 
-		auto selectXPos = mRightBoard.mPos.x + 15 + mSelectBoardIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mRightBoard.mPos.y - 20 - (mSelectBoardIndex.first - 6) * (15 + tileSize) - tileSize / 2;
-		mSelectorBoard->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+		auto selectXPos = mRightBoard.mPos.x + 15 + mBoardSelector.mIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = mRightBoard.mPos.y - 20 - (mBoardSelector.mIndex.first - 6) * (15 + tileSize) - tileSize / 2;
+		mBoardSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+	}
+}
+
+void MapEditor::checkTime()
+{
+	auto tileSize = 80.0f;
+	
+	if (mTimeBoard.mPos.x < mClickPos.x && mClickPos.x < mTimeBoard.mPos.x + mTimeBoard.mSize.x &&
+		mTimeBoard.mPos.y > mClickPos.y && mClickPos.y > mTimeBoard.mPos.y - mTimeBoard.mSize.y)
+	{
+		mTimeSelector.mIndex = 
+		{ static_cast<int>((mTimeBoard.mPos.y - mClickPos.y) / 100.0f),
+			static_cast<int>((mClickPos.x - mTimeBoard.mPos.x) / 100.0f) };
+
+		auto selectXPos = mTimeBoard.mPos.x + 15 + mTimeSelector.mIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = mTimeBoard.mPos.y - 20 - mTimeSelector.mIndex.first * (15 + tileSize) - tileSize / 2;
+		mTimeSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+
+		changeTime();
 	}
 }

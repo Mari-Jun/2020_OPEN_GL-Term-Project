@@ -38,9 +38,11 @@ private:
 	std::vector<std::vector<std::weak_ptr<class Tile>>> mTiles;
 	Vector3 mStartPosition;
 	Vector3 mEndPosition;
+	std::string mTime;
 
 private:
-	
+	void addDirectionalLight();
+
 
 public:
 	const Vector3& getStartPosition() const { return mStartPosition; }
@@ -49,4 +51,6 @@ public:
 	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>((mEndPosition.z - mPosition.z) / -mTileSize), static_cast<int>((mEndPosition.x - mPosition.x) / mTileSize) }; }
 	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
 	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
+	void setTime(const std::string& time) { mTime = time; }
+
 };

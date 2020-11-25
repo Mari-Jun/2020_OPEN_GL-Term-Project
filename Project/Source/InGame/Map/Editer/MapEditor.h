@@ -11,6 +11,12 @@ struct Board
 	Vector2 mSize;
 };
 
+struct Selector
+{
+	std::shared_ptr<class Actor> mSelector;
+	std::pair<int, int> mIndex;
+};
+
 class MapEditor
 {
 public:
@@ -34,20 +40,18 @@ private:
 	void rotateTile();
 	void changeStartTile();
 	void changeEndTile();
+	void changeTime();
 
 	void checkTileIndex();
-	void checkLeftBoard();
-	void checkRightBoard();
+	void checkBoard();
+	void checkTime();
 
 private:
-	//Map selector
-	std::shared_ptr<class Actor> mSelectorMap;
-	std::pair<int, int> mSelectMapIndex;
-	
-	//Board selector
 	static constexpr std::pair<int, int> mBoardMaxIndex = { 11, 3 };
-	std::shared_ptr<class Actor> mSelectorBoard;
-	std::pair<int, int> mSelectBoardIndex;
+	static constexpr std::pair<int, int> mTimeMaxIndex = { 2, 3 };
+	Selector mMapSelector;
+	Selector mBoardSelector;
+	Selector mTimeSelector;
 
 	Board mLeftBoard;
 	Board mRightBoard;

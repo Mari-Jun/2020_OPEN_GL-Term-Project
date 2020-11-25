@@ -203,5 +203,10 @@ public:
 	{
 		return Vector3(v.x / 256.0f, v.y / 256.0f, v.z / 256.0f);
 	}
+
+	static Vector3 Rgb(float r, float g, float b)
+	{
+		return Vector3(r / 256.0f, g / 256.0f, b / 256.0f);
+	}
 };
 

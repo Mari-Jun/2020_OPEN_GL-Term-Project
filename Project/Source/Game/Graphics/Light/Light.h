@@ -8,6 +8,7 @@ struct DirectionalLight
 	Vector3 direction;
 	Vector3 diffuseColor;
 	Vector3 specularColor;
+	float intensity;
 };
 
 struct PointLight
@@ -51,6 +52,12 @@ public:
 
 	void setRotation(int index, bool rot) { mIsRot[index] = rot; }
 	void setAnimation(bool ani) { mAnimation = ani; }
+
+	void resetAllLight();
+
+	void addDirectionalLight(const DirectionalLight& light);
+	void addPointLight(const PointLight& light);
+	void addSpotLight(const SpotLight& light);
 
 private:
 	std::weak_ptr<class Renderer> mRenderer;
