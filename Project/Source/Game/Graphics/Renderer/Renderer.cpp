@@ -97,7 +97,6 @@ void Renderer::draw()
 	drawAlphaComponent();
 	drawBillBoardComponent();
 
-
 	drawSpriteComponent();
 	drawUserInterface();
 	
@@ -142,7 +141,6 @@ void Renderer::drawBillBoardComponent()
 	mBillBoardShader->setActive();
 	mBillBoardShader->setMatrixUniform("uViewProj", mView * mProjection);
 	mLight->setLightShader(mView, mBillBoardShader);
-	//createBillBoardVertex();
 	mSpriteVertex->setActive();
 	for (const auto& bComp : mBillBoardComponent)
 	{
