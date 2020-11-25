@@ -6,7 +6,7 @@ class Tile : public Actor
 public:
 	enum class Type
 	{
-		Basic, Road,
+		Basic, Road, Light,
 		Rock, Hill, Crystal,
 		Tree, TreeDouble, TreeQuad,
 		StartPoint, EndPoint, Snow_Basic,

@@ -38,6 +38,7 @@ std::shared_ptr<class Mesh> Tile::loadMesh() const
 	{
 	case Tile::Type::Basic: meshName = "Asset/Mesh/Tile/Road/Tile"; break;
 	case Tile::Type::Road: meshName = "Asset/Mesh/Tile/Road/Tile_Dirt"; break;
+	case Tile::Type::Light: meshName = "Asset/Mesh/Tile/Road/Tile_Dirt"; break;
 	case Tile::Type::Rock: meshName = "Asset/Mesh/Tile/Road/Tile_Rock"; break;
 	case Tile::Type::Hill: meshName = "Asset/Mesh/Tile/Road/Tile_Hill"; break;
 	case Tile::Type::Crystal: meshName = "Asset/Mesh/Tile/Road/Tile_Crystal"; break;
@@ -73,6 +74,7 @@ std::string Tile::getTypeToString() const
 	{
 	case Tile::Type::Basic: return "Basic";
 	case Tile::Type::Road: return "Road";
+	case Tile::Type::Light: return "Light";
 	case Tile::Type::Rock: return "Rock";
 	case Tile::Type::Hill: return "Hill";
 	case Tile::Type::Crystal: return "Crystal";
