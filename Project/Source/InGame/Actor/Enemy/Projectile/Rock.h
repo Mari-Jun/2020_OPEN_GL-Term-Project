@@ -32,4 +32,5 @@ public:
 
 private:
 	void gravity(float deltatime);
+	void makeSplitRock();
 };
