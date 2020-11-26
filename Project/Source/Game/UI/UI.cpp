@@ -101,3 +101,11 @@ void UI::closeUI()
 {
 	mState = UIState::Dead;
 }
+
+void UI::closeUIWarp()
+{
+	closeUI();
+	auto game = mScene.lock()->getGame().lock();
+	game->getMouse()->setCursor(GLUT_CURSOR_NONE);
+	game->getMouse()->setWarp(true);
+}

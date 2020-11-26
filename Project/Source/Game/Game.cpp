@@ -150,7 +150,7 @@ void Game::removeScene(const std::weak_ptr<class Scene>& scene)
 
 void Game::processInput()
 {
-	if (mKeyBoard->isKeyPressed(27))
+	if (mKeyBoard->isSpecialKeyPressed(GLUT_KEY_F4))
 	{
 		mIsRunning = false;
 	}

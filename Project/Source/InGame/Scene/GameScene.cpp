@@ -18,6 +18,8 @@
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
 #include "../UI/HUD/GameHUD.h"
+#include "../UI/PauseUI.h"
+#include "../UI/SceneHelper.h"
 
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info)
@@ -70,6 +72,10 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<EditScene>(getGame(), mInfo);
 		scene->initailize();
 	}
+	if (game->getKeyBoard()->isKeyPressed(27))
+	{
+		pauseGame();
+	}
 }
 
 void GameScene::sceneUpdate(float deltatime)
@@ -79,6 +85,8 @@ void GameScene::sceneUpdate(float deltatime)
 
 void GameScene::loadData()
 {
+	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
+
 	loadGameMap();
 	loadActorData();
 	loadUI();
@@ -132,4 +140,21 @@ void GameScene::loadUI()
 {
 	auto gameHUD = std::make_shared<GameHUD>(weak_from_this(), getGame().lock()->getRenderer());
 	gameHUD->initailize();
+}
+
+void GameScene::pauseGame()
+{
+	//Create PauseUI
+	auto game = getGame().lock();
+	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	ui->initailize();
+	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/Pause.png"));
+
+	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
+	game->getMouse()->setWarp(false);
+}
+
+void GameScene::goToTitle()
+{
+	mSceneHelper->changeToTitleScene(mInfo);
 }

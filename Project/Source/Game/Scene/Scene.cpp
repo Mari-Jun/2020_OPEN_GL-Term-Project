@@ -98,11 +98,13 @@ void Scene::update()
 			fpsTime = time;
 		}
 
+		uiUpdate(deltatime);
+
 		if (mState == Scene::State::Active)
 		{
 			sceneUpdate(deltatime);
 		}
-		uiUpdate(deltatime);	
+		
 	}
 }
 
