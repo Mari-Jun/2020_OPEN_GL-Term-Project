@@ -26,6 +26,7 @@ public:
 	void addButton(std::function<void()> click, const Vector2& pos, const std::string& fileName);
 
 	void closeUI();
+	void closeUIWarp();
 
 protected:
 	UIState mState;

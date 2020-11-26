@@ -20,10 +20,15 @@ private:
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;
 	std::shared_ptr<class GameMap> mGameMap;
 	std::shared_ptr<class MinionAi> mMinionAi;
+	std::unique_ptr<class SceneHelper> mSceneHelper;
 	GameInfo mInfo;
 
 private:
 	void loadActorData();
 	void loadGameMap();
 	void loadUI();
+	void pauseGame();
+
+public:
+	void goToTitle();
 };
