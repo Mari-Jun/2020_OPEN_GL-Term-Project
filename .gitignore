@@ -95,7 +95,7 @@ bld/
 [Ll]ogs/
 
 #extern file
-extern/
+[Ee]xtern/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
