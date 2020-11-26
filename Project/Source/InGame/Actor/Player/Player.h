@@ -52,7 +52,7 @@ protected:
 	std::shared_ptr<class MoveComponent> mMoveComponent;
 
 public:
-	PlayerType getType() const { return mType; }
+	PlayerType getPlayerType() const { return mType; }
 	void setPlayerTexture(const std::string& fileName);
 	float getGravitySpeed() const { return mGravitySpeed; }
 	void setGravitySpeed(float speed) { mGravitySpeed = speed; }

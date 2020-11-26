@@ -45,6 +45,7 @@ void Arrow::updateActor(float deltatime)
 
 	mMoveComponent->setForwardSpeed(forwardSpeed);
 
+	
 	collide();
 
 	if (getPosition().y <= -30.0f)
@@ -83,7 +84,6 @@ void Arrow::collide()
 				auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
 				owner->decreaseHp(5.0f);
 				setState(State::Dead);
-				
 				return;
 			}
 		}

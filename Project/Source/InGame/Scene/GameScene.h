@@ -30,5 +30,6 @@ private:
 	void pauseGame();
 
 public:
+	void stageClear();
 	void goToTitle();
 };

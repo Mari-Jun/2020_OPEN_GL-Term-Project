@@ -1,6 +1,8 @@
 #include "EndPointTile.h"
 #include "../../../Game/Component/BoxComponent.h"
 #include "../../../Game/Game.h"
+#include "../Player/Player.h"
+#include "../../Scene/GameScene.h"
 
 EndPointTile::EndPointTile(const std::weak_ptr<class Scene>& scene)
 	: Tile(scene, TileType::EndPoint)
@@ -16,61 +18,41 @@ EndPointTile::~EndPointTile()
 void EndPointTile::initailize()
 {
 	Tile::initailize();
-
-
 }
 
 void EndPointTile::updateActor(float deltatime)
 {
-
+	collidePlayers();
 }
 
 void EndPointTile::collidePlayers()
 {
-	/*updateWorldTransform();
+	updateWorldTransform();
 
 	AABB endBox = getBoxComponent()->getWorldBox();
-	Vector3 pos = getPosition();
 
-	auto allBoxes = getGame().lock()->getPhysEngine()->getBoxes();
-	auto boxes = allBoxes.find(getTypeToString(Actor::Type::Player));
+	const auto& allBoxes = getGame().lock()->getPhysEngine()->getBoxes();
+	auto boxes = allBoxes.find(getTypeToString(Type::Player));
 	if (boxes != allBoxes.end())
 	{
-		for (auto b : boxes->second)
+		for (const auto& b : boxes->second)
 		{
-			const AABB& box = b.lock()->getWorldBox();
-			const auto& boxActor = b.lock()->getOwner();
+			const AABB& objectBox = b.lock()->getWorldBox();
+			auto objectOwner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
 
-			if (shared_from_this() != boxActor.lock() && Intersect(robotBox, box))
+			if (shared_from_this() != objectOwner && Intersect(endBox, objectBox))
 			{
-				float dx1 = box.mMax.x - robotBox.mMin.x;
-				float dx2 = box.mMin.x - robotBox.mMax.x;
-				float dy1 = box.mMax.y - robotBox.mMin.y;
-				float dy2 = box.mMin.y - robotBox.mMax.y;
-				float dz1 = box.mMax.z - robotBox.mMin.z;
-				float dz2 = box.mMin.z - robotBox.mMax.z;
-
-				float dx = Math::Abs(dx1) < Math::Abs(dx2) ? dx1 : dx2;
-				float dy = Math::Abs(dy1) < Math::Abs(dy2) ? dy1 : dy2;
-				float dz = Math::Abs(dz1) < Math::Abs(dz2) ? dz1 : dz2;
-
-				if (Math::Abs(dx) <= Math::Abs(dy) && Math::Abs(dx) <= Math::Abs(dz))
+				if (objectOwner->getPlayerType() == Player::PlayerType::Control)
 				{
-					pos.x += dx;
+					auto gameScene = std::dynamic_pointer_cast<GameScene>(getScene().lock());
+					gameScene->stageClear();
 				}
-				if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
+				else
 				{
-					pos.y += dy;
-					mGravitySpeed = 0.0f;
+					//여기에 구현하세요!
+					objectOwner->setState(State::Paused);
 				}
-				if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
-				{
-					pos.z += dz;
-				}
-
-				setPosition(pos);
-				mBoxComponent->updateWorldTransForm();
 			}
 		}
-	}*/
+	}
 }

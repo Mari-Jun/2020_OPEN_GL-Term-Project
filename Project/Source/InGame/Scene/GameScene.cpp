@@ -154,6 +154,18 @@ void GameScene::pauseGame()
 	game->getMouse()->setWarp(false);
 }
 
+void GameScene::stageClear()
+{
+	//Create PauseUI
+	auto game = getGame().lock();
+	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	ui->initailize();
+	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/Pause.png"));
+
+	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
+	game->getMouse()->setWarp(false);
+}
+
 void GameScene::goToTitle()
 {
 	mSceneHelper->changeToTitleScene(mInfo);
