@@ -138,7 +138,7 @@ void GameScene::loadGameMap()
 
 void GameScene::loadUI()
 {
-	auto gameHUD = std::make_shared<GameHUD>(weak_from_this(), getGame().lock()->getRenderer());
+	auto gameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
 	gameHUD->initailize();
 }
 
