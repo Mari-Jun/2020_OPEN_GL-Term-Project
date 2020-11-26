@@ -5,7 +5,7 @@
 #include "../../../Game/Game.h"
 #include "../../Actor/Enemy/EnemyTower.h"
 
-EnemyTile::EnemyTile(const std::weak_ptr<class Scene>& scene, Type type)
+EnemyTile::EnemyTile(const std::weak_ptr<class Scene>& scene, TileType type)
 	: Tile(scene, type)
 {
 
@@ -20,12 +20,12 @@ void EnemyTile::initailize()
 {
 	Tile::initailize();
 
-	switch (getType())
+	switch (getTileType())
 	{
-	case Tile::Type::Tower_Ballista: mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::Type::Ballista); break;
-	case Tile::Type::Tower_Blaster : mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::Type::Blaster); break;
-	case Tile::Type::Tower_Cannon: mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::Type::Cannon); break;
-	case Tile::Type::Tower_Catapult: mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::Type::Catapult); break;
+	case Tile::TileType::Tower_Ballista: mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::EnemyType::Ballista); break;
+	case Tile::TileType::Tower_Blaster : mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::EnemyType::Blaster); break;
+	case Tile::TileType::Tower_Cannon: mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::EnemyType::Cannon); break;
+	case Tile::TileType::Tower_Catapult: mEnemy = std::make_shared<EnemyTower>(getScene(), EnemyTower::EnemyType::Catapult); break;
 	default: break;
 	}
 

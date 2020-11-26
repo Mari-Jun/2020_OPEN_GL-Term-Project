@@ -10,8 +10,6 @@ public:
 	bool load(const std::string& fileName);
 	void unLoad();
 
-	void CreateForRendering(int width, int height, unsigned int format);
-
 	void setActive();
 
 	int getWidth() const { return mWidth; }

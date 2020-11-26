@@ -7,7 +7,7 @@
 class Scene : public std::enable_shared_from_this<Scene>
 {
 public:
-	enum class State
+	enum class SceneState
 	{
 		Active,
 		Paused,
@@ -37,7 +37,7 @@ public:
 	void addUI(const std::shared_ptr<class UI>& ui);
 
 private:
-	State mState;
+	SceneState mState;
 	std::weak_ptr<class Game> mGame;
 
 	std::unordered_map<std::string, std::vector<std::shared_ptr<class Actor>>> mActors;
@@ -47,8 +47,8 @@ private:
 	bool mIsUpdateActor;
 
 public:
-	State getState() const { return mState; }
-	void setState(State state) { mState = state; }
+	SceneState getSceneState() const { return mState; }
+	void setSceneState(SceneState state) { mState = state; }
 	const std::weak_ptr<class Game>& getGame() const { return mGame; }
 	std::weak_ptr<class Game>& getGame() { return const_cast<std::weak_ptr<class Game>&>(std::as_const(*this).getGame()); }
 	const std::vector<std::shared_ptr<class Actor>>& getActors(std::string type) const;

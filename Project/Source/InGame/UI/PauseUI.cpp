@@ -12,9 +12,9 @@ PauseUI::PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<cl
 
 PauseUI::~PauseUI()
 {
-	if (mScene.lock()->getState() != (Scene::State::Dead))
+	if (mScene.lock()->getSceneState() != (Scene::SceneState::Dead))
 	{
-		mScene.lock()->setState(Scene::State::Active);
+		mScene.lock()->setSceneState(Scene::SceneState::Active);
 	}
 }
 
@@ -26,7 +26,7 @@ void PauseUI::initailize()
 	addButton([this]() {closeUIWarp(); }, Vector2(0.0f, 0.0f), "Asset/Image/Button/PlayButton");
 	addButton([this]() {goToTitle(); }, Vector2(0.0f, -110.0f), "Asset/Image/Button/HomeButton");
 	mBackgroundPos = Vector2(0.0f, 0.0f);
-	mScene.lock()->setState(Scene::State::Paused);
+	mScene.lock()->setSceneState(Scene::SceneState::Paused);
 }
 
 void PauseUI::processInput()

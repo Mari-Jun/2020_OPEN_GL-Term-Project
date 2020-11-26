@@ -4,7 +4,7 @@
 class Tile : public Actor
 {
 public:
-	enum class Type
+	enum class TileType
 	{
 		Basic, Road, Light,
 		Rock, Hill, Crystal,
@@ -17,7 +17,7 @@ public:
 		Tower_Ballista, Tower_Cannon, Tower_Catapult
 	};
 
-	Tile(const std::weak_ptr<class Scene>& scene, Type type = Type::Basic);
+	Tile(const std::weak_ptr<class Scene>& scene, TileType type = TileType::Basic);
 	virtual ~Tile() noexcept;
 
 	virtual void initailize() override;
@@ -25,11 +25,12 @@ public:
 	std::shared_ptr<class Mesh> loadMesh() const;
 
 private:
-	Type mType;
+	TileType mType;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 
 public:
-	Type getType() const { return mType; }
-	std::string getTypeToString() const;
+	TileType getTileType() const { return mType; }
+	std::string getTileTypeToString() const;
+	const std::shared_ptr<class BoxComponent>& const getBoxComponent() { return mBoxComponent; }
 };

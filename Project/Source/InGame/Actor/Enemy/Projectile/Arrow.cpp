@@ -7,7 +7,7 @@
 #include "../../Player/Player.h"
 
 Arrow::Arrow(const std::weak_ptr<class Scene>& scene)
-	: Projectile(scene, Type::Arrow)
+	: Projectile(scene, PjtType::Arrow)
 	, mLine(Vector3::Zero, Vector3::Zero)
 {
 

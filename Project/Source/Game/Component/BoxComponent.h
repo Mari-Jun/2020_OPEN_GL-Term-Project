@@ -6,7 +6,7 @@
 class BoxComponent : public Component
 {
 public:
-	enum class Type
+	enum class OnwerType
 	{
 		Player,
 		Enemy,
@@ -22,7 +22,7 @@ public:
 
 	virtual void updateWorldTransForm() override;
 
-	Type getType() const { return mType; }
+	OnwerType getType() const { return mType; }
 	std::string getTypeToString() const;
 	void setType(const std::string& type);
 
@@ -35,7 +35,7 @@ public:
 
 private:
 	std::weak_ptr<class PhysEngine> mEngine;
-	Type mType;
+	OnwerType mType;
 	AABB mObjectBox;
 	AABB mWorldBox;
 	bool mIsRotate;

@@ -11,9 +11,9 @@ bool MinionAi::isInside(int y, int x)
 	if (x < 0) return false;
 	if (x > 19) return false;
 	if (mWaypoint[y][x].visit == 1) return false;
-	if (!(mWaypoint[y][x].type == int(Tile::Type::Road) || 
-		mWaypoint[y][x].type == int(Tile::Type::EndPoint) ||
-		mWaypoint[y][x].type == int(Tile::Type::Light))) return false;
+	if (!(mWaypoint[y][x].type == int(Tile::TileType::Road) || 
+		mWaypoint[y][x].type == int(Tile::TileType::EndPoint) ||
+		mWaypoint[y][x].type == int(Tile::TileType::Light))) return false;
 
 	return true;
 }
@@ -41,7 +41,7 @@ void MinionAi::BFS()
 		b.b_pos = BFSqueue.front();
 		BFSqueue.pop();
 
-		if (mWaypoint[b.b_pos.first][b.b_pos.second].type == int(Tile::Type::EndPoint))
+		if (mWaypoint[b.b_pos.first][b.b_pos.second].type == int(Tile::TileType::EndPoint))
 		{
 			while (!BFSqueue.empty())
 				BFSqueue.pop();
@@ -105,7 +105,7 @@ void MinionAi::initailize
 	{
 		for (auto j = 0; j < mAiMap[i].size(); ++j)
 		{
-			mWaypoint[i][j].type = int(mAiMap[i][j].lock()->getType());
+			mWaypoint[i][j].type = int(mAiMap[i][j].lock()->getTileType());
 		}
 	}
 
@@ -131,7 +131,7 @@ MinionAi::MinionAi(const std::weak_ptr<class Scene>& scene, const std::vector<st
 	{
 		for (auto j = 0; j < mAiMap[i].size(); ++j)
 		{
-			mWaypoint[i][j].type = int(mAiMap[i][j].lock()->getType());
+			mWaypoint[i][j].type = int(mAiMap[i][j].lock()->getTileType());
 		}
 	}
 

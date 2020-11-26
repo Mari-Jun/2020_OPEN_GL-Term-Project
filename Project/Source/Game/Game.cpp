@@ -113,7 +113,7 @@ void Game::clearScene()
 {
 	for (const auto& scene : mScene)
 	{
-		scene->setState(Scene::State::Dead);
+		scene->setSceneState(Scene::SceneState::Dead);
 	}
 } 
 
@@ -181,7 +181,7 @@ void Game::update()
 	std::vector<std::shared_ptr<Scene>> deadScene;
 	for (auto& scene : mScene)
 	{
-		if (scene->getState() == Scene::State::Dead)
+		if (scene->getSceneState() == Scene::SceneState::Dead)
 		{
 			deadScene.emplace_back(std::move(scene));
 		}
