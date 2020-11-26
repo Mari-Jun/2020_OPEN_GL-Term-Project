@@ -10,6 +10,7 @@ struct PlayerInfo
 struct GameInfo
 {
 	int mStage;
+	int mCoin;
 	PlayerInfo mControlInfo;
 	PlayerInfo mMinionInfo;	
 };

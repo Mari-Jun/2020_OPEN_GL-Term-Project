@@ -4,8 +4,9 @@
 #include "../../Game/Scene/Scene.h"
 #include "../Scene/GameScene.h"
 
-PauseUI::PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render)
+PauseUI::PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, UIType type)
 	: UI(scene, render)
+	, mType(type)
 {
 
 }
@@ -23,7 +24,10 @@ void PauseUI::initailize()
 	UI::initailize();
 
 	auto game = mScene.lock()->getGame().lock();
-	addButton([this]() {closeUIWarp(); }, Vector2(0.0f, 0.0f), "Asset/Image/Button/PlayButton");
+	if (mType == UIType::Pause)
+	{
+		addButton([this]() {closeUIWarp(); }, Vector2(0.0f, 0.0f), "Asset/Image/Button/PlayButton");
+	}
 	addButton([this]() {goToTitle(); }, Vector2(0.0f, -110.0f), "Asset/Image/Button/HomeButton");
 	mBackgroundPos = Vector2(0.0f, 0.0f);
 	mScene.lock()->setSceneState(Scene::SceneState::Paused);

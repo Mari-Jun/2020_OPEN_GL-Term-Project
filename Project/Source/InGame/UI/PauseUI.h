@@ -4,7 +4,13 @@
 class PauseUI : public UI
 {
 public:
-	PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render);
+	enum class UIType
+	{
+		Pause,
+		Clear
+	};
+
+	PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, UIType type = UIType::Pause);
 	virtual ~PauseUI() noexcept;
 
 	virtual void initailize();
@@ -12,4 +18,7 @@ public:
 	virtual void processInput();
 
 	void goToTitle();
+
+private:
+	UIType mType;
 };

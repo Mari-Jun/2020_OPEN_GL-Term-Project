@@ -158,12 +158,15 @@ void GameScene::stageClear()
 {
 	//Create PauseUI
 	auto game = getGame().lock();
-	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Clear);
 	ui->initailize();
-	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/Pause.png"));
+	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/StageClear.png"));
 
 	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
 	game->getMouse()->setWarp(false);
+
+	mInfo.mCoin += mInfo.mStage * 10;
+	mInfo.mStage++;
 }
 
 void GameScene::goToTitle()
