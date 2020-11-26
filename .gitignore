@@ -94,6 +94,9 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+#extern file
+extern/
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
@@ -395,7 +398,7 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
-# NVidia Nsight GPU debugger configuration file
+# NVidia Nsight GPU ger configuration file
 *.nvuser
 
 # MFractors (Xamarin productivity tool) working folder
@@ -412,5 +415,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,c++,windows
