@@ -10,7 +10,7 @@ DialogUI::DialogUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<
 
 DialogUI::~DialogUI()
 {
-	mScene.lock()->setState(Scene::State::Active);
+	mScene.lock()->setSceneState(Scene::SceneState::Active);
 }
 
 void DialogUI::initailize()
@@ -20,7 +20,7 @@ void DialogUI::initailize()
 	auto game = mScene.lock()->getGame().lock();
 	addButton([this]() {closeUI(); }, Vector2(0.0f, -100.0f), "Asset/Image/Button/OKButton");
 	mBackgroundPos = Vector2(0.0f, 0.0f);
-	mScene.lock()->setState(Scene::State::Paused);
+	mScene.lock()->setSceneState(Scene::SceneState::Paused);
 }
 
 void DialogUI::processInput()

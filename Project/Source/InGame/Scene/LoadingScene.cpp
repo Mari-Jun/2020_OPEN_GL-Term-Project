@@ -42,7 +42,7 @@ void LoadingScene::sceneUpdate(float deltatime)
 		
 		auto scene = std::make_shared<TitleScene>(getGame(), ret);
 		scene->initailize();
-		setState(State::Dead);
+		setSceneState(SceneState::Dead);
 	}
 }
 

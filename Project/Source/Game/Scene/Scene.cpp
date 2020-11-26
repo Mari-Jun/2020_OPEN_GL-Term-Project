@@ -5,7 +5,7 @@
 #include "../UI/UI.h"
 
 Scene::Scene(const std::weak_ptr<class Game>& game)
-	: mState(State::Active)
+	: mState(SceneState::Active)
 	, mGame(game)
 	, mIsUpdateActor(false)
 {
@@ -47,7 +47,7 @@ void Scene::initailize()
 
 void Scene::processInput()
 {
-	if (mState == State::Active)
+	if (mState == SceneState::Active)
 	{
 		sceneInput();
 	}
@@ -100,7 +100,7 @@ void Scene::update()
 
 		uiUpdate(deltatime);
 
-		if (mState == Scene::State::Active)
+		if (mState == Scene::SceneState::Active)
 		{
 			sceneUpdate(deltatime);
 		}

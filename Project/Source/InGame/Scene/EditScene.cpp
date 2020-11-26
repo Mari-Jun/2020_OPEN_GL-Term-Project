@@ -62,7 +62,7 @@ void EditScene::sceneInput()
 		GameInfo ret = mInfo;
 		ret.mStage = mStage;
 
-		setState(State::Dead);
+		setSceneState(SceneState::Dead);
 		auto scene = std::make_shared<GameScene>(getGame(), ret);
 		scene->initailize();
 	}
