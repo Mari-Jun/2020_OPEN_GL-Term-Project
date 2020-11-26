@@ -228,7 +228,6 @@
     <ClCompile Include="Source\InGame\UI\HUD\GameHUD.cpp" />
     <ClCompile Include="Source\InGame\UI\PauseUI.cpp" />
     <ClCompile Include="Source\InGame\UI\SceneHelper.cpp" />
-    <ClCompile Include="Source\InGame\UI\TitleUI.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +314,6 @@
     <ClInclude Include="Source\InGame\UI\HUD\GameHUD.h" />
     <ClInclude Include="Source\InGame\UI\PauseUI.h" />
     <ClInclude Include="Source\InGame\UI\SceneHelper.h" />
-    <ClInclude Include="Source\InGame\UI\TitleUI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />

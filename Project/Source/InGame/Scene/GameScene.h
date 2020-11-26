@@ -32,4 +32,7 @@ private:
 public:
 	void stageClear();
 	void goToTitle();
+
+public:
+	const GameInfo& getGameInfo() const { return mInfo; }
 };
