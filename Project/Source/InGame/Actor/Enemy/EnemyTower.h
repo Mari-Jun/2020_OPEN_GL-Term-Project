@@ -4,7 +4,7 @@
 class EnemyTower : public Actor
 {
 public:
-	enum class Type
+	enum class EnemyType
 	{
 		Ballista,
 		Blaster,
@@ -12,7 +12,7 @@ public:
 		Catapult
 	};
 
-	EnemyTower(const std::weak_ptr<class Scene>& scene, Type type = Type::Ballista);
+	EnemyTower(const std::weak_ptr<class Scene>& scene, EnemyType type = EnemyType::Ballista);
 	virtual ~EnemyTower() noexcept;
 
 	virtual void initailize() override;
@@ -27,12 +27,12 @@ private:
 	void chasePlayer();	
 
 private:
-	Type mType;
+	EnemyType mType;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
 	std::weak_ptr<class Weapon> mWeapon;
 
 public:
-	Type getType() const { return mType; }
-	std::string getTypeToString() const;
+	EnemyType getEnemyType() const { return mType; }
+	std::string getEnemyTypeToString() const;
 };

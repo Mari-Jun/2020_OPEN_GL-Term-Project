@@ -52,23 +52,23 @@ void BoxComponent::setType(const std::string& type)
 {
 	if (type == "player")
 	{
-		mType = Type::Player;
+		mType = OnwerType::Player;
 	}
 	else if (type == "enemy")
 	{
-		mType = Type::Enemy;
+		mType = OnwerType::Enemy;
 	}
 	else if (type == "object")
 	{
-		mType = Type::Object;
+		mType = OnwerType::Object;
 	}
 	else if (type == "etc")
 	{
-		mType = Type::Etc;
+		mType = OnwerType::Etc;
 	}
 	else
 	{
-		mType = Type::None;
+		mType = OnwerType::None;
 	}
 }
 
@@ -76,15 +76,15 @@ std::string BoxComponent::getTypeToString() const
 {
 	switch (mType)
 	{
-	case BoxComponent::Type::Player:
+	case BoxComponent::OnwerType::Player:
 		return "player";
-	case BoxComponent::Type::Enemy:
+	case BoxComponent::OnwerType::Enemy:
 		return "enemy";
-	case BoxComponent::Type::Object:
+	case BoxComponent::OnwerType::Object:
 		return "object";
-	case BoxComponent::Type::Etc:
+	case BoxComponent::OnwerType::Etc:
 		return "etc";
-	case BoxComponent::Type::None:
+	case BoxComponent::OnwerType::None:
 		return "none";
 	default:
 		return "";

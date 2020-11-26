@@ -4,7 +4,7 @@
 class Projectile : public Actor
 {
 public:
-	enum class Type
+	enum class PjtType
 	{
 		Arrow,
 		CannonBall,
@@ -12,7 +12,7 @@ public:
 		Raser
 	};
 
-	Projectile(const std::weak_ptr<class Scene>& scene, Type type = Type::Arrow);
+	Projectile(const std::weak_ptr<class Scene>& scene, PjtType type = PjtType::Arrow);
 	virtual ~Projectile() noexcept;
 
 	virtual void initailize() override;
@@ -23,7 +23,7 @@ public:
 	virtual void collide();
 
 private:
-	Type mType;
+	PjtType mType;
 
 protected:
 	std::shared_ptr<class Mesh> loadMesh() const;
@@ -31,6 +31,6 @@ protected:
 	std::shared_ptr<class MoveComponent> mMoveComponent;
 
 public:
-	Type getType() const { return mType; }
-	std::string getTypeToString() const;
+	PjtType getPjtType() const { return mType; }
+	std::string getPjtTypeToString() const;
 };

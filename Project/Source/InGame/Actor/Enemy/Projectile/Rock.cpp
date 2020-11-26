@@ -9,7 +9,7 @@
 #include <random>
 
 Rock::Rock(const std::weak_ptr<class Scene>& scene)
-	: Projectile(scene, Type::Rock)
+	: Projectile(scene, PjtType::Rock)
 	, mLine(Vector3::Zero, Vector3::Zero)
 {
 	

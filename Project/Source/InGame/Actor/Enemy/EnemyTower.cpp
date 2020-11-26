@@ -11,7 +11,7 @@
 #include "../../Actor/Enemy/Weapon/Cannon.h"
 #include "../../Actor/Enemy/Weapon/Catapult.h"
 
-EnemyTower::EnemyTower(const std::weak_ptr<class Scene>& scene, Type type)
+EnemyTower::EnemyTower(const std::weak_ptr<class Scene>& scene, EnemyType type)
 	: Actor(scene)
 	, mType(type)
 {
@@ -53,10 +53,10 @@ void EnemyTower::updateActor(float deltatime)
 
 	switch (mType)
 	{
-	case EnemyTower::Type::Ballista: mWeapon.lock()->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 23.0f); break;
-	case EnemyTower::Type::Blaster: break;
-	case EnemyTower::Type::Cannon: mWeapon.lock()->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 20.0f); break;
-	case EnemyTower::Type::Catapult: mWeapon.lock()->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 22.0f); break;
+	case EnemyTower::EnemyType::Ballista: mWeapon.lock()->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 23.0f); break;
+	case EnemyTower::EnemyType::Blaster: break;
+	case EnemyTower::EnemyType::Cannon: mWeapon.lock()->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 20.0f); break;
+	case EnemyTower::EnemyType::Catapult: mWeapon.lock()->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 22.0f); break;
 	default: break;
 	}
 }
@@ -68,7 +68,7 @@ void EnemyTower::actorInput()
 
 std::shared_ptr<class Mesh> EnemyTower::loadMesh() const
 {
-	if (mType != Type::Blaster)
+	if (mType != EnemyType::Blaster)
 	{
 		std::string meshName;
 		meshName = "Asset/Mesh/Enemy/Weapon_Base";
@@ -84,22 +84,22 @@ void EnemyTower::createWeapon()
 	std::string meshName;
 	switch (mType)
 	{
-	case EnemyTower::Type::Ballista: 
+	case EnemyTower::EnemyType::Ballista: 
 		weapon = std::make_shared<Ballista>(getScene()); 
 		weapon->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 23.0f);
 		meshName = "Asset/Mesh/Enemy/Weapon_Ballista"; 
 		break;
-	case EnemyTower::Type::Blaster: 
+	case EnemyTower::EnemyType::Blaster: 
 		weapon = std::make_shared<Blaster>(getScene());  
 		weapon->setPosition(getPosition());
 		meshName = "Asset/Mesh/Enemy/Weapon_Blaster";
 		break;
-	case EnemyTower::Type::Cannon: 
+	case EnemyTower::EnemyType::Cannon: 
 		weapon = std::make_shared<Cannon>(getScene());  
 		weapon->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 20.0f);
 		meshName = "Asset/Mesh/Enemy/Weapon_Cannon"; 
 		break;
-	case EnemyTower::Type::Catapult:
+	case EnemyTower::EnemyType::Catapult:
 		weapon = std::make_shared<Catapult>(getScene());
 		weapon->setPosition(getPosition() + Vector3::UnitY * getScale().y / 100.0f * 22.0f);
 		meshName = "Asset/Mesh/Enemy/Weapon_Catapult"; 
@@ -151,14 +151,14 @@ void EnemyTower::chasePlayer()
 	}
 }
 
-std::string EnemyTower::getTypeToString() const
+std::string EnemyTower::getEnemyTypeToString() const
 {
 	switch (mType)
 	{
-	case EnemyTower::Type::Ballista: return "Ballista";
-	case EnemyTower::Type::Blaster: return "Blaster";
-	case EnemyTower::Type::Cannon: return "Cannon";
-	case EnemyTower::Type::Catapult: return "Catapult";
+	case EnemyTower::EnemyType::Ballista: return "Ballista";
+	case EnemyTower::EnemyType::Blaster: return "Blaster";
+	case EnemyTower::EnemyType::Cannon: return "Cannon";
+	case EnemyTower::EnemyType::Catapult: return "Catapult";
 	default: return"";
 	}
 }

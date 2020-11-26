@@ -211,6 +211,7 @@
     <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Type\DefaultMinion.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Type\MinionAi\MinionAi.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Tile\EndPointTile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\LightTile.cpp" />
     <ClCompile Include="Source\InGame\Map\Editer\MapEditor.cpp" />
@@ -296,6 +297,7 @@
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Type\DefaultMinion.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Type\MinionAi\MinionAi.h" />
+    <ClInclude Include="Source\InGame\Actor\Tile\EndPointTile.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\LightTile.h" />
     <ClInclude Include="Source\InGame\Info\GameInfo.h" />

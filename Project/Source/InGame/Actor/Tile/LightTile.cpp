@@ -6,7 +6,7 @@
 #include "../../../Game/Graphics/Light/Light.h"
 
 LightTile::LightTile(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Light>& light, const std::string& time)
-	: Tile(scene, Type::Light)
+	: Tile(scene, TileType::Light)
 	, mLight(light)
 	, mTime(time)
 {

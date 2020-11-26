@@ -3,7 +3,7 @@
 #include "../../../../Game/Graphics/Mesh/MeshComponent.h"
 #include "../../../../Game/Game.h"
 
-Projectile::Projectile(const std::weak_ptr<class Scene>& scene, Type type)
+Projectile::Projectile(const std::weak_ptr<class Scene>& scene, PjtType type)
 	: Actor(scene)
 	, mType(type)
 {
@@ -50,23 +50,23 @@ std::shared_ptr<class Mesh> Projectile::loadMesh() const
 	std::string meshName;
 	switch (mType)
 	{
-	case Projectile::Type::Arrow: meshName = "Asset/Mesh/Enemy/Arrow"; break;
-	case Projectile::Type::CannonBall: meshName = "Asset/Mesh/Enemy/cannonball"; break;
-	case Projectile::Type::Rock: meshName = "Asset/Mesh/Enemy/stone"; break;
-	case Projectile::Type::Raser: meshName = "Asset/Mesh/Enemy/Arrow"; break;
+	case Projectile::PjtType::Arrow: meshName = "Asset/Mesh/Enemy/Arrow"; break;
+	case Projectile::PjtType::CannonBall: meshName = "Asset/Mesh/Enemy/cannonball"; break;
+	case Projectile::PjtType::Rock: meshName = "Asset/Mesh/Enemy/stone"; break;
+	case Projectile::PjtType::Raser: meshName = "Asset/Mesh/Enemy/Arrow"; break;
 	default: break;
 	}
 	return getGame().lock()->getRenderer()->getMesh(meshName);
 }
 
-std::string Projectile::getTypeToString() const
+std::string Projectile::getPjtTypeToString() const
 {
 	switch (mType)
 	{
-	case Projectile::Type::Arrow: return "Arrow";
-	case Projectile::Type::CannonBall: return "CannonBall";
-	case Projectile::Type::Rock: return "Rock";
-	case Projectile::Type::Raser: return "Raser";
+	case Projectile::PjtType::Arrow: return "Arrow";
+	case Projectile::PjtType::CannonBall: return "CannonBall";
+	case Projectile::PjtType::Rock: return "Rock";
+	case Projectile::PjtType::Raser: return "Raser";
 	default: return"";
 	}
 }

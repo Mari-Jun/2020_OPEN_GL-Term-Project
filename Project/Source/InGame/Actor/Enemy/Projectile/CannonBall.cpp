@@ -9,7 +9,7 @@
 
 
 CannonBall::CannonBall(const std::weak_ptr<class Scene>& scene)
-	: Projectile(scene, Type::CannonBall)
+	: Projectile(scene, PjtType::CannonBall)
 	, mLine(Vector3::Zero, Vector3::Zero)
 {
 
