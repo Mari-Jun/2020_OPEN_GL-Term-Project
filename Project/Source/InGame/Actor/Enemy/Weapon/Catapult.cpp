@@ -1,5 +1,7 @@
 #include "Catapult.h"
 #include "../Projectile/Rock.h"
+#include "../../../Scene/GameScene.h"
+#include "../../../Scene/EditScene.h"
 #include "../../../../Game/Game.h"
 
 Catapult::Catapult(const std::weak_ptr<class Scene>& scene)
@@ -25,7 +27,15 @@ void Catapult::initRock()
 	mRock = std::make_shared<Rock>(getScene());
 
 	mRockScaleTime = 1;
-	mRock->setPosition(getPosition());
+	auto objectOwner = std::dynamic_pointer_cast<GameScene>(getScene().lock());
+
+	if (objectOwner.use_count())
+	{		
+		mRock->setPosition(getPosition() - Vector3(0, -40, 80));	//초기 방향은 z방향을 쳐다보고잇으니 처음생성할땐 10만큼 뒤로 가줌
+	}else{
+		mRock->setPosition(getPosition() - Vector3(0, -5, 10));	//초기 방향은 z방향을 쳐다보고잇으니 처음생성할땐 10만큼 뒤로 가줌
+	}
+
 	mRock->setScale(getScale());
 	mRock->setforwardSpeed(0);
 	mRock->setupSpeed(0);
@@ -42,6 +52,7 @@ void Catapult::initRock(Vector3 toVec)
 	Vector3 toVectmp = toVec;
 	toVectmp.Normalize();
 	toVectmp.y = -0.5;
+	std::cout << toVectmp.x << " " << toVectmp.y << " " << toVectmp.z << std::endl;
 	mRock->setPosition(getPosition() - (toVectmp * 80));
 
 	mRock->setScale(getScale());
