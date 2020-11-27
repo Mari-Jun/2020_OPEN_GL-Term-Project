@@ -17,6 +17,7 @@ public:
 
 private:
 	LineSegment mLine;
+	Sphere mSphere;
 	float forwardSpeed = 100.0f;
 	float upSpeed = -100.0f;
 	bool flag = false;	//false면 초기상태, true면 발사 상태 (움직인단 소리) 
