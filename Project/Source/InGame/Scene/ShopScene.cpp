@@ -1,5 +1,5 @@
 #include <string>
-#include "TitleScene.h"
+#include "ShopScene.h"
 #include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Game.h"
@@ -10,21 +10,22 @@
 #include "../../Game/Sound/Sound.h"
 #include "../../Game/UI/UI.h"
 #include "../UI/SceneHelper.h"
+#include "../UI/HUD/ShopHUD.h"
 
 
-TitleScene::TitleScene(const std::weak_ptr<class Game>& game, GameInfo info)
+ShopScene::ShopScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
 	, mInfo(info)
 {
 
 }
 
-TitleScene::~TitleScene()
+ShopScene::~ShopScene()
 {
 
 }
 
-void TitleScene::initailize()
+void ShopScene::initailize()
 {
 	Scene::initailize();
 	loadData();
@@ -41,35 +42,37 @@ void TitleScene::initailize()
 	getGame().lock()->getRenderer()->setViewMatrix(view);
 }
 
-void TitleScene::sceneInput()
+void ShopScene::sceneInput()
 {
 	Scene::sceneInput();
 
 	auto game = getGame().lock();
 }
 
-void TitleScene::sceneUpdate(float deltatime)
+void ShopScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);
 }
 
-void TitleScene::loadData()
+void ShopScene::loadData()
 {
 	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
 
-	//Create UI
+	loadUI();
+}
+
+void ShopScene::loadUI()
+{
+	auto gameHUD = std::make_shared<ShopHUD>(std::dynamic_pointer_cast<ShopScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	gameHUD->initailize();
+
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {mSceneHelper->changeToGameScene(mInfo); }, Vector2(0.0f, 30.0f), "Asset/Image/Button/PlayButton");
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -80.0f), "Asset/Image/Button/SaveButton");
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -190.0f), "Asset/Image/Button/HelpButton");
-	ui->addButton([this]() {mSceneHelper->quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/Button/QuitButton");
-	ui->addButton([this]() {mSceneHelper->changeToEditScene(mInfo); }, Vector2(500.0f, -300.0f), "Asset/Image/Button/EditButton");
-	ui->addButton([this]() {mSceneHelper->changeToShopScene(mInfo); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/ShopButton");
+	ui->addButton([this]() {mSceneHelper->changeToTitleScene(mInfo); }, Vector2(500.0f, -300.0f), "Asset/Image/Button/HomeButton");
 }
 
-void TitleScene::unLoadData()
+void ShopScene::unLoadData()
 {
 
 }
