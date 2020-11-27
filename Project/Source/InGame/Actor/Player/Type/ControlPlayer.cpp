@@ -48,23 +48,8 @@ void ControlPlayer::actorInput()
 
 void ControlPlayer::setStat(PlayerInfo info)
 {
-	switch (info.mHpLevel)
-	{
-	case 1: mStat.mMaxHp = 100.0f; break;
-	default: break;
-	}
-
-	switch (info.mDefLevel)
-	{
-	case 1: mStat.mDef = 0.0f; break;
-	default: break;
-	}
-
-	switch (info.mSpeedLevel)
-	{
-	case 1: mStat.mSpeed = 200.0f; break;
-	default: break;
-	}
-
+	mStat.mMaxHp = static_cast<float>(info.getHpStat(PlayerInfo::Type::Control));
+	mStat.mDef = static_cast<float>(info.getDefStat(PlayerInfo::Type::Control));
+	mStat.mSpeed = static_cast<float>(info.getSpeedStat(PlayerInfo::Type::Control));
 	mStat.mHp = mStat.mMaxHp;
 }

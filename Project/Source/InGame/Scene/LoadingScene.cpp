@@ -38,7 +38,7 @@ void LoadingScene::sceneUpdate(float deltatime)
 	//조건
 	if (count > 10)
 	{
-		GameInfo ret = { 1, 5, {1,1,1}, {1,1,1} }; //나중에 게임 파일로 저장하고 불러와야함
+		GameInfo ret = { 1, 123, {1,1,1}, {1,1,1} }; //나중에 게임 파일로 저장하고 불러와야함
 		
 		auto scene = std::make_shared<TitleScene>(getGame(), ret);
 		scene->initailize();
