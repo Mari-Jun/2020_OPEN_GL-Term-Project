@@ -110,13 +110,15 @@ void Rock::collide()
 	{
 		for (const auto& b : boxes->second)
 		{
+			//std::cout << "박스" << b.lock()->getWorldBox().MinDistSq(worldSphere.mCenter) << "\n";
 			//std::cout << "반지름" << worldSphere.mRadius << "\n";
-			if (Intersect(worldLine, b.lock()->getWorldBox()))
+			if (Intersect(worldSphere, b.lock()->getWorldBox()))
 			{
-				//std::cout << "박스" << b.lock()->getWorldBox().MinDistSq(worldSphere.mCenter) << "\n";
-				//std::cout << worldSphere.mCenter.x << "," << worldSphere.mCenter.y << "," << worldSphere.mCenter.z << "\n";
-				//std::cout << "반지름" << worldSphere.mRadius << "\n";
-				//std::cout << "충돌" << "\n";
+				std::cout << "박스최대" << b.lock()->getWorldBox().mMax.z<<","<< b.lock()->getWorldBox().mMax.y<<","<< b.lock()->getWorldBox().mMax.z << "\n";
+				std::cout << "박스최소" << b.lock()->getWorldBox().mMin.z << "," << b.lock()->getWorldBox().mMin.y << "," << b.lock()->getWorldBox().mMin.z << "\n";
+				std::cout <<"xyz 구"<< worldSphere.mCenter.x << "," << worldSphere.mCenter.y << "," << worldSphere.mCenter.z << "\n";
+				std::cout << "반지름" << worldSphere.mRadius << "\n";
+				std::cout << "충돌" << "\n";
 				//auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
 				//if (split == false)
 				//{
@@ -126,7 +128,7 @@ void Rock::collide()
 				//	}
 				//}
 				//owner->decreaseHp(5.0f);
-				setState(State::Dead);
+				//setState(State::Dead);
 
 				return;
 			}
