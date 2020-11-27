@@ -26,6 +26,7 @@ void DefaultMinion::initailize()
 void DefaultMinion::updateActor(float deltatime)
 {
 	MovePlayer::updateActor(deltatime);
+	updateAnimation();
 	if (ChangeTarget())
 	{
 		settingforDFS();

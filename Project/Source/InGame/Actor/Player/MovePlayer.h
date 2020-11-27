@@ -23,6 +23,7 @@ public:
 	virtual void actorInput() override;
 
 	void collides(const std::weak_ptr<class BoxComponent>& bComp);
+	void updateAnimation();
 
 private:
 	std::shared_ptr<class BoxComponent> mBoxComponent;
@@ -31,7 +32,6 @@ private:
 
 private:
 	void updateGravity(float deltatime);
-	void updateAnimation();
 	virtual void setStat(PlayerInfo info);
 
 protected:

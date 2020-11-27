@@ -56,19 +56,14 @@ void MovePlayer::updateActor(float deltatime)
 
 	mHealthBar->setScale(Vector3(0.1f, 0.1f, 0.1f) - 0.1f * Vector3(1.0f, 0.0f, 1.0f) * (1.0f - (mStat.mHp) / mStat.mMaxHp));
 	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
-
-	updateAnimation();
 }
 
 void MovePlayer::updateAnimation()
 {
-	if (mStat.mSpeed != 0)
-	{
-		mLeftArm->setMove(true);
-		mRightArm->setMove(true);
-		mLeftLeg->setMove(true);
-		mRightLeg->setMove(true);
-	}
+	mLeftArm->setMove(true);
+	mRightArm->setMove(true);
+	mLeftLeg->setMove(true);
+	mRightLeg->setMove(true);
 }
 
 void MovePlayer::actorInput()

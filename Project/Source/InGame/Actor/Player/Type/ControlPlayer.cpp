@@ -35,6 +35,7 @@ void ControlPlayer::actorInput()
 		game->getKeyBoard()->isKeyPressed('d'))
 	{
 		speed = mStat.mSpeed;
+		updateAnimation();
 	}
 
 	if (game->getKeyBoard()->isKeyPressed(32))
