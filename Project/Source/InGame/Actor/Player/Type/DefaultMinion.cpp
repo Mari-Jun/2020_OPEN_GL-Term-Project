@@ -44,9 +44,9 @@ void DefaultMinion::actorInput()
 
 void DefaultMinion::setStat(PlayerInfo info)
 {
-	mStat.mMaxHp = static_cast<float>(info.getHpStat(PlayerInfo::Type::Minion));
-	mStat.mDef = static_cast<float>(info.getDefStat(PlayerInfo::Type::Minion));
-	mStat.mSpeed = static_cast<float>(info.getSpeedStat(PlayerInfo::Type::Minion));
+	mStat.mMaxHp = static_cast<float>(info.getHpStat());
+	mStat.mDef = static_cast<float>(info.getDefStat());
+	mStat.mSpeed = static_cast<float>(info.getSpeedStat());
 	mStat.mHp = mStat.mMaxHp;
 }
 

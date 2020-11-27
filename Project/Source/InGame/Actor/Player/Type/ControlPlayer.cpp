@@ -48,8 +48,8 @@ void ControlPlayer::actorInput()
 
 void ControlPlayer::setStat(PlayerInfo info)
 {
-	mStat.mMaxHp = static_cast<float>(info.getHpStat(PlayerInfo::Type::Control));
-	mStat.mDef = static_cast<float>(info.getDefStat(PlayerInfo::Type::Control));
-	mStat.mSpeed = static_cast<float>(info.getSpeedStat(PlayerInfo::Type::Control));
+	mStat.mMaxHp = static_cast<float>(info.getHpStat());
+	mStat.mDef = static_cast<float>(info.getDefStat());
+	mStat.mSpeed = static_cast<float>(info.getSpeedStat());
 	mStat.mHp = mStat.mMaxHp;
 }

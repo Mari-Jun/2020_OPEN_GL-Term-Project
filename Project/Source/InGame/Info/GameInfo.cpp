@@ -1,8 +1,8 @@
 #include "GameInfo.h"
 
-int PlayerInfo::getHpStat(Type type) const
+int PlayerInfo::getHpStat() const
 {
-	switch (type)
+	switch (mType)
 	{
 	case PlayerInfo::Type::Control:
 		switch (mHpLevel)
@@ -22,9 +22,9 @@ int PlayerInfo::getHpStat(Type type) const
 	}
 }
 
-int PlayerInfo::getDefStat(Type type) const
+int PlayerInfo::getDefStat() const
 {
-	switch (type)
+	switch (mType)
 	{
 	case PlayerInfo::Type::Control:
 		switch (mDefLevel)
@@ -44,9 +44,9 @@ int PlayerInfo::getDefStat(Type type) const
 	}
 }
 
-int PlayerInfo::getSpeedStat(Type type) const
+int PlayerInfo::getSpeedStat() const
 {
-	switch (type)
+	switch (mType)
 	{
 	case PlayerInfo::Type::Control:
 		switch (mSpeedLevel)

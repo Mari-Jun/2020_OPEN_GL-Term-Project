@@ -34,8 +34,7 @@ private:
 
 private:
 	void loadCoinNumber();
-	void loadPlayerStat();
-	void loadMinionStat();
+	void loadStat(const struct PlayerInfo& info, StatNumber& stat);
 
 	void setNumberTexture(vTexSet& texture, int info, const std::string& fileName);
 	void drawNumberTexture(std::unique_ptr<class Shader>& shader, const vTexSet& texture, const Vector2& pos, float gap);

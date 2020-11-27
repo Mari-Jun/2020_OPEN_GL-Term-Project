@@ -24,8 +24,8 @@ void ShopHUD::initailize()
 	UI::initailize();
 	mCoin = mRenderer.lock()->getTexture("Asset/Image/HUD/coin.png");
 
-	loadCoinNumber();
-	loadPlayerStat();
+	loadStat(mShopScene.lock()->getGameInfo().mControlInfo, mPlayerStat);
+	loadStat(mShopScene.lock()->getGameInfo().mMinionInfo, mMinionStat);
 
 	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/ShopScene/Reinforce.png");
 }
@@ -35,17 +35,17 @@ void ShopHUD::loadCoinNumber()
 	setNumberTexture(mCoinNumber, mShopScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/Num");
 }
 
-void ShopHUD::loadPlayerStat()
+void ShopHUD::loadStat(const PlayerInfo& info, StatNumber& stat)
 {
-	auto hp = mShopScene.lock()->getGameInfo().mControlInfo.getHpStat(PlayerInfo::Type::Control);
-	setNumberTexture(mPlayerStat.mHpNumber, hp, "Asset/Image/ShopScene/Num");
-	
-	auto def = mShopScene.lock()->getGameInfo().mControlInfo.getDefStat(PlayerInfo::Type::Control);
-	auto speed = mShopScene.lock()->getGameInfo().mControlInfo.getSpeedStat(PlayerInfo::Type::Control);
-}
-void ShopHUD::loadMinionStat()
-{
+	const std::string fileName = "Asset/Image/ShopScene/Num";
+	auto hp = info.getHpStat();
+	setNumberTexture(stat.mHpNumber, hp, fileName);
 
+	auto def = info.getDefStat();
+	setNumberTexture(stat.mDefNumber, def, fileName);
+
+	auto speed = info.getSpeedStat();
+	setNumberTexture(stat.mSpeedNumber, speed, fileName);
 }
 
 void ShopHUD::update(float deltatime)
@@ -67,7 +67,12 @@ void ShopHUD::draw(std::unique_ptr<class Shader>& shader)
 
 	drawTexture(shader, mReinForceBoard, Vector2(-wSize.x / 2 + mReinForceBoard->getWidth() / 2 + 50.0f, 0.0f));
 
-	drawNumberTexture(shader, mPlayerStat.mHpNumber, Vector2(-230.0f, wSize.y / 2 - 140.0f), 35.0f);
+	drawNumberTexture(shader, mPlayerStat.mHpNumber, Vector2(-210.0f, wSize.y / 2 - 140.0f), 35.0f);
+	drawNumberTexture(shader, mPlayerStat.mDefNumber, Vector2(-210.0f, wSize.y / 2 - 240.0f), 35.0f);
+	drawNumberTexture(shader, mPlayerStat.mSpeedNumber, Vector2(-210.0f, wSize.y / 2 - 340.0f), 35.0f);
+	drawNumberTexture(shader, mMinionStat.mHpNumber, Vector2(-210.0f, wSize.y / 2 - 440.0f), 35.0f);
+	drawNumberTexture(shader, mMinionStat.mDefNumber, Vector2(-210.0f, wSize.y / 2 - 540.0f), 35.0f);
+	drawNumberTexture(shader, mMinionStat.mSpeedNumber, Vector2(-210.0f, wSize.y / 2 - 640.0f), 35.0f);
 }
 
 

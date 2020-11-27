@@ -7,13 +7,15 @@ struct PlayerInfo
 		Control, Minion
 	};
 
+	Type mType;
 	int mHpLevel;
 	int mDefLevel;
 	int mSpeedLevel;
 
-	int getHpStat(Type type) const;
-	int getDefStat(Type type) const;
-	int getSpeedStat(Type type) const;
+	Type getPlayerInfoType() const { return mType; }
+	int getHpStat() const;
+	int getDefStat() const;
+	int getSpeedStat() const;
 };
 
 struct GameInfo
