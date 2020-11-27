@@ -1,7 +1,7 @@
 #pragma once
-#include "../Player.h"
+#include "../MovePlayer.h"
 
-class ControlPlayer : public Player
+class ControlPlayer : public MovePlayer
 {
 public:
 	ControlPlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info);

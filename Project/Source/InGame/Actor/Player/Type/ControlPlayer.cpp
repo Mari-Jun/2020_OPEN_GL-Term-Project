@@ -4,7 +4,7 @@
 #include "../../../../Game/Component/MoveComponent.h"
 
 ControlPlayer::ControlPlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
-	: Player(scene, info, PlayerType::Control)
+	: MovePlayer(scene, info)
 {
 	setStat(info);
 }
@@ -16,13 +16,12 @@ ControlPlayer::~ControlPlayer()
 
 void ControlPlayer::initailize()
 {
-	Player::initailize();
-	setPlayerTexture("Asset/Mesh/Player/skin_man.png");
+	MovePlayer::initailize();
 }
 
 void ControlPlayer::updateActor(float deltatime)
 {
-	Player::updateActor(deltatime);
+	MovePlayer::updateActor(deltatime);
 }
 
 void ControlPlayer::actorInput()
@@ -36,6 +35,7 @@ void ControlPlayer::actorInput()
 		game->getKeyBoard()->isKeyPressed('d'))
 	{
 		speed = mStat.mSpeed;
+		updateAnimation();
 	}
 
 	if (game->getKeyBoard()->isKeyPressed(32))

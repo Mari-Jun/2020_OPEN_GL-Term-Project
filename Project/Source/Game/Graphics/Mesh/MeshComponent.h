@@ -13,6 +13,7 @@ public:
 
 	virtual void draw(std::unique_ptr<class Shader>& shader);
 
+	const std::shared_ptr<class Mesh>& getMesh() const { return mMesh; }
 	void setMesh(const std::shared_ptr<class Mesh>& mesh) { mMesh = mesh; }
 	void setColor(Vector3 color) { mColor = color; }
 

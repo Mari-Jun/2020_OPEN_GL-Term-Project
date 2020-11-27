@@ -19,6 +19,7 @@ public:
 	~ShopHUD();
 
 	virtual void initailize();
+	void resetInfo();
 
 	virtual void update(float deltatime);
 	virtual void processInput();
