@@ -44,24 +44,9 @@ void DefaultMinion::actorInput()
 
 void DefaultMinion::setStat(PlayerInfo info)
 {
-	switch (info.mHpLevel)
-	{
-	case 1: mStat.mMaxHp = 100.0f; break;
-	default: break;
-	}
-
-	switch (info.mDefLevel)
-	{
-	case 1: mStat.mDef = 0.0f; break;
-	default: break;
-	}
-
-	switch (info.mSpeedLevel)
-	{
-	case 1: mStat.mSpeed = 200.0f; break;
-	default: break;
-	}
-
+	mStat.mMaxHp = static_cast<float>(info.getHpStat());
+	mStat.mDef = static_cast<float>(info.getDefStat());
+	mStat.mSpeed = static_cast<float>(info.getSpeedStat());
 	mStat.mHp = mStat.mMaxHp;
 }
 

@@ -5,6 +5,7 @@
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
 #include "../Scene/EditScene.h"
+#include "../Scene/ShopScene.h"
 #include "DialogUI.h"
 
 SceneHelper::SceneHelper(const std::weak_ptr<class Scene>& scene)
@@ -35,6 +36,13 @@ void SceneHelper::changeToGameScene(const GameInfo& info)
 void SceneHelper::changeToEditScene(const GameInfo& info)
 {
 	auto scene = std::make_shared<EditScene>(mScene.lock()->getGame(), info);
+	scene->initailize();
+	mScene.lock()->setSceneState(Scene::SceneState::Dead);
+}
+
+void SceneHelper::changeToShopScene(const GameInfo& info)
+{
+	auto scene = std::make_shared<ShopScene>(mScene.lock()->getGame(), info);
 	scene->initailize();
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);
 }
