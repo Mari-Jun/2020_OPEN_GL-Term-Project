@@ -10,7 +10,7 @@
 
 CannonBall::CannonBall(const std::weak_ptr<class Scene>& scene)
 	: Projectile(scene, PjtType::CannonBall)
-	, mLine(Vector3::Zero, Vector3::Zero)
+	, mSphere(Vector3::Zero, 0)
 {
 
 }
@@ -36,9 +36,12 @@ void CannonBall::initailize()
 
 	const auto& box = mesh->getBox();
 
-	//set collide line
-	mLine.mStart = box.mMin;
-	mLine.mEnd = box.mMax;
+	//set collide Sphere
+	mSphere.mCenter = (box.mMin + box.mMax) / 2.0f;
+	Vector3 Vec(box.mMax - box.mMin);
+	Vec.y = 0;
+	mSphere.mRadius = Vec.Length() / 2.0;
+
 }
 
 void CannonBall::updateActor(float deltatime)
@@ -68,10 +71,10 @@ void CannonBall::collide()
 	Matrix4 worldTransform;
 	convertWorldTransform(worldTransform);
 
-	auto worldLine = LineSegment
+	auto worldSphere = Sphere
 	(
-		Vector3::Transform(mLine.mStart, worldTransform),
-		Vector3::Transform(mLine.mEnd, worldTransform)
+		Vector3::Transform(mSphere.mCenter, worldTransform),
+		mSphere.mRadius * getScale().x
 	);
 
 	const auto& allBoxes = getGame().lock()->getPhysEngine()->getBoxes();
@@ -80,7 +83,7 @@ void CannonBall::collide()
 	{
 		for (const auto& b : boxes->second)
 		{
-			if (Intersect(worldLine, b.lock()->getWorldBox()))
+			if (Intersect(worldSphere, b.lock()->getWorldBox()))
 			{
 				auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
 				owner->decreaseHp(5.0f);

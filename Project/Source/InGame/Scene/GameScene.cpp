@@ -118,10 +118,10 @@ void GameScene::loadActorData()
 	particle->initailize();
 
 	//Create Minion
-	//auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mInfo.mMinionInfo, mMinionAi);
-	//minion->setScale(1.5f);
-	//minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
-	//minion->initailize();
+	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mInfo.mMinionInfo, mMinionAi);
+	minion->setScale(1.5f);
+	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
+	minion->initailize();
 }
 
 void GameScene::loadGameMap()

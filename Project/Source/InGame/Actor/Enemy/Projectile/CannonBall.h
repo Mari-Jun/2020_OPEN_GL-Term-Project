@@ -16,5 +16,5 @@ public:
 	virtual void collide() override;
 
 private:
-	LineSegment mLine;
+	Sphere mSphere;
 };

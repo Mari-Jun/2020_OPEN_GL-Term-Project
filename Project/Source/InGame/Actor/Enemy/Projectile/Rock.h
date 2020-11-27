@@ -16,7 +16,6 @@ public:
 	virtual void collide() override;
 
 private:
-	LineSegment mLine;
 	Sphere mSphere;
 	float forwardSpeed = 100.0f;
 	float upSpeed = -100.0f;

@@ -11,7 +11,6 @@
 
 Rock::Rock(const std::weak_ptr<class Scene>& scene)
 	: Projectile(scene, PjtType::Rock)
-	, mLine(Vector3::Zero, Vector3::Zero)
 	, mSphere(Vector3::Zero,0)
 {
 	
@@ -38,9 +37,7 @@ void Rock::initailize()
 
 	const auto& box = mesh->getBox();
 
-	//set collide line
-	mLine.mStart = box.mMin;
-	mLine.mEnd = box.mMax;
+	//set collide Sphere
 	mSphere.mCenter = (box.mMin + box.mMax) / 2.0f;
 
 	Vector3 Vec(box.mMax - box.mMin);
@@ -88,15 +85,9 @@ void Rock::collide()
 {
 	updateWorldTransform();
 
-	//localLine to worldLine
+	//localSphere to worldSphere
 	Matrix4 worldTransform;
 	convertWorldTransform(worldTransform);
-
-	auto worldLine = LineSegment
-	(
-		Vector3::Transform(mLine.mStart, worldTransform),
-		Vector3::Transform(mLine.mEnd, worldTransform)
-	);
 
 	auto worldSphere = Sphere
 	(
@@ -110,25 +101,18 @@ void Rock::collide()
 	{
 		for (const auto& b : boxes->second)
 		{
-			//std::cout << "박스" << b.lock()->getWorldBox().MinDistSq(worldSphere.mCenter) << "\n";
-			//std::cout << "반지름" << worldSphere.mRadius << "\n";
 			if (Intersect(worldSphere, b.lock()->getWorldBox()))
 			{
-				std::cout << "박스최대" << b.lock()->getWorldBox().mMax.z<<","<< b.lock()->getWorldBox().mMax.y<<","<< b.lock()->getWorldBox().mMax.z << "\n";
-				std::cout << "박스최소" << b.lock()->getWorldBox().mMin.z << "," << b.lock()->getWorldBox().mMin.y << "," << b.lock()->getWorldBox().mMin.z << "\n";
-				std::cout <<"xyz 구"<< worldSphere.mCenter.x << "," << worldSphere.mCenter.y << "," << worldSphere.mCenter.z << "\n";
-				std::cout << "반지름" << worldSphere.mRadius << "\n";
-				std::cout << "충돌" << "\n";
-				//auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
-				//if (split == false)
-				//{
-				//	for (int i = 0; i < 12; ++i)	//i의 갯수는 파편의 개수
-				//	{
-				//		makeSplitRock();
-				//	}
-				//}
-				//owner->decreaseHp(5.0f);
-				//setState(State::Dead);
+				if (split == false)
+				{
+					for (int i = 0; i < 12; ++i)	//i의 갯수는 파편의 개수
+					{
+						makeSplitRock();
+					}
+				}
+				auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
+				owner->decreaseHp(5.0f);
+				setState(State::Dead);
 
 				return;
 			}
