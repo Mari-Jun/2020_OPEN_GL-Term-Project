@@ -7,7 +7,7 @@
 #include <memory>
 
 DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionAi>& ai)
-	: Player(scene, info, PlayerType::Defualt)
+	: MovePlayer(scene, info)
 	, AiWay(ai)
 {
 	setStat(info);
@@ -20,13 +20,12 @@ DefaultMinion::~DefaultMinion()
 
 void DefaultMinion::initailize()
 {
-	Player::initailize();
-	setPlayerTexture("Asset/Mesh/Player/skin_robot.png");
+	MovePlayer::initailize();
 }
 
 void DefaultMinion::updateActor(float deltatime)
 {
-	Player::updateActor(deltatime);
+	MovePlayer::updateActor(deltatime);
 	if (ChangeTarget())
 	{
 		settingforDFS();

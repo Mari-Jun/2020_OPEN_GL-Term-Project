@@ -72,6 +72,6 @@ private:
 	bool mAnimation;
 };
 
-DirectionalLight loadDirectionalLight();
+std::shared_ptr<DirectionalLight> loadDirectionalLight();
 PointLight loadPointLight();
 SpotLight loadSpotLight();

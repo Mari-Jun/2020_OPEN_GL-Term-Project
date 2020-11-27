@@ -24,6 +24,7 @@ private:
 
 private:
 	void loadUI();
+	void loadPlayer();
 	void upgradeStatLevel(int& statLevel, const std::string& type);
 
 public:

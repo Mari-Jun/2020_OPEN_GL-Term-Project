@@ -4,7 +4,7 @@
 #include "../../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../../Game/Component/BoxComponent.h"
 #include "../../../../Game/Game.h"
-#include "../../Player/Player.h"
+#include "../../Player/MovePlayer.h"
 
 
 
@@ -82,7 +82,7 @@ void CannonBall::collide()
 		{
 			if (Intersect(worldLine, b.lock()->getWorldBox()))
 			{
-				auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
+				auto owner = std::dynamic_pointer_cast<MovePlayer>(b.lock()->getOwner().lock());
 				owner->decreaseHp(5.0f);
 				setState(State::Dead);
 

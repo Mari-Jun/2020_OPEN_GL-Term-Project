@@ -11,7 +11,8 @@
 #include "../../Game/UI/UI.h"
 #include "../UI/SceneHelper.h"
 #include "../UI/HUD/ShopHUD.h"
-
+#include "../Actor/Player/Player.h"
+#include "../../Game/Graphics/Light/Light.h"
 
 ShopScene::ShopScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
@@ -28,7 +29,6 @@ ShopScene::~ShopScene()
 void ShopScene::initailize()
 {
 	Scene::initailize();
-	loadData();
 
 	auto game = getGame().lock();
 
@@ -38,8 +38,13 @@ void ShopScene::initailize()
 
 	//Set View
 	auto windowSize = getGame().lock()->getRenderer()->getWindow()->getSize();
-	auto view = Matrix4::CreateSimpleViewProj(windowSize.x, windowSize.y);
+	auto view = Matrix4::CreateLookAt(Vector3::Zero, Vector3::UnitZ, Vector3::UnitY);
+	auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5.0f);
 	getGame().lock()->getRenderer()->setViewMatrix(view);
+	getGame().lock()->getRenderer()->setProjectionMatrix(projection);
+	getGame().lock()->getRenderer()->getLight()->setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
+
+	loadData();
 }
 
 void ShopScene::sceneInput()
@@ -59,6 +64,7 @@ void ShopScene::loadData()
 	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
 
 	loadUI();
+	loadPlayer();
 }
 
 void ShopScene::loadUI()
@@ -76,6 +82,15 @@ void ShopScene::loadUI()
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mHpLevel, "HP"); }, Vector2(-50.0f, -56.0f), "Asset/Image/Button/Upgrade");
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mDefLevel, "DEF"); }, Vector2(-50.0f, -158.0f), "Asset/Image/Button/Upgrade");
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mSpeedLevel, "SPEED"); }, Vector2(-50.0f, -260.0f), "Asset/Image/Button/Upgrade");
+}
+
+void ShopScene::loadPlayer()
+{
+	//Create Minion
+	auto player = std::make_shared<Player>(weak_from_this(), mInfo.mControlInfo);
+	player->setScale(1.5f);
+	player->setPosition(Vector3(400.0f, 0.0f, 0.0f));
+	player->initailize();
 }
 
 void ShopScene::unLoadData()
@@ -102,6 +117,7 @@ void ShopScene::upgradeStatLevel(int& statLevel, const std::string& type)
 		{
 			isBuy = false;
 			//货肺款 UI积己
+			mSceneHelper->createDialog("Upgrade");
 		}
 	}
 	else
@@ -110,6 +126,7 @@ void ShopScene::upgradeStatLevel(int& statLevel, const std::string& type)
 		{
 			isBuy = false;
 			//货肺款 UI积己
+			mSceneHelper->createDialog("Upgrade");
 		}
 	}
 
