@@ -7,6 +7,10 @@ struct PlayerInfo
 		Control, Minion
 	};
 
+	static constexpr int MAXHPLEVEL = 5;
+	static constexpr int MAXDEFLEVEL = 5;
+	static constexpr int MAXSPEEDLEVEL = 5;
+
 	Type mType;
 	int mHpLevel;
 	int mDefLevel;
@@ -16,6 +20,7 @@ struct PlayerInfo
 	int getHpStat() const;
 	int getDefStat() const;
 	int getSpeedStat() const;
+	
 };
 
 struct GameInfo

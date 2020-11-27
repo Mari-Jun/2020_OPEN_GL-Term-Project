@@ -9,6 +9,9 @@ int PlayerInfo::getHpStat() const
 		{
 		case 1: return 100;
 		case 2: return 150;
+		case 3: return 200;
+		case 4: return 250;
+		case 5: return 300;
 		default: return 0;
 		}
 	case PlayerInfo::Type::Minion:
@@ -16,6 +19,9 @@ int PlayerInfo::getHpStat() const
 		{
 		case 1: return 50;
 		case 2: return 75;
+		case 3: return 100;
+		case 4: return 125;
+		case 5: return 150;
 		default: return 0;
 		}
 	default: return 0;
