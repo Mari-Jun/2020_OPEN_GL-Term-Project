@@ -338,6 +338,8 @@
     <None Include="Source\Game\Graphics\Shader\Basic.frag" />
     <None Include="Source\Game\Graphics\Shader\Basic.vert" />
     <None Include="Source\Game\Graphics\Shader\Board.vert" />
+    <None Include="Source\Game\Graphics\Shader\cubemap.frag" />
+    <None Include="Source\Game\Graphics\Shader\cubemap.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
     <None Include="Source\Game\Graphics\Shader\Phong.vert" />
     <None Include="Source\Game\Graphics\Shader\Phong2.frag" />
