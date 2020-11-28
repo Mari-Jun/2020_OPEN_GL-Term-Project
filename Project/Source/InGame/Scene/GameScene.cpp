@@ -13,7 +13,7 @@
 
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreator.h"
-#include "../Actor/Player/Type/MinionAi/MinionCreator.h"
+#include "../Actor/Player/Type/MinionAi/MinionManager.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
 #include "../UI/HUD/GameHUD.h"
@@ -72,7 +72,7 @@ void GameScene::sceneInput()
 	}
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
-		pauseGame();
+		pauseGame("Pause");
 	}
 }
 
@@ -115,9 +115,9 @@ void GameScene::loadActorData()
 	particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
 	particle->initailize();
 
-	//Create MinionCreator
-	auto minion = std::make_shared<MinionCreator>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
-	minion->initailize();
+	//Create MinionManager
+	mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
+	mMinionManager->initailize();
 }
 
 void GameScene::loadGameMap()
@@ -131,17 +131,32 @@ void GameScene::loadGameMap()
 
 void GameScene::loadUI()
 {
-	auto gameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
-	gameHUD->initailize();
+	mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mGameHUD->initailize();
 }
 
-void GameScene::pauseGame()
+void GameScene::pauseGame(const std::string& type)
 {
 	//Create PauseUI
 	auto game = getGame().lock();
-	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	std::shared_ptr<class PauseUI> ui;
+	if (type == "Pause")
+	{
+		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	}
+	else if (type == "Clear")
+	{
+		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Clear);
+	}
+	else if (type == "Fail")
+	{
+		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Fail);
+	}
 	ui->initailize();
-	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/Pause.png"));
+	
+	std::string fileName = "Asset/Image/UIBackground/" + type + ".png";
+
+	ui->setBackgroundTexture(game->getRenderer()->getTexture(fileName));
 
 	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
 	game->getMouse()->setWarp(false);
@@ -149,17 +164,21 @@ void GameScene::pauseGame()
 
 void GameScene::stageClear()
 {
-	//Create PauseUI
-	auto game = getGame().lock();
-	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Clear);
-	ui->initailize();
-	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/StageClear.png"));
+	if (mMinionManager->getLiveMinion() >= mMinionManager->getClearMinion())
+	{
+		pauseGame("Clear");
 
-	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
-	game->getMouse()->setWarp(false);
+		mInfo.mCoin += mInfo.mStage * 10;
+		mInfo.mStage++;
+	}
+}
 
-	mInfo.mCoin += mInfo.mStage * 10;
-	mInfo.mStage++;
+void GameScene::stageFail()
+{
+	if (mMinionManager->getLiveMinion() < mMinionManager->getClearMinion())
+	{
+		pauseGame("Fail");
+	}
 }
 
 void GameScene::goToTitle()

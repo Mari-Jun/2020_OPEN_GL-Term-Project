@@ -3,6 +3,7 @@
 #include "../../../Game/Game.h"
 #include "../Player/Player.h"
 #include "../../Scene/GameScene.h"
+#include "../Player/Type/DefaultMinion.h"
 
 EndPointTile::EndPointTile(const std::weak_ptr<class Scene>& scene)
 	: Tile(scene, TileType::EndPoint)
@@ -49,8 +50,7 @@ void EndPointTile::collidePlayers()
 				}
 				else
 				{
-					//여기에 구현하세요!
-					objectOwner->setState(State::Paused);
+					objectOwner->setState(Actor::State::Dead);
 				}
 			}
 		}

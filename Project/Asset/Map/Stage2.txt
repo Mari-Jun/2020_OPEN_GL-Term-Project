@@ -8,34 +8,35 @@ Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basi
 Line 4 20
 Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 5 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 6 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 TowerSquareA 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 7 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 TowerSquareA 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 8 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 TowerSquareA 0 TowerSquareA 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 TowerBallista 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 9 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 TowerBallista 0 Road 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 10 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 TowerBallista 0 Road 0 TowerBallista 0 StartPoint 0 Road 0 Road 0 TowerBallista 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 11 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 TowerBallista 0 Road 0 TowerBallista 0 Basic 0 Basic 0 Road 0 TowerBallista 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 12 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 TowerBallista 0 Road 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 Road 0 TowerBallista 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 13 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 TowerBallista 0 Road 0 Road 0 Road 0 Road 0 Road 0 TowerBallista 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 14 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 15 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 16 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 17 20
-Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 18 20
 Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 19 20
 Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 20 20
-Type StartPoint 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Minion 24

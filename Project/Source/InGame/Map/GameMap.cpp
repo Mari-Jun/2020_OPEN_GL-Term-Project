@@ -185,5 +185,30 @@ void GameMap::addDirectionalLight()
 	}
 
 	light->addDirectionalLight(std::make_shared<DirectionalLight>(dirLight));
+}
 
+bool GameMap::checkTileRange(int y, int x)
+{
+	if (y < 0 || x < 0 || y >= mMapSize || x >= mMapSize)
+		return false;
+	return true;
+}
+
+const std::vector<std::weak_ptr<class Tile>> GameMap::getCollideTiles(const Vector3& pos)
+{
+	std::vector<std::weak_ptr<class Tile>> cTile;
+
+	int x = (pos.x - mPosition.x) / mTileSize;
+	int y = (pos.z - mPosition.z) / -mTileSize;
+
+	cTile.push_back(mTiles[y][x]);
+	for (auto i = 0; i < 8; i++)
+	{
+		if (checkTileRange(y + TILEROUND[i][0], x + TILEROUND[i][1]))
+		{
+			cTile.push_back(mTiles[y + TILEROUND[i][0]][x + TILEROUND[i][1]]);
+		}
+	}
+
+	return cTile;
 }

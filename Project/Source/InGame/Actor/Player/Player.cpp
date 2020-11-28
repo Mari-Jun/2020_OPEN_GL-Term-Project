@@ -20,7 +20,11 @@ Player::Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 
 Player::~Player()
 {
-
+	mHead->setState(Actor::State::Dead);
+	mLeftArm->setState(Actor::State::Dead);
+	mRightArm->setState(Actor::State::Dead);
+	mLeftLeg->setState(Actor::State::Dead);
+	mRightLeg->setState(Actor::State::Dead);
 }
 
 void Player::initailize()

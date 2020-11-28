@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../../Game/Math/Math.h"
 
+const int TILEROUND[8][2] = { {0,-1},{-1, -1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1} };
 
 constexpr unsigned int HashCode(const char* str)
 {
@@ -37,6 +38,7 @@ private:
 
 private:
 	void addDirectionalLight();
+	bool checkTileRange(int y, int x);
 
 public:
 	const std::string& getFileName() const { return mFileName; }
@@ -44,6 +46,7 @@ public:
 	int getMapSize() const { return mMapSize; }
 	const Vector3& getPosition() const { return mPosition; }
 	const std::vector<std::vector<std::weak_ptr<class Tile>>>& getTiles() { return mTiles; }
+	const std::vector<std::weak_ptr<class Tile>> getCollideTiles(const Vector3& pos);
 	const Vector3& getStartPosition() const { return mStartPosition; }
 	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>((mStartPosition.z - mPosition.z) / -mTileSize) , static_cast<int>((mStartPosition.x - mPosition.x) / mTileSize) }; }
 	const Vector3& getEndPosition() const { return mEndPosition; }

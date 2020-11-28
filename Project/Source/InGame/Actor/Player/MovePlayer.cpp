@@ -10,6 +10,9 @@
 #include "../../../Game/Graphics/Mesh/BillBoardComponent.h"	
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
+#include "../../Scene/GameScene.h"
+#include "../../Map/GameMap.h"
+#include "../Tile/Tile.h"
 
 MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: Player(scene, info)
@@ -21,7 +24,7 @@ MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 
 MovePlayer::~MovePlayer()
 {
-
+	mHealthBar->setState(Actor::State::Dead);
 }
 
 void MovePlayer::initailize()
@@ -52,7 +55,7 @@ void MovePlayer::updateActor(float deltatime)
 
 	updateGravity(deltatime);
 
-	collides(mBoxComponent);
+	collides(mBoxComponent);		
 
 	mHealthBar->setScale(Vector3(0.1f, 0.1f, 0.1f) - 0.1f * Vector3(1.0f, 0.0f, 1.0f) * (1.0f - (mStat.mHp) / mStat.mMaxHp));
 	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
@@ -90,45 +93,41 @@ void MovePlayer::collides(const std::weak_ptr<BoxComponent>& bComp)
 
 	Vector3 pos = getPosition();
 
-	auto allBoxes = getGame().lock()->getPhysEngine()->getBoxes();
-	auto boxes = allBoxes.find(getTypeToString(Type::Object));
-	if (boxes != allBoxes.end())
+	auto cTiles = std::dynamic_pointer_cast<GameScene>(getScene().lock())->getGameMap()->getCollideTiles(pos);
+	for (auto tile : cTiles)
 	{
-		for (auto b : boxes->second)
+		const AABB& box = tile.lock()->getBoxComponent()->getWorldBox();
+
+		auto cLength = (box.mMax.x - box.mMin.x) / 2;
+		if (Intersect(robotBox, box))
 		{
-			const AABB& box = b.lock()->getWorldBox();
-			const auto& boxActor = b.lock()->getOwner();
+			float dx1 = box.mMax.x - robotBox.mMin.x;
+			float dx2 = box.mMin.x - robotBox.mMax.x;
+			float dy1 = box.mMax.y - robotBox.mMin.y;
+			float dy2 = box.mMin.y - robotBox.mMax.y;
+			float dz1 = box.mMax.z - robotBox.mMin.z;
+			float dz2 = box.mMin.z - robotBox.mMax.z;
 
-			if (shared_from_this() != boxActor.lock() && Intersect(robotBox, box))
+			float dx = Math::Abs(dx1) < Math::Abs(dx2) ? dx1 : dx2;
+			float dy = Math::Abs(dy1) < Math::Abs(dy2) ? dy1 : dy2;
+			float dz = Math::Abs(dz1) < Math::Abs(dz2) ? dz1 : dz2;
+
+			if (Math::Abs(dx) <= Math::Abs(dy) && Math::Abs(dx) <= Math::Abs(dz))
 			{
-				float dx1 = box.mMax.x - robotBox.mMin.x;
-				float dx2 = box.mMin.x - robotBox.mMax.x;
-				float dy1 = box.mMax.y - robotBox.mMin.y;
-				float dy2 = box.mMin.y - robotBox.mMax.y;
-				float dz1 = box.mMax.z - robotBox.mMin.z;
-				float dz2 = box.mMin.z - robotBox.mMax.z;
-
-				float dx = Math::Abs(dx1) < Math::Abs(dx2) ? dx1 : dx2;
-				float dy = Math::Abs(dy1) < Math::Abs(dy2) ? dy1 : dy2;
-				float dz = Math::Abs(dz1) < Math::Abs(dz2) ? dz1 : dz2;
-
-				if (Math::Abs(dx) <= Math::Abs(dy) && Math::Abs(dx) <= Math::Abs(dz))
-				{
-					pos.x += dx;
-				}
-				if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
-				{
-					pos.y += dy;
-					mGravitySpeed = 0.0f;
-				}
-				if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
-				{
-					pos.z += dz;
-				}
-
-				setPosition(pos);
-				mBoxComponent->updateWorldTransForm();
+				pos.x += dx;
 			}
+			if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
+			{
+				pos.y += dy;
+				mGravitySpeed = 0.0f;
+			}
+			if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
+			{
+				pos.z += dz;
+			}
+
+			setPosition(pos);
+			mBoxComponent->updateWorldTransForm();
 		}
 	}
 }
