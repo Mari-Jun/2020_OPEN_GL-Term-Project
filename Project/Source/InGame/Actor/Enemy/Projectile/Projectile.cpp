@@ -53,7 +53,7 @@ std::shared_ptr<class Mesh> Projectile::loadMesh() const
 	case Projectile::PjtType::Arrow: meshName = "Asset/Mesh/Enemy/Arrow"; break;
 	case Projectile::PjtType::CannonBall: meshName = "Asset/Mesh/Enemy/cannonball"; break;
 	case Projectile::PjtType::Rock: meshName = "Asset/Mesh/Enemy/stone"; break;
-	case Projectile::PjtType::Laser: meshName = "Asset/Mesh/Enemy/Arrow"; break;
+	case Projectile::PjtType::Raser: meshName = "Asset/Mesh/Enemy/Arrow"; break;
 	default: break;
 	}
 	return getGame().lock()->getRenderer()->getMesh(meshName);
@@ -66,7 +66,7 @@ std::string Projectile::getPjtTypeToString() const
 	case Projectile::PjtType::Arrow: return "Arrow";
 	case Projectile::PjtType::CannonBall: return "CannonBall";
 	case Projectile::PjtType::Rock: return "Rock";
-	case Projectile::PjtType::Laser: return "Laser";
+	case Projectile::PjtType::Raser: return "Raser";
 	default: return"";
 	}
 }
