@@ -131,3 +131,8 @@ void Texture::setActive()
 {
 	glBindTexture(GL_TEXTURE_2D, mTextureID);
 }
+
+void Texture::setActiveskybox()
+{
+	glBindTexture(GL_TEXTURE_CUBE_MAP, mTextureID);
+}

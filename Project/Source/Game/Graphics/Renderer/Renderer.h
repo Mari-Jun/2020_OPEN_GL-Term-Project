@@ -37,6 +37,10 @@ public:
 	void addUI(const std::weak_ptr<class UI>& ui);
 	void removeUI(const std::weak_ptr<class UI>& ui);
 
+	void addCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component);
+	void removeCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component);
+
+
 private:
 	bool loadShader();
 	void createSpriteVertex();	
