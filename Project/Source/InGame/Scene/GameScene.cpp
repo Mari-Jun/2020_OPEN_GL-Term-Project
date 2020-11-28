@@ -175,10 +175,7 @@ void GameScene::stageClear()
 
 void GameScene::stageFail()
 {
-	if (mMinionManager->getLiveMinion() < mMinionManager->getClearMinion())
-	{
-		pauseGame("Fail");
-	}
+	pauseGame("Fail");
 }
 
 void GameScene::goToTitle()

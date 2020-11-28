@@ -32,8 +32,6 @@ void DefaultMinion::updateActor(float deltatime)
 		moveforDFS();
 	}
 	SmoothRotate();
-
-	checkHp();
 }
 
 void DefaultMinion::actorInput()
@@ -56,7 +54,10 @@ void DefaultMinion::checkHp()
 		setState(Actor::State::Dead);
 		mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
 		mManager.lock()->resetHUD();
-		std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
+		if (mManager.lock()->getLiveMinion() < mManager.lock()->getClearMinion())
+		{
+			std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
+		}
 	}
 }
 

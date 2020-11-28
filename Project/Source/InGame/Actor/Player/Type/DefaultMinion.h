@@ -23,7 +23,7 @@ private:
 
 private:
 	virtual void setStat(PlayerInfo info) override;
-	void checkHp();
+	virtual void checkHp() override;
 
 private:
 	void moveforDFS();

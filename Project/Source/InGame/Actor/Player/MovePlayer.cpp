@@ -137,10 +137,16 @@ void MovePlayer::setStat(PlayerInfo info)
 
 }
 
+void MovePlayer::checkHp()
+{
+	
+}
+
 void MovePlayer::decreaseHp(float damage)
 {
 	damage = damage - damage / 100.0f * 5 * mStat.mDef;
 	mStat.mHp = Math::Max(mStat.mHp - damage, 0.0f);
+	checkHp();
 }
 
 void MovePlayer::increaseHp(float hill)
