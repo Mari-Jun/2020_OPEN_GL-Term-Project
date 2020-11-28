@@ -12,7 +12,7 @@ public:
 	virtual void initailize() override;
 
 	virtual void draw(std::unique_ptr<class Shader>& shader);
-	void setTexture(const std::shared_ptr<class Texture>& texture);
+	void setTexture(const std::vector<std::string>& files);
 
 	int getTexWidth() const { return mTexWidth; }
 	int getTexHeight() const { return mTexHeight; }
@@ -22,4 +22,5 @@ private:
 	std::shared_ptr<class Texture> mTexture;
 	int mTexWidth;
 	int mTexHeight;
+	unsigned int mTextureID = 0;
 };
