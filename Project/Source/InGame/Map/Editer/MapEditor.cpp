@@ -11,8 +11,8 @@
 #include "../../../Game/Graphics/Mesh/SpriteComponent.h"
 
 
-MapEditor::MapEditor(const std::weak_ptr<class Scene>& scene)
-	: mScene(scene)
+MapEditor::MapEditor(const std::weak_ptr<class EditScene>& scene)
+	: mEditScene(scene)
 	, mMapSelector({ nullptr, {10, 10} })
 	, mBoardSelector({ nullptr, {-1, -1 } })
 	, mTimeSelector({ nullptr, {0, 0} })
@@ -28,7 +28,7 @@ MapEditor::~MapEditor()
 
 void MapEditor::editInput()
 {
-	auto game = mScene.lock()->getGame().lock();
+	auto game = mEditScene.lock()->getGame().lock();
 
 	if (game->getMouse()->getState(GLUT_RIGHT_BUTTON))
 	{
@@ -45,15 +45,15 @@ void MapEditor::editInput()
 
 void MapEditor::loadData()
 {
-	auto game = mScene.lock()->getGame().lock();
+	auto game = mEditScene.lock()->getGame().lock();
 
-	mMapSelector.mSelector = std::make_shared<Actor>(mScene);
+	mMapSelector.mSelector = std::make_shared<Actor>(mEditScene);
 	mMapSelector.mSelector->initailize();
 	auto borderMap = std::make_shared<SpriteComponent>(mMapSelector.mSelector, game->getRenderer());
 	borderMap->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderMap->initailize();
 
-	mBoardSelector.mSelector = std::make_shared<Actor>(mScene);
+	mBoardSelector.mSelector = std::make_shared<Actor>(mEditScene);
 	mBoardSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
 	mBoardSelector.mSelector->setScale(2.5f);
 	mBoardSelector.mSelector->initailize();
@@ -61,7 +61,7 @@ void MapEditor::loadData()
 	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderBoard->initailize();
 
-	mTimeSelector.mSelector = std::make_shared<Actor>(mScene);
+	mTimeSelector.mSelector = std::make_shared<Actor>(mEditScene);
 	mTimeSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
 	mTimeSelector.mSelector->setScale(2.5f);
 	mTimeSelector.mSelector->initailize();
@@ -167,7 +167,7 @@ void MapEditor::changeTime()
 	default: break;
 	}
 
-	std::dynamic_pointer_cast<EditScene>(mScene.lock())->loadGameMap(type);
+	mEditScene.lock()->loadGameMap(type);
 }
 
 
@@ -240,3 +240,5 @@ void MapEditor::checkTime()
 		changeTime();
 	}
 }
+
+

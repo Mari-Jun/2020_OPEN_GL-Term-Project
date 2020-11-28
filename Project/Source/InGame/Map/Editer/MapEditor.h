@@ -20,7 +20,7 @@ struct Selector
 class MapEditor
 {
 public:
-	MapEditor(const std::weak_ptr<class Scene>& scene);
+	MapEditor(const std::weak_ptr<class EditScene>& scene);
 	~MapEditor() noexcept;
 
 	void editInput();
@@ -30,7 +30,7 @@ public:
 	void setBoard(const std::string& type, const Vector2& pos, const Vector2& size);
 
 private:
-	std::weak_ptr<class Scene> mScene;
+	std::weak_ptr<class EditScene> mEditScene;
 	std::weak_ptr<class GameMap> mGameMap;
 	std::string mFileName;
 	Vector2 mClickPos;

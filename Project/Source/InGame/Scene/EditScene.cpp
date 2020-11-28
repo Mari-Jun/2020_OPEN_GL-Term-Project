@@ -99,7 +99,7 @@ void EditScene::loadData()
 {
 	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
 
-	mEditor = std::make_unique<MapEditor>(weak_from_this());
+	mEditor = std::make_unique<MapEditor>(std::dynamic_pointer_cast<EditScene>(weak_from_this().lock()));
 	loadBoard("Left", Vector3(-500.0f, 80.0f, 0.0f));
 	loadBoard("Right", Vector3(500.0f, 230.0f, 0.0f));
 	loadBoard("Time", Vector3(500.0f, -30.0f, 0.0f));
@@ -116,7 +116,7 @@ void EditScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(500.0f, -190.0f), "Asset/Image/Button/NewButton");
+	ui->addButton([this]() {mGameMap->newMap(); }, Vector2(500.0f, -190.0f), "Asset/Image/Button/NewButton");
 	ui->addButton([this]() {
 		(mGameMap->saveMap()) ? 
 		mSceneHelper->createDialog("Complete") :

@@ -112,13 +112,7 @@ bool GameMap::saveMap()
 			return false;
 		}
 
-		std::stringstream ss;
-		std::string line = "";
-		std::string prefix = "";
-		std::string tileName;
 		unsigned int y = 0;
-		unsigned int xSize = 0;
-		float rot = 0.0f;
 
 		mapFile << "Time " << mTime << '\n';
 
@@ -137,10 +131,47 @@ bool GameMap::saveMap()
 		mapFile << "Minion " << mMinionCount << '\n';
 
 		std::cerr << mFileName << " Save complete\n";
-
 		return true;
 	}
 	return false;
+}
+
+void GameMap::newMap()
+{
+	auto stage = 0;
+	while (++stage)
+	{
+		std::string fileName = "Asset/Map/Stage";
+		fileName += std::to_string(stage) + ".txt";
+
+		std::ifstream mapFile(fileName);
+
+		if (!mapFile.is_open())
+		{
+			std::ofstream mapFile(fileName);
+			unsigned int y = 0;
+
+			mapFile << "Time " << "Sunny" << '\n';
+
+			for (auto y = 0; y < mTiles.size(); y++)
+			{
+				mapFile << "Line " << y + 1 << " " << mTiles.size() << '\n';
+				mapFile << "Type ";
+				for (const auto& x : mTiles[y])
+				{
+					mapFile << "Basic" << ' ' << 0 << ' ';
+				}
+				mapFile << '\n';
+			}
+
+			mapFile << "Minion " << 1 << '\n';
+
+			std::cerr << "Create new file : " << fileName << " complete\n";
+			break;
+		}
+
+		std::cout << stage << std::endl;
+	}
 }
 
 void GameMap::addTile(const std::string& type, int y, int x, float rot)

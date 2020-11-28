@@ -29,4 +29,5 @@ private:
 
 public:
 	int getStage() const { return mStage; }
+	void setStage(int stage) { mStage = stage; }
 };

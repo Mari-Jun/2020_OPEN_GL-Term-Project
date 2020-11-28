@@ -19,6 +19,7 @@ public:
 
 	bool loadMap(const std::string& fileName, const std::string time = "None");
 	bool saveMap();
+	void newMap();
 
 	void addTile(const std::string& type, int y, int x, float rot);
 	void removeTile(int y, int x);
