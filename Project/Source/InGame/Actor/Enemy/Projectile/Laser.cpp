@@ -40,7 +40,7 @@ void Laser::initailize()
 
 	//float forwardSpeed = 800.0f;
 
-	//mMoveComponent->setForwardSpeed(forwardSpeed);
+	//mMoveComponent->setForwardSpeed(0);
 }
 
 void Laser::updateActor(float deltatime)

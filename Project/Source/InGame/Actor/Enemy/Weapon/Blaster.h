@@ -17,7 +17,12 @@ public:
 
 private:
 	std::shared_ptr<class Laser> mLaser;
+	std::shared_ptr<class Laser> mRaser;
 	bool target_invalid = false;
 public:
 	void initLaser();
+	void disappear();
+
+	void leftLaser();
+	void rightLaser();
 };
