@@ -4,8 +4,9 @@
 #include "../../../Game/Input/KeyBoard.h"
 #include <random>
 
-ParticleCreater::ParticleCreater(const std::weak_ptr<class Scene>& scene)
+ParticleCreater::ParticleCreater(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower)
 	: Actor(scene)
+	, mFollower(follower)
 	, mSnowing(true)
 {
 	
@@ -23,6 +24,8 @@ void ParticleCreater::initailize()
 
 void ParticleCreater::updateActor(float deltatime)
 {
+	const auto& pos = mFollower.lock()->getPosition();
+	setPosition(Vector3(pos.x, getPosition().y, pos.z));
 	if (mSnowing)
 	{
 		std::random_device rd;
