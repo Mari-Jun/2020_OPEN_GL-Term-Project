@@ -6,6 +6,7 @@
 #include "../Mesh/LineComponent.h"
 #include "../Mesh/SpriteComponent.h"
 #include "../Mesh/BillBoardComponent.h"
+#include "../Mesh/CubeMapComponent.h"
 #include "../Mesh/Mesh.h"
 #include "../Texture/Texture.h"
 #include "Renderer.h"
@@ -188,10 +189,11 @@ void Renderer::drawCubeMapComponent()
 	glDepthMask(GL_FALSE);
 	mCubeMapShader->setActive();
 	mCubeMapVertex->setActive();
-	//for (const auto& cComp : mCubeMapComponent)
-	//{
-	//	//cComp.lock()->draw(mCubeMapShader);
-	//}
+	for (const auto& cComp : mCubeMapComponent)
+	{
+		cComp.lock()->draw(mCubeMapShader);
+	}
+	glDepthMask(GL_TRUE);
 }
 
 
@@ -305,7 +307,21 @@ void Renderer::removeUI(const std::weak_ptr<class UI>& ui)
 		mUserInterfaces.erase(iter);
 	}
 }
+void Renderer::addCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component)
+{
+	mCubeMapComponent.emplace_back(component);
+}
+void Renderer::removeCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component)
+{
+	auto iter = std::find_if(mCubeMapComponent.begin(), mCubeMapComponent.end(),
+		[&component](const std::weak_ptr<CubeMapComponent>& comp)
+	{return component.lock() == comp.lock(); });
 
+	if (iter != mCubeMapComponent.end())
+	{
+		mCubeMapComponent.erase(iter);
+	}
+}
 
 bool Renderer::loadShader()
 {
@@ -413,8 +429,8 @@ void Renderer::createCubeMapVertex()
 	vertex[33].position = Vector3(1.0f, -1.0f, -1.0f);
 	vertex[34].position = Vector3(-1.0f, -1.0f, 1.0f);
 	vertex[35].position = Vector3(1.0f, -1.0f, 1.0f);
-	
-	//mCubeMapVertex = std::make_unique<VertexArray>(vertex, vertex.size(), 0, 0);
+	std::vector<unsigned int> index;
+	mCubeMapVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
 }
 
 void Renderer::setInvertView()

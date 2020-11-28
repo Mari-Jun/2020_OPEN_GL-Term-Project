@@ -12,6 +12,7 @@ public:
 	void unLoad();
 
 	void setActive();
+	void setActiveskybox();
 
 	int getWidth() const { return mWidth; }
 	int getHeight() const { return mHeight; }

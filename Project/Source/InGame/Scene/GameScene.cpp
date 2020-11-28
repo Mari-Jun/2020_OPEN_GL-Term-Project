@@ -3,6 +3,7 @@
 #include "EditScene.h"
 #include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
+#include "../../Game/Graphics/Mesh/CubeMapComponent.h"
 #include "../../Game/Game.h"
 #include "../../Game/Actor/Actor.h"
 #include "../../Game/Input/KeyBoard.h"
@@ -51,6 +52,10 @@ void GameScene::initailize()
 
 	//Set Sound
 	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
+
+	//Set cubemap
+	const auto& players = getActors(Actor::getTypeToString(Actor::Type::Player));
+	mCubeMap = std::make_shared<CubeMapComponent>(players, game->getRenderer());
 }
 
 void GameScene::sceneInput()
@@ -134,6 +139,7 @@ void GameScene::loadUI()
 {
 	mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
 	mGameHUD->initailize();
+	
 }
 
 void GameScene::pauseGame(const std::string& type)
