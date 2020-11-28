@@ -156,6 +156,7 @@
     <ClCompile Include="Source\Game\Actor\Camera\FollowCameraActor.cpp" />
     <ClCompile Include="Source\Game\Actor\Defualt\DefualtShape.cpp" />
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
+    <ClCompile Include="Source\Game\Graphics\Mesh\CubeMapComponent.cpp" />
     <ClCompile Include="Source\Game\Sound\Sound.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Frozen.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="Source\Game\Actor\Camera\FollowCameraActor.h" />
     <ClInclude Include="Source\Game\Actor\Defualt\DefualtShape.h" />
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
+    <ClInclude Include="Source\Game\Graphics\Mesh\CubeMapComponent.h" />
     <ClInclude Include="Source\Game\Sound\Sound.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Frozen.h" />

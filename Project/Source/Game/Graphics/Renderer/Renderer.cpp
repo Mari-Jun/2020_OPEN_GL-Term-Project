@@ -42,6 +42,7 @@ bool Renderer::initailize(const Vector2& size, std::string name)
 	}
 
 	createSpriteVertex();
+	createCubeMapVertex();
 
 	//Create Z Rot Light
 	mLight = std::make_shared<Light>(weak_from_this());
@@ -181,6 +182,18 @@ void Renderer::drawUserInterface()
 		ui.lock()->draw(mSpriteShader);
 	}
 }
+
+void Renderer::drawCubeMapComponent()
+{
+	glDepthMask(GL_FALSE);
+	mCubeMapShader->setActive();
+	mCubeMapVertex->setActive();
+	//for (const auto& cComp : mCubeMapComponent)
+	//{
+	//	//cComp.lock()->draw(mCubeMapShader);
+	//}
+}
+
 
 void Renderer::addLineComponent(const std::weak_ptr<class LineComponent>& component)
 {
@@ -326,6 +339,14 @@ bool Renderer::loadShader()
 	mBillBoardShader->setActive();
 	mBillBoardShader->setMatrixUniform("uViewProj", mView * mProjection);
 
+	mCubeMapShader = std::make_unique<Shader>();
+	if (!mCubeMapShader->load("Source/Game/Graphics/Shader/cubemap.vert", "Source/Game/Graphics/Shader/cubemap.frag"))
+	{
+		return false;
+	}
+	mCubeMapShader->setActive();
+	mCubeMapShader->setMatrixUniform("uViewProj", mView * mProjection);
+
 	return true;
 }
 
@@ -351,6 +372,49 @@ void Renderer::createSpriteVertex()
 	};
 
 	mSpriteVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
+}
+
+void Renderer::createCubeMapVertex()
+{
+	std::vector<Vertex> vertex(36);
+	vertex[0].position = Vector3(-1.0f, 1.0f, -1.0f);
+	vertex[1].position = Vector3(-1.0f, -1.0f, -1.0f);
+	vertex[2].position = Vector3(1.0f, -1.0f, -1.0f);
+	vertex[3].position = Vector3(1.0f, -1.0f, -1.0f);
+	vertex[4].position = Vector3(1.0f, 1.0f, -1.0f);
+	vertex[5].position = Vector3(-1.0f, 1.0f, -1.0f);
+	vertex[6].position = Vector3(-1.0f, -1.0f, 1.0f);
+	vertex[7].position = Vector3(-1.0f, -1.0f, -1.0f);
+	vertex[8].position = Vector3(-1.0f, 1.0f, -1.0f);
+	vertex[9].position = Vector3(-1.0f, 1.0f, -1.0f);
+	vertex[10].position = Vector3(-1.0f, 1.0f, 1.0f);
+	vertex[11].position = Vector3(-1.0f, -1.0f, 1.0f);
+	vertex[12].position = Vector3(1.0f, -1.0f, -1.0f);
+	vertex[13].position = Vector3(1.0f, -1.0f, 1.0f);
+	vertex[14].position = Vector3(1.0f, 1.0f, 1.0f);
+	vertex[15].position = Vector3(1.0f, 1.0f, 1.0f);
+	vertex[16].position = Vector3(1.0f, 1.0f, -1.0f);
+	vertex[17].position = Vector3(1.0f, -1.0f, -1.0f);
+	vertex[18].position = Vector3(-1.0f, -1.0f, 1.0f);
+	vertex[19].position = Vector3(-1.0f, 1.0f, 1.0f);
+	vertex[20].position = Vector3(1.0f, 1.0f, 1.0f);
+	vertex[21].position = Vector3(1.0f, 1.0f, 1.0f);
+	vertex[22].position = Vector3(1.0f, -1.0f, 1.0f);
+	vertex[23].position = Vector3(-1.0f, -1.0f, 1.0f);
+	vertex[24].position = Vector3(-1.0f, 1.0f, -1.0f);
+	vertex[25].position = Vector3(1.0f, 1.0f, -1.0f);
+	vertex[26].position = Vector3(1.0f, 1.0f, 1.0f);
+	vertex[27].position = Vector3(1.0f, 1.0f, 1.0f);
+	vertex[28].position = Vector3(-1.0f, 1.0f, 1.0f);
+	vertex[29].position = Vector3(-1.0f, 1.0f, -1.0f);
+	vertex[30].position = Vector3(-1.0f, -1.0f, -1.0f);
+	vertex[31].position = Vector3(-1.0f, -1.0f, 1.0f);
+	vertex[32].position = Vector3(1.0f, -1.0f, -1.0f);
+	vertex[33].position = Vector3(1.0f, -1.0f, -1.0f);
+	vertex[34].position = Vector3(-1.0f, -1.0f, 1.0f);
+	vertex[35].position = Vector3(1.0f, -1.0f, 1.0f);
+	
+	//mCubeMapVertex = std::make_unique<VertexArray>(vertex, vertex.size(), 0, 0);
 }
 
 void Renderer::setInvertView()
