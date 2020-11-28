@@ -84,8 +84,8 @@ void ShopScene::loadUI()
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mSpeedLevel, "SPEED"); }, Vector2(-50.0f, -260.0f), "Asset/Image/Button/Upgrade");
 	ui->addButton([this]() {changeSkin(mControl, mInfo.mControlInfo, false); }, Vector2(370.0f, 145.0f), "Asset/Image/Button/BackButton");
 	ui->addButton([this]() {changeSkin(mControl, mInfo.mControlInfo, true); }, Vector2(555.0f, 145.0f), "Asset/Image/Button/NextButton");
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(370.0f, -155.0f), "Asset/Image/Button/BackButton");
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(555.0f, -155.0f), "Asset/Image/Button/NextButton");
+	ui->addButton([this]() {changeSkin(mMinion, mInfo.mMinionInfo, false); }, Vector2(370.0f, -155.0f), "Asset/Image/Button/BackButton");
+	ui->addButton([this]() {changeSkin(mMinion, mInfo.mMinionInfo, true); }, Vector2(555.0f, -155.0f), "Asset/Image/Button/NextButton");
 }
 
 void ShopScene::loadPlayer()

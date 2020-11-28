@@ -60,6 +60,14 @@ void DefaultMinion::checkHp()
 	}
 }
 
+void DefaultMinion::endPoint()
+{
+	setState(Actor::State::Dead);
+	mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
+	mManager.lock()->setClearMinion(Math::Max(0, mManager.lock()->getClearMinion() - 1));
+	mManager.lock()->resetHUD();
+}
+
 bool DefaultMinion::ChangeTarget()
 {
 	Vector3 tmp = getPosition();

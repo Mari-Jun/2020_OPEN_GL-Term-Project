@@ -13,6 +13,8 @@ public:
 	virtual void updateActor(float deltatime) override;
 	virtual void actorInput() override;
 
+	void endPoint();
+
 private:
 	std::weak_ptr<class MinionManager> mManager;
 	std::pair<int, int> target;
