@@ -158,6 +158,7 @@
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
     <ClCompile Include="Source\Game\Sound\Sound.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Frozen.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Laser.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Rock.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\CannonBall.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Catapult.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\EnemyTower.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Weapon.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Wizard.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\MovePlayer.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Type\ControlPlayer.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Player.cpp" />
@@ -247,6 +249,7 @@
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
     <ClInclude Include="Source\Game\Sound\Sound.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Frozen.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Laser.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Rock.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\CannonBall.h" />
@@ -257,6 +260,7 @@
     <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Catapult.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\EnemyTower.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Weapon.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Wizard.h" />
     <ClInclude Include="Source\InGame\Actor\Player\MovePlayer.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Type\ControlPlayer.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Player.h" />
