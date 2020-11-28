@@ -162,7 +162,7 @@ void EditScene::loadBoard(std::string&& name, Vector3&& position)
 	image->initailize();
 
 	auto pos = Vector2(actor->getPosition().x - image->getTexWidth() / 2, actor->getPosition().y + image->getTexHeight() / 2);
-	auto size = Vector2(image->getTexWidth(), image->getTexHeight());
+	auto size = Vector2(static_cast<float>(image->getTexWidth()), static_cast<float>(image->getTexHeight()));
 
 	mEditor->setBoard(name, pos, size);
 }

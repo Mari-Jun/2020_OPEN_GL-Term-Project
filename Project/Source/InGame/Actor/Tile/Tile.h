@@ -32,5 +32,5 @@ private:
 public:
 	TileType getTileType() const { return mType; }
 	std::string getTileTypeToString() const;
-	const std::shared_ptr<class BoxComponent>& const getBoxComponent() { return mBoxComponent; }
+	const std::shared_ptr<class BoxComponent>& getBoxComponent() const { return mBoxComponent; }
 };

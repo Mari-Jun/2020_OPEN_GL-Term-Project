@@ -31,16 +31,16 @@ void Catapult::initRock()
 
 	if (objectOwner.use_count())
 	{		
-		mRock->setPosition(getPosition() - Vector3(0, -40, 80));	//초기 방향은 z방향을 쳐다보고잇으니 처음생성할땐 10만큼 뒤로 가줌
+		mRock->setPosition(getPosition() - Vector3(0.0f, -40.0f, 80.0f));	//초기 방향은 z방향을 쳐다보고잇으니 처음생성할땐 10만큼 뒤로 가줌
 	}else{
-		mRock->setPosition(getPosition() - Vector3(0, -5, 10));	//초기 방향은 z방향을 쳐다보고잇으니 처음생성할땐 10만큼 뒤로 가줌
+		mRock->setPosition(getPosition() - Vector3(0.0f, -5.0f, 10.0f));	//초기 방향은 z방향을 쳐다보고잇으니 처음생성할땐 10만큼 뒤로 가줌
 	}
 
 	mRock->setScale(getScale());
-	mRock->setforwardSpeed(0);
-	mRock->setupSpeed(0);
+	mRock->setforwardSpeed(0.0f);
+	mRock->setupSpeed(0.0f);
 	mRock->initailize();
-	mRock->setScale(0.01);
+	mRock->setScale(0.01f);
 }
 
 void Catapult::initRock(Vector3 toVec)
@@ -51,15 +51,15 @@ void Catapult::initRock(Vector3 toVec)
 	//auto toVec = getTarget().lock()->getPosition() - getPosition();
 	Vector3 toVectmp = toVec;
 	toVectmp.Normalize();
-	toVectmp.y = -0.5;
+	toVectmp.y = -0.5f;
 	mRock->setPosition(getPosition() - (toVectmp * 80));
 
 	mRock->setScale(getScale());
-	mRock->setforwardSpeed(0);
-	mRock->setupSpeed(0);
+	mRock->setforwardSpeed(0.0f);
+	mRock->setupSpeed(0.0f);
 	mRock->initailize();
-	mRock->setScale(0.01);
-	toVec.y = 0;
+	mRock->setScale(0.01f);
+	toVec.y = 0.0f;
 	toVec.Normalize();
 	rotateToNewForward(toVec);
 }
@@ -83,10 +83,10 @@ void Catapult::updateActor(float deltatime)
 	}
 
 	//커지는거 100번 반복
-	if (mRockScaleTime < 100)
+	if (mRockScaleTime < 100.0f)
 	{
-		mRockScaleTime += 1;
-		mRock->setScale(1.03);
+		mRockScaleTime += 1.0f;
+		mRock->setScale(1.03f);
 	}
 }
 
@@ -164,7 +164,7 @@ void Catapult::attackMotion()
 		rotateToNewForward(toVec);
 
 		toRockVec.Normalize();
-		toRockVec.y = -0.5;
+		toRockVec.y = -0.5f;
 		mRock->setPosition(getPosition() - (toRockVec * 80));
 		mRock->rotateToNewForward(toRockVec);
 

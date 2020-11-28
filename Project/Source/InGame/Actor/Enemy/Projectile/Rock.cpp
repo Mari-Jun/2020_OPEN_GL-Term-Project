@@ -42,7 +42,7 @@ void Rock::initailize()
 
 	Vector3 Vec(box.mMax - box.mMin);
 	Vec.y = 0;
-	mSphere.mRadius = Vec.Length() / 2.0;
+	mSphere.mRadius = Vec.Length() / 2.0f;
 }
 
 void Rock::gravity(float deltatime)
@@ -130,14 +130,14 @@ void Rock::makeSplitRock()
 	std::uniform_int_distribution<int> RUpSpeed(200, 350);
 
 	auto rock = std::make_shared<Rock>(getScene());
-	rock->setScale(getScale() * 0.3);
+	rock->setScale(getScale() * 0.3f);
 
-	auto toVec = Vector3(Rxz(mersenne), 0, Rxz(mersenne));
+	auto toVec = Vector3(static_cast<float>(Rxz(mersenne)), 0.0f, static_cast<float>(Rxz(mersenne)));
 	toVec.Normalize();
 	rock->rotateToNewForward(toVec);
 
-	rock->setforwardSpeed(RSpeed(mersenne));
-	rock->setupSpeed(RUpSpeed(mersenne));
+	rock->setforwardSpeed(static_cast<float>(RSpeed(mersenne)));
+	rock->setupSpeed(static_cast<float>(RUpSpeed(mersenne)));
 	rock->setPosition(getPosition() + Vector3(0, 20, 0));
 	rock->initailize();
 	rock->setflag(1);

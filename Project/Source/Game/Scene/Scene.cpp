@@ -275,7 +275,7 @@ void Scene::addUI(const std::shared_ptr<class UI>& ui)
 	mUserInterfaces.emplace_back(ui);
 }
 
-const std::vector<std::shared_ptr<class Actor>>& Scene::getActors(std::string type) const
+const std::vector<std::shared_ptr<class Actor>> Scene::getActors(std::string type) const
 {
 	auto actors = mActors.find(type);
 	if (actors != mActors.end())
