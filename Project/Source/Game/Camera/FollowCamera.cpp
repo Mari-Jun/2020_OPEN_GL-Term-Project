@@ -6,7 +6,7 @@ FollowCamera::FollowCamera(const std::weak_ptr<class Actor>& owner, const std::w
 	: CameraComponent(owner)
 	, mFollower(follower)
 	, mHDist(70.0f)
-	, mVDist(30.0f)
+	, mVDist(40.0f)
 	, mTargetDist(20.0f)
 	, mPitchSpeed(0.0f)
 	, mYawSpeed(0.0f)

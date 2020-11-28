@@ -21,7 +21,7 @@ MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 
 MovePlayer::~MovePlayer()
 {
-
+	mHealthBar->setState(Actor::State::Dead);
 }
 
 void MovePlayer::initailize()

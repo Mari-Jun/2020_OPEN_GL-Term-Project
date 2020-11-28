@@ -28,7 +28,7 @@ void GameHUD::initailize()
 void GameHUD::resetInfo()
 {
 	mCoinNumber.clear();
-	setNumberTexture(mCoinNumber, mGameScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/Num");
+	setNumberTexture(mCoinNumber, mGameScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/YNum");
 }
 
 

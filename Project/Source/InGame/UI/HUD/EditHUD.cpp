@@ -30,9 +30,9 @@ void EditHUD::initailize()
 void EditHUD::resetInfo()
 {
 	mMinionCount.clear();
-	setNumberTexture(mMinionCount, mGameMap.lock()->getMinionCount(), "Asset/Image/ShopScene/Num");
+	setNumberTexture(mMinionCount, mGameMap.lock()->getMinionCount(), "Asset/Image/HUD/RNum");
 	mStageCount.clear();
-	setNumberTexture(mStageCount, mEditScene.lock()->getStage(), "Asset/Image/ShopScene/Num");
+	setNumberTexture(mStageCount, mEditScene.lock()->getStage(), "Asset/Image/HUD/RNum");
 }
 
 void EditHUD::update(float deltatime)

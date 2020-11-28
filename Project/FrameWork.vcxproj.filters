@@ -270,10 +270,10 @@
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Laser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Player\Type\MinionAi\MinionCreator.cpp">
+    <ClCompile Include="Source\InGame\Actor\Particle\ParticleCreator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Particle\ParticleCreator.cpp">
+    <ClCompile Include="Source\InGame\Actor\Player\Type\MinionAi\MinionManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -542,10 +542,10 @@
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Laser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Player\Type\MinionAi\MinionCreator.h">
+    <ClInclude Include="Source\InGame\Actor\Particle\ParticleCreator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Particle\ParticleCreator.h">
+    <ClInclude Include="Source\InGame\Actor\Player\Type\MinionAi\MinionManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

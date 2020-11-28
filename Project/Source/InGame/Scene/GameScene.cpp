@@ -13,7 +13,7 @@
 
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreator.h"
-#include "../Actor/Player/Type/MinionAi/MinionCreator.h"
+#include "../Actor/Player/Type/MinionAi/MinionManager.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
 #include "../UI/HUD/GameHUD.h"
@@ -115,8 +115,8 @@ void GameScene::loadActorData()
 	particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
 	particle->initailize();
 
-	//Create MinionCreator
-	auto minion = std::make_shared<MinionCreator>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
+	//Create MinionManager
+	auto minion = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
 	minion->initailize();
 }
 

@@ -23,9 +23,9 @@ void ShopHUD::initailize()
 {
 	UI::initailize();
 	mCoin = mRenderer.lock()->getTexture("Asset/Image/HUD/coin.png");
-	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/ShopScene/Reinforce.png");
-	mSkin1 = mRenderer.lock()->getTexture("Asset/Image/ShopScene/skinBox.png");
-	mSkin2 = mRenderer.lock()->getTexture("Asset/Image/ShopScene/skinBox.png");
+	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/UIBackground/Reinforce.png");
+	mSkin1 = mRenderer.lock()->getTexture("Asset/Image/UIBackground/skinBox.png");
+	mSkin2 = mRenderer.lock()->getTexture("Asset/Image/UIBackground/skinBox.png");
 	resetInfo();
 }
 
@@ -39,7 +39,7 @@ void ShopHUD::resetInfo()
 void ShopHUD::loadCoinNumber()
 {
 	mCoinNumber.clear();
-	setNumberTexture(mCoinNumber, mShopScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/Num");
+	setNumberTexture(mCoinNumber, mShopScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/YNum");
 }
 
 void ShopHUD::loadStat(const PlayerInfo& info, StatNumber& stat)
@@ -48,7 +48,7 @@ void ShopHUD::loadStat(const PlayerInfo& info, StatNumber& stat)
 	stat.mDefNumber.clear();
 	stat.mSpeedNumber.clear();
 
-	const std::string fileName = "Asset/Image/ShopScene/Num";
+	const std::string fileName = "Asset/Image/HUD/RNum";
 	auto hp = info.getHpStat();
 	setNumberTexture(stat.mHpNumber, hp, fileName);
 

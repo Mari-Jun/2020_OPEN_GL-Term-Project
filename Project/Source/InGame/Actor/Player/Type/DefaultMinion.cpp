@@ -1,14 +1,12 @@
 #include "DefaultMinion.h"
 #include "../../../../Game/Game.h"
 #include "../../../../Game/Component/MoveComponent.h"
-
-
+#include "MinionAi/MinionManager.h"
 #include "MinionAi/MinionAi.h"
-#include <memory>
 
-DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionAi>& ai)
+DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionManager>& manager)
 	: MovePlayer(scene, info)
-	, AiWay(ai)
+	, mManager(manager)
 {
 	setStat(info);
 }
@@ -33,12 +31,12 @@ void DefaultMinion::updateActor(float deltatime)
 		moveforDFS();
 	}
 	SmoothRotate();
+
+	checkHp();
 }
 
 void DefaultMinion::actorInput()
 {
-	auto game = getGame().lock();
-
 	mMoveComponent->setForwardSpeed(mStat.mSpeed);
 }
 
@@ -50,20 +48,32 @@ void DefaultMinion::setStat(PlayerInfo info)
 	mStat.mHp = mStat.mMaxHp;
 }
 
+void DefaultMinion::checkHp()
+{
+	if (mStat.mHp <= 0.0f)
+	{
+		setState(Actor::State::Dead);
+		std::cout << mManager.lock()->getLiveMinion() << std::endl;
+		mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
+		std::cout << mManager.lock()->getLiveMinion() << std::endl;
+	}
+}
 
 bool DefaultMinion::ChangeTarget()
 {
 	Vector3 tmp = getPosition();
 	//if (targetIndex != -1)
 		//std::cout << "µµ·Î °ª" << AiWay.lock()->getMinway()[targetIndex].first << ", " << AiWay.lock()->getMinway()[targetIndex].second << std::endl;
+
+	auto tileSize = mManager.lock()->getMinionAi()->getTileSize();
 	if (targetIndex == -1)
 	{
 		return true;
 	}
-	if (targetPos.x - AiWay.lock()->getTileSize() / 4 < tmp.x && tmp.x < targetPos.x + AiWay.lock()->getTileSize() / 4)
+	if (targetPos.x - tileSize / 4 < tmp.x && tmp.x < targetPos.x + tileSize / 4)
 	{
 		if (targetPos.z - 50 < tmp.z && tmp.z < targetPos.z + 50)
-			if (targetIndex + 1 < AiWay.lock()->getMinway().size() - 1)
+			if (targetIndex + 1 < mManager.lock()->getMinionAi()->getMinway().size() - 1)
 			{
 				return true;
 			}
@@ -97,7 +107,7 @@ void DefaultMinion::SmoothRotate()
 
 void DefaultMinion::moveforDFS()
 {
-	auto way = AiWay.lock();
+	auto way = mManager.lock()->getMinionAi();
 	float tileSize = way->getTileSize();
 	std::pair<int, int> oldtarget = way->getMinway()[targetIndex];
 	target = way->getMinway()[targetIndex + 1];
