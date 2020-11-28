@@ -14,4 +14,10 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();
+
+private:
+	std::shared_ptr<class Laser> mLaser;
+	bool target_invalid = false;
+public:
+	void initLaser();
 };
