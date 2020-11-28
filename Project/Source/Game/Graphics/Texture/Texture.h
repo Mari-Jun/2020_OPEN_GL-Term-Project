@@ -8,6 +8,7 @@ public:
 	~Texture();
 
 	bool load(const std::string& fileName);
+	unsigned int loadskybox(const std::string&, const std::string&, const std::string&, const std::string&, const std::string&, const std::string&);
 	void unLoad();
 
 	void setActive();
