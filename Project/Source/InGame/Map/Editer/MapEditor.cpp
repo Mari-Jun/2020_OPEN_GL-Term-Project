@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include "MapEditor.h"
@@ -11,8 +12,8 @@
 #include "../../../Game/Graphics/Mesh/SpriteComponent.h"
 
 
-MapEditor::MapEditor(const std::weak_ptr<class Scene>& scene)
-	: mScene(scene)
+MapEditor::MapEditor(const std::weak_ptr<class EditScene>& scene)
+	: mEditScene(scene)
 	, mMapSelector({ nullptr, {10, 10} })
 	, mBoardSelector({ nullptr, {-1, -1 } })
 	, mTimeSelector({ nullptr, {0, 0} })
@@ -26,9 +27,120 @@ MapEditor::~MapEditor()
 	mBoardSelector.mSelector->setState(Actor::State::Dead);
 }
 
+bool MapEditor::saveMap()
+{
+	auto map = mGameMap.lock();
+	const auto& fileName = map->getFileName();
+	if (fileName.size() != 0)
+	{
+		//Open Obj file
+		std::ofstream mapFile(fileName);
+	
+
+		if (!mapFile.is_open())
+		{
+			std::cerr << "file not found : " << fileName << '\n';
+			return false;
+		}
+
+		unsigned int y = 0;
+		const auto& tile = map->getTiles();
+
+		mapFile << "Time " << map->getTime() << '\n';
+
+		for (auto y = 0; y < tile.size(); y++)
+		{
+			mapFile << "Line " << y + 1 << " " << tile.size() << '\n';
+			mapFile << "Type ";
+			for (const auto& x : tile[y])
+			{
+				auto rot = round(Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), x.lock()->getRotation()))));
+				mapFile << x.lock()->getTileTypeToString() << ' ' << rot * 2 << ' ';
+			}
+			mapFile << '\n';
+		}
+
+		mapFile << "Minion " << map->getMinionCount() << '\n';
+
+		std::cerr << fileName << " Save complete\n";
+		return true;
+	}
+	return false;
+}
+
+int MapEditor::newMap()
+{
+	auto stage = 0;
+	while (++stage)
+	{
+		std::string fileName = "Asset/Map/Stage";
+		fileName += std::to_string(stage) + ".txt";
+
+		std::ifstream mapFile(fileName);
+
+		if (!mapFile.is_open())
+		{
+			std::ofstream mapFile(fileName);
+			unsigned int y = 0;
+			auto map = mGameMap.lock();
+			const auto& tile = map->getTiles();
+
+			mapFile << "Time " << "Sunny" << '\n';
+
+			for (auto y = 0; y < tile.size(); y++)
+			{
+				mapFile << "Line " << y + 1 << " " << tile.size() << '\n';
+				mapFile << "Type ";
+				for (const auto& x : tile[y])
+				{
+					mapFile << "Basic" << ' ' << 0 << ' ';
+				}
+				mapFile << '\n';
+			}
+
+			mapFile << "Minion " << 1 << '\n';
+
+			std::cerr << "Create new file : " << fileName << " complete\n";
+			return stage;
+		}
+	}
+	return 0;
+}
+
+int MapEditor::deleteMap()
+{
+	auto map = mGameMap.lock();
+	auto stage = mEditScene.lock()->getStage();
+	std::string fileName = "Asset/Map/Stage" + std::to_string(stage) + ".txt";
+	std::string fileNameNext = "Asset/Map/Stage" + std::to_string(stage + 1) + ".txt";
+
+	std::filesystem::path p1(fileName);
+	std::filesystem::path p2(fileNameNext);
+	
+	if (std::filesystem::exists(p1))
+	{
+		auto next = false;
+		while (std::filesystem::exists(p2))
+		{
+			next = true;
+			std::filesystem::copy_file(p2, p1, std::filesystem::copy_options::overwrite_existing);
+			stage++;
+			fileName = "Asset/Map/Stage" + std::to_string(stage) + ".txt";
+			fileNameNext = "Asset/Map/Stage" + std::to_string(stage + 1) + ".txt";
+
+			p1 = fileName;
+			p2 = fileNameNext;
+		}
+		std::filesystem::remove(p1);
+		return mEditScene.lock()->getStage() - (1 - next);
+	}
+	
+	return stage;
+}
+
 void MapEditor::editInput()
 {
-	auto game = mScene.lock()->getGame().lock();
+	auto game = mEditScene.lock()->getGame().lock();
 
 	if (game->getMouse()->getState(GLUT_RIGHT_BUTTON))
 	{
@@ -45,15 +157,15 @@ void MapEditor::editInput()
 
 void MapEditor::loadData()
 {
-	auto game = mScene.lock()->getGame().lock();
+	auto game = mEditScene.lock()->getGame().lock();
 
-	mMapSelector.mSelector = std::make_shared<Actor>(mScene);
+	mMapSelector.mSelector = std::make_shared<Actor>(mEditScene);
 	mMapSelector.mSelector->initailize();
 	auto borderMap = std::make_shared<SpriteComponent>(mMapSelector.mSelector, game->getRenderer());
 	borderMap->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderMap->initailize();
 
-	mBoardSelector.mSelector = std::make_shared<Actor>(mScene);
+	mBoardSelector.mSelector = std::make_shared<Actor>(mEditScene);
 	mBoardSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
 	mBoardSelector.mSelector->setScale(2.5f);
 	mBoardSelector.mSelector->initailize();
@@ -61,7 +173,7 @@ void MapEditor::loadData()
 	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
 	borderBoard->initailize();
 
-	mTimeSelector.mSelector = std::make_shared<Actor>(mScene);
+	mTimeSelector.mSelector = std::make_shared<Actor>(mEditScene);
 	mTimeSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
 	mTimeSelector.mSelector->setScale(2.5f);
 	mTimeSelector.mSelector->initailize();
@@ -167,7 +279,7 @@ void MapEditor::changeTime()
 	default: break;
 	}
 
-	std::dynamic_pointer_cast<EditScene>(mScene.lock())->loadGameMap(type);
+	mEditScene.lock()->loadGameMap(type);
 }
 
 
@@ -240,3 +352,5 @@ void MapEditor::checkTime()
 		changeTime();
 	}
 }
+
+
