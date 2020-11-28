@@ -158,6 +158,7 @@
     <ClCompile Include="Source\Game\Actor\PlaneActor.cpp" />
     <ClCompile Include="Source\Game\Sound\Sound.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Laser.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Rock.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\CannonBall.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Weapon\Ballista.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="Source\Game\Actor\PlaneActor.h" />
     <ClInclude Include="Source\Game\Sound\Sound.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
+    <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Laser.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Rock.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\CannonBall.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Weapon\Ballista.h" />
