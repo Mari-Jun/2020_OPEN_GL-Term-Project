@@ -174,7 +174,7 @@
     <ClCompile Include="Source\InGame\Actor\Player\Robot\RobotArm.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Robot\RobotHead.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Robot\RobotLeg.cpp" />
-    <ClCompile Include="Source\InGame\Actor\Particle\ParticleCreater.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Particle\ParticleCreator.cpp" />
     <ClCompile Include="Source\InGame\Actor\Particle\Snow.cpp" />
     <ClCompile Include="Source\Game\Camera\FollowCamera.cpp" />
     <ClCompile Include="Source\Game\Camera\FPSCamera.cpp" />
@@ -213,6 +213,7 @@
     <ClCompile Include="Source\Game\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Type\DefaultMinion.cpp" />
     <ClCompile Include="Source\InGame\Actor\Player\Type\MinionAi\MinionAi.cpp" />
+    <ClCompile Include="Source\InGame\Actor\Player\Type\MinionAi\MinionCreator.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\EndPointTile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\LightTile.cpp" />
@@ -262,7 +263,7 @@
     <ClInclude Include="Source\InGame\Actor\Player\Robot\RobotArm.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Robot\RobotHead.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Robot\RobotLeg.h" />
-    <ClInclude Include="Source\InGame\Actor\Particle\ParticleCreater.h" />
+    <ClInclude Include="Source\InGame\Actor\Particle\ParticleCreator.h" />
     <ClInclude Include="Source\InGame\Actor\Particle\Snow.h" />
     <ClInclude Include="Source\Game\Camera\FollowCamera.h" />
     <ClInclude Include="Source\Game\Camera\FPSCamera.h" />
@@ -305,6 +306,7 @@
     <ClInclude Include="Source\Game\Physics\PhysicsEngine.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Type\DefaultMinion.h" />
     <ClInclude Include="Source\InGame\Actor\Player\Type\MinionAi\MinionAi.h" />
+    <ClInclude Include="Source\InGame\Actor\Player\Type\MinionAi\MinionCreator.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\EndPointTile.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\LightTile.h" />
