@@ -14,7 +14,7 @@
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Player/Type/DefaultMinion.h"
 #include "../Actor/Player/Type/MinionAi/MinionAi.h"
-#include "../Actor/Particle/ParticleCreater.h"
+#include "../Actor/Particle/ParticleCreator.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
 #include "../UI/HUD/GameHUD.h"
@@ -112,7 +112,7 @@ void GameScene::loadActorData()
 	mCamera->initailize();*/
 
 	//Create ParticleCreater
-	auto particle = std::make_shared<ParticleCreater>(weak_from_this(), control);
+	auto particle = std::make_shared<ParticleCreator>(weak_from_this(), control);
 	particle->setScale(1000.0f);
 	particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
 	particle->initailize();

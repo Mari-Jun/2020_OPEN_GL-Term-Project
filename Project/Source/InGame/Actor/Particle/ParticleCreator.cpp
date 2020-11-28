@@ -1,10 +1,10 @@
-#include "ParticleCreater.h"
+#include "ParticleCreator.h"
 #include "Snow.h"
 #include "../../../Game/Game.h"
 #include "../../../Game/Input/KeyBoard.h"
 #include <random>
 
-ParticleCreater::ParticleCreater(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower)
+ParticleCreator::ParticleCreator(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower)
 	: Actor(scene)
 	, mFollower(follower)
 	, mSnowing(true)
@@ -12,17 +12,17 @@ ParticleCreater::ParticleCreater(const std::weak_ptr<class Scene>& scene, const 
 	
 }
 
-ParticleCreater::~ParticleCreater()
+ParticleCreator::~ParticleCreator()
 {
 
 }
 
-void ParticleCreater::initailize()
+void ParticleCreator::initailize()
 {
 	Actor::initailize();
 }
 
-void ParticleCreater::updateActor(float deltatime)
+void ParticleCreator::updateActor(float deltatime)
 {
 	const auto& pos = mFollower.lock()->getPosition();
 	setPosition(Vector3(pos.x, getPosition().y, pos.z));
@@ -42,7 +42,7 @@ void ParticleCreater::updateActor(float deltatime)
 	}
 }
 
-void ParticleCreater::actorInput()
+void ParticleCreator::actorInput()
 {
 	auto game = getGame().lock();
 
