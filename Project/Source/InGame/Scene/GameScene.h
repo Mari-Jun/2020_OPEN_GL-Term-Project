@@ -22,7 +22,7 @@ private:
 	std::unique_ptr<class SceneHelper> mSceneHelper;
 	std::shared_ptr<class MinionManager> mMinionManager;
 	std::shared_ptr<class GameHUD> mGameHUD;
-	std::shared_ptr<class CubeMapComponent> mCubeMap;
+	std::shared_ptr<class CubeMap> mCubeMap;
 	GameInfo mInfo;
 	int mStage;
 

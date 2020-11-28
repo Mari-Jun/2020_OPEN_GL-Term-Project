@@ -12,6 +12,7 @@
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
 #include "../../Game/Sound/Sound.h"
 
+#include "../Actor/CubeMap/CubeMap.h"
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreator.h"
 #include "../Actor/Player/Type/MinionAi/MinionManager.h"
@@ -54,8 +55,8 @@ void GameScene::initailize()
 	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
 
 	//Set cubemap
-	const auto& players = getActors(Actor::getTypeToString(Actor::Type::Player));
-	mCubeMap = std::make_shared<CubeMapComponent>(players, game->getRenderer());
+	mCubeMap = std::make_shared<CubeMap>(weak_from_this());
+	mCubeMap->initailize();
 }
 
 void GameScene::sceneInput()

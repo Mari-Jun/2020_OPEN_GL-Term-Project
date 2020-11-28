@@ -32,15 +32,13 @@ void CubeMapComponent::draw(std::unique_ptr<Shader>& shader)
 	if (mTexture)
 	{
 		shader->setMatrixUniform("uWorldTransform", mOwner.lock()->getWorldTransform());
-		mTexture->setActiveskybox();
+		Texture::setActiveskybox(mTextureID);
 
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 }
 
-void CubeMapComponent::setTexture(const std::shared_ptr<class Texture>& texture)
+void CubeMapComponent::setTexture(const std::vector<std::string>& files)
 {
-	mTexture = texture;
-	mTexWidth = texture->getWidth();
-	mTexHeight = texture->getHeight();
+	Texture::loadskybox(files);
 }

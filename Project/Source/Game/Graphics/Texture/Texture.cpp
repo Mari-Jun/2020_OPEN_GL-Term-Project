@@ -68,23 +68,9 @@ bool Texture::load(const std::string& fileName)
 	return true;
 }
 
-unsigned int Texture::loadskybox
-(
-	const std::string& top,
-	const std::string& bottom,
-	const std::string& left,
-	const std::string& right,
-	const std::string& front,
-	const std::string& back 
-)
+bool Texture::loadskybox (const std::vector<std::string>& faces)
 {
-	std::vector<std::string> faces;
-	faces.push_back(right);
-	faces.push_back(left);
-	faces.push_back(top);
-	faces.push_back(bottom);
-	faces.push_back(back);
-	faces.push_back(front);
+
 
 	unsigned  int textureID;
 	glGenTextures(1, &textureID);
@@ -117,8 +103,14 @@ unsigned int Texture::loadskybox
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
-	return textureID;
 
+	for (auto a : faces)
+	{
+		//mName = a.c_str();
+		std::cerr << a.c_str() << " load complete\n";
+	}
+
+	return true;
 }
 
 
@@ -132,7 +124,7 @@ void Texture::setActive()
 	glBindTexture(GL_TEXTURE_2D, mTextureID);
 }
 
-void Texture::setActiveskybox()
+void Texture::setActiveskybox(unsigned int mTextureID)
 {
 	glBindTexture(GL_TEXTURE_CUBE_MAP, mTextureID);
 }
