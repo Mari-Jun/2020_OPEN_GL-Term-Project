@@ -90,7 +90,6 @@ void Player::updateBody()
 void Player::setPlayerTexture()
 {
 	auto fileName = mPlayerInfo.getSkinFileName();
-	std::cout << "지금 불러오는 플레이어 파일 이름 : " << fileName << std::endl;
 	auto index = static_cast<int>(mPlayerInfo.mType);
 	mMeshComponent->setTexture(fileName);
 	if (mMeshComponent->getMeshTextureSize() == 1)

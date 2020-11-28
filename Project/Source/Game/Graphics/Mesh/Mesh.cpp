@@ -202,7 +202,6 @@ void Mesh::setTexture(const std::string& fileName, const std::weak_ptr<Renderer>
 	{
 		mTexture.emplace_back(texture);
 	}
-	std::cout << mTexture.size() << std::endl;
 }
 
 std::weak_ptr<Texture> Mesh::getTexture(int index)
