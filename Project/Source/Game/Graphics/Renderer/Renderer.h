@@ -40,6 +40,7 @@ public:
 private:
 	bool loadShader();
 	void createSpriteVertex();	
+	void createCubeMapVertex();
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;
@@ -50,6 +51,7 @@ private:
 	std::vector<std::weak_ptr<class AlphaComponent>> mAlphaComponent;
 	std::vector<std::weak_ptr<class SpriteComponent>> mSpriteComponent;
 	std::vector<std::weak_ptr<class BillBoardComponent>> mBillBoardComponent;
+	std::vector<std::weak_ptr<class CubeMapComponent>> mCubeMapComponent;
 
 	std::vector<std::weak_ptr<class UI>> mUserInterfaces;
 
@@ -59,6 +61,8 @@ private:
 	std::unique_ptr<class Shader> mSpriteShader;
 	std::unique_ptr<class Shader> mBillBoardShader;
 	std::unique_ptr<class VertexArray> mSpriteVertex;
+	std::unique_ptr<class Shader> mCubeMapShader;
+	std::unique_ptr<class VertexArray> mCubeMapVertex;
 	
 	Matrix4 mView;
 	Matrix4 mInvertView;
@@ -88,4 +92,5 @@ private:
 	void drawAlphaComponent();
 	void drawSpriteComponent();
 	void drawUserInterface();
+	void drawCubeMapComponent();
 };
