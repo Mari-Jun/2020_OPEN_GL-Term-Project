@@ -75,3 +75,8 @@ void RobotArm::setPlayerTexture(const std::string& fileName, int index)
 	mMeshComponent->setTexture(fileName);
 	mMeshComponent->setTextureIndex(index);
 }
+
+void RobotArm::resetTexture()
+{
+	mMeshComponent->resetTexture();
+}

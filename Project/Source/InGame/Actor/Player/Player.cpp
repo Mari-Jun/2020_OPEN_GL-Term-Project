@@ -90,12 +90,27 @@ void Player::updateBody()
 void Player::setPlayerTexture()
 {
 	auto fileName = mPlayerInfo.getSkinFileName();
-	auto index = static_cast<int>(mPlayerInfo.mSkinType);
+	std::cout << "지금 불러오는 플레이어 파일 이름 : " << fileName << std::endl;
+	auto index = static_cast<int>(mPlayerInfo.mType);
 	mMeshComponent->setTexture(fileName);
+	if (mMeshComponent->getMeshTextureSize() == 1)
+	{
+		index = 0;
+	}
 	mMeshComponent->setTextureIndex(index);
 	mLeftArm->setPlayerTexture(fileName, index);
 	mRightArm->setPlayerTexture(fileName, index);
 	mLeftLeg->setPlayerTexture(fileName, index);
 	mRightLeg->setPlayerTexture(fileName, index);
 	mHead->setPlayerTexture(fileName, index);
+}
+
+void Player::changePlayerTexture()
+{
+	mMeshComponent->resetTexture();
+	mLeftArm->resetTexture();
+	mRightArm->resetTexture();
+	mLeftLeg->resetTexture();
+	mRightLeg->resetTexture();
+	mHead->resetTexture();
 }

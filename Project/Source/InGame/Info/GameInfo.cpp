@@ -87,3 +87,19 @@ std::string PlayerInfo::getSkinFileName() const
 	default: return "";
 	}
 }
+
+void PlayerInfo::changeSkinType(bool next)
+{
+	switch (mSkinType)
+	{
+	case PlayerInfo::SkinType::Man: next ? mSkinType = SkinType::ManA : mSkinType = SkinType::Man; break;
+	case PlayerInfo::SkinType::ManA: next ? mSkinType = SkinType::Adventure : mSkinType = SkinType::Man; break;
+	case PlayerInfo::SkinType::Adventure: next ? mSkinType = SkinType::Orc : mSkinType = SkinType::ManA; break;
+	case PlayerInfo::SkinType::Orc: next ? mSkinType = SkinType::Robot : mSkinType = SkinType::Adventure; break;
+	case PlayerInfo::SkinType::Robot: next ? mSkinType = SkinType::Soldier : mSkinType = SkinType::Orc; break;
+	case PlayerInfo::SkinType::Soldier: next ? mSkinType = SkinType::Woman : mSkinType = SkinType::Robot; break;
+	case PlayerInfo::SkinType::Woman: next ? mSkinType = SkinType::WomanA : mSkinType = SkinType::Soldier; break;
+	case PlayerInfo::SkinType::WomanA: next ? mSkinType = SkinType::WomanA : mSkinType = SkinType::Woman; break;
+	default: break;
+	}
+}

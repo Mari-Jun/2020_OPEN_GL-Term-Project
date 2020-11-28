@@ -32,6 +32,8 @@ private:
 	std::shared_ptr<class Texture> mReinForceBoard;
 	StatNumber mPlayerStat;
 	StatNumber mMinionStat;
+	std::shared_ptr<class Texture> mSkin1;
+	std::shared_ptr<class Texture> mSkin2;
 
 private:
 	void loadCoinNumber();

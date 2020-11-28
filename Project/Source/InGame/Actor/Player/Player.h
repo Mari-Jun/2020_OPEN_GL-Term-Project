@@ -26,8 +26,10 @@ protected:
 
 private:
 	void updateBody();
-	void setPlayerTexture();
 
 public:
 	PlayerInfo::PlayerType getPlayerType() const { return mPlayerInfo.getPlayerInfoType(); }
+	void setPlayerInfo(const PlayerInfo& info) { mPlayerInfo = info; }
+	void setPlayerTexture();
+	void changePlayerTexture();
 };

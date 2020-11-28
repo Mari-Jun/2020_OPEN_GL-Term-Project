@@ -39,7 +39,7 @@ void ShopScene::initailize()
 	//Set View
 	auto windowSize = getGame().lock()->getRenderer()->getWindow()->getSize();
 	auto view = Matrix4::CreateLookAt(Vector3::Zero, Vector3::UnitZ, Vector3::UnitY);
-	auto projection = Matrix4::CreateOrtho(windowSize.x, windowSize.y, 0.0f, 5.0f);
+	auto projection = Matrix4::CreateOrtho(windowSize.x / 10.0f, windowSize.y / 10.0f, 0.0f, 5.0f);
 	getGame().lock()->getRenderer()->setViewMatrix(view);
 	getGame().lock()->getRenderer()->setProjectionMatrix(projection);
 	getGame().lock()->getRenderer()->getLight()->setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
@@ -82,15 +82,25 @@ void ShopScene::loadUI()
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mHpLevel, "HP"); }, Vector2(-50.0f, -56.0f), "Asset/Image/Button/Upgrade");
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mDefLevel, "DEF"); }, Vector2(-50.0f, -158.0f), "Asset/Image/Button/Upgrade");
 	ui->addButton([this]() {upgradeStatLevel(mInfo.mMinionInfo.mSpeedLevel, "SPEED"); }, Vector2(-50.0f, -260.0f), "Asset/Image/Button/Upgrade");
+	ui->addButton([this]() {changeSkin(mControl, mInfo.mControlInfo, false); }, Vector2(370.0f, 145.0f), "Asset/Image/Button/BackButton");
+	ui->addButton([this]() {changeSkin(mControl, mInfo.mControlInfo, true); }, Vector2(555.0f, 145.0f), "Asset/Image/Button/NextButton");
+	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(370.0f, -155.0f), "Asset/Image/Button/BackButton");
+	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(555.0f, -155.0f), "Asset/Image/Button/NextButton");
 }
 
 void ShopScene::loadPlayer()
 {
-	//Create Minion
-	auto player = std::make_shared<Player>(weak_from_this(), mInfo.mControlInfo);
-	player->setScale(1.5f);
-	player->setPosition(Vector3(400.0f, 0.0f, 0.0f));
-	player->initailize();
+	mControl = std::make_shared<Player>(weak_from_this(), mInfo.mControlInfo);
+	mControl->setScale(1.5f);
+	mControl->setRotation(Quaternion(Vector3::UnitY, Math::Pi));
+	mControl->setPosition(Vector3(17.0f, 3.0f, 0.0f));
+	mControl->initailize();
+
+	mMinion = std::make_shared<Player>(weak_from_this(), mInfo.mMinionInfo);
+	mMinion->setScale(1.5f);
+	mMinion->setRotation(Quaternion(Vector3::UnitY, Math::Pi));
+	mMinion->setPosition(Vector3(17.0f, -27.0f, 0.0f));
+	mMinion->initailize();
 }
 
 void ShopScene::unLoadData()
@@ -136,4 +146,14 @@ void ShopScene::upgradeStatLevel(int& statLevel, const std::string& type)
 		mInfo.mCoin -= statLevel;
 		mShopHUD->resetInfo();
 	}
+}
+
+void ShopScene::changeSkin(std::shared_ptr<class Player>& player, PlayerInfo& info, bool next)
+{
+	info.changeSkinType(next);
+	mControl->changePlayerTexture();
+	mMinion->changePlayerTexture();
+	player->setPlayerInfo(info);
+	mControl->setPlayerTexture();
+	mMinion->setPlayerTexture();
 }

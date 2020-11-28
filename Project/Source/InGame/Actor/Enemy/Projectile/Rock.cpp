@@ -4,7 +4,7 @@
 #include "../../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../../Game/Component/BoxComponent.h"
 #include "../../../../Game/Game.h"
-#include "../../Player/Player.h"
+#include "../../Player/MovePlayer.h"
 #include "../Weapon/Catapult.h"
 
 #include <random>
@@ -110,7 +110,7 @@ void Rock::collide()
 						makeSplitRock();
 					}
 				}
-				auto owner = std::dynamic_pointer_cast<Player>(b.lock()->getOwner().lock());
+				auto owner = std::dynamic_pointer_cast<MovePlayer>(b.lock()->getOwner().lock());
 				owner->decreaseHp(5.0f);
 				setState(State::Dead);
 
