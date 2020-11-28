@@ -40,7 +40,6 @@ GameMap::~GameMap()
 
 bool GameMap::loadMap(const std::string& fileName, const std::string time)
 {
-	//Open Obj file
 	std::ifstream mapFile(fileName);
 
 	if (!mapFile.is_open())

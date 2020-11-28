@@ -38,12 +38,15 @@ void LoadingScene::sceneUpdate(float deltatime)
 	//조건
 	if (count > 10)
 	{
-		GameInfo ret = { 1, 123,
+		GameInfo info = {};
+		if (!info.loadGameInfo())
+		{
+			info = { 1, 123,
 			{PlayerInfo::PlayerType::Control, PlayerInfo::SkinType::Man, 1, 1, 1},
 			{PlayerInfo::PlayerType::Minion, PlayerInfo::SkinType::Robot, 1, 1, 1} };
-		//나중에 게임 파일로 저장하고 불러와야함
-		
-		auto scene = std::make_shared<TitleScene>(getGame(), ret);
+		}
+
+		auto scene = std::make_shared<TitleScene>(getGame(), info);
 		scene->initailize();
 		setSceneState(SceneState::Dead);
 	}

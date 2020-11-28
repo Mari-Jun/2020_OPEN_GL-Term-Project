@@ -2,6 +2,7 @@
 #include "../../../../Game/Game.h"
 #include "../../../../Game/Input/KeyBoard.h"
 #include "../../../../Game/Component/MoveComponent.h"
+#include "../../../Scene/GameScene.h"
 
 ControlPlayer::ControlPlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: MovePlayer(scene, info)
@@ -52,4 +53,12 @@ void ControlPlayer::setStat(PlayerInfo info)
 	mStat.mDef = static_cast<float>(info.getDefStat());
 	mStat.mSpeed = static_cast<float>(info.getSpeedStat());
 	mStat.mHp = mStat.mMaxHp;
+}
+
+void ControlPlayer::checkHp()
+{
+	if (mStat.mHp <= 0.0f)
+	{
+		//std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
+	}
 }

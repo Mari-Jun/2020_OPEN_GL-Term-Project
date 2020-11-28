@@ -50,7 +50,8 @@ void EndPointTile::collidePlayers()
 				}
 				else
 				{
-					objectOwner->setState(Actor::State::Dead);
+					auto minion = std::dynamic_pointer_cast<DefaultMinion>(objectOwner);
+					minion->endPoint();
 				}
 			}
 		}

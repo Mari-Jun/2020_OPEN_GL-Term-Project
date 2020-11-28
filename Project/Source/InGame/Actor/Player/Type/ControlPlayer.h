@@ -14,4 +14,5 @@ public:
 
 private:
 	virtual void setStat(PlayerInfo info) override;
+	virtual void checkHp() override;
 };

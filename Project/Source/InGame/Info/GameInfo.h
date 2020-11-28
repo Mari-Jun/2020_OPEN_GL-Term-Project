@@ -35,6 +35,7 @@ struct PlayerInfo
 	int getSpeedStat() const;
 	
 	std::string getSkinFileName() const;
+	void setSkin(const std::string& fileName);
 	void changeSkinType(bool next);
 };
 
@@ -44,4 +45,7 @@ struct GameInfo
 	int mCoin;
 	PlayerInfo mControlInfo;
 	PlayerInfo mMinionInfo;	
+
+	bool saveGameInfo();
+	bool loadGameInfo();
 };

@@ -164,7 +164,7 @@ void GameScene::pauseGame(const std::string& type)
 
 void GameScene::stageClear()
 {
-	if (mMinionManager->getLiveMinion() >= mMinionManager->getClearMinion())
+	if (mMinionManager->getClearMinion() == 0)
 	{
 		pauseGame("Clear");
 
@@ -175,10 +175,7 @@ void GameScene::stageClear()
 
 void GameScene::stageFail()
 {
-	if (mMinionManager->getLiveMinion() < mMinionManager->getClearMinion())
-	{
-		pauseGame("Fail");
-	}
+	pauseGame("Fail");
 }
 
 void GameScene::goToTitle()
