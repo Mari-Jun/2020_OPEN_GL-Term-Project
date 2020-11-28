@@ -23,4 +23,6 @@ private:
 	std::weak_ptr<class GameMap> mGameMap;
 	std::shared_ptr<class Texture> mCountBoard;
 	std::vector<std::shared_ptr<class Texture>> mMinionCount;
+	std::shared_ptr<class Texture> mStageBoard;
+	std::vector<std::shared_ptr<class Texture>> mStageCount;
 };

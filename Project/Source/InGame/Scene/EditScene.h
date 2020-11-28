@@ -26,4 +26,7 @@ private:
 	GameInfo mInfo;
 	std::shared_ptr<class EditHUD> mEditHUD;
 	int mStage;
+
+public:
+	int getStage() const { return mStage; }
 };
