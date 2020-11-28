@@ -187,9 +187,21 @@ void Mesh::unLoad()
 	mVertexArray.reset();
 }
 
+void Mesh::resetTexture()
+{
+	mTexture.clear();
+}
+
 void Mesh::setTexture(const std::string& fileName, const std::weak_ptr<Renderer>& mRender)
 {
-	mTexture.emplace_back(mRender.lock()->getTexture(fileName));
+	const auto& texture = mRender.lock()->getTexture(fileName);
+	auto iter = find_if(mTexture.begin(), mTexture.end(),
+		[&texture](const std::weak_ptr<Texture>& tex)
+		{return texture == tex.lock(); });
+	if (iter == mTexture.end())
+	{
+		mTexture.emplace_back(texture);
+	}
 }
 
 std::weak_ptr<Texture> Mesh::getTexture(int index)

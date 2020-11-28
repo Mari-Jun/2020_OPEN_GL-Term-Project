@@ -35,6 +35,7 @@ struct PlayerInfo
 	int getSpeedStat() const;
 	
 	std::string getSkinFileName() const;
+	void changeSkinType(bool next);
 };
 
 struct GameInfo

@@ -76,3 +76,8 @@ void RobotLeg::setPlayerTexture(const std::string& fileName, int index)
 	mMeshComponent->setTexture(fileName);
 	mMeshComponent->setTextureIndex(index);
 }
+
+void RobotLeg::resetTexture()
+{
+	mMeshComponent->resetTexture();
+}

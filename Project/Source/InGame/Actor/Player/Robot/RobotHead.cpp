@@ -46,3 +46,8 @@ void RobotHead::setPlayerTexture(const std::string& fileName, int index)
 	mMeshComponent->setTexture(fileName);
 	mMeshComponent->setTextureIndex(index);
 }
+
+void RobotHead::resetTexture()
+{
+	mMeshComponent->resetTexture();
+}
