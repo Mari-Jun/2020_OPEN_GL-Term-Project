@@ -1,7 +1,7 @@
 #pragma once
-#include "../../../Game/UI/UI.h"
+#include "HUD.h"
 
-class GameHUD : public UI
+class GameHUD : public HUD
 {
 public:
 	GameHUD(const std::weak_ptr<class GameScene>& scene, const std::weak_ptr<class Renderer>& render);

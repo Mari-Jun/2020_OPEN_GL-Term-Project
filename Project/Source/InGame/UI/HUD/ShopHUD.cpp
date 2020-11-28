@@ -8,7 +8,7 @@
 
 
 ShopHUD::ShopHUD(const std::weak_ptr<class ShopScene>& scene, const std::weak_ptr<class Renderer>& render)
-	: UI(scene, render)
+	: HUD(scene, render)
 	, mShopScene(scene)
 {
 
@@ -88,34 +88,4 @@ void ShopHUD::draw(std::unique_ptr<class Shader>& shader)
 
 	drawTexture(shader, mSkin1, Vector2(wSize.x / 2 - mSkin1->getWidth() / 2 - 20.0f, 180.0f));
 	drawTexture(shader, mSkin2, Vector2(wSize.x / 2 - mSkin2->getWidth() / 2 - 20.0f, -120.0f));
-}
-
-
-void ShopHUD::setNumberTexture(vTexSet& texture, int info, const std::string& fileName)
-{
-	auto number = info;
-
-	if (number == 0)
-	{
-		texture.push_back(mRenderer.lock()->getTexture(fileName + "0.png"));
-	}
-	else
-	{
-		while (number != 0)
-		{
-			texture.push_back(mRenderer.lock()->getTexture(fileName + std::to_string(number % 10) + ".png"));
-			number /= 10;
-		}
-	}
-}
-
-void ShopHUD::drawNumberTexture(std::unique_ptr<class Shader>& shader, const vTexSet& texture, const Vector2& pos, float gap)
-{
-	auto wSize = mRenderer.lock()->getWindow()->getSize();
-
-	for (auto iter = texture.crbegin(); iter != texture.crend(); ++iter)
-	{
-		auto xPos = pos.x - (gap * (texture.crend() - iter));
-		drawTexture(shader, *iter, Vector2(xPos, pos.y));
-	}
 }
