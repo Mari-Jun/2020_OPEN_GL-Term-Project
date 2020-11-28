@@ -10,6 +10,7 @@
 #include "../../Game/Sound/Sound.h"
 #include "../../Game/UI/UI.h"
 #include "../UI/SceneHelper.h"
+#include "../UI/HUD/StageHUD.h"
 
 
 TitleScene::TitleScene(const std::weak_ptr<class Game>& game, GameInfo info)
@@ -61,7 +62,7 @@ void TitleScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {mSceneHelper->changeToGameScene(mInfo); }, Vector2(0.0f, 30.0f), "Asset/Image/Button/PlayButton");
+	ui->addButton([this]() {selectStage(); }, Vector2(0.0f, 30.0f), "Asset/Image/Button/PlayButton");
 	ui->addButton([this]() {
 		mInfo.saveGameInfo() ?
 		mSceneHelper->createDialog("Complete") :
@@ -77,3 +78,23 @@ void TitleScene::unLoadData()
 {
 
 }
+
+void TitleScene::playGame(int stage)
+{
+	mSceneHelper->changeToGameScene(mInfo, stage);
+}
+
+void TitleScene::selectStage()
+{
+	//Create StageUI
+	auto game = getGame().lock();
+	auto ui =  std::make_shared<StageHUD>(weak_from_this(), game->getRenderer(), mInfo);
+	ui->initailize();
+
+	std::string fileName = "Asset/Image/UIBackground/Select.png";
+	ui->setBackgroundTexture(game->getRenderer()->getTexture(fileName));
+
+	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
+	game->getMouse()->setWarp(false);
+}
+

@@ -21,7 +21,7 @@ GameHUD::~GameHUD()
 
 void GameHUD::initailize()
 {
-	UI::initailize();
+	HUD::initailize();
 	mCoin = mRenderer.lock()->getTexture("Asset/Image/HUD/coin.png");
 	mCross = mRenderer.lock()->getTexture("Asset/Image/HUD/Cross.png");
 

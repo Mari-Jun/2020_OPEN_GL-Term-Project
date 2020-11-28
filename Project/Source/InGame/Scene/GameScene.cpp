@@ -20,9 +20,10 @@
 #include "../UI/PauseUI.h"
 #include "../UI/SceneHelper.h"
 
-GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info)
+GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info, int stage)
 	: Scene(game)
 	, mInfo(info)
+	, mStage(stage)
 {
 
 }
@@ -124,7 +125,7 @@ void GameScene::loadGameMap()
 {
 	mGameMap = std::make_shared<GameMap>(weak_from_this());
 	std::string file = "Asset/Map/Stage";
-	file += std::to_string(mInfo.mStage);
+	file += std::to_string(mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
 }
@@ -168,8 +169,8 @@ void GameScene::stageClear()
 	{
 		pauseGame("Clear");
 
-		mInfo.mCoin += mInfo.mStage * 10;
-		mInfo.mStage++;
+		mInfo.mCoin += mStage * 10;
+		mInfo.mStage = Math::Max(mStage + 1, mInfo.mStage);
 	}
 }
 
