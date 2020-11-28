@@ -18,16 +18,10 @@ public:
 	~GameMap() noexcept;
 
 	bool loadMap(const std::string& fileName, const std::string time = "None");
-	bool saveMap();
 
 	void addTile(const std::string& type, int y, int x, float rot);
 	void removeTile(int y, int x);
 	void rotTile(int y, int x);
-
-	float getTileSize() const { return mTileSize; }
-	int getMapSize() const { return mMapSize; }
-	const Vector3& getPosition() const { return mPosition; }
-	const std::vector<std::vector<std::weak_ptr<class Tile>>>& getTiles() { return mTiles; }
 
 private:
 	std::weak_ptr<class Scene> mScene;
@@ -45,10 +39,16 @@ private:
 	void addDirectionalLight();
 
 public:
+	const std::string& getFileName() const { return mFileName; }
+	float getTileSize() const { return mTileSize; }
+	int getMapSize() const { return mMapSize; }
+	const Vector3& getPosition() const { return mPosition; }
+	const std::vector<std::vector<std::weak_ptr<class Tile>>>& getTiles() { return mTiles; }
 	const Vector3& getStartPosition() const { return mStartPosition; }
 	std::pair<int, int> getStartPosIndex() const { return {static_cast<int>((mStartPosition.z - mPosition.z) / -mTileSize) , static_cast<int>((mStartPosition.x - mPosition.x) / mTileSize) }; }
 	const Vector3& getEndPosition() const { return mEndPosition; }
 	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>((mEndPosition.z - mPosition.z) / -mTileSize), static_cast<int>((mEndPosition.x - mPosition.x) / mTileSize) }; }
+	const std::string& getTime() const { return mTime; }
 	int getMinionCount() const { return mMinionCount; }
 	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
 	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }

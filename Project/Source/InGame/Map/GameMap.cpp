@@ -95,52 +95,7 @@ bool GameMap::loadMap(const std::string& fileName, const std::string time)
 
 	std::cerr << fileName << " load complete\n";
 	mFileName = fileName;
-
 	return true;
-}
-
-bool GameMap::saveMap()
-{
-	if (mFileName.size() != 0)
-	{
-		//Open Obj file
-		std::ofstream mapFile(mFileName);
-
-		if (!mapFile.is_open())
-		{
-			std::cerr << "file not found : " << mFileName << '\n';
-			return false;
-		}
-
-		std::stringstream ss;
-		std::string line = "";
-		std::string prefix = "";
-		std::string tileName;
-		unsigned int y = 0;
-		unsigned int xSize = 0;
-		float rot = 0.0f;
-
-		mapFile << "Time " << mTime << '\n';
-
-		for (auto y = 0; y < mTiles.size(); y++)
-		{
-			mapFile << "Line " << y + 1 << " " << mTiles.size() << '\n';
-			mapFile << "Type ";
-			for (const auto& x : mTiles[y])
-			{
-				auto rot = round(Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), x.lock()->getRotation()))));
-				mapFile << x.lock()->getTileTypeToString() << ' ' << rot * 2 << ' ';
-			}
-			mapFile << '\n';
-		}
-
-		mapFile << "Minion " << mMinionCount << '\n';
-
-		std::cerr << mFileName << " Save complete\n";
-
-		return true;
-	}
-	return false;
 }
 
 void GameMap::addTile(const std::string& type, int y, int x, float rot)

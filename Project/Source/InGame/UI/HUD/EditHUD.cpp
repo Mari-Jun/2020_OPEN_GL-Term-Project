@@ -24,12 +24,15 @@ void EditHUD::initailize()
 {
 	UI::initailize();
 	mCountBoard = mRenderer.lock()->getTexture("Asset/Image/EditScene/MinionCount.png");
+	mStageBoard = mRenderer.lock()->getTexture("Asset/Image/EditScene/Stage.png");
 }
 
 void EditHUD::resetInfo()
 {
 	mMinionCount.clear();
 	setNumberTexture(mMinionCount, mGameMap.lock()->getMinionCount(), "Asset/Image/ShopScene/Num");
+	mStageCount.clear();
+	setNumberTexture(mStageCount, mEditScene.lock()->getStage(), "Asset/Image/ShopScene/Num");
 }
 
 void EditHUD::update(float deltatime)
@@ -47,4 +50,6 @@ void EditHUD::draw(std::unique_ptr<class Shader>& shader)
 	auto wSize = mRenderer.lock()->getWindow()->getSize();
 	drawTexture(shader, mCountBoard, Vector2(0.0f, -wSize.y / 2 + 50.0f));
 	drawNumberTexture(shader, mMinionCount, Vector2(150.0f, -wSize.y / 2 + 50.0f), 35.0f);
+	drawTexture(shader, mStageBoard, Vector2(0.0f, wSize.y / 2 - 35.0f));
+	drawNumberTexture(shader, mStageCount, Vector2(150.0f, wSize.y / 2 - 35.0f), 35.0f);
 }

@@ -12,15 +12,13 @@
 #include "../../Game/Sound/Sound.h"
 
 #include "../Actor/Player/Type/ControlPlayer.h"
-#include "../Actor/Player/Type/DefaultMinion.h"
-#include "../Actor/Player/Type/MinionAi/MinionAi.h"
-#include "../Actor/Particle/ParticleCreater.h"
+#include "../Actor/Particle/ParticleCreator.h"
+#include "../Actor/Player/Type/MinionAi/MinionCreator.h"
 #include "../Actor/Tile/Tile.h"
 #include "../Map/GameMap.h"
 #include "../UI/HUD/GameHUD.h"
 #include "../UI/PauseUI.h"
 #include "../UI/SceneHelper.h"
-
 
 GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
@@ -111,16 +109,14 @@ void GameScene::loadActorData()
 	/*auto mCamera = std::make_shared<CameraActor>(weak_from_this());
 	mCamera->initailize();*/
 
-	//Create ParticleCreater
-	auto particle = std::make_shared<ParticleCreater>(weak_from_this());
-	particle->setScale(300.0f);
-	particle->setPosition(control->getPosition() + Vector3::UnitY * 200.0f);
+	//Create ParticleCreator
+	auto particle = std::make_shared<ParticleCreator>(weak_from_this(), control);
+	particle->setScale(1000.0f);
+	particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
 	particle->initailize();
 
-	//Create Minion
-	auto minion = std::make_shared<DefaultMinion>(weak_from_this(), mInfo.mMinionInfo, mMinionAi);
-	minion->setScale(1.5f);
-	minion->setPosition(mGameMap->getStartPosition() + Vector3(-10.0f, 100.0f, 10.0f));
+	//Create MinionCreator
+	auto minion = std::make_shared<MinionCreator>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
 	minion->initailize();
 }
 
@@ -131,9 +127,6 @@ void GameScene::loadGameMap()
 	file += std::to_string(mInfo.mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
-
-	mMinionAi = std::make_shared<MinionAi>(weak_from_this());
-	mMinionAi->initailize(mGameMap->getTiles(), mGameMap->getStartPosIndex(), mGameMap->getEndPosIndex(),mGameMap->getTileSize(),mGameMap->getMapSize());
 }
 
 void GameScene::loadUI()
