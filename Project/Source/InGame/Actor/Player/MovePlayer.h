@@ -33,6 +33,7 @@ private:
 private:
 	void updateGravity(float deltatime);
 	virtual void setStat(PlayerInfo info);
+	virtual void checkHp();
 
 protected:
 	PlayerStat mStat;

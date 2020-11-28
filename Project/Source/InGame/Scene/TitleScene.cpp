@@ -62,7 +62,11 @@ void TitleScene::loadData()
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
 	ui->addButton([this]() {mSceneHelper->changeToGameScene(mInfo); }, Vector2(0.0f, 30.0f), "Asset/Image/Button/PlayButton");
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -80.0f), "Asset/Image/Button/SaveButton");
+	ui->addButton([this]() {
+		mInfo.saveGameInfo() ?
+		mSceneHelper->createDialog("Complete") :
+		mSceneHelper->createDialog("NoComplete"); 
+		}, Vector2(0.0f, -80.0f), "Asset/Image/Button/SaveButton");
 	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -190.0f), "Asset/Image/Button/HelpButton");
 	ui->addButton([this]() {mSceneHelper->quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/Button/QuitButton");
 	ui->addButton([this]() {mSceneHelper->changeToEditScene(mInfo); }, Vector2(500.0f, -300.0f), "Asset/Image/Button/EditButton");

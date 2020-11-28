@@ -30,6 +30,7 @@ public:
 	int getLiveMinion() const { return mLiveMinionNum; }
 	int getClearMinion() const { return mClearMinionNum; }
 	void setLiveMinion(int num) { mLiveMinionNum = num; }
+	void setClearMinion(int num) { mClearMinionNum = num; }
 
 	void resetHUD();
 };
