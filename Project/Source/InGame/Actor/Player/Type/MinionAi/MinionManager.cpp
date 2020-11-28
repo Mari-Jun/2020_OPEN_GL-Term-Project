@@ -49,7 +49,7 @@ void MinionManager::createMinion()
 {
 	if (mDelay <= 0.0f)
 	{
-		mDelay += 2.0f;
+		mDelay += 0.2f;
 
 		auto map = mGameMap.lock();
 		auto minion = std::make_shared<DefaultMinion>(getScene(), mInfo, std::dynamic_pointer_cast<MinionManager>(weak_from_this().lock()));

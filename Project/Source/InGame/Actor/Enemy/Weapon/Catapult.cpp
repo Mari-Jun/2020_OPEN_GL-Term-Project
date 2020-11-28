@@ -12,7 +12,7 @@ Catapult::Catapult(const std::weak_ptr<class Scene>& scene)
 
 Catapult::~Catapult()
 {
-
+	mRock->setState(State::Dead);
 }
 
 void Catapult::initailize()
@@ -52,7 +52,6 @@ void Catapult::initRock(Vector3 toVec)
 	Vector3 toVectmp = toVec;
 	toVectmp.Normalize();
 	toVectmp.y = -0.5;
-	std::cout << toVectmp.x << " " << toVectmp.y << " " << toVectmp.z << std::endl;
 	mRock->setPosition(getPosition() - (toVectmp * 80));
 
 	mRock->setScale(getScale());

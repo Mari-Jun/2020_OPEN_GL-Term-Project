@@ -34,4 +34,5 @@ public:
 
 public:
 	const GameInfo& getGameInfo() const { return mInfo; }
+	const std::shared_ptr<class GameMap>& getGameMap() const { return mGameMap; }
 };
