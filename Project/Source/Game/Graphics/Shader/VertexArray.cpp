@@ -2,7 +2,7 @@
 #include <gl/glew.h>
 
 
-VertexArray::VertexArray(std::vector<Vertex>& vertex, unsigned int vertexNum,
+VertexArray::VertexArray(const std::vector<Vertex>& vertex, unsigned int vertexNum,
 	std::vector<unsigned int>& index, unsigned int indexNum)
 	: mVertexNum(vertexNum)
 	, mIndexNum(indexNum)

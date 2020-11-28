@@ -40,7 +40,7 @@ void CannonBall::initailize()
 	mSphere.mCenter = (box.mMin + box.mMax) / 2.0f;
 	Vector3 Vec(box.mMax - box.mMin);
 	Vec.y = 0;
-	mSphere.mRadius = Vec.Length() / 2.0;
+	mSphere.mRadius = Vec.Length() / 2.0f;
 
 }
 
