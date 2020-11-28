@@ -17,7 +17,12 @@ public:
 	virtual void loadData();
 	virtual void unLoadData();
 
+	void playGame(int stage);
+
 private:
 	std::unique_ptr<class SceneHelper> mSceneHelper;
 	GameInfo mInfo;
+
+private:
+	void selectStage();
 };

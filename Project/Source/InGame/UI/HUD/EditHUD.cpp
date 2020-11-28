@@ -22,7 +22,7 @@ EditHUD::~EditHUD()
 
 void EditHUD::initailize()
 {
-	UI::initailize();
+	HUD::initailize();
 	mCountBoard = mRenderer.lock()->getTexture("Asset/Image/EditScene/MinionCount.png");
 	mStageBoard = mRenderer.lock()->getTexture("Asset/Image/EditScene/Stage.png");
 }

@@ -21,7 +21,7 @@ ShopHUD::~ShopHUD()
 
 void ShopHUD::initailize()
 {
-	UI::initailize();
+	HUD::initailize();
 	mCoin = mRenderer.lock()->getTexture("Asset/Image/HUD/coin.png");
 	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/UIBackground/Reinforce.png");
 	mSkin1 = mRenderer.lock()->getTexture("Asset/Image/UIBackground/skinBox.png");

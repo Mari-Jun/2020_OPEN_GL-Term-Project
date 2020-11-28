@@ -5,7 +5,7 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(const std::weak_ptr<class Game>& game, GameInfo info);
+	GameScene(const std::weak_ptr<class Game>& game, GameInfo info, int stage);
 	virtual ~GameScene();
 
 	virtual void initailize();
@@ -23,6 +23,7 @@ private:
 	std::shared_ptr<class MinionManager> mMinionManager;
 	std::shared_ptr<class GameHUD> mGameHUD;
 	GameInfo mInfo;
+	int mStage;
 
 private:
 	void loadActorData();
