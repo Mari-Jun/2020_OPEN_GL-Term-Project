@@ -197,8 +197,8 @@ const std::vector<std::weak_ptr<class Tile>> GameMap::getCollideTiles(const Vect
 {
 	std::vector<std::weak_ptr<class Tile>> cTile;
 
-	int x = (pos.x - mPosition.x) / mTileSize;
-	int y = (pos.z - mPosition.z) / -mTileSize;
+	int x = static_cast<int>(pos.x - mPosition.x) / mTileSize;
+	int y = static_cast<int>(pos.z - mPosition.z) / -mTileSize;
 
 	cTile.push_back(mTiles[y][x]);
 	for (auto i = 0; i < 8; i++)

@@ -35,7 +35,7 @@ void ParticleCreator::updateActor(float deltatime)
 		for (auto i = 0; i < 3; i++)
 		{
 			auto snow = std::make_shared<Snow>(getScene());
-			snow->setPosition(getPosition() + Vector3(pos(mersenne), 0.0f, pos(mersenne)));
+			snow->setPosition(getPosition() + Vector3(static_cast<float>(pos(mersenne)), 0.0f, static_cast<float>(pos(mersenne))));
 			snow->setScale(0.03f);
 			snow->initailize();
 		}

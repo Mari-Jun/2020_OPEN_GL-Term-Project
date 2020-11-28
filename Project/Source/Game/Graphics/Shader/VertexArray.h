@@ -16,7 +16,7 @@ struct Vertex
 class VertexArray final
 { 
 public:
-	VertexArray(std::vector<Vertex>& vertex, unsigned int vertexNum,
+	VertexArray(const std::vector<Vertex>& vertex, unsigned int vertexNum,
 		std::vector<unsigned int>& index, unsigned int indexNum);
 	~VertexArray();
 
