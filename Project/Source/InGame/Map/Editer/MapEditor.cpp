@@ -26,6 +26,85 @@ MapEditor::~MapEditor()
 	mBoardSelector.mSelector->setState(Actor::State::Dead);
 }
 
+bool MapEditor::saveMap()
+{
+	auto map = mGameMap.lock();
+	const auto& fileName = map->getFileName();
+	if (fileName.size() != 0)
+	{
+		//Open Obj file
+		std::ofstream mapFile(fileName);
+	
+
+		if (!mapFile.is_open())
+		{
+			std::cerr << "file not found : " << fileName << '\n';
+			return false;
+		}
+
+		unsigned int y = 0;
+		const auto& tile = map->getTiles();
+
+		mapFile << "Time " << map->getTime() << '\n';
+
+		for (auto y = 0; y < tile.size(); y++)
+		{
+			mapFile << "Line " << y + 1 << " " << tile.size() << '\n';
+			mapFile << "Type ";
+			for (const auto& x : tile[y])
+			{
+				auto rot = round(Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), x.lock()->getRotation()))));
+				mapFile << x.lock()->getTileTypeToString() << ' ' << rot * 2 << ' ';
+			}
+			mapFile << '\n';
+		}
+
+		mapFile << "Minion " << map->getMinionCount() << '\n';
+
+		std::cerr << fileName << " Save complete\n";
+		return true;
+	}
+	return false;
+}
+
+void MapEditor::newMap()
+{
+	auto stage = 0;
+	while (++stage)
+	{
+		std::string fileName = "Asset/Map/Stage";
+		fileName += std::to_string(stage) + ".txt";
+
+		std::ifstream mapFile(fileName);
+
+		if (!mapFile.is_open())
+		{
+			std::ofstream mapFile(fileName);
+			unsigned int y = 0;
+			auto map = mGameMap.lock();
+			const auto& tile = map->getTiles();
+
+			mapFile << "Time " << "Sunny" << '\n';
+
+			for (auto y = 0; y < tile.size(); y++)
+			{
+				mapFile << "Line " << y + 1 << " " << tile.size() << '\n';
+				mapFile << "Type ";
+				for (const auto& x : tile[y])
+				{
+					mapFile << "Basic" << ' ' << 0 << ' ';
+				}
+				mapFile << '\n';
+			}
+
+			mapFile << "Minion " << 1 << '\n';
+
+			std::cerr << "Create new file : " << fileName << " complete\n";
+			break;
+		}
+	}
+}
+
 void MapEditor::editInput()
 {
 	auto game = mEditScene.lock()->getGame().lock();

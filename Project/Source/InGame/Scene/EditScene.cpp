@@ -116,9 +116,9 @@ void EditScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {mGameMap->newMap(); }, Vector2(500.0f, -190.0f), "Asset/Image/Button/NewButton");
+	ui->addButton([this]() {mEditor->newMap(); }, Vector2(500.0f, -190.0f), "Asset/Image/Button/NewButton");
 	ui->addButton([this]() {
-		(mGameMap->saveMap()) ? 
+		(mEditor->saveMap()) ? 
 		mSceneHelper->createDialog("Complete") :
 		mSceneHelper->createDialog("NoComplete"); 
 		}, Vector2(500.0f, -300.0f), "Asset/Image/Button/SaveButton");
