@@ -15,6 +15,7 @@
 #include "../Map/GameMap.h"
 #include "../Map/Editer/MapEditor.h"
 #include "../UI/SceneHelper.h"
+#include "../UI/HUD/EditHUD.h"
 
 EditScene::EditScene(const std::weak_ptr<class Game>& game, GameInfo info)
 	: Scene(game)
@@ -98,6 +99,19 @@ void EditScene::loadData()
 {
 	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
 
+	mEditor = std::make_unique<MapEditor>(weak_from_this());
+	loadBoard("Left", Vector3(-500.0f, 80.0f, 0.0f));
+	loadBoard("Right", Vector3(500.0f, 230.0f, 0.0f));
+	loadBoard("Time", Vector3(500.0f, -30.0f, 0.0f));
+
+	mEditHUD = std::make_shared<EditHUD>(std::dynamic_pointer_cast<EditScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mEditHUD->initailize();
+
+	if (!loadGameMap())
+	{
+		std::cerr << "Error : Load Map\n";
+	}
+
 	//Create UI
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
@@ -110,15 +124,9 @@ void EditScene::loadData()
 		}, Vector2(500.0f, -300.0f), "Asset/Image/Button/SaveButton");
 	ui->addButton([this]() {mSceneHelper->changeToTitleScene(mInfo); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/HomeButton");
 
-
-	mEditor = std::make_unique<MapEditor>(weak_from_this());
-	loadBoard("Left", Vector3(-500.0f, 80.0f, 0.0f));
-	loadBoard("Right", Vector3(500.0f, 230.0f, 0.0f));
-	loadBoard("Time", Vector3(500.0f, -30.0f, 0.0f));
-	if (!loadGameMap())
-	{
-		std::cerr << "Error : Load Map\n";
-	}
+	auto wSize = getGame().lock()->getRenderer()->getWindow()->getSize();
+	ui->addButton([this]() {mGameMap->setMinionCount(mGameMap->getMinionCount() - 1); mEditHUD->resetInfo(); }, Vector2(-220.0f, -wSize.y / 2 + 50.0f), "Asset/Image/Button/DownButton");
+	ui->addButton([this]() {mGameMap->setMinionCount(mGameMap->getMinionCount() + 1); mEditHUD->resetInfo(); }, Vector2(220.0f, -wSize.y / 2 + 50.0f), "Asset/Image/Button/UpButton");
 }
 
 void EditScene::unLoadData()
@@ -135,7 +143,9 @@ bool EditScene::loadGameMap(const std::string& time)
 	if (newMap->loadMap(fileName, time))
 	{
 		mGameMap.swap(newMap);
-		mEditor->setGameMap(mGameMap);		
+		mEditor->setGameMap(mGameMap);
+		mEditHUD->setGameMap(mGameMap);
+		mEditHUD->resetInfo();
 		return true;
 	}
 	return false;	

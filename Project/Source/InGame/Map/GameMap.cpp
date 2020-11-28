@@ -6,7 +6,7 @@
 #include "../../Game/Game.h"
 #include "../../Game/Graphics/Light/Light.h"
 #include "../Actor/Tile/Tile.h"
-#include "../Actor/Tile/LightTile.h"
+#include "../Actor/Tile/LightTile.h" 
 #include "../Actor/Tile/EnemyTile.h"
 #include "../Actor/Tile/EndPointTile.h"
 
@@ -19,6 +19,7 @@ GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int ma
 	, mStartPosition(Vector3::Zero)
 	, mEndPosition(Vector3::Zero)
 	, mTime("Sunny")
+	, mMinionCount(0)
 {
 	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }
@@ -86,6 +87,10 @@ bool GameMap::loadMap(const std::string& fileName, const std::string time)
 			}
 			addDirectionalLight();
 		}
+		else if (prefix == "Minion")
+		{
+			ss >> mMinionCount;
+		}
 	}
 
 	std::cerr << fileName << " load complete\n";
@@ -128,6 +133,8 @@ bool GameMap::saveMap()
 			}
 			mapFile << '\n';
 		}
+
+		mapFile << "Minion " << mMinionCount << '\n';
 
 		std::cerr << mFileName << " Save complete\n";
 
