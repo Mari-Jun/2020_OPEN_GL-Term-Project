@@ -13,7 +13,6 @@ struct StatNumber
 class ShopHUD : public UI
 {
 public:
-	
 
 	ShopHUD(const std::weak_ptr<class ShopScene>& scene, const std::weak_ptr<class Renderer>& render);
 	~ShopHUD();

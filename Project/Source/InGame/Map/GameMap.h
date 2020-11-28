@@ -39,10 +39,10 @@ private:
 	Vector3 mStartPosition;
 	Vector3 mEndPosition;
 	std::string mTime;
+	int mMinionCount;
 
 private:
 	void addDirectionalLight();
-
 
 public:
 	const Vector3& getStartPosition() const { return mStartPosition; }
@@ -52,5 +52,5 @@ public:
 	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
 	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
 	void setTime(const std::string& time) { mTime = time; }
-
+	int getMinionCount() const { return mMinionCount; }
 };
