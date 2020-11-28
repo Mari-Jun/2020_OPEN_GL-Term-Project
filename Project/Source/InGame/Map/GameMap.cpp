@@ -19,7 +19,7 @@ GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int ma
 	, mStartPosition(Vector3::Zero)
 	, mEndPosition(Vector3::Zero)
 	, mTime("Sunny")
-	, mMinionCount(25)
+	, mMinionCount(0)
 {
 	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }

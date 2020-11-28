@@ -26,7 +26,6 @@ void ShopHUD::initailize()
 	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/ShopScene/Reinforce.png");
 	mSkin1 = mRenderer.lock()->getTexture("Asset/Image/ShopScene/skinBox.png");
 	mSkin2 = mRenderer.lock()->getTexture("Asset/Image/ShopScene/skinBox.png");
-
 	resetInfo();
 }
 

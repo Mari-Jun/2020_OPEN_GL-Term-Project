@@ -22,6 +22,11 @@ void HUD::initailize()
 	UI::initailize();
 }
 
+void HUD::resetInfo()
+{
+
+}
+
 void HUD::update(float deltatime)
 {
 

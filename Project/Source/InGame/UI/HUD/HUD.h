@@ -10,6 +10,7 @@ public:
 	~HUD();
 
 	virtual void initailize();
+	virtual void resetInfo();
 
 	virtual void update(float deltatime);
 	virtual void processInput();

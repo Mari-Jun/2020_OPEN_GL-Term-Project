@@ -8,10 +8,9 @@
 #include "../../../Game/Graphics/Texture/Texture.h"
 
 
-EditHUD::EditHUD(const std::weak_ptr<class EditScene>& scene, const std::weak_ptr<class Renderer>& render, const std::weak_ptr<class GameMap>& map)
+EditHUD::EditHUD(const std::weak_ptr<class EditScene>& scene, const std::weak_ptr<class Renderer>& render)
 	: HUD(scene, render)
 	, mEditScene(scene)
-	, mGameMap(map)
 {
 
 }
@@ -24,10 +23,13 @@ EditHUD::~EditHUD()
 void EditHUD::initailize()
 {
 	UI::initailize();
-
-	auto number = mGameMap.lock()->getMinionCount();
 	mCountBoard = mRenderer.lock()->getTexture("Asset/Image/EditScene/MinionCount.png");
-	setNumberTexture(mMinionCount, number, "Asset/Image/ShopScene/Num");
+}
+
+void EditHUD::resetInfo()
+{
+	mMinionCount.clear();
+	setNumberTexture(mMinionCount, mGameMap.lock()->getMinionCount(), "Asset/Image/ShopScene/Num");
 }
 
 void EditHUD::update(float deltatime)

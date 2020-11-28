@@ -22,8 +22,15 @@ void GameHUD::initailize()
 {
 	UI::initailize();
 	mCoin = mRenderer.lock()->getTexture("Asset/Image/HUD/coin.png");
+	resetInfo();
+}
+
+void GameHUD::resetInfo()
+{
+	mCoinNumber.clear();
 	setNumberTexture(mCoinNumber, mGameScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/Num");
 }
+
 
 void GameHUD::update(float deltatime)
 {
