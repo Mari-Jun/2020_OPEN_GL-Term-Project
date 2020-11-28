@@ -1,8 +1,8 @@
 #pragma once
-#include "../Player.h"
+#include "../MovePlayer.h"
 #define MINION_ANGLE 20
 
-class DefaultMinion : public Player
+class DefaultMinion : public MovePlayer
 {
 public:
 	DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionAi>& ai);

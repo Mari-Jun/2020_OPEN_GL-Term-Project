@@ -42,7 +42,7 @@ void EndPointTile::collidePlayers()
 
 			if (shared_from_this() != objectOwner && Intersect(endBox, objectBox))
 			{
-				if (objectOwner->getPlayerType() == Player::PlayerType::Control)
+				if (objectOwner->getPlayerType() == PlayerInfo::PlayerType::Control)
 				{
 					auto gameScene = std::dynamic_pointer_cast<GameScene>(getScene().lock());
 					gameScene->stageClear();

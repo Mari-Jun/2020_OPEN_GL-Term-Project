@@ -153,14 +153,14 @@ void Light::removeSpotLight(const std::weak_ptr<SpotLight>& light)
 	}
 }
 
-DirectionalLight loadDirectionalLight()
+std::shared_ptr<DirectionalLight> loadDirectionalLight()
 {
 	DirectionalLight dirLight;
 	dirLight.direction = Vector3(0.0f, -1.0f, 0.0f);
 	dirLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 	dirLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
 	dirLight.intensity = 1.0f;
-	return dirLight;
+	return std::make_shared<DirectionalLight>(dirLight);
 }
 
 PointLight loadPointLight()

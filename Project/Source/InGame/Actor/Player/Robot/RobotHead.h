@@ -18,4 +18,5 @@ private:
 
 public:
 	void setPlayerTexture(const std::string& fileName, int index);
+	void resetTexture();
 };

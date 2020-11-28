@@ -64,3 +64,17 @@ void MeshComponent::setTexture(const std::string& fileName)
 		mMesh->setTexture(fileName, mRender);
 	}
 }
+
+int MeshComponent::getMeshTextureSize() const
+{
+	return mMesh->getTextureSize();
+}
+
+
+void MeshComponent::resetTexture()
+{
+	if (mMesh)
+	{
+		mMesh->resetTexture();
+	}
+}

@@ -23,20 +23,32 @@ void ShopHUD::initailize()
 {
 	UI::initailize();
 	mCoin = mRenderer.lock()->getTexture("Asset/Image/HUD/coin.png");
+	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/ShopScene/Reinforce.png");
+	mSkin1 = mRenderer.lock()->getTexture("Asset/Image/ShopScene/skinBox.png");
+	mSkin2 = mRenderer.lock()->getTexture("Asset/Image/ShopScene/skinBox.png");
 
+	resetInfo();
+}
+
+void ShopHUD::resetInfo()
+{
+	loadCoinNumber();
 	loadStat(mShopScene.lock()->getGameInfo().mControlInfo, mPlayerStat);
 	loadStat(mShopScene.lock()->getGameInfo().mMinionInfo, mMinionStat);
-
-	mReinForceBoard = mRenderer.lock()->getTexture("Asset/Image/ShopScene/Reinforce.png");
 }
 
 void ShopHUD::loadCoinNumber()
 {
+	mCoinNumber.clear();
 	setNumberTexture(mCoinNumber, mShopScene.lock()->getGameInfo().mCoin, "Asset/Image/HUD/Num");
 }
 
 void ShopHUD::loadStat(const PlayerInfo& info, StatNumber& stat)
 {
+	stat.mHpNumber.clear();
+	stat.mDefNumber.clear();
+	stat.mSpeedNumber.clear();
+
 	const std::string fileName = "Asset/Image/ShopScene/Num";
 	auto hp = info.getHpStat();
 	setNumberTexture(stat.mHpNumber, hp, fileName);
@@ -73,6 +85,9 @@ void ShopHUD::draw(std::unique_ptr<class Shader>& shader)
 	drawNumberTexture(shader, mMinionStat.mHpNumber, Vector2(-210.0f, wSize.y / 2 - 440.0f), 35.0f);
 	drawNumberTexture(shader, mMinionStat.mDefNumber, Vector2(-210.0f, wSize.y / 2 - 540.0f), 35.0f);
 	drawNumberTexture(shader, mMinionStat.mSpeedNumber, Vector2(-210.0f, wSize.y / 2 - 640.0f), 35.0f);
+
+	drawTexture(shader, mSkin1, Vector2(wSize.x / 2 - mSkin1->getWidth() / 2 - 20.0f, 180.0f));
+	drawTexture(shader, mSkin2, Vector2(wSize.x / 2 - mSkin2->getWidth() / 2 - 20.0f, -120.0f));
 }
 
 

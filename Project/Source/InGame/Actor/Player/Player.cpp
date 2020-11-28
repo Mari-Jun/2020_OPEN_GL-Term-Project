@@ -11,11 +11,9 @@
 #include "../../../Game/Input/KeyBoard.h"
 #include "../../../Game/Graphics/Mesh/Mesh.h"
 
-Player::Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info, PlayerType type)
+Player::Player(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: Actor(scene, Type::Player)
-	, mStat({})
-	, mType(type)
-	, mGravitySpeed(0.0f)
+	, mPlayerInfo(info)
 {
 
 }
@@ -34,23 +32,6 @@ void Player::initailize()
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mMeshComponent->setMesh(mesh);
 	mMeshComponent->initailize();
-
-	//Create MoveComponent
-	mMoveComponent = std::make_shared<MoveComponent>(weak_from_this());
-	mMoveComponent->initailize();
-
-	//Create BoxComponent
-	mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), getGame().lock()->getPhysEngine());
-	mBoxComponent->setObjectBox(mesh->getBox());
-	mBoxComponent->initailize();
-
-	//Create HealthBar
-	mHealthBar = std::make_shared<Actor>(getScene(), Type::Ui);
-	auto hp = std::make_shared<BillBoardComponent>(mHealthBar, getGame().lock()->getRenderer());
-	hp->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Player/RedBar.png"));
-	hp->initailize();
-	mHealthBar->setScale(0.1f);
-	mHealthBar->initailize();
 
 	//Create Head
 	mHead = std::make_shared<RobotHead>(getScene());
@@ -74,18 +55,12 @@ void Player::initailize()
 	mRightLeg = std::make_shared<RobotLeg>(getScene(), true);
 	mRightLeg->setScale(getScale());
 	mRightLeg->initailize();
+
+	setPlayerTexture();
 }
 
 void Player::updateActor(float deltatime)
 {
-	updateGravity(deltatime);
-
-	collides(mBoxComponent);
-
-	mHealthBar->setScale(Vector3(0.1f, 0.1f, 0.1f) - 0.1f * Vector3(1.0f, 0.0f, 1.0f) * (1.0f - (mStat.mHp) / mStat.mMaxHp));
-	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);
-	
-
 	updateBody();
 }
 
@@ -93,18 +68,6 @@ void Player::actorInput()
 {
 	
 }
-
-void Player::updateGravity(float deltatime)
-{
-	//중력 설정
-	if (mGravitySpeed > -10000.0f)
-		mGravitySpeed -= 100.0f;
-
-	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
-	mMoveComponent->setForwardSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
-	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
-}
-
 
 void Player::updateBody()
 {
@@ -122,76 +85,17 @@ void Player::updateBody()
 
 	mRightLeg->setPosition(getPosition());
 	mRightLeg->setRotation(getRotation());
-
-	if (mStat.mSpeed != 0.0f)
-	{
-		mLeftArm->setMove(true);
-		mRightArm->setMove(true);
-		mLeftLeg->setMove(true);
-		mRightLeg->setMove(true);
-	}
 }
 
-void Player::collides(const std::weak_ptr<BoxComponent>& bComp)
+void Player::setPlayerTexture()
 {
-	updateWorldTransform();
-
-	AABB robotBox = bComp.lock()->getWorldBox();
-
-	Vector3 pos = getPosition();
-
-	auto allBoxes = getGame().lock()->getPhysEngine()->getBoxes();
-	auto boxes = allBoxes.find(getTypeToString(Type::Object));
-	if (boxes != allBoxes.end())
-	{
-		for (auto b : boxes->second)
-		{
-			const AABB& box = b.lock()->getWorldBox();
-			const auto& boxActor = b.lock()->getOwner();
-
-			if (shared_from_this() != boxActor.lock() && Intersect(robotBox, box))
-			{
-				float dx1 = box.mMax.x - robotBox.mMin.x;
-				float dx2 = box.mMin.x - robotBox.mMax.x;
-				float dy1 = box.mMax.y - robotBox.mMin.y;
-				float dy2 = box.mMin.y - robotBox.mMax.y;
-				float dz1 = box.mMax.z - robotBox.mMin.z;
-				float dz2 = box.mMin.z - robotBox.mMax.z;
-
-				float dx = Math::Abs(dx1) < Math::Abs(dx2) ? dx1 : dx2;
-				float dy = Math::Abs(dy1) < Math::Abs(dy2) ? dy1 : dy2;
-				float dz = Math::Abs(dz1) < Math::Abs(dz2) ? dz1 : dz2;
-
-				if (Math::Abs(dx) <= Math::Abs(dy) && Math::Abs(dx) <= Math::Abs(dz))
-				{
-					pos.x += dx;
-				}
-				if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
-				{
-					pos.y += dy;
-					mGravitySpeed = 0.0f;
-				}
-				if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
-				{
-					pos.z += dz;
-				}
-
-				setPosition(pos);
-				mBoxComponent->updateWorldTransForm();
-			}
-		}
-	}
-}
-
-void Player::setStat(PlayerInfo info)
-{
-
-}
-
-void Player::setPlayerTexture(const std::string& fileName)
-{
-	auto index = static_cast<int>(mType);
+	auto fileName = mPlayerInfo.getSkinFileName();
+	auto index = static_cast<int>(mPlayerInfo.mType);
 	mMeshComponent->setTexture(fileName);
+	if (mMeshComponent->getMeshTextureSize() == 1)
+	{
+		index = 0;
+	}
 	mMeshComponent->setTextureIndex(index);
 	mLeftArm->setPlayerTexture(fileName, index);
 	mRightArm->setPlayerTexture(fileName, index);
@@ -200,13 +104,12 @@ void Player::setPlayerTexture(const std::string& fileName)
 	mHead->setPlayerTexture(fileName, index);
 }
 
-void Player::decreaseHp(float damage)
+void Player::changePlayerTexture()
 {
-	damage = damage - damage / 100.0f * 5 * mStat.mDef;
-	mStat.mHp = Math::Max(mStat.mHp - damage, 0.0f);
-}
-
-void Player::increaseHp(float hill)
-{
-	mStat.mHp = Math::Min(mStat.mHp + hill, mStat.mMaxHp);
+	mMeshComponent->resetTexture();
+	mLeftArm->resetTexture();
+	mRightArm->resetTexture();
+	mLeftLeg->resetTexture();
+	mRightLeg->resetTexture();
+	mHead->resetTexture();
 }
