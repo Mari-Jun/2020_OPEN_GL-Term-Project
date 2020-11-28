@@ -1,6 +1,7 @@
 #include "DefaultMinion.h"
 #include "../../../../Game/Game.h"
 #include "../../../../Game/Component/MoveComponent.h"
+#include "../../../Scene/GameScene.h"
 #include "MinionAi/MinionManager.h"
 #include "MinionAi/MinionAi.h"
 
@@ -55,6 +56,7 @@ void DefaultMinion::checkHp()
 		setState(Actor::State::Dead);
 		mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
 		mManager.lock()->resetHUD();
+		std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
 	}
 }
 

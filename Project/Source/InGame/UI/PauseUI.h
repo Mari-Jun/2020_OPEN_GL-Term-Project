@@ -7,7 +7,8 @@ public:
 	enum class UIType
 	{
 		Pause,
-		Clear
+		Clear,
+		Fail
 	};
 
 	PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, UIType type = UIType::Pause);

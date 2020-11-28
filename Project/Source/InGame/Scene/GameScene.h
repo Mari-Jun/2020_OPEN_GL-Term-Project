@@ -28,10 +28,11 @@ private:
 	void loadActorData();
 	void loadGameMap();
 	void loadUI();
-	void pauseGame();
+	void pauseGame(const std::string& type);
 
 public:
 	void stageClear();
+	void stageFail();
 	void goToTitle();
 
 public:

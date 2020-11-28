@@ -72,7 +72,7 @@ void GameScene::sceneInput()
 	}
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
-		pauseGame();
+		pauseGame("Pause");
 	}
 }
 
@@ -135,13 +135,28 @@ void GameScene::loadUI()
 	mGameHUD->initailize();
 }
 
-void GameScene::pauseGame()
+void GameScene::pauseGame(const std::string& type)
 {
 	//Create PauseUI
 	auto game = getGame().lock();
-	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	std::shared_ptr<class PauseUI> ui;
+	if (type == "Pause")
+	{
+		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer());
+	}
+	else if (type == "Clear")
+	{
+		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Clear);
+	}
+	else if (type == "Fail")
+	{
+		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Fail);
+	}
 	ui->initailize();
-	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/Pause.png"));
+	
+	std::string fileName = "Asset/Image/UIBackground/" + type + ".png";
+
+	ui->setBackgroundTexture(game->getRenderer()->getTexture(fileName));
 
 	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
 	game->getMouse()->setWarp(false);
@@ -149,17 +164,21 @@ void GameScene::pauseGame()
 
 void GameScene::stageClear()
 {
-	//Create PauseUI
-	auto game = getGame().lock();
-	auto ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Clear);
-	ui->initailize();
-	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/UIBackground/StageClear.png"));
+	if (mMinionManager->getLiveMinion() >= mMinionManager->getClearMinion())
+	{
+		pauseGame("Clear");
 
-	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
-	game->getMouse()->setWarp(false);
+		mInfo.mCoin += mInfo.mStage * 10;
+		mInfo.mStage++;
+	}
+}
 
-	mInfo.mCoin += mInfo.mStage * 10;
-	mInfo.mStage++;
+void GameScene::stageFail()
+{
+	if (mMinionManager->getLiveMinion() < mMinionManager->getClearMinion())
+	{
+		pauseGame("Fail");
+	}
 }
 
 void GameScene::goToTitle()
