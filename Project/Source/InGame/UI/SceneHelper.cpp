@@ -26,9 +26,9 @@ void SceneHelper::changeToTitleScene(const GameInfo& info)
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);
 }
 
-void SceneHelper::changeToGameScene(const GameInfo& info)
+void SceneHelper::changeToGameScene(const GameInfo& info, int stage)
 {
-	auto scene = std::make_shared<GameScene>(mScene.lock()->getGame(), info);
+	auto scene = std::make_shared<GameScene>(mScene.lock()->getGame(), info, stage);
 	scene->initailize();
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);
 }

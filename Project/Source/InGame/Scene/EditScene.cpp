@@ -60,11 +60,8 @@ void EditScene::sceneInput()
 
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
-		GameInfo ret = mInfo;
-		ret.mStage = mStage;
-
 		setSceneState(SceneState::Dead);
-		auto scene = std::make_shared<GameScene>(getGame(), ret);
+		auto scene = std::make_shared<GameScene>(getGame(), mInfo, mStage);
 		scene->initailize();
 	}
 
