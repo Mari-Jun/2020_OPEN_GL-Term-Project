@@ -270,7 +270,7 @@
     <ClCompile Include="Source\InGame\UI\HUD\HUD.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Raser.cpp">
+    <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Laser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
