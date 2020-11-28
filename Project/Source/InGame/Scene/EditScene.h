@@ -24,5 +24,6 @@ private:
 	std::unique_ptr<class MapEditor> mEditor;
 	std::unique_ptr<class SceneHelper> mSceneHelper;
 	GameInfo mInfo;
+	std::shared_ptr<class EditHUD> mEditHUD;
 	int mStage;
 };

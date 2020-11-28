@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Game/UI/UI.h"
+#include "HUD.h"
 
 using vTexSet = std::vector<std::shared_ptr<class Texture>>;
 
@@ -10,16 +10,15 @@ struct StatNumber
 	vTexSet mSpeedNumber;
 };
 
-class ShopHUD : public UI
+class ShopHUD : public HUD
 {
 public:
-	
 
 	ShopHUD(const std::weak_ptr<class ShopScene>& scene, const std::weak_ptr<class Renderer>& render);
 	~ShopHUD();
 
 	virtual void initailize();
-	void resetInfo();
+	virtual void resetInfo();
 
 	virtual void update(float deltatime);
 	virtual void processInput();
@@ -38,7 +37,4 @@ private:
 private:
 	void loadCoinNumber();
 	void loadStat(const struct PlayerInfo& info, StatNumber& stat);
-
-	void setNumberTexture(vTexSet& texture, int info, const std::string& fileName);
-	void drawNumberTexture(std::unique_ptr<class Shader>& shader, const vTexSet& texture, const Vector2& pos, float gap);
 };

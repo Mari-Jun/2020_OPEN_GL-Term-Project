@@ -28,7 +28,7 @@ public:
 	void resetTexture();
 	void setTexture(const std::string& fileName, const std::weak_ptr<class Renderer>& mRender);
 	std::weak_ptr<class Texture> getTexture(int index);
-	int getTextureSize() const { return mTexture.size(); }
+	int getTextureSize() const { return static_cast<int>(mTexture.size()); }
 
 	void setVertexArray(const std::shared_ptr<class VertexArray>& va) { mVertexArray = va; }
 	const std::shared_ptr<class VertexArray>& getVertexArray() const { return mVertexArray; }
