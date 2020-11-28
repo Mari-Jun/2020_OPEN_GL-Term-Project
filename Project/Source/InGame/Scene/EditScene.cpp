@@ -102,7 +102,7 @@ void EditScene::loadData()
 	mEditor = std::make_unique<MapEditor>(std::dynamic_pointer_cast<EditScene>(weak_from_this().lock()));
 	loadBoard("Left", Vector3(-500.0f, 80.0f, 0.0f));
 	loadBoard("Right", Vector3(500.0f, 230.0f, 0.0f));
-	loadBoard("Time", Vector3(500.0f, -30.0f, 0.0f));
+	loadBoard("Time", Vector3(500.0f, 30.0f, 0.0f));
 
 	mEditHUD = std::make_shared<EditHUD>(std::dynamic_pointer_cast<EditScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
 	mEditHUD->initailize();
@@ -116,7 +116,8 @@ void EditScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
-	ui->addButton([this]() {mEditor->newMap(); }, Vector2(500.0f, -190.0f), "Asset/Image/Button/NewButton");
+	ui->addButton([this]() {mStage = mEditor->newMap(); loadGameMap(); }, Vector2(500.0f, -80.0f), "Asset/Image/Button/NewButton");
+	ui->addButton([this]() {mStage = mEditor->deleteMap(); loadGameMap(); }, Vector2(500.0f, -190.0f), "Asset/Image/Button/DeleteButton");
 	ui->addButton([this]() {
 		(mEditor->saveMap()) ? 
 		mSceneHelper->createDialog("Complete") :
@@ -154,7 +155,7 @@ bool EditScene::loadGameMap(const std::string& time)
 void EditScene::loadBoard(std::string&& name, Vector3&& position)
 {
 	std::string fileName = "Asset/Image/EditScene/" + name + "_board.png";
-	//Create Left Board
+
 	auto actor = std::make_shared<Actor>(weak_from_this());
 	actor->setPosition(position);
 	actor->initailize();

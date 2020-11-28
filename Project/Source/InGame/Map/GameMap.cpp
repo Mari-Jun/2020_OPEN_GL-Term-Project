@@ -95,7 +95,6 @@ bool GameMap::loadMap(const std::string& fileName, const std::string time)
 
 	std::cerr << fileName << " load complete\n";
 	mFileName = fileName;
-
 	return true;
 }
 

@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include "MapEditor.h"
@@ -67,7 +68,7 @@ bool MapEditor::saveMap()
 	return false;
 }
 
-void MapEditor::newMap()
+int MapEditor::newMap()
 {
 	auto stage = 0;
 	while (++stage)
@@ -100,9 +101,41 @@ void MapEditor::newMap()
 			mapFile << "Minion " << 1 << '\n';
 
 			std::cerr << "Create new file : " << fileName << " complete\n";
-			break;
+			return stage;
 		}
 	}
+	return 0;
+}
+
+int MapEditor::deleteMap()
+{
+	auto map = mGameMap.lock();
+	auto stage = mEditScene.lock()->getStage();
+	std::string fileName = "Asset/Map/Stage" + std::to_string(stage) + ".txt";
+	std::string fileNameNext = "Asset/Map/Stage" + std::to_string(stage + 1) + ".txt";
+
+	std::filesystem::path p1(fileName);
+	std::filesystem::path p2(fileNameNext);
+	
+	if (std::filesystem::exists(p1))
+	{
+		auto next = false;
+		while (std::filesystem::exists(p2))
+		{
+			next = true;
+			std::filesystem::copy_file(p2, p1, std::filesystem::copy_options::overwrite_existing);
+			stage++;
+			fileName = "Asset/Map/Stage" + std::to_string(stage) + ".txt";
+			fileNameNext = "Asset/Map/Stage" + std::to_string(stage + 1) + ".txt";
+
+			p1 = fileName;
+			p2 = fileNameNext;
+		}
+		std::filesystem::remove(p1);
+		return mEditScene.lock()->getStage() - (1 - next);
+	}
+	
+	return stage;
 }
 
 void MapEditor::editInput()

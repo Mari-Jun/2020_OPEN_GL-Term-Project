@@ -24,7 +24,8 @@ public:
 	~MapEditor() noexcept;
 
 	bool saveMap();
-	void newMap();
+	int newMap();
+	int deleteMap();
 
 	void editInput();
 	void loadData();
