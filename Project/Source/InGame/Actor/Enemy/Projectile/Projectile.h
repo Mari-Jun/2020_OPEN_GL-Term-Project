@@ -9,7 +9,7 @@ public:
 		Arrow,
 		CannonBall,
 		Rock,
-		Raser
+		Laser
 	};
 
 	Projectile(const std::weak_ptr<class Scene>& scene, PjtType type = PjtType::Arrow);
