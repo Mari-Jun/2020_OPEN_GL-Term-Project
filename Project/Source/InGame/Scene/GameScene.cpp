@@ -116,8 +116,8 @@ void GameScene::loadActorData()
 	particle->initailize();
 
 	//Create MinionManager
-	auto minion = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
-	minion->initailize();
+	mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
+	mMinionManager->initailize();
 }
 
 void GameScene::loadGameMap()
@@ -131,8 +131,8 @@ void GameScene::loadGameMap()
 
 void GameScene::loadUI()
 {
-	auto gameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
-	gameHUD->initailize();
+	mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mGameHUD->initailize();
 }
 
 void GameScene::pauseGame()

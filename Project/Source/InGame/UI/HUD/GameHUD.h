@@ -18,4 +18,7 @@ private:
 	std::weak_ptr<class GameScene> mGameScene;
 	std::shared_ptr<class Texture> mCoin;
 	std::vector<std::shared_ptr<class Texture>> mCoinNumber;
+	std::vector<std::shared_ptr<class Texture>> mLiveMinion;
+	std::shared_ptr<class Texture> mCross;
+	std::vector<std::shared_ptr<class Texture>> mClearMinion;
 };

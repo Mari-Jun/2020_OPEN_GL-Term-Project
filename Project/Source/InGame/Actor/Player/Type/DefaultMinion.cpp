@@ -53,9 +53,8 @@ void DefaultMinion::checkHp()
 	if (mStat.mHp <= 0.0f)
 	{
 		setState(Actor::State::Dead);
-		std::cout << mManager.lock()->getLiveMinion() << std::endl;
 		mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
-		std::cout << mManager.lock()->getLiveMinion() << std::endl;
+		mManager.lock()->resetHUD();
 	}
 }
 

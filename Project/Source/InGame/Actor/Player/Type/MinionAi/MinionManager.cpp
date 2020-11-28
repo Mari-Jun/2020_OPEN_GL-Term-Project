@@ -4,6 +4,8 @@
 #include "../../../../../Game/Input/KeyBoard.h"
 #include "../../../../Map/GameMap.h"
 #include "../DefaultMinion.h"
+#include "../../../../Scene/GameScene.h"
+#include "../../../../UI/HUD/GameHUD.h"
 
 MinionManager::MinionManager(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class GameMap>& gameMap, const PlayerInfo& info)
 	: Actor(scene)
@@ -59,5 +61,13 @@ void MinionManager::createMinion()
 
 		mCreateMinionNum--;
 		mLiveMinionNum++;
+
+		resetHUD();
 	}
+}
+
+void MinionManager::resetHUD()
+{
+	auto gameScene = std::dynamic_pointer_cast<GameScene>(getScene().lock());
+	gameScene->getGameHUD()->resetInfo();
 }
