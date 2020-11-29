@@ -136,12 +136,12 @@ void CubeMaps::makeVao()
 void CubeMaps::loadCubemap()
 {
 	std::vector<std::string> faces{
-		"Asset/Image/SkyBox/left.jpg",
-		"Asset/Image/SkyBox/right.jpg",
-		"Asset/Image/SkyBox/top.jpg",
-		"Asset/Image/SkyBox/bottom.jpg",
-		"Asset/Image/SkyBox/front.jpg",
-		"Asset/Image/SkyBox/back.jpg",
+		"Asset/Image/SkyBox/sunrise/left.png",
+		"Asset/Image/SkyBox/sunrise/right.png",
+		"Asset/Image/SkyBox/sunrise/top.png",
+		"Asset/Image/SkyBox/sunrise/bottom.png",
+		"Asset/Image/SkyBox/sunrise/front.png",
+		"Asset/Image/SkyBox/sunrise/back.png",
 
 	};
 	
@@ -151,16 +151,28 @@ void CubeMaps::loadCubemap()
 
 	int width, height, nrChannels;
 
+	int format = GL_RGB;
+
+
+
 	for (GLuint i = 0; i < faces.size(); i++)
 	{
 		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
-
+		
 		stbi_set_flip_vertically_on_load(true);
 		if (data)
 		{
+			if (nrChannels == 4)
+			{
+				format = GL_RGBA;
+			}
+			else if (nrChannels == 3)
+			{
+				format = GL_RGB;
+			}
 			glTexImage2D(
 				GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-				0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
+				0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data
 			);
 			stbi_image_free(data);
 		}
