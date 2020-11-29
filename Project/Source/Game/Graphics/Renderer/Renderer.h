@@ -37,10 +37,12 @@ public:
 	void addUI(const std::weak_ptr<class UI>& ui);
 	void removeUI(const std::weak_ptr<class UI>& ui);
 
+	void addCubeMap(const std::weak_ptr<class CubeMaps>& cubemaps);
+	void removeCubeMap();
+
 private:
 	bool loadShader();
 	void createSpriteVertex();	
-	void createCubeMapVertex();
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;
@@ -51,7 +53,7 @@ private:
 	std::vector<std::weak_ptr<class AlphaComponent>> mAlphaComponent;
 	std::vector<std::weak_ptr<class SpriteComponent>> mSpriteComponent;
 	std::vector<std::weak_ptr<class BillBoardComponent>> mBillBoardComponent;
-	std::vector<std::weak_ptr<class CubeMapComponent>> mCubeMapComponent;
+	std::weak_ptr<class CubeMaps> mCubeMaps;
 
 	std::vector<std::weak_ptr<class UI>> mUserInterfaces;
 
@@ -92,5 +94,5 @@ private:
 	void drawAlphaComponent();
 	void drawSpriteComponent();
 	void drawUserInterface();
-	void drawCubeMapComponent();
+	void drawCubeMap();
 };

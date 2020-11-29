@@ -18,6 +18,7 @@ class VertexArray final
 public:
 	VertexArray(const std::vector<Vertex>& vertex, unsigned int vertexNum,
 		std::vector<unsigned int>& index, unsigned int indexNum);
+	VertexArray(const float vertex[]);
 	~VertexArray();
 
 	void setActive();

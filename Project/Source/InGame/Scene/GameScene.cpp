@@ -3,6 +3,7 @@
 #include "EditScene.h"
 #include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
+#include "../../Game/Graphics/Mesh/CubeMapComponent.h"
 #include "../../Game/Game.h"
 #include "../../Game/Actor/Actor.h"
 #include "../../Game/Input/KeyBoard.h"
@@ -11,6 +12,7 @@
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
 #include "../../Game/Sound/Sound.h"
 
+#include "../Actor/CubeMap/CubeMap.h"
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreator.h"
 #include "../Actor/Player/Type/MinionAi/MinionManager.h"
@@ -46,11 +48,17 @@ void GameScene::initailize()
 
 	//Set View
 	auto windowSize = game->getRenderer()->getWindow()->getSize();
-	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 25.0f, 1000.0f);
+	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f);
 	game->getRenderer()->setProjectionMatrix(projection);
 
 	//Set Sound
 	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
+
+
+	//real cubemap
+	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer());
+	mCubeMaps->initailize();
+
 }
 
 void GameScene::sceneInput()
@@ -134,6 +142,7 @@ void GameScene::loadUI()
 {
 	mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
 	mGameHUD->initailize();
+	
 }
 
 void GameScene::pauseGame(const std::string& type)

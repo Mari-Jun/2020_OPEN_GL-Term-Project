@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 
+#include <iostream>
+#include <vector>
+
 class Texture
 {
 public:
@@ -8,7 +11,6 @@ public:
 	~Texture();
 
 	bool load(const std::string& fileName);
-	unsigned int loadskybox(const std::string&, const std::string&, const std::string&, const std::string&, const std::string&, const std::string&);
 	void unLoad();
 
 	void setActive();

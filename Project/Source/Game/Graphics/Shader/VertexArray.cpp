@@ -42,6 +42,33 @@ VertexArray::VertexArray(const std::vector<Vertex>& vertex, unsigned int vertexN
 
 }
 
+
+
+VertexArray::VertexArray(const float vertex[])
+	: mVertexNum(36)
+	, mIndexNum(0)
+	, mIndexBuffer(-1)
+{
+
+
+	//Create vertex array
+	glGenVertexArrays(1, &mVertexArray);
+	glBindVertexArray(mVertexArray);
+
+	//Create vertex buffer
+	glGenBuffers(1, &mVertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, mVertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex), &vertex, GL_STATIC_DRAW);
+
+	
+	//Location 0 is Position
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+}
+
+
+
 VertexArray::~VertexArray()
 {
 	glDeleteBuffers(1, &mVertexBuffer);
