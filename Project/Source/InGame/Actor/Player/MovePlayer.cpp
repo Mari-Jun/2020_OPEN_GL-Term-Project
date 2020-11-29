@@ -146,7 +146,10 @@ void MovePlayer::decreaseHp(float damage)
 {
 	damage = damage - damage / 100.0f * 5 * mStat.mDef;
 	mStat.mHp = Math::Max(mStat.mHp - damage, 0.0f);
-	checkHp();
+	if (getState() == State::Active)
+	{
+		checkHp();
+	}
 }
 
 void MovePlayer::increaseHp(float hill)
