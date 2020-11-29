@@ -93,10 +93,10 @@ void Renderer::draw()
 {
 	mWindow->clear();
 	drawCubeMap();
-	drawLineComponent();
-	drawMeshComponent();
-	drawAlphaComponent();
-	drawBillBoardComponent();
+	//drawLineComponent();
+	//drawMeshComponent();
+	//drawAlphaComponent();
+	//drawBillBoardComponent();
 
 
 	drawSpriteComponent();
