@@ -38,7 +38,7 @@ void MinionManager::updateActor(float deltatime)
 	if (mCreateMinionNum > 0)
 	{
 		mDelay -= deltatime;
-		//createMinion();
+		createMinion();
 	}
 }
 

@@ -14,6 +14,7 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();
+	virtual void setEffectIndex(int index);
 
 private:
 	std::shared_ptr<class MoveComponent> mMoveComponent;
