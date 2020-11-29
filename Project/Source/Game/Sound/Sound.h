@@ -1,8 +1,9 @@
 #pragma once
 #include <fmod.h>
 #include <fmod_errors.h>
-#define BGM_TRACK 2
-#define EFFECT_TRACK 2
+#include <vector>
+#define BGM_TRACK 4
+#define EFFECT_TRACK 4
 
 
 
@@ -19,12 +20,16 @@ public:
 	{
 		Game = 0,
 		Edit,
-		Loading,
+		Sunny,
 	};
 
 	enum class effectName
 	{
-
+		Arrow1 = 0,
+		Arrow2,
+		Cannonball,
+		catapult,
+		laser
 	};
 
 	Sound();
@@ -34,12 +39,19 @@ public:
 	FMOD_SOUND* effectSound[EFFECT_TRACK];
 	FMOD_CHANNEL* Channel[2];
 
+	std::vector<FMOD_SOUND*> effect;
+
+
 	void initalize();
 
 	void ERRCHECK(FMOD_RESULT,int);
 	const int getindex();
 	void setindex(int);
 	void play(int, int);
+
 protected:
 	int index;
+
+public:
+	void setEffectIndex(int effectindex) { effect.resize(effectindex); }
 };

@@ -1,6 +1,7 @@
 #include "Ballista.h"
 #include "../Projectile/Arrow.h"
 #include "../../../../Game/Game.h"
+#include "../../../../Game/Sound/Sound.h"
 
 Ballista::Ballista(const std::weak_ptr<class Scene>& scene)
 	: Weapon(scene)
@@ -27,6 +28,9 @@ void Ballista::updateActor(float deltatime)
 	{
 		if (getCurDelay() == 0.0f)
 		{
+			
+			getGame().lock()->getSound()->play(static_cast<int>(Sound::CHANNEL::effect), static_cast<int>(Sound::effectName::Arrow1));
+			
 			attack();
 		}
 

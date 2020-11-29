@@ -20,6 +20,7 @@ GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int ma
 	, mEndPosition(Vector3::Zero)
 	, mTime("Sunny")
 	, mMinionCount(0)
+	, mAttackTowerCount(0)
 {
 	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }
@@ -123,19 +124,24 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	case HashCode("SnowTreeQuad"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_TreeQuad); break;
 	case HashCode("TowerRoundA"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_RoundA); break;
 	case HashCode("TowerRoundC"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_RoundC); break;
-	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Blaster); break;
+	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Blaster); mAttackTowerCount++; break;
 	case HashCode("TowerSquareA"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_SquareA); break;
 	case HashCode("TowerSquareB"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_SquareB); break;
 	case HashCode("TowerSquareC"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_SquareC); break;
-	case HashCode("TowerBallista"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Ballista); break;
-	case HashCode("TowerCannon"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Cannon); break;
-	case HashCode("TowerCatapult"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Catapult); break;
+	case HashCode("TowerBallista"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Ballista); mAttackTowerCount++; break;
+	case HashCode("TowerCannon"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Cannon); mAttackTowerCount++; break;
+	case HashCode("TowerCatapult"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Catapult); mAttackTowerCount++; break;
 	default: break;
 	}
 	tile->setScale(mTileSize);
 	tile->setRotation(Quaternion(Vector3::UnitY, Math::ToRadians(rot)));
 	tile->setPosition(position);
 	tile->initailize();
+	if (tile->getTileType() == Tile::TileType::Tower_Catapult)
+	{
+		std::cout << "Çü¿Ô´Ù\n";
+	}
+
 	mTiles[y][x] = tile;
 }
 

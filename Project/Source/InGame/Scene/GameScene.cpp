@@ -54,7 +54,7 @@ void GameScene::initailize()
 	//Set Sound
 	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
 
-
+	
 	//real cubemap
 	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer());
 	mCubeMaps->initailize();
@@ -97,6 +97,8 @@ void GameScene::loadData()
 	loadGameMap();
 	loadActorData();
 	loadUI();
+
+	getGame().lock()->getSound()->setEffectIndex(mGameMap->getAttackTowerCount());
 }
 
 void GameScene::unLoadData()

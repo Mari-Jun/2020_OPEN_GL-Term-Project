@@ -14,4 +14,7 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();	
+
+private:
+	int mChannel = 0;
 };

@@ -35,6 +35,7 @@ private:
 	Vector3 mEndPosition;
 	std::string mTime;
 	int mMinionCount;
+	int mAttackTowerCount;
 
 private:
 	void addDirectionalLight();
@@ -57,4 +58,5 @@ public:
 	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
 	void setTime(const std::string& time) { mTime = time; }
 	void setMinionCount(int count) { mMinionCount = count; }
+	int getAttackTowerCount() const { return mAttackTowerCount; }
 };
