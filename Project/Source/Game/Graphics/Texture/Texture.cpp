@@ -68,7 +68,7 @@ bool Texture::load(const std::string& fileName)
 	return true;
 }
 
-bool Texture::loadskybox (const std::vector<std::string>& faces)
+unsigned int Texture::loadskybox (const std::vector<std::string>& faces)
 {
 
 
@@ -81,6 +81,7 @@ bool Texture::loadskybox (const std::vector<std::string>& faces)
 	for (GLuint i = 0; i < faces.size(); i++)
 	{
 		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+
 		if (data)
 		{
 			glTexImage2D(
@@ -98,7 +99,7 @@ bool Texture::loadskybox (const std::vector<std::string>& faces)
 	}
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
@@ -110,7 +111,7 @@ bool Texture::loadskybox (const std::vector<std::string>& faces)
 		std::cerr << a.c_str() << " load complete\n";
 	}
 
-	return true;
+	return textureID;
 }
 
 

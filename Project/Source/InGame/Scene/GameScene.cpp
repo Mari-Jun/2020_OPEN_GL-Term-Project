@@ -57,6 +57,10 @@ void GameScene::initailize()
 	//Set cubemap
 	mCubeMap = std::make_shared<CubeMap>(weak_from_this());
 	mCubeMap->initailize();
+
+	//real cubemap
+	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer());
+
 }
 
 void GameScene::sceneInput()

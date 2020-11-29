@@ -93,15 +93,16 @@ void Renderer::processInput()
 void Renderer::draw()
 {
 	mWindow->clear();
-
-	drawLineComponent();
-	drawMeshComponent();
-	drawAlphaComponent();
-	drawBillBoardComponent();
+	//drawCubeMapComponent();
+	drawCubeMap();
+	//drawLineComponent();
+	//drawMeshComponent();
+	//drawAlphaComponent();
+	//drawBillBoardComponent();
 
 	drawSpriteComponent();
 	drawUserInterface();
-	
+
 	mWindow->swapBuffer();
 }
 
@@ -187,13 +188,21 @@ void Renderer::drawUserInterface()
 void Renderer::drawCubeMapComponent()
 {
 	glDepthMask(GL_FALSE);
+
 	mCubeMapShader->setActive();
+	mCubeMapShader->setMatrixUniform("uViewProj", mView * mProjection);
 	mCubeMapVertex->setActive();
 	for (const auto& cComp : mCubeMapComponent)
 	{
 		cComp.lock()->draw(mCubeMapShader);
 	}
 	glDepthMask(GL_TRUE);
+}
+
+void Renderer::drawCubeMap()
+{
+	if(!mCubeMaps.expired())
+		mCubeMaps.lock()->draw(mCubeMapShader);
 }
 
 
@@ -311,6 +320,7 @@ void Renderer::addCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& 
 {
 	mCubeMapComponent.emplace_back(component);
 }
+
 void Renderer::removeCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component)
 {
 	auto iter = std::find_if(mCubeMapComponent.begin(), mCubeMapComponent.end(),
@@ -322,6 +332,17 @@ void Renderer::removeCubeMapComponent(const std::weak_ptr<class CubeMapComponent
 		mCubeMapComponent.erase(iter);
 	}
 }
+
+void Renderer::addCubeMap(const std::weak_ptr<class CubeMaps>& cubemaps)
+{
+	mCubeMaps = cubemaps;
+}
+
+void Renderer::removeCubeMap()
+{
+	mCubeMaps.reset();
+}
+
 
 bool Renderer::loadShader()
 {
@@ -393,44 +414,90 @@ void Renderer::createSpriteVertex()
 void Renderer::createCubeMapVertex()
 {
 	std::vector<Vertex> vertex(36);
-	vertex[0].position = Vector3(-1.0f, 1.0f, -1.0f);
-	vertex[1].position = Vector3(-1.0f, -1.0f, -1.0f);
-	vertex[2].position = Vector3(1.0f, -1.0f, -1.0f);
-	vertex[3].position = Vector3(1.0f, -1.0f, -1.0f);
-	vertex[4].position = Vector3(1.0f, 1.0f, -1.0f);
-	vertex[5].position = Vector3(-1.0f, 1.0f, -1.0f);
-	vertex[6].position = Vector3(-1.0f, -1.0f, 1.0f);
-	vertex[7].position = Vector3(-1.0f, -1.0f, -1.0f);
-	vertex[8].position = Vector3(-1.0f, 1.0f, -1.0f);
-	vertex[9].position = Vector3(-1.0f, 1.0f, -1.0f);
-	vertex[10].position = Vector3(-1.0f, 1.0f, 1.0f);
-	vertex[11].position = Vector3(-1.0f, -1.0f, 1.0f);
-	vertex[12].position = Vector3(1.0f, -1.0f, -1.0f);
-	vertex[13].position = Vector3(1.0f, -1.0f, 1.0f);
-	vertex[14].position = Vector3(1.0f, 1.0f, 1.0f);
-	vertex[15].position = Vector3(1.0f, 1.0f, 1.0f);
-	vertex[16].position = Vector3(1.0f, 1.0f, -1.0f);
-	vertex[17].position = Vector3(1.0f, -1.0f, -1.0f);
-	vertex[18].position = Vector3(-1.0f, -1.0f, 1.0f);
-	vertex[19].position = Vector3(-1.0f, 1.0f, 1.0f);
-	vertex[20].position = Vector3(1.0f, 1.0f, 1.0f);
-	vertex[21].position = Vector3(1.0f, 1.0f, 1.0f);
-	vertex[22].position = Vector3(1.0f, -1.0f, 1.0f);
-	vertex[23].position = Vector3(-1.0f, -1.0f, 1.0f);
-	vertex[24].position = Vector3(-1.0f, 1.0f, -1.0f);
-	vertex[25].position = Vector3(1.0f, 1.0f, -1.0f);
-	vertex[26].position = Vector3(1.0f, 1.0f, 1.0f);
-	vertex[27].position = Vector3(1.0f, 1.0f, 1.0f);
-	vertex[28].position = Vector3(-1.0f, 1.0f, 1.0f);
-	vertex[29].position = Vector3(-1.0f, 1.0f, -1.0f);
-	vertex[30].position = Vector3(-1.0f, -1.0f, -1.0f);
-	vertex[31].position = Vector3(-1.0f, -1.0f, 1.0f);
-	vertex[32].position = Vector3(1.0f, -1.0f, -1.0f);
-	vertex[33].position = Vector3(1.0f, -1.0f, -1.0f);
-	vertex[34].position = Vector3(-1.0f, -1.0f, 1.0f);
-	vertex[35].position = Vector3(1.0f, -1.0f, 1.0f);
+	vertex[0].position = Vector3(-0.5f, 0.5f, -0.5f);
+	vertex[1].position = Vector3(-0.5f, -0.5f, -0.5f);
+	vertex[2].position = Vector3(0.5f, -0.5f, -0.5f);
+	vertex[3].position = Vector3(0.5f, -0.5f, -0.5f);
+	vertex[4].position = Vector3(0.5f, 0.5f, -0.5f);
+	vertex[5].position = Vector3(-0.5f, 0.5f, -0.5f);
+	vertex[6].position = Vector3(-0.5f, -0.5f, 0.5f);
+	vertex[7].position = Vector3(-0.5f, -0.5f, -0.5f);
+	vertex[8].position = Vector3(-0.5f, 0.5f, -0.5f);
+	vertex[9].position = Vector3(-0.5f, 0.5f, -0.5f);
+	vertex[10].position = Vector3(-0.5f, 0.5f, 0.5f);
+	vertex[11].position = Vector3(-0.5f, -0.5f, 0.5f);
+	vertex[12].position = Vector3(0.5f, -0.5f, -0.5f);
+	vertex[13].position = Vector3(0.5f, -0.5f, 0.5f);
+	vertex[14].position = Vector3(0.5f, 0.5f, 0.5f);
+	vertex[15].position = Vector3(0.5f, 0.5f, 0.5f);
+	vertex[16].position = Vector3(0.5f, 0.5f, -0.5f);
+	vertex[17].position = Vector3(0.5f, -0.5f, -0.5f);
+	vertex[18].position = Vector3(-0.5f, -0.5f, 0.5f);
+	vertex[19].position = Vector3(-0.5f, 0.5f, 0.5f);
+	vertex[20].position = Vector3(0.5f, 0.5f, 0.5f);
+	vertex[21].position = Vector3(0.5f, 0.5f, 0.5f);
+	vertex[22].position = Vector3(0.5f, -0.5f, 0.5f);
+	vertex[23].position = Vector3(-0.5f, -0.5f, 0.5f);
+	vertex[24].position = Vector3(-0.5f, 0.5f, -0.5f);
+	vertex[25].position = Vector3(0.5f, 0.5f, -0.5f);
+	vertex[26].position = Vector3(0.5f, 0.5f, 0.5f);
+	vertex[27].position = Vector3(0.5f, 0.5f, 0.5f);
+	vertex[28].position = Vector3(-0.5f, 0.5f, 0.5f);
+	vertex[29].position = Vector3(-0.5f, 0.5f, -0.5f);
+	vertex[30].position = Vector3(-0.5f, -0.5f, -0.5f);
+	vertex[31].position = Vector3(-0.5f, -0.5f, 0.5f);
+	vertex[32].position = Vector3(0.5f, -0.5f, -0.5f);
+	vertex[33].position = Vector3(0.5f, -0.5f, -0.5f);
+	vertex[34].position = Vector3(-0.5f, -0.5f, 0.5f);
+	vertex[35].position = Vector3(0.5f, -0.5f, 0.5f);
 	std::vector<unsigned int> index;
-	mCubeMapVertex = std::make_unique<VertexArray>(vertex, vertex.size(), index, index.size());
+
+	float skyboxVertices[] = {
+		// positions          
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		 1.0f,  1.0f, -1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		 1.0f, -1.0f,  1.0f
+	};
+
+	mCubeMapVertex = std::make_unique<VertexArray>(skyboxVertices);
 }
 
 void Renderer::setInvertView()

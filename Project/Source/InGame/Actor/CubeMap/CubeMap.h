@@ -15,4 +15,5 @@ public:
 
 private:
 	std::shared_ptr<class CubeMapComponent> mCubeMap;
+	std::shared_ptr<class CubeMaps> mCubeMaps;
 };

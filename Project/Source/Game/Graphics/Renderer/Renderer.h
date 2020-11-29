@@ -40,6 +40,8 @@ public:
 	void addCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component);
 	void removeCubeMapComponent(const std::weak_ptr<class CubeMapComponent>& component);
 
+	void addCubeMap(const std::weak_ptr<class CubeMaps>& cubemaps);
+	void removeCubeMap();
 
 private:
 	bool loadShader();
@@ -56,6 +58,7 @@ private:
 	std::vector<std::weak_ptr<class SpriteComponent>> mSpriteComponent;
 	std::vector<std::weak_ptr<class BillBoardComponent>> mBillBoardComponent;
 	std::vector<std::weak_ptr<class CubeMapComponent>> mCubeMapComponent;
+	std::weak_ptr<class CubeMaps> mCubeMaps;
 
 	std::vector<std::weak_ptr<class UI>> mUserInterfaces;
 
@@ -97,4 +100,5 @@ private:
 	void drawSpriteComponent();
 	void drawUserInterface();
 	void drawCubeMapComponent();
+	void drawCubeMap();
 };

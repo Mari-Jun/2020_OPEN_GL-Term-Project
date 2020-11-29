@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+
+#include <iostream>
 #include <vector>
 
 class Texture
@@ -9,7 +11,7 @@ public:
 	~Texture();
 
 	bool load(const std::string& fileName);
-	static bool loadskybox (const std::vector<std::string>& faces);
+	static unsigned int loadskybox (const std::vector<std::string>& faces);
 	void unLoad();
 
 	void setActive();
