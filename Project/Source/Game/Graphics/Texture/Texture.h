@@ -11,11 +11,9 @@ public:
 	~Texture();
 
 	bool load(const std::string& fileName);
-	static unsigned int loadskybox (const std::vector<std::string>& faces);
 	void unLoad();
 
 	void setActive();
-	static void setActiveskybox(unsigned int);
 
 	int getWidth() const { return mWidth; }
 	int getHeight() const { return mHeight; }

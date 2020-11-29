@@ -17,26 +17,11 @@ CubeMap::~CubeMap()
 void CubeMap::initailize()
 {
 	Actor::initailize();
-	setScale(200.0f);
 
-	std::vector<std::string> face{
-		"Asset/Image/SkyBox/right.jpg",
-		"Asset/Image/SkyBox/left.jpg",
-		"Asset/Image/SkyBox/top.jpg",
-		"Asset/Image/SkyBox/bottom.jpg",
-		"Asset/Image/SkyBox/front.jpg",
-		"Asset/Image/SkyBox/back.jpg",
-
-	};
-	//Create CubeMap
-	mCubeMap = std::make_shared<CubeMapComponent>(weak_from_this(), getGame().lock()->getRenderer());
-	mCubeMap->initailize();
-	mCubeMap->setTexture(face);
 
 	mCubeMaps = std::make_shared<CubeMaps>(getGame().lock()->getRenderer());
 	mCubeMaps->initailize();
 
-	//std::cout << getScale().x << "," << getScale().y << "," << getScale().z << "\n";
 }
 
 void CubeMap::updateActor(float deltatime)

@@ -8,44 +8,6 @@
 #include "../Texture/stb_image.h"
 
 
-CubeMapComponent::CubeMapComponent(const std::weak_ptr<class Actor>& owner, const std::weak_ptr<class Renderer>& render)
-	: Component(owner)
-	, mRender(render)
-	, mTexWidth(0)
-	, mTexHeight(0)
-{
-
-}
-
-CubeMapComponent::~CubeMapComponent()
-{
-	mRender.lock()->removeCubeMapComponent(std::dynamic_pointer_cast<CubeMapComponent>(weak_from_this().lock()));
-}
-
-void CubeMapComponent::initailize()
-{
-	Component::initailize();
-	mRender.lock()->addCubeMapComponent(std::dynamic_pointer_cast<CubeMapComponent>(weak_from_this().lock()));
-}
-
-void CubeMapComponent::draw(std::unique_ptr<Shader>& shader)
-{
-	shader->setMatrixUniform("uWorldTransform", mOwner.lock()->getWorldTransform());
-
-	//Texture::setActiveskybox(mTextureID);
-
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-}
-
-void CubeMapComponent::setTexture(const std::vector<std::string>& files)
-{
-	mTextureID = Texture::loadskybox(files);
-	std::cout << mTextureID << std::endl;
-}
-
-
-
-
 CubeMaps::CubeMaps(const std::weak_ptr<class Renderer>& render)
 	: mRender(render)
 	,skyboxVao(0)
@@ -68,55 +30,103 @@ void CubeMaps::initailize()
 
 void CubeMaps::makeVao()
 {
+	//float skyboxVertices[] = {
+	//	 positions          
+	//	-1.0f,  1.0f, -1.0f,
+	//	-1.0f, -1.0f, -1.0f,
+	//	 1.0f, -1.0f, -1.0f,
+	//	 1.0f, -1.0f, -1.0f,
+	//	 1.0f,  1.0f, -1.0f,
+	//	-1.0f,  1.0f, -1.0f,
+
+	//	-1.0f, -1.0f,  1.0f,
+	//	-1.0f, -1.0f, -1.0f,
+	//	-1.0f,  1.0f, -1.0f,
+	//	-1.0f,  1.0f, -1.0f,
+	//	-1.0f,  1.0f,  1.0f,
+	//	-1.0f, -1.0f,  1.0f,
+
+	//	 1.0f, -1.0f, -1.0f,
+	//	 1.0f, -1.0f,  1.0f,
+	//	 1.0f,  1.0f,  1.0f,
+	//	 1.0f,  1.0f,  1.0f,
+	//	 1.0f,  1.0f, -1.0f,
+	//	 1.0f, -1.0f, -1.0f,
+
+	//	-1.0f, -1.0f,  1.0f,
+	//	-1.0f,  1.0f,  1.0f,
+	//	 1.0f,  1.0f,  1.0f,
+	//	 1.0f,  1.0f,  1.0f,
+	//	 1.0f, -1.0f,  1.0f,
+	//	-1.0f, -1.0f,  1.0f,
+
+	//	-1.0f,  1.0f, -1.0f,
+	//	 1.0f,  1.0f, -1.0f,
+	//	 1.0f,  1.0f,  1.0f,
+	//	 1.0f,  1.0f,  1.0f,
+	//	-1.0f,  1.0f,  1.0f,
+	//	-1.0f,  1.0f, -1.0f,
+
+	//	-1.0f, -1.0f, -1.0f,
+	//	-1.0f, -1.0f,  1.0f,
+	//	 1.0f, -1.0f, -1.0f,
+	//	 1.0f, -1.0f, -1.0f,
+	//	-1.0f, -1.0f,  1.0f,
+	//	 1.0f, -1.0f,  1.0f
+	//};
+
 	float skyboxVertices[] = {
-		// positions          
-		-1.0f,  1.0f, -1.0f,
-		-1.0f, -1.0f, -1.0f,
-		 1.0f, -1.0f, -1.0f,
-		 1.0f, -1.0f, -1.0f,
-		 1.0f,  1.0f, -1.0f,
-		-1.0f,  1.0f, -1.0f,
+		0.5,-0.5,0.5,	//5
+		0.5,0.5,-0.5,	//6		567¿À¸¥ÂÊ¸é
+		0.5,0.5,0.5,	//7
+		0.5,-0.5,-0.5,	//4
+		0.5,0.5,-0.5,	//6		465¿À¸¥ÂÊ¸é
+		0.5,-0.5,0.5,	//5
 
-		-1.0f, -1.0f,  1.0f,
-		-1.0f, -1.0f, -1.0f,
-		-1.0f,  1.0f, -1.0f,
-		-1.0f,  1.0f, -1.0f,
-		-1.0f,  1.0f,  1.0f,
-		-1.0f, -1.0f,  1.0f,
+		-0.5,-0.5,-0.5,	//0							
+		-0.5,-0.5,0.5,	//1							
+		-0.5,0.5,-0.5,	//2  012»ï°¢Çü ¿ÞÂÊ¸é
+		-0.5,-0.5,0.5,	//1							
+		-0.5,0.5,0.5,	//3							
+		-0.5,0.5,-0.5,	//2  132»ï°¢Çü ¿ÞÂÊ¸é		  	
 
-		 1.0f, -1.0f, -1.0f,
-		 1.0f, -1.0f,  1.0f,
-		 1.0f,  1.0f,  1.0f,
-		 1.0f,  1.0f,  1.0f,
-		 1.0f,  1.0f, -1.0f,
-		 1.0f, -1.0f, -1.0f,
+		-0.5,0.5,-0.5,	//2  
+		-0.5,0.5,0.5,	//3	236 À­¸é
+		0.5,0.5,-0.5,	//6
+		-0.5,0.5,0.5,	//3
+		0.5,0.5,0.5,	//7	376À­¸é
+		0.5,0.5,-0.5,	//6
 
-		-1.0f, -1.0f,  1.0f,
-		-1.0f,  1.0f,  1.0f,
-		 1.0f,  1.0f,  1.0f,
-		 1.0f,  1.0f,  1.0f,
-		 1.0f, -1.0f,  1.0f,
-		-1.0f, -1.0f,  1.0f,
+		-0.5,-0.5,-0.5,	//0
+		0.5,-0.5,-0.5,	//4	041 ¾Æ·§¸é
+		-0.5,-0.5,0.5,	//1
+		-0.5,-0.5,0.5,	//1
+		0.5,-0.5,-0.5,	//4	145 ¾Æ·§¸é
+		0.5,-0.5,0.5,	//5
 
-		-1.0f,  1.0f, -1.0f,
-		 1.0f,  1.0f, -1.0f,
-		 1.0f,  1.0f,  1.0f,
-		 1.0f,  1.0f,  1.0f,
-		-1.0f,  1.0f,  1.0f,
-		-1.0f,  1.0f, -1.0f,
+		-0.5,-0.5,0.5,	//1
+		0.5,-0.5,0.5,	//5	153¾Õ¸é
+		-0.5,0.5,0.5,	//3
+		-0.5,0.5,0.5,	//3
+		0.5,-0.5,0.5,	//5	357¾Õ¸é
+		0.5,0.5,0.5,	//7
 
-		-1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f,  1.0f,
-		 1.0f, -1.0f, -1.0f,
-		 1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f,  1.0f,
-		 1.0f, -1.0f,  1.0f
+
+
+		-0.5,0.5,-0.5,	//2  264 µÞ¸é
+		0.5,0.5,-0.5,	//6
+		0.5,-0.5,-0.5,	//4
+		-0.5,-0.5,-0.5,	//0
+		-0.5,0.5,-0.5,	//2  024 µÞ¸é
+		0.5,-0.5,-0.5,	//4
+
+
 	};
 
-
 	glGenVertexArrays(1, &skyboxVao);
-	glGenBuffers(1, &skyboxVbo);
 	glBindVertexArray(skyboxVao);
+
+	glGenBuffers(1, &skyboxVbo);
 	glBindBuffer(GL_ARRAY_BUFFER, skyboxVbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
@@ -126,16 +136,16 @@ void CubeMaps::makeVao()
 void CubeMaps::loadCubemap()
 {
 	std::vector<std::string> faces{
-		"Asset/Image/SkyBox/right.jpg",
 		"Asset/Image/SkyBox/left.jpg",
+		"Asset/Image/SkyBox/right.jpg",
 		"Asset/Image/SkyBox/top.jpg",
 		"Asset/Image/SkyBox/bottom.jpg",
 		"Asset/Image/SkyBox/front.jpg",
 		"Asset/Image/SkyBox/back.jpg",
 
 	};
+	
 
-	//unsigned  int mTextureID;
 	glGenTextures(1, &mTextureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, mTextureID);
 
@@ -145,6 +155,7 @@ void CubeMaps::loadCubemap()
 	{
 		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
 
+		stbi_set_flip_vertically_on_load(true);
 		if (data)
 		{
 			glTexImage2D(
@@ -179,11 +190,9 @@ void CubeMaps::loadCubemap()
 
 void CubeMaps::draw(std::unique_ptr<class Shader>& shader)
 {
-	glDepthMask(GL_FALSE);
-	shader->setActive();
-	// ... view, projection Çà·Ä ¼³Á¤
 	glBindVertexArray(skyboxVao);
-	//glBindTexture(GL_TEXTURE_CUBE_MAP, mTextureID);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, mTextureID);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
-	glDepthMask(GL_TRUE);
+	glBindVertexArray(0);
 }
