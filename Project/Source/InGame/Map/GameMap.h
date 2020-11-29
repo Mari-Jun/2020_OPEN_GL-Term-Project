@@ -59,4 +59,5 @@ public:
 	void setTime(const std::string& time) { mTime = time; }
 	void setMinionCount(int count) { mMinionCount = count; }
 	int getAttackTowerCount() const { return mAttackTowerCount; }
+	void resetAttackTowerCount() { mAttackTowerCount = 0; }
 };

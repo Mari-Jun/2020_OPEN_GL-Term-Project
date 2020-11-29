@@ -41,6 +41,9 @@ GameMap::~GameMap()
 
 bool GameMap::loadMap(const std::string& fileName, const std::string time)
 {
+	//어택타워값 초기화
+	mAttackTowerCount = 0;
+
 	std::ifstream mapFile(fileName);
 
 	if (!mapFile.is_open())
@@ -137,10 +140,6 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	tile->setRotation(Quaternion(Vector3::UnitY, Math::ToRadians(rot)));
 	tile->setPosition(position);
 	tile->initailize();
-	if (tile->getTileType() == Tile::TileType::Tower_Catapult)
-	{
-		std::cout << "형왔다\n";
-	}
 
 	mTiles[y][x] = tile;
 }

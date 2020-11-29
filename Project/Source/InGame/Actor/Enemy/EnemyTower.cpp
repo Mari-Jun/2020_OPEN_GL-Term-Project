@@ -4,6 +4,9 @@
 #include "../../../Game/Component/MoveComponent.h"
 #include "../../../Game/Game.h"
 #include "../../../Game/Scene/Scene.h"
+#include "../../Scene/EditScene.h"
+#include "../../Scene/GameScene.h"
+#include "../../Map/GameMap.h"
 
 #include "Weapon.h"
 #include "../../Actor/Enemy/Weapon/Blaster.h"
@@ -113,6 +116,17 @@ void EnemyTower::createWeapon()
 
 	weapon->setScale(getScale());
 	weapon->initailize();
+
+	auto objectOwner = std::dynamic_pointer_cast<GameScene>(getScene().lock());
+
+	if (objectOwner.use_count())
+	{
+		weapon->setEffectIndex(objectOwner->getGameMap()->getAttackTowerCount());
+	}
+	else {//에디트씬에선 머 공격할것도아닌데 해줄 이유가 없음
+		//weapon->setEffectIndex(std::dynamic_pointer_cast<EditScene>(getScene().lock())->getGameMap()->getAttackTowerCount());
+	}
+
 	mWeapon = weapon;
 
 }

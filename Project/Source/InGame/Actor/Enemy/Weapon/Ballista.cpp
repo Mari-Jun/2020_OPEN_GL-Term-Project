@@ -19,6 +19,11 @@ void Ballista::initailize()
 	Weapon::initailize();
 }
 
+void Ballista::setEffectIndex(int index)
+{
+	mEffectindex = index;
+}
+
 void Ballista::updateActor(float deltatime)
 {
 	Weapon::updateActor(deltatime);
@@ -29,7 +34,7 @@ void Ballista::updateActor(float deltatime)
 		if (getCurDelay() == 0.0f)
 		{
 			
-			getGame().lock()->getSound()->play(static_cast<int>(Sound::CHANNEL::effect), static_cast<int>(Sound::effectName::Arrow1));
+			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::Arrow1), mEffectindex);
 			
 			attack();
 		}

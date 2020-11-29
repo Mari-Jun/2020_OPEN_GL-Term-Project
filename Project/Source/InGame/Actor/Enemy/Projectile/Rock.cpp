@@ -4,6 +4,8 @@
 #include "../../../../Game/Graphics/Mesh/Mesh.h"
 #include "../../../../Game/Component/BoxComponent.h"
 #include "../../../../Game/Game.h"
+#include "../../../../Game/Sound/Sound.h"
+
 #include "../../Player/MovePlayer.h"
 #include "../Weapon/Catapult.h"
 
@@ -67,6 +69,7 @@ void Rock::updateActor(float deltatime)
 
 		if (split == false)
 		{
+			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::rockbroken), mEffectindex);
 			for (int i = 0; i < 12; ++i)	//i의 갯수는 파편의 개수
 			{
 				makeSplitRock();
@@ -105,6 +108,7 @@ void Rock::collide()
 			{
 				if (split == false)
 				{
+					getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::rockbroken), mEffectindex);
 					for (int i = 0; i < 12; ++i)	//i의 갯수는 파편의 개수
 					{
 						makeSplitRock();

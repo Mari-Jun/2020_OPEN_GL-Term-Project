@@ -12,8 +12,6 @@ Sound::~Sound()
 {
 	for (int i = 0; i < EFFECT_TRACK; ++i)	FMOD_Sound_Release(effectSound[i]);	// FMOD bgmSound 객체 해제
 	for (int i = 0; i < BGM_TRACK; ++i)	FMOD_Sound_Release(bgmSound[i]);	// FMOD bgmSound 객체 해제
-	for (int i = 0; i < effect.size(); ++i)	FMOD_Sound_Release(effect[i]);
-	effect.clear();
 	FMOD_System_Close(System); // FMOD system 객체 clsoe
 	FMOD_System_Release(System); // FMOD system 객체 해제
 }
@@ -31,7 +29,7 @@ void Sound::setindex(int i)
 
 void Sound::initalize()
 {
-
+	//사운드 추가할땐 꼭 헤더파일의 define TRACK 늘리세요
 	FMOD_RESULT  result;
 
 	FMOD_System_Create(&System);
@@ -56,6 +54,8 @@ void Sound::initalize()
 	ERRCHECK(result, 6);
 	result = FMOD_System_CreateSound(System, "Asset/Sound/laser.mp3", FMOD_DEFAULT, 0, &effectSound[4]);
 	ERRCHECK(result, 7);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/broken.mp3", FMOD_DEFAULT, 0, &effectSound[5]);
+	ERRCHECK(result, 8);
 	//이펙트
 
 
@@ -75,19 +75,20 @@ void Sound::ERRCHECK(FMOD_RESULT result,int num)
 	}
 }
 
-
-void Sound::play(int channel, int name)
+//사용법, bgm은 무조건 channel은 0임 effect는 effectindex를 넣으시길
+void Sound::play(int type, int name,int channel)
 {
-	FMOD_Channel_Stop(Channel[channel]);
-	if (channel == 0)
+	if (type == 0)
 	{
+		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
 		FMOD_Channel_SetVolume(Channel[channel], 0.2);
 	}
 	else
 	{
-		FMOD_System_PlaySound(System, effect[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.2);
+		FMOD_Channel_Stop(EffectChannel[channel-1]);
+		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel-1]);
+		FMOD_Channel_SetVolume(EffectChannel[channel-1], 0.2);
 	}
 
 }

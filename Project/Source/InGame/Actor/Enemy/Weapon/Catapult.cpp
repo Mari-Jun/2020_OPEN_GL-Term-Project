@@ -4,6 +4,7 @@
 #include "../../../Scene/EditScene.h"
 #include "../../../../Game/Game.h"
 
+#include "../../../../Game/Sound/Sound.h"
 Catapult::Catapult(const std::weak_ptr<class Scene>& scene)
 	: Weapon(scene)
 {
@@ -19,7 +20,11 @@ void Catapult::initailize()
 {
 	Weapon::initailize();
 	initRock();
-	
+}
+
+void Catapult::setEffectIndex(int index)
+{
+	mEffectindex = index;
 }
 
 void Catapult::initRock()
@@ -40,6 +45,7 @@ void Catapult::initRock()
 	mRock->setforwardSpeed(0.0f);
 	mRock->setupSpeed(0.0f);
 	mRock->initailize();
+	mRock->setEffectIndex(1);	//맨첨에 생기는거라 mEffect가 설정이 안 된 상태임
 	mRock->setScale(0.01f);
 }
 
@@ -59,6 +65,7 @@ void Catapult::initRock(Vector3 toVec)
 	mRock->setupSpeed(0.0f);
 	mRock->initailize();
 	mRock->setScale(0.01f);
+	mRock->setEffectIndex(mEffectindex);
 	toVec.y = 0.0f;
 	toVec.Normalize();
 	rotateToNewForward(toVec);
@@ -75,6 +82,7 @@ void Catapult::updateActor(float deltatime)
 	{
 		if (getCurDelay() == 0.0f)
 		{
+			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::catapult), mEffectindex);
 			attack();
 		}
 

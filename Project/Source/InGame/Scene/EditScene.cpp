@@ -49,7 +49,7 @@ void EditScene::initailize()
 	getGame().lock()->getRenderer()->setProjectionMatrix(projection);
 
 	//Set Sound
-	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Edit));
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm), static_cast<int>(Sound::bgmName::Edit), 0);
 }
 
 void EditScene::sceneInput()

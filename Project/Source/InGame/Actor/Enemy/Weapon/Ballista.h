@@ -13,8 +13,9 @@ public:
 	virtual void actorInput() override;
 
 	virtual void attack();
-	virtual void attackMotion();	
+	virtual void attackMotion();
+	virtual void setEffectIndex(int index);
 
 private:
-	int mChannel = 0;
+	int mEffectindex = 0;
 };

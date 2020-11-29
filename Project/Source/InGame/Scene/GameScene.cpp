@@ -52,7 +52,7 @@ void GameScene::initailize()
 	game->getRenderer()->setProjectionMatrix(projection);
 
 	//Set Sound
-	game->getSound()->play(static_cast<int>(Sound::CHANNEL::bgm), static_cast<int>(Sound::bgmName::Game));
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm), static_cast<int>(Sound::bgmName::Game), 0);
 
 	
 	//real cubemap
