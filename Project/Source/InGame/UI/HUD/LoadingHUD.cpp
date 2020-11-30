@@ -32,7 +32,9 @@ void LoadingHUD::initailize()
 		mLoadimage = mRenderer.lock()->getTexture(filename);
 	}
 
-	mStageBoard = mRenderer.lock()->getTexture("Asset/Image/EditScene/Stage.png");
+
+
+
 }
 
 void LoadingHUD::resetInfo()

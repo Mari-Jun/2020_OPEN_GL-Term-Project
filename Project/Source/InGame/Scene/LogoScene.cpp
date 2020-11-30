@@ -22,6 +22,12 @@ void LogoScene::initailize()
 {
 	Scene::initailize();
 	loadData();
+	std::weak_ptr<Renderer> Renderer = getGame().lock()->getRenderer();
+	for (int i = 0; i < 30; ++i)
+	{
+		std::string filename = "Asset/Image/LoadingScene/frame-" + std::to_string(i) + ".png";
+		Renderer.lock()->getTexture(filename);
+	}
 
 }
 
