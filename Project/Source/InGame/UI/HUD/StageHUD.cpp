@@ -18,7 +18,7 @@ StageHUD::StageHUD(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<
 
 StageHUD::~StageHUD()
 {
-	if (mScene.lock()->getSceneState() != (Scene::SceneState::Dead))
+	if (!mScene.expired() && mScene.lock()->getSceneState() != (Scene::SceneState::Dead))
 	{
 		mScene.lock()->setSceneState(Scene::SceneState::Active);
 	}
