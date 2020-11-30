@@ -87,3 +87,4 @@ Asset/Image/UIBackground/Reinforce.png
 Asset/Image/UIBackground/skinBox.png
 Asset/Image/Button/UpgradeOn.png
 Asset/Image/Button/Upgrade.png
+Asset/Image/UIBackground/Pause.png
