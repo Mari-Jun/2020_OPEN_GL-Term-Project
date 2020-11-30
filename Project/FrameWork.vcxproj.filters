@@ -590,6 +590,9 @@
     <ClInclude Include="Source\InGame\Scene\LogoScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Graphics\Shader\Phong.frag" />
@@ -602,5 +605,18 @@
     <None Include="Source\Game\Graphics\Shader\Phong2.frag" />
     <None Include="Source\Game\Graphics\Shader\cubemap.vert" />
     <None Include="Source\Game\Graphics\Shader\cubemap.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FrameWork.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Asset\Icon\strategy.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

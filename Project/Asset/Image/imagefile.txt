@@ -89,3 +89,6 @@ Asset/Image/Button/UpgradeOn.png
 Asset/Image/Button/Upgrade.png
 Asset/Image/UIBackground/Pause.png
 Asset/Image/TitleScene/background.png
+Asset/Image/Button/OKButtonOn.png
+Asset/Image/Button/OKButton.png
+Asset/Image/UIBackground/NotYet.png
