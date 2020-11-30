@@ -84,6 +84,9 @@ public:
 	std::shared_ptr<class Texture> getTexture(const std::string& fileName);
 	std::shared_ptr<class Mesh> getMesh(const std::string& fileName);
 
+	void loadTexture(const std::string& fileName);
+	void loadMesh(const std::string& fileName);
+
 	const std::shared_ptr<class Light>& getLight() const { return mLight; }
 	const std::unique_ptr<class Window>& getWindow() const { return mWindow; }
 	

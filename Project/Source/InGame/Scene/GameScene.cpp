@@ -52,15 +52,12 @@ void GameScene::initailize()
 	auto projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 1000.0f);
 	game->getRenderer()->setProjectionMatrix(projection);
 
-	//Set Sound
-	game->getSound()->play(static_cast<int>(Sound::Type::bgm),mGameMap->getTimeBgm(), 0);
-
-	
 	//real cubemap
 	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer(), mGameMap->getTime());
 	mCubeMaps->initailize();
 
-	setSceneState(SceneState::Active);
+	//Set Sound
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm), mGameMap->getTimeBgm(), 0);
 
 
 }
@@ -198,5 +195,6 @@ void GameScene::stageFail()
 
 void GameScene::goToTitle()
 {
+	getGame().lock()->getSound()->stopBgmChannel(0);
 	mSceneHelper->changeToTitleScene(mInfo);
 }

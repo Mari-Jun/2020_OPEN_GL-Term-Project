@@ -53,9 +53,9 @@ void LoadingScene::sceneUpdate(float deltatime)
 	if (!mLoader.empty())
 	{
 		if (mLoader[loadercount].find("png") != std::string::npos)
-			mRender.lock()->getTexture(mLoader[loadercount]);
+			mRender.lock()->loadTexture(mLoader[loadercount]);
 		else
-			mRender.lock()->getMesh(mLoader[loadercount]);
+			mRender.lock()->loadMesh(mLoader[loadercount]);
 
 		loadercount++;
 	}
