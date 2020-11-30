@@ -3,7 +3,8 @@
 #include <fmod_errors.h>
 #include <vector>
 #define BGM_TRACK 4
-#define EFFECT_TRACK 6
+#define EFFECT_TRACK 8
+#define UI_TRACK 3
 
 
 
@@ -14,6 +15,15 @@ public:
 	{
 		bgm = 0,
 		effect,
+		ui,
+	};
+
+	enum class TypeChannel
+	{
+		bgm = 0,
+		ui,
+		notice,
+		minioneffect,
 	};
 
 	enum class bgmName
@@ -21,6 +31,13 @@ public:
 		Game = 0,
 		Edit,
 		Sunny,
+	};
+
+	enum class uiName
+	{
+		select = 0,
+		click,
+		notice,
 	};
 
 	enum class effectName
@@ -31,6 +48,8 @@ public:
 		catapult,
 		laser,
 		rockbroken,
+		teleport,
+		createminion,
 	};
 
 	Sound();
@@ -38,7 +57,8 @@ public:
 	FMOD_SYSTEM* System;
 	FMOD_SOUND* bgmSound[BGM_TRACK];
 	FMOD_SOUND* effectSound[EFFECT_TRACK];
-	FMOD_CHANNEL* Channel[2];
+	FMOD_SOUND* uiSound[UI_TRACK];
+	FMOD_CHANNEL* Channel[4];	//bgm은 0 button은 1 고정 notice는 2번고정,미니언순간이동은 3번
 
 	std::vector<FMOD_CHANNEL*> EffectChannel;
 

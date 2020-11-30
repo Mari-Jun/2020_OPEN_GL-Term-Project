@@ -5,7 +5,7 @@
 #include "../Input/Mouse.h"
 #include "../Graphics/Texture/Texture.h"
 #include "../Graphics/Shader/Shader.h"
-
+#include "../Sound/Sound.h"
 UI::UI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render)
 	: mState(UIState::Active)
 	, mScene(scene)
@@ -39,10 +39,13 @@ void UI::update(float deltatime)
 void UI::processInput()
 {
 	const auto& mousePos = mScene.lock()->getGame().lock()->getMouse()->getPosition();
+	
 	for (const auto& button : mButtons)
 	{
 		if (button->containMouse(mousePos))
 		{
+			if(!button->getOnButton())
+				mScene.lock()->getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::ui), static_cast<int>(Sound::uiName::select), 1);
 			button->setOnButton(true);
 		}
 		else
@@ -59,6 +62,7 @@ void UI::processInput()
 		{
 			if (button->getOnButton())
 			{
+				mScene.lock()->getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::ui), static_cast<int>(Sound::uiName::click), 1);
 				button->click();
 			}
 		}

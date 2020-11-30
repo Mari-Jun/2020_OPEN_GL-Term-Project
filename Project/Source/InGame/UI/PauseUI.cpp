@@ -3,6 +3,7 @@
 #include "../../Game/Game.h"
 #include "../../Game/Scene/Scene.h"
 #include "../Scene/GameScene.h"
+#include "../../Game/Sound/Sound.h"
 
 PauseUI::PauseUI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, UIType type)
 	: UI(scene, render)
@@ -24,6 +25,7 @@ void PauseUI::initailize()
 	UI::initailize();
 
 	auto game = mScene.lock()->getGame().lock();
+	game->getSound()->play(static_cast<int>(Sound::Type::ui), static_cast<int>(Sound::uiName::notice), 2);
 	if (mType == UIType::Pause)
 	{
 		addButton([this]() {closeUIWarp(); }, Vector2(0.0f, 0.0f), "Asset/Image/Button/PlayButton");
