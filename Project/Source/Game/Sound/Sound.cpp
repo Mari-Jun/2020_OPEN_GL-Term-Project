@@ -12,6 +12,7 @@ Sound::~Sound()
 {
 	for (int i = 0; i < EFFECT_TRACK; ++i)	FMOD_Sound_Release(effectSound[i]);	// FMOD bgmSound 객체 해제
 	for (int i = 0; i < BGM_TRACK; ++i)	FMOD_Sound_Release(bgmSound[i]);	// FMOD bgmSound 객체 해제
+	for (int i = 0; i < UI_TRACK; ++i) FMOD_Sound_Release(uiSound[i]);	//FMOD buttonSound 객체 해제
 	FMOD_System_Close(System); // FMOD system 객체 clsoe
 	FMOD_System_Release(System); // FMOD system 객체 해제
 }
@@ -44,18 +45,26 @@ void Sound::initalize()
 
 	//배경
 
-	result = FMOD_System_CreateSound(System, "Asset/Sound/arrow1.mp3", FMOD_DEFAULT, 0, &effectSound[0]);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/Blip.wav", FMOD_DEFAULT, 0, &uiSound[0]);
 	ERRCHECK(result, 3);
-	result = FMOD_System_CreateSound(System, "Asset/Sound/arrow2.mp3", FMOD_DEFAULT, 0, &effectSound[1]);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/Blip_chat.ogg", FMOD_DEFAULT, 0, &uiSound[1]);
 	ERRCHECK(result, 4);
-	result = FMOD_System_CreateSound(System, "Asset/Sound/cannonball.mp3", FMOD_DEFAULT, 0, &effectSound[2]);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/DlgNotice.mp3", FMOD_DEFAULT, 0, &uiSound[2]);
 	ERRCHECK(result, 5);
-	result = FMOD_System_CreateSound(System, "Asset/Sound/catapult.mp3", FMOD_DEFAULT, 0, &effectSound[3]);
+	//버튼 
+
+	result = FMOD_System_CreateSound(System, "Asset/Sound/arrow1.mp3", FMOD_DEFAULT, 0, &effectSound[0]);
+	ERRCHECK(result, 5);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/arrow2.mp3", FMOD_DEFAULT, 0, &effectSound[1]);
 	ERRCHECK(result, 6);
-	result = FMOD_System_CreateSound(System, "Asset/Sound/laser.mp3", FMOD_DEFAULT, 0, &effectSound[4]);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/cannonball.mp3", FMOD_DEFAULT, 0, &effectSound[2]);
 	ERRCHECK(result, 7);
-	result = FMOD_System_CreateSound(System, "Asset/Sound/broken.mp3", FMOD_DEFAULT, 0, &effectSound[5]);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/catapult.mp3", FMOD_DEFAULT, 0, &effectSound[3]);
 	ERRCHECK(result, 8);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/laser.mp3", FMOD_DEFAULT, 0, &effectSound[4]);
+	ERRCHECK(result, 9);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/broken.mp3", FMOD_DEFAULT, 0, &effectSound[5]);
+	ERRCHECK(result, 10);
 	//이펙트
 
 
@@ -75,7 +84,7 @@ void Sound::ERRCHECK(FMOD_RESULT result,int num)
 	}
 }
 
-//사용법, bgm은 무조건 channel은 0임 effect는 effectindex를 넣으시길
+//사용법, bgm은 무조건 channel은 0임 button은 무조건 channel 1임 notice는 2 effect는 effectindex를 넣으시길
 void Sound::play(int type, int name,int channel)
 {
 	if (type == 0)
@@ -84,11 +93,16 @@ void Sound::play(int type, int name,int channel)
 		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
 		FMOD_Channel_SetVolume(Channel[channel], 0.2);
 	}
-	else
+	else if(type == 1)
 	{
 		FMOD_Channel_Stop(EffectChannel[channel-1]);
 		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel-1]);
 		FMOD_Channel_SetVolume(EffectChannel[channel-1], 0.2);
+	}
+	else {
+		FMOD_Channel_Stop(Channel[channel]);
+		FMOD_System_PlaySound(System, uiSound[name], NULL, 0, &Channel[channel]);
+		FMOD_Channel_SetVolume(Channel[channel], 0.2);
 	}
 
 }

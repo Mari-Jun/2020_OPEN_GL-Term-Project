@@ -4,6 +4,7 @@
 #include <vector>
 #define BGM_TRACK 4
 #define EFFECT_TRACK 6
+#define UI_TRACK 3
 
 
 
@@ -14,6 +15,7 @@ public:
 	{
 		bgm = 0,
 		effect,
+		ui,
 	};
 
 	enum class bgmName
@@ -21,6 +23,13 @@ public:
 		Game = 0,
 		Edit,
 		Sunny,
+	};
+
+	enum class uiName
+	{
+		select = 0,
+		click,
+		notice,
 	};
 
 	enum class effectName
@@ -38,7 +47,8 @@ public:
 	FMOD_SYSTEM* System;
 	FMOD_SOUND* bgmSound[BGM_TRACK];
 	FMOD_SOUND* effectSound[EFFECT_TRACK];
-	FMOD_CHANNEL* Channel[2];
+	FMOD_SOUND* uiSound[UI_TRACK];
+	FMOD_CHANNEL* Channel[3];	//bgm은 0 button은 1 고정 notice는 2번고정
 
 	std::vector<FMOD_CHANNEL*> EffectChannel;
 
