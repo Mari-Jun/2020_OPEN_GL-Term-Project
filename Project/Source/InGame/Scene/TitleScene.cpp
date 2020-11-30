@@ -40,6 +40,9 @@ void TitleScene::initailize()
 	auto windowSize = getGame().lock()->getRenderer()->getWindow()->getSize();
 	auto view = Matrix4::CreateSimpleViewProj(windowSize.x, windowSize.y);
 	getGame().lock()->getRenderer()->setViewMatrix(view);
+
+	//Set Sound
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm), static_cast<int>(Sound::bgmName::main), 0);
 }
 
 void TitleScene::sceneInput()
