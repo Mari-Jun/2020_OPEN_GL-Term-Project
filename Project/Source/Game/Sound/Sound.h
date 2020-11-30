@@ -72,6 +72,7 @@ public:
 	void play(int type, int name, int channel);
 	void playDist(int name, int channel, float volume);
 	void setListener(const Vector3& pos);
+	void stopBgmChannel(int channel) { FMOD_Channel_Stop(Channel[channel]); }
 	Vector3 getListener() const { return listenerPos; }
 
 protected:

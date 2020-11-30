@@ -53,13 +53,11 @@ void GameScene::initailize()
 	game->getRenderer()->setProjectionMatrix(projection);
 
 	//Set Sound
-	game->getSound()->play(static_cast<int>(Sound::Type::bgm),mGameMap->getTimeBgm(), 0);
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm), mGameMap->getTimeBgm(), 0);
 
 	//real cubemap
 	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer(), mGameMap->getTime());
 	mCubeMaps->initailize();
-
-	setSceneState(SceneState::Active);
 
 
 }
@@ -197,5 +195,6 @@ void GameScene::stageFail()
 
 void GameScene::goToTitle()
 {
+	getGame().lock()->getSound()->stopBgmChannel(0);
 	mSceneHelper->changeToTitleScene(mInfo);
 }

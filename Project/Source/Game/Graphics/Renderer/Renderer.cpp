@@ -13,6 +13,8 @@
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
 #include "../../UI/UI.h"
+#include <fstream>
+#include <sstream>
 
 Renderer::Renderer(const std::weak_ptr<class Game>& game)
 	: mGame(game)
@@ -482,6 +484,61 @@ std::shared_ptr<class Mesh> Renderer::getMesh(const std::string& fileName)
 
 	return mesh;
 }
+
+void Renderer::loadTexture(const std::string& fileName)
+{
+	std::shared_ptr<Texture> texture = nullptr;
+
+	//파일이 이미 로드되어있는지 확인합니다.
+	auto iter = mTexture.find(fileName);
+	if (iter != mTexture.end())
+	{
+		texture = iter->second;
+	}
+	else
+	{
+		
+		texture = std::make_shared<Texture>();
+		if (texture->load(fileName))
+		{
+			mTexture.emplace(fileName, texture);
+		}
+		else
+		{
+			texture.reset();
+			texture = nullptr;
+		}
+	}
+
+}
+void Renderer::loadMesh(const std::string& fileName)
+{
+	std::shared_ptr<Mesh> mesh = nullptr;
+
+	//파일이 이미 로드되어있는지 확인합니다.
+	auto iter = mMesh.find(fileName);
+	if (iter != mMesh.end())
+	{
+		mesh = iter->second;
+	}
+	else
+	{
+		
+		mesh = std::make_shared<Mesh>();
+		if (mesh->load(fileName))
+		{
+			mMesh.emplace(fileName, mesh);
+		}
+		else
+		{
+			mesh.reset();
+			mesh = nullptr;
+		}
+	}
+
+}
+
+
 
 bool Renderer::writefile(const std::string& obj)
 {
