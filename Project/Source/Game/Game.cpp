@@ -5,8 +5,11 @@
 #include "Input/Mouse.h"
 #include "Scene/Scene.h"
 #include "Game.h"
+#include "../InGame/Scene/LogoScene.h"
 #include "../InGame/Scene/LoadingScene.h"
 #include "Sound/Sound.h"
+#include "../InGame/UI/SceneHelper.h"
+
 
 Game::Game()
 	: mKeyBoard(nullptr)
@@ -61,7 +64,8 @@ bool Game::initialize(int argc, char** argv)
 	//Create Scene
 	auto scene = std::make_shared<LoadingScene>(weak_from_this());
 	scene->initailize();
-	scene->loadData();
+	//scene->loadData();
+
 
 	//Create Sound
 	mSound = std::make_shared<Sound>();
@@ -161,6 +165,14 @@ void Game::processInput()
 		scene->processInput();
 	}
 	mIsUpdateScene = false;
+}
+
+void Game::releaseAllScene()
+{
+	for (const auto& scene : mScene)
+	{
+		scene->setSceneState(Scene::SceneState::Active);
+	}
 }
 
 void Game::update()

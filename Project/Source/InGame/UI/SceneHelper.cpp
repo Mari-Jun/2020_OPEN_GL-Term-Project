@@ -5,6 +5,7 @@
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
 #include "../Scene/EditScene.h"
+#include "../Scene/LoadingScene.h"
 #include "../Scene/ShopScene.h"
 #include "DialogUI.h"
 

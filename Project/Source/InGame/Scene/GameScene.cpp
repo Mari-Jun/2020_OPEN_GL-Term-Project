@@ -40,6 +40,7 @@ void GameScene::initailize()
 	Scene::initailize();
 	loadData();
 
+
 	auto game = getGame().lock();
 
 	//SetMouse
@@ -57,6 +58,9 @@ void GameScene::initailize()
 	//real cubemap
 	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer(), mGameMap->getTime());
 	mCubeMaps->initailize();
+
+	setSceneState(SceneState::Active);
+
 
 }
 
@@ -78,6 +82,7 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<EditScene>(getGame(), mInfo);
 		scene->initailize();
 	}
+
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
 		pauseGame("Pause");

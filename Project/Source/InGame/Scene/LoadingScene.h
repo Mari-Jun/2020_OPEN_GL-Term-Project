@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Game/Scene/Scene.h"
 
+static int loadercount;
+
 class LoadingScene : public Scene
 {
 public:
@@ -17,4 +19,9 @@ public:
 
 private:
 	int count;
+	std::shared_ptr<class LoadingHUD> mLoadingHUD;
+	bool loadtexture();
+	std::vector<std::string> mLoader;
+	std::vector<std::string> mMeshLoader;
+
 };
