@@ -60,8 +60,8 @@ void LightTile::turnOnLight()
 	pLight.diffuseColor = Vector3(1.0f, 1.0f, 1.0f);
 	pLight.specularColor = Vector3(0.8f, 0.8f, 0.8f);
 	pLight.constant = 1.0f;
-	pLight.linear = 0.007f;
-	pLight.quadratic = 0.0002f;
+	pLight.linear = 0.035f;
+	pLight.quadratic = 0.000068f;
 
 	mPointLight = std::make_shared<PointLight>(pLight);
 

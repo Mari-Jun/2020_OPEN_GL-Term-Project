@@ -10,6 +10,7 @@ UI::UI(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Render
 	: mState(UIState::Active)
 	, mScene(scene)
 	, mRenderer(render)
+	, mBackgroundPos(Vector2::Zero)
 {
 
 }

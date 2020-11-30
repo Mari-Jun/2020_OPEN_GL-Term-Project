@@ -74,5 +74,5 @@ void MinionManager::createMinion()
 void MinionManager::resetHUD()
 {
 	auto gameScene = std::dynamic_pointer_cast<GameScene>(getScene().lock());
-	gameScene->getGameHUD()->resetInfo();
+	//gameScene->getGameHUD()->resetInfo();
 }
