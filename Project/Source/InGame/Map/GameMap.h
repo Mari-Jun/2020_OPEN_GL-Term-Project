@@ -36,9 +36,11 @@ private:
 	std::string mTime;
 	int mMinionCount;
 	int mAttackTowerCount;
+	int mTimeBgm;
 
 private:
 	void addDirectionalLight();
+	void adjustTimeBgm();
 	bool checkTileRange(int y, int x);
 
 public:
@@ -60,4 +62,5 @@ public:
 	void setMinionCount(int count) { mMinionCount = count; }
 	int getAttackTowerCount() const { return mAttackTowerCount; }
 	void resetAttackTowerCount() { mAttackTowerCount = 0; }
+	int getTimeBgm()const { return mTimeBgm; }
 };

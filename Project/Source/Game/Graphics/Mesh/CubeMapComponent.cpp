@@ -8,10 +8,11 @@
 #include "../Texture/stb_image.h"
 
 
-CubeMaps::CubeMaps(const std::weak_ptr<class Renderer>& render)
+CubeMaps::CubeMaps(const std::weak_ptr<class Renderer>& render,std::string time )
 	: mRender(render)
 	,skyboxVao(0)
 	,skyboxVbo(0)
+	,mTime(time)
 {
 	
 }
@@ -135,15 +136,37 @@ void CubeMaps::makeVao()
 
 void CubeMaps::loadCubemap()
 {
-	std::vector<std::string> faces{
-		"Asset/Image/SkyBox/sunrise/left.png",
-		"Asset/Image/SkyBox/sunrise/right.png",
-		"Asset/Image/SkyBox/sunrise/top.png",
-		"Asset/Image/SkyBox/sunrise/bottom.png",
-		"Asset/Image/SkyBox/sunrise/front.png",
-		"Asset/Image/SkyBox/sunrise/back.png",
+	std::vector<std::string> faces;
+	if (mTime == "Sunny")
+	{
+		faces.push_back("Asset/Image/SkyBox/sky/left.jpg");
+		faces.push_back("Asset/Image/SkyBox/sky/right.jpg");
+		faces.push_back("Asset/Image/SkyBox/sky/top.jpg");
+		faces.push_back("Asset/Image/SkyBox/sky/bottom.jpg");
+		faces.push_back("Asset/Image/SkyBox/sky/front.jpg");
+		faces.push_back("Asset/Image/SkyBox/sky/back.jpg");
+	}
+	else if (mTime == "Sunset")
+	{
+		faces.push_back("Asset/Image/SkyBox/sunrise/left.png");
+		faces.push_back("Asset/Image/SkyBox/sunrise/right.png");
+		faces.push_back("Asset/Image/SkyBox/sunrise/top.png");
+		faces.push_back("Asset/Image/SkyBox/sunrise/bottom.png");
+		faces.push_back("Asset/Image/SkyBox/sunrise/front.png");
+		faces.push_back("Asset/Image/SkyBox/sunrise/back.png");
+	}
+	else
+	{
+		faces.push_back("Asset/Image/SkyBox/night/left.png");
+		faces.push_back("Asset/Image/SkyBox/night/right.png");
+		faces.push_back("Asset/Image/SkyBox/night/top.png");
+		faces.push_back("Asset/Image/SkyBox/night/bottom.png");
+		faces.push_back("Asset/Image/SkyBox/night/front.png");
+		faces.push_back("Asset/Image/SkyBox/night/back.png");
+	}
 
-	};
+
+
 	
 
 	glGenTextures(1, &mTextureID);
