@@ -5,6 +5,8 @@
 #include "../Projectile/Laser.h"
 #include "../../../../Game/Game.h"
 
+#include "../../../../Game/Sound/Sound.h"
+
 Blaster::Blaster(const std::weak_ptr<class Scene>& scene)
 	: Weapon(scene)
 {
@@ -21,6 +23,11 @@ void Blaster::initailize()
 {
 	Weapon::initailize();
 	initLaser();
+}
+
+void Blaster::setEffectIndex(int index)
+{
+	mEffectindex = index;
 }
 
 void Blaster::initLaser()
@@ -59,6 +66,7 @@ void Blaster::updateActor(float deltatime)
 		{
 			target_invalid = true;
 
+			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::laser), mEffectindex);
 			attack();
 		}
 		attackMotion();

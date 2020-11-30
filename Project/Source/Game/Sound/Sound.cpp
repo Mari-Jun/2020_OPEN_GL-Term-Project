@@ -29,7 +29,7 @@ void Sound::setindex(int i)
 
 void Sound::initalize()
 {
-
+	//사운드 추가할땐 꼭 헤더파일의 define TRACK 늘리세요
 	FMOD_RESULT  result;
 
 	FMOD_System_Create(&System);
@@ -39,10 +39,23 @@ void Sound::initalize()
 	ERRCHECK(result,0);
 	result = FMOD_System_CreateSound(System, "Asset/Sound/Jazz.mp3", FMOD_LOOP_NORMAL, 0, &bgmSound[1]);
 	ERRCHECK(result,1);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/sunny.mp3", FMOD_LOOP_NORMAL, 0, &bgmSound[2]);
+	ERRCHECK(result, 2);
 
 	//배경
 
-	//FMOD_System_CreateSound(System, "effect", FMOD_DEFAULT, 0, &effectSound);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/arrow1.mp3", FMOD_DEFAULT, 0, &effectSound[0]);
+	ERRCHECK(result, 3);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/arrow2.mp3", FMOD_DEFAULT, 0, &effectSound[1]);
+	ERRCHECK(result, 4);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/cannonball.mp3", FMOD_DEFAULT, 0, &effectSound[2]);
+	ERRCHECK(result, 5);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/catapult.mp3", FMOD_DEFAULT, 0, &effectSound[3]);
+	ERRCHECK(result, 6);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/laser.mp3", FMOD_DEFAULT, 0, &effectSound[4]);
+	ERRCHECK(result, 7);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/broken.mp3", FMOD_DEFAULT, 0, &effectSound[5]);
+	ERRCHECK(result, 8);
 	//이펙트
 
 
@@ -62,11 +75,20 @@ void Sound::ERRCHECK(FMOD_RESULT result,int num)
 	}
 }
 
-
-void Sound::play(int channel, int name)
+//사용법, bgm은 무조건 channel은 0임 effect는 effectindex를 넣으시길
+void Sound::play(int type, int name,int channel)
 {
-	FMOD_Channel_Stop(Channel[channel]);
-	FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
-	FMOD_Channel_SetVolume(Channel[channel], 0.2);
+	if (type == 0)
+	{
+		FMOD_Channel_Stop(Channel[channel]);
+		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
+		FMOD_Channel_SetVolume(Channel[channel], 0.2);
+	}
+	else
+	{
+		FMOD_Channel_Stop(EffectChannel[channel-1]);
+		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel-1]);
+		FMOD_Channel_SetVolume(EffectChannel[channel-1], 0.2);
+	}
 
 }

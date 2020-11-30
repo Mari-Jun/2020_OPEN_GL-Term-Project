@@ -14,11 +14,13 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();
+	virtual void setEffectIndex(int index);
 
 private:
 	std::shared_ptr<class Laser> mLaser;
 	std::shared_ptr<class Laser> mRaser;
 	bool target_invalid = false;
+	int mEffectindex = 0;
 public:
 	void initLaser();
 	void disappear();

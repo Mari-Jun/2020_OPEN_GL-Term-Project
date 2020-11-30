@@ -14,4 +14,8 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();
+	virtual void setEffectIndex(int index);
+	
+private:
+	int mEffectindex = 0;
 };

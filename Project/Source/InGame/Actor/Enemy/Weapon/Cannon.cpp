@@ -2,6 +2,7 @@
 #include "../Projectile/CannonBall.h"
 #include "../../../../Game/Game.h"
 
+#include "../../../../Game/Sound/Sound.h"
 Cannon::Cannon(const std::weak_ptr<class Scene>& scene)
 	: Weapon(scene)
 {
@@ -18,6 +19,12 @@ void Cannon::initailize()
 	Weapon::initailize();
 }
 
+void Cannon::setEffectIndex(int index)
+{
+	mEffectindex = index;
+}
+
+
 void Cannon::updateActor(float deltatime)
 {
 	Weapon::updateActor(deltatime);
@@ -27,6 +34,7 @@ void Cannon::updateActor(float deltatime)
 	{
 		if (getCurDelay() == 0.0f)
 		{
+			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::Cannonball), mEffectindex);
 			attack();
 		}
 

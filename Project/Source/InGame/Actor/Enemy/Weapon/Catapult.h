@@ -14,11 +14,13 @@ public:
 
 	virtual void attack();
 	virtual void attackMotion();
+	virtual void setEffectIndex(int index);
 
 private:
 	std::shared_ptr<class Rock> mRock;
 	float moveY = 0.0;
 	float mRockScaleTime = 1;
+	int mEffectindex = 0;
 public:
 	void initRock();
 	void initRock(Vector3);

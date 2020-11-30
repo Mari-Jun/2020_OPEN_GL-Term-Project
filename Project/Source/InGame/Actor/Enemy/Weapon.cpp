@@ -22,6 +22,11 @@ void Weapon::initailize()
 
 }
 
+void Weapon::setEffectIndex(int index)
+{
+
+}
+
 void Weapon::updateActor(float deltatime)
 {
 

@@ -21,6 +21,7 @@ private:
 	float upSpeed = -100.0f;
 	bool flag = false;	//false면 초기상태, true면 발사 상태 (움직인단 소리) 
 	bool split = false;	//false면 큰 상태, true면 쪼개진 상태 (더이상 안쪼개짐)
+	int mEffectindex = 0;
 
 public:
 	void setforwardSpeed(float Speed) { forwardSpeed = Speed; }
@@ -29,6 +30,7 @@ public:
 	float getupSpeed() const { return upSpeed; }
 	void setflag(bool Flag) { flag = Flag; }
 	bool getflag() const{ return flag; }
+	void setEffectIndex(int index) { mEffectindex = index; }
 
 private:
 	void gravity(float deltatime);
