@@ -6,7 +6,7 @@
 #include "../../../Game/Game.h"
 #include "../../../Game/Scene/Scene.h"
 #include "../../../Game/Graphics/Texture/Texture.h"
-#include "../../../Game/Sound/Sound.h"
+
 
 StageHUD::StageHUD(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, const GameInfo& info)
 	: HUD(scene, render)
@@ -29,8 +29,6 @@ void StageHUD::initailize()
 	HUD::initailize();
 
 	auto game = mScene.lock()->getGame().lock();
-	game->getSound()->play(static_cast<int>(Sound::Type::ui), static_cast<int>(Sound::uiName::notice), 2);
-
 	addButton([this]() {back(); }, Vector2(-140.0f, 80.0f), "Asset/Image/Button/BackButton");
 	addButton([this]() {next(); }, Vector2(140.0f, 80.0f), "Asset/Image/Button/NextButton");
 	addButton([this]() {play(); }, Vector2(0.0f, -50.0f), "Asset/Image/Button/PlayButton");
