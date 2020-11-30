@@ -193,7 +193,7 @@ void GameMap::addDirectionalLight()
 	else if (mTime == "Sunset")
 	{
 		light->setAmbientLight(Vector3(0.25f, 0.25f, 0.25f));
-		dirLight.direction = Vector3(-1.0f, 0.2f, 0.0f);
+		dirLight.direction = Vector3(0.5f, 0.2f, 0.5f);
 		dirLight.diffuseColor = Vector3::Rgb(255.0f, 100.0f, 100.0f);
 		dirLight.specularColor = Vector3(0.9f, 0.9f, 0.9f);
 		dirLight.intensity = 1.0f;
@@ -224,8 +224,7 @@ const std::vector<std::weak_ptr<class Tile>> GameMap::getCollideTiles(const Vect
 	int x = static_cast<int>(pos.x - mPosition.x) / mTileSize;
 	int y = static_cast<int>(pos.z - mPosition.z) / -mTileSize;
 
-	cTile.push_back(mTiles[y][x]);
-	for (auto i = 0; i < 8; i++)
+	for (auto i = 0; i < 9; i++)
 	{
 		if (checkTileRange(y + TILEROUND[i][0], x + TILEROUND[i][1]))
 		{

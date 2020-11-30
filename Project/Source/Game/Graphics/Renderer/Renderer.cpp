@@ -13,9 +13,7 @@
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
 #include "../../UI/UI.h"
-#include <glm/glm/glm.hpp>
-#include <fstream>
-#include <sstream>
+
 Renderer::Renderer(const std::weak_ptr<class Game>& game)
 	: mGame(game)
 {
