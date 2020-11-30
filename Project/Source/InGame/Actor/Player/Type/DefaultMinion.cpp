@@ -1,5 +1,6 @@
 #include "DefaultMinion.h"
 #include "../../../../Game/Game.h"
+#include "../../../../Game/Sound/Sound.h"
 #include "../../../../Game/Component/MoveComponent.h"
 #include "../../../Scene/GameScene.h"
 #include "MinionAi/MinionManager.h"
@@ -64,6 +65,7 @@ void DefaultMinion::checkHp()
 void DefaultMinion::endPoint()
 {
 	setState(Actor::State::Dead);
+	getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::teleport), static_cast<int>(Sound::TypeChannel::minioneffect));
 	mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
 	mManager.lock()->setClearMinion(Math::Max(0, mManager.lock()->getClearMinion() - 1));
 	mManager.lock()->resetHUD();

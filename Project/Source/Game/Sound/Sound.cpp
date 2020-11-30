@@ -65,6 +65,10 @@ void Sound::initalize()
 	ERRCHECK(result, 9);
 	result = FMOD_System_CreateSound(System, "Asset/Sound/broken.mp3", FMOD_DEFAULT, 0, &effectSound[5]);
 	ERRCHECK(result, 10);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/Disappear1.mp3", FMOD_DEFAULT, 0, &effectSound[6]);
+	ERRCHECK(result, 11);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/Regen1.mp3", FMOD_DEFAULT, 0, &effectSound[7]);
+	ERRCHECK(result, 12);
 	//이펙트
 
 
@@ -87,19 +91,29 @@ void Sound::ERRCHECK(FMOD_RESULT result,int num)
 //사용법, bgm은 무조건 channel은 0임 button은 무조건 channel 1임 notice는 2 effect는 effectindex를 넣으시길
 void Sound::play(int type, int name,int channel)
 {
-	if (type == 0)
+	if (type == static_cast<int>(Type::bgm))
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
 		FMOD_Channel_SetVolume(Channel[channel], 0.2);
 	}
-	else if(type == 1)
+	else if(type == static_cast<int>(Type::effect))
 	{
-		FMOD_Channel_Stop(EffectChannel[channel-1]);
-		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel-1]);
-		FMOD_Channel_SetVolume(EffectChannel[channel-1], 0.2);
+		if (channel == static_cast<int>(TypeChannel::minioneffect))
+		{
+			FMOD_Channel_Stop(Channel[channel]);
+			FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &Channel[channel]);
+			FMOD_Channel_SetVolume(Channel[channel], 0.2);
+		}
+		else
+		{
+			FMOD_Channel_Stop(EffectChannel[channel - 1]);
+			FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel - 1]);
+			FMOD_Channel_SetVolume(EffectChannel[channel - 1], 0.2);
+		}
 	}
-	else {
+	else if(type == static_cast<int>(Type::ui))
+	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, uiSound[name], NULL, 0, &Channel[channel]);
 		FMOD_Channel_SetVolume(Channel[channel], 0.2);
