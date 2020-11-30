@@ -14,7 +14,6 @@ public:
 
 private:
 	std::shared_ptr<class MeshComponent> mMeshComponent;	
-	std::shared_ptr<class BoxComponent> mBoxComponent;
 
 public:
 	void setPlayerTexture(const std::string& fileName, int index);

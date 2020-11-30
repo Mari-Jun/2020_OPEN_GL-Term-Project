@@ -24,11 +24,6 @@ void RobotHead::initailize()
 	mMeshComponent = std::make_shared<MeshComponent>(weak_from_this(), getGame().lock()->getRenderer());
 	mMeshComponent->setMesh(mesh);
 	mMeshComponent->initailize();
-
-	//Create BoxComponent
-	mBoxComponent = std::make_shared<BoxComponent>(weak_from_this(), getGame().lock()->getPhysEngine());
-	mBoxComponent->setObjectBox(mesh->getBox());
-	mBoxComponent->initailize();
 }
 
 void RobotHead::updateActor(float deltatime)

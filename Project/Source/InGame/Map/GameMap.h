@@ -5,7 +5,7 @@
 #include <iostream>
 #include "../../Game/Math/Math.h"
 
-const int TILEROUND[8][2] = { {0,-1},{-1, -1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1} };
+const int TILEROUND[9][2] = { {0, 0}, {0,-1},{-1, -1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1} };
 
 constexpr unsigned int HashCode(const char* str)
 {
