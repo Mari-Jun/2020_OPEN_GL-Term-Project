@@ -66,7 +66,10 @@ void Blaster::updateActor(float deltatime)
 		{
 			target_invalid = true;
 
-			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::laser), mEffectindex);
+			auto Sound = getGame().lock()->getSound();
+			auto distVec = Sound->getListener() - getPosition();
+			Sound->playDist(static_cast<int>(Sound::effectName::laser), mEffectindex, distVec.Length());
+
 			attack();
 		}
 		attackMotion();
