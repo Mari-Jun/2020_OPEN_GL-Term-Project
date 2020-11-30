@@ -14,6 +14,8 @@
 #include "../../Input/KeyBoard.h"
 #include "../../UI/UI.h"
 #include <glm/glm/glm.hpp>
+#include <fstream>
+#include <sstream>
 Renderer::Renderer(const std::weak_ptr<class Game>& game)
 	: mGame(game)
 {
@@ -439,6 +441,7 @@ std::shared_ptr<class Texture> Renderer::getTexture(const std::string& fileName)
 	}
 	else
 	{
+		writefile(fileName);
 		texture = std::make_shared<Texture>();
 		if (texture->load(fileName))
 		{
@@ -466,6 +469,7 @@ std::shared_ptr<class Mesh> Renderer::getMesh(const std::string& fileName)
 	}
 	else
 	{
+		writefile(fileName);
 		mesh = std::make_shared<Mesh>();
 		if (mesh->load(fileName))
 		{
@@ -479,4 +483,24 @@ std::shared_ptr<class Mesh> Renderer::getMesh(const std::string& fileName)
 	}
 
 	return mesh;
+}
+
+bool Renderer::writefile(const std::string& obj)
+{
+	std::string fileName = "Asset/Image/imagefile.txt";
+
+	std::ofstream objFile(fileName, std::ios::app);
+
+	if (!objFile.is_open())
+	{
+		std::cerr << "file not found : " << fileName << '\n';
+		return false;
+	}
+	
+	objFile << obj << std::endl;
+
+
+	std::cerr << obj << " write complete\n";
+
+	return true;
 }

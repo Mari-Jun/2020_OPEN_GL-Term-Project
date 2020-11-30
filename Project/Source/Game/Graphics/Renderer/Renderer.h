@@ -95,4 +95,5 @@ private:
 	void drawSpriteComponent();
 	void drawUserInterface();
 	void drawCubeMap();
+	bool writefile(const std::string& fileName);
 };
