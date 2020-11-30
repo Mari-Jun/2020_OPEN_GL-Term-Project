@@ -5,6 +5,7 @@
 #include "../../Game/Game.h"
 #include "../../Game/Sound/Sound.h"
 #include "../Info/GameInfo.h"
+#include "../UI/HUD/LoadingHUD.h"
 
 LoadingScene::LoadingScene(const std::weak_ptr<class Game>& game)
 	: Scene(game)
@@ -22,6 +23,7 @@ void LoadingScene::initailize()
 {
 	Scene::initailize();
 	loadData();
+
 }
 
 void LoadingScene::sceneInput()
@@ -31,30 +33,26 @@ void LoadingScene::sceneInput()
 
 void LoadingScene::sceneUpdate(float deltatime)
 {
+	Scene::sceneUpdate(deltatime);
+
 	count += 1;
 
 	auto game = getGame().lock();
 
 	//Á¶°Ç
-	if (count > 10)
+	if (count > 100)
 	{
-		GameInfo info = {};
-		if (!info.loadGameInfo())
-		{
-			info = { 1, 123,
-			{PlayerInfo::PlayerType::Control, PlayerInfo::SkinType::Man, 1, 1, 1},
-			{PlayerInfo::PlayerType::Minion, PlayerInfo::SkinType::Robot, 1, 1, 1} };
-		}
 
-		auto scene = std::make_shared<TitleScene>(getGame(), info);
-		scene->initailize();
+		getGame().lock()->releaseAllScene();
 		setSceneState(SceneState::Dead);
 	}
+	
 }
 
 void LoadingScene::loadData()
 {
-
+	mLoadingHUD = std::make_shared<LoadingHUD>(std::dynamic_pointer_cast<LoadingScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mLoadingHUD->initailize();
 }
 
 void LoadingScene::unLoadData()

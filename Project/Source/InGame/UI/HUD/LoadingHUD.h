@@ -16,13 +16,13 @@ public:
 	virtual void processInput();
 	virtual void draw(std::unique_ptr<class Shader>& shader);
 
-	void setGameMap(const std::weak_ptr<class GameMap>& gameMap) { mGameMap = gameMap; }
 
 private:
 	std::weak_ptr<class LoadingScene> mLoadingScene;
-	std::weak_ptr<class GameMap> mGameMap;
-	std::shared_ptr<class Texture> mCountBoard;
-	std::vector<std::shared_ptr<class Texture>> mMinionCount;
+	std::shared_ptr<class Texture> mLoadimage;
 	std::shared_ptr<class Texture> mStageBoard;
-	std::vector<std::shared_ptr<class Texture>> mStageCount;
+	int mFPS;
+	int mfidx;
+	float mtime;
+
 };

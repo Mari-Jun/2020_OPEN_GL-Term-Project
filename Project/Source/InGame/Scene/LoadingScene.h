@@ -17,4 +17,6 @@ public:
 
 private:
 	int count;
+	std::shared_ptr<class LoadingHUD> mLoadingHUD;
+
 };

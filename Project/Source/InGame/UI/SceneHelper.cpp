@@ -5,6 +5,7 @@
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
 #include "../Scene/EditScene.h"
+#include "../Scene/LoadingScene.h"
 #include "../Scene/ShopScene.h"
 #include "DialogUI.h"
 
@@ -28,8 +29,11 @@ void SceneHelper::changeToTitleScene(const GameInfo& info)
 
 void SceneHelper::changeToGameScene(const GameInfo& info, int stage)
 {
+	auto load = std::make_shared<LoadingScene>(mScene.lock()->getGame());
+	load->initailize();
 	auto scene = std::make_shared<GameScene>(mScene.lock()->getGame(), info, stage);
 	scene->initailize();
+	scene->setSceneState(Scene::SceneState::Paused);
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);
 }
 
