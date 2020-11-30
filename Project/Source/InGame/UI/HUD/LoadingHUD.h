@@ -20,7 +20,6 @@ public:
 private:
 	std::weak_ptr<class LoadingScene> mLoadingScene;
 	std::shared_ptr<class Texture> mLoadimage;
-	std::shared_ptr<class Texture> mStageBoard;
 	int mFPS;
 	int mfidx;
 	float mtime;
