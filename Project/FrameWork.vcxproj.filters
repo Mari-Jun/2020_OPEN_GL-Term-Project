@@ -291,6 +291,9 @@
     <ClCompile Include="Source\InGame\Actor\CubeMap\CubeMap.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InGame\UI\HUD\LoadingHUD.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -576,6 +579,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Actor\CubeMap\CubeMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\UI\HUD\LoadingHUD.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
