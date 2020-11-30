@@ -19,7 +19,7 @@ Shader::~Shader()
 bool Shader::load(const std::string& vertName, const std::string& fragName)
 {
 	//Compile Shader
-	if (!compileShader(vertName,GL_VERTEX_SHADER,mVertexShader) || 
+	if (!compileShader(vertName,GL_VERTEX_SHADER, mVertexShader) || 
 		!compileShader(fragName, GL_FRAGMENT_SHADER, mFragmentShader))
 	{
 		return false;
@@ -87,7 +87,7 @@ bool Shader::compileShader(const std::string& fileName, GLenum shaderType, GLint
 		const char* contentsChar = contents.c_str();
 
 		shader = glCreateShader(shaderType);
-		glShaderSource(shader, 1, &contentsChar, nullptr);
+		glShaderSource(shader, 1, &(contentsChar), nullptr);
 		glCompileShader(shader);
 
 		if (!isCompiled(shader))
@@ -121,7 +121,7 @@ bool Shader::isCompiled(GLint shader)
 bool Shader::isLinked()
 {
 	GLint result;
-	glGetShaderiv(mShaderProgram, GL_LINK_STATUS, &result);
+	glGetProgramiv(mShaderProgram, GL_LINK_STATUS, &result);
 	if (!result)
 	{
 		GLchar errorLog[512];

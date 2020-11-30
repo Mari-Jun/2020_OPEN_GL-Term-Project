@@ -146,7 +146,7 @@ void main()
 	//표면에서 카메라로 향하는 벡터
 	vec3 V = normalize(uCameraPos - fragWorldPos);
 
-	vec3 finalLight;
+	vec3 finalLight = vec3(0, 0, 0);
 	for(int i = 0; i < uDirSize; ++i)
 	{
 		finalLight += calculDirLight(uDirLight[i], N, V);
