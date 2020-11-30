@@ -485,7 +485,7 @@ std::shared_ptr<class Mesh> Renderer::getMesh(const std::string& fileName)
 	return mesh;
 }
 
-void Renderer::loadTexture(const std::string& fileName)
+std::shared_ptr<class Texture> Renderer::loadTexture(const std::string& fileName)
 {
 	std::shared_ptr<Texture> texture = nullptr;
 
@@ -510,8 +510,10 @@ void Renderer::loadTexture(const std::string& fileName)
 		}
 	}
 
+	return texture;
+
 }
-void Renderer::loadMesh(const std::string& fileName)
+std::shared_ptr<class Mesh> Renderer::loadMesh(const std::string& fileName)
 {
 	std::shared_ptr<Mesh> mesh = nullptr;
 
@@ -535,7 +537,7 @@ void Renderer::loadMesh(const std::string& fileName)
 			mesh = nullptr;
 		}
 	}
-
+	return mesh;
 }
 
 

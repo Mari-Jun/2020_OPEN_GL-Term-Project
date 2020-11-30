@@ -45,6 +45,9 @@ void ShopScene::initailize()
 	getGame().lock()->getRenderer()->getLight()->setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
 
 	loadData();
+
+	//Set Sound
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm), static_cast<int>(Sound::bgmName::Edit), 0);
 }
 
 void ShopScene::sceneInput()
