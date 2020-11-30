@@ -19,9 +19,6 @@ void CubeMap::initailize()
 	Actor::initailize();
 
 
-	mCubeMaps = std::make_shared<CubeMaps>(getGame().lock()->getRenderer());
-	mCubeMaps->initailize();
-
 }
 
 void CubeMap::updateActor(float deltatime)

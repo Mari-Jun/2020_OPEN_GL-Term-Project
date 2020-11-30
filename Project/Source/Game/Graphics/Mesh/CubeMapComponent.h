@@ -6,7 +6,7 @@
 class CubeMaps : public std::enable_shared_from_this<CubeMaps>
 {
 public:
-	CubeMaps(const std::weak_ptr<class Renderer>& render);
+	CubeMaps(const std::weak_ptr<class Renderer>& render, std::string time);
 	~CubeMaps() noexcept;
 
 private:
@@ -14,6 +14,7 @@ private:
 	std::weak_ptr<class Renderer> mRender;
 	unsigned int mTextureID = 0;
 	unsigned int skyboxVao, skyboxVbo;
+	std::string mTime;
 public:
 	void initailize();
 	void makeVao();

@@ -52,11 +52,11 @@ void GameScene::initailize()
 	game->getRenderer()->setProjectionMatrix(projection);
 
 	//Set Sound
-	game->getSound()->play(static_cast<int>(Sound::Type::bgm), static_cast<int>(Sound::bgmName::Game), 0);
+	game->getSound()->play(static_cast<int>(Sound::Type::bgm),mGameMap->getTimeBgm(), 0);
 
 	
 	//real cubemap
-	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer());
+	mCubeMaps = std::make_shared<CubeMaps>(game->getRenderer(), mGameMap->getTime());
 	mCubeMaps->initailize();
 
 }
@@ -97,8 +97,8 @@ void GameScene::loadData()
 	loadGameMap();
 	loadActorData();
 	loadUI();
-
 	getGame().lock()->getSound()->setEffectIndex(mGameMap->getAttackTowerCount());
+
 }
 
 void GameScene::unLoadData()
@@ -138,6 +138,7 @@ void GameScene::loadGameMap()
 	file += std::to_string(mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
+
 }
 
 void GameScene::loadUI()

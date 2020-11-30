@@ -28,7 +28,7 @@ public:
 
 	enum class bgmName
 	{
-		Game = 0,
+		night = 0,
 		Edit,
 		Sunny,
 	};

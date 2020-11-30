@@ -9,6 +9,7 @@
 #include "../Actor/Tile/LightTile.h" 
 #include "../Actor/Tile/EnemyTile.h"
 #include "../Actor/Tile/EndPointTile.h"
+#include "../../Game/Sound/Sound.h"
 
 GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int mapSize)
 	: mScene(scene)
@@ -21,6 +22,7 @@ GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int ma
 	, mTime("Sunny")
 	, mMinionCount(0)
 	, mAttackTowerCount(0)
+	, mTimeBgm(static_cast<int>(Sound::bgmName::Sunny))
 {
 	mTiles.resize(mapSize, std::vector<std::weak_ptr<class Tile>>(mapSize));
 }
@@ -88,6 +90,7 @@ bool GameMap::loadMap(const std::string& fileName, const std::string time)
 			{
 				mTime = time;
 			}
+			adjustTimeBgm();
 			addDirectionalLight();
 		}
 		else if (prefix == "Minion")
@@ -153,6 +156,22 @@ void GameMap::rotTile(int y, int x)
 {
 	auto tile = mTiles[y][x].lock();
 	tile->setRotation(Quaternion::Concatenate(tile->getRotation(), Quaternion(Vector3::UnitY, Math::ToRadians(90.0f))));
+}
+
+void GameMap::adjustTimeBgm()
+{
+	if (mTime == "Sunny")
+	{
+		mTimeBgm = static_cast<int>(Sound::bgmName::Sunny);
+	}
+	else if (mTime == "Sunset")
+	{
+		mTimeBgm = static_cast<int>(Sound::bgmName::night);
+	}
+	else
+	{
+		mTimeBgm = static_cast<int>(Sound::bgmName::night);
+	}
 }
 
 void GameMap::addDirectionalLight()
