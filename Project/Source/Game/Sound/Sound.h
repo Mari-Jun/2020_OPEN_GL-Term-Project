@@ -2,6 +2,7 @@
 #include <fmod.h>
 #include <fmod_errors.h>
 #include <vector>
+#include "../Math/Math.h"
 #define BGM_TRACK 4
 #define EFFECT_TRACK 8
 #define UI_TRACK 3
@@ -60,6 +61,7 @@ public:
 	FMOD_SOUND* uiSound[UI_TRACK];
 	FMOD_CHANNEL* Channel[4];	//bgm은 0 button은 1 고정 notice는 2번고정,미니언순간이동은 3번
 
+	Vector3 listenerPos;
 	std::vector<FMOD_CHANNEL*> EffectChannel;
 
 	void initalize();
@@ -68,6 +70,9 @@ public:
 	const int getindex();
 	void setindex(int);
 	void play(int type, int name, int channel);
+	void playDist(int name, int channel, float volume);
+	void setListener(const Vector3& pos);
+	Vector3 getListener() const { return listenerPos; }
 
 protected:
 	int index;

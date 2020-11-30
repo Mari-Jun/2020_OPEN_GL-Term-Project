@@ -3,6 +3,7 @@
 
 
 Sound::Sound()
+	:listenerPos(Vector3::Zero)
 {
 	Sound::initalize(); 
 
@@ -30,6 +31,7 @@ void Sound::setindex(int i)
 
 void Sound::initalize()
 {
+	
 	//사운드 추가할땐 꼭 헤더파일의 define TRACK 늘리세요
 	FMOD_RESULT  result;
 
@@ -91,32 +93,47 @@ void Sound::ERRCHECK(FMOD_RESULT result,int num)
 //사용법, bgm은 무조건 channel은 0임 button은 무조건 channel 1임 notice는 2 effect는 effectindex를 넣으시길
 void Sound::play(int type, int name,int channel)
 {
+
 	if (type == static_cast<int>(Type::bgm))
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.4);
-	}
-	else if(type == static_cast<int>(Type::effect))
-	{
-		if (channel == static_cast<int>(TypeChannel::minioneffect))
-		{
-			FMOD_Channel_Stop(Channel[channel]);
-			FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &Channel[channel]);
-			FMOD_Channel_SetVolume(Channel[channel], 0.2);
-		}
-		else
-		{
-			FMOD_Channel_Stop(EffectChannel[channel - 1]);
-			FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel - 1]);
-			FMOD_Channel_SetVolume(EffectChannel[channel - 1], 0.2);
-		}
+		FMOD_Channel_SetVolume(Channel[channel], 0.5);
 	}
 	else if(type == static_cast<int>(Type::ui))
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, uiSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.2);
+		FMOD_Channel_SetVolume(Channel[channel], 0.5);
 	}
 
+}
+
+
+void Sound::playDist(int name, int channel, float length)
+{
+	if (length > 1000)
+		return;
+
+	float volume = 0.0;
+
+	volume = (1.0 - length / 1000) / 2.0;
+	if (channel == static_cast<int>(TypeChannel::minioneffect))
+	{
+		FMOD_Channel_Stop(Channel[channel]);
+		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &Channel[channel]);
+		FMOD_Channel_SetVolume(Channel[channel], volume);
+	}
+	else
+	{
+		FMOD_Channel_Stop(EffectChannel[channel - 1]);
+		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel - 1]);
+		FMOD_Channel_SetVolume(EffectChannel[channel - 1], volume);
+	}
+}
+
+
+void Sound::setListener(const Vector3& Pos)
+{
+	listenerPos = Pos;
 }

@@ -34,7 +34,10 @@ void Cannon::updateActor(float deltatime)
 	{
 		if (getCurDelay() == 0.0f)
 		{
-			getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::Cannonball), mEffectindex);
+
+			auto Sound = getGame().lock()->getSound();
+			auto distVec = Sound->getListener() - getPosition();
+			Sound->playDist(static_cast<int>(Sound::effectName::Cannonball), mEffectindex, distVec.Length());
 			attack();
 		}
 
