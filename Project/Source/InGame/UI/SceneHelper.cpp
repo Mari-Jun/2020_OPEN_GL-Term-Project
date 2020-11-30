@@ -7,6 +7,7 @@
 #include "../Scene/EditScene.h"
 #include "../Scene/LoadingScene.h"
 #include "../Scene/ShopScene.h"
+#include "../../Game/Sound/Sound.h"
 #include "DialogUI.h"
 
 SceneHelper::SceneHelper(const std::weak_ptr<class Scene>& scene)
@@ -22,6 +23,7 @@ SceneHelper::~SceneHelper()
 
 void SceneHelper::changeToTitleScene(const GameInfo& info)
 {
+	mScene.lock()->getGame().lock()->getSound()->stopBgmChannel(0);
 	auto scene = std::make_shared<TitleScene>(mScene.lock()->getGame(), info);
 	scene->initailize();
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);

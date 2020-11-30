@@ -29,7 +29,7 @@ void LoadingHUD::initailize()
 	for (int i = 0; i < mFPS; ++i)
 	{
 		std::string filename = "Asset/Image/LoadingScene/frame-" + std::to_string(i) + ".png";
-		mLoadimage = mRenderer.lock()->getTexture(filename);
+		mLoadimage = mRenderer.lock()->loadTexture(filename);
 	}
 
 
@@ -46,7 +46,7 @@ void LoadingHUD::update(float deltatime)
 	mtime += deltatime;
 	mfidx = std::round(mtime * mFPS);
 	std::string filename = "Asset/Image/LoadingScene/frame-" + std::to_string(mfidx % mFPS) + ".png";
-	mLoadimage = mRenderer.lock()->getTexture(filename);
+	mLoadimage = mRenderer.lock()->loadTexture(filename);
 	mtime = std::fmodf(mtime, 1.0);	//if문으로 반복해주는거말고 나머지연산으로 if문 대체
 }
 

@@ -32,6 +32,7 @@ public:
 		night = 0,
 		Edit,
 		Sunny,
+		main,
 	};
 
 	enum class uiName
