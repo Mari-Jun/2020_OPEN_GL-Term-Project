@@ -18,7 +18,7 @@ Type Basic 0 Road 0 Basic 0 Basic 0 TowerCatapult 0 Road 0 TowerBallista 0 Tower
 Line 9 20
 Type Basic 0 Road 0 Basic 0 Basic 0 TowerCatapult 0 Road 0 Basic 0 TowerCatapult 0 Road 0 TowerCatapult 0 TowerCatapult 0 TowerCatapult 0 TowerCatapult 0 TowerCatapult 0 Road 0 TowerCatapult 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 10 20
-Type Basic 0 Road 0 Basic 0 Basic 0 TowerCatapult 0 Road 0 Basic 0 TowerCatapult 0 Road 0 TowerCatapult 0 StartPoint 0 Road 0 Road 0 TowerCatapult 0 Road 0 TowerCatapult 0 Road 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Road 0 Basic 0 Basic 0 TowerCatapult 0 Road 0 Basic 0 TowerCatapult 0 Road 0 TowerCatapult 0 StartPoint 0 Light 0 Light 0 TowerCatapult 0 Road 0 TowerCatapult 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 11 20
 Type Basic 0 Road 0 Basic 0 Basic 0 TowerCatapult 0 Road 0 Basic 0 TowerCatapult 0 Road 0 TowerCatapult 0 TowerCatapult 0 TowerCatapult 0 Road 0 TowerCatapult 0 Road 0 TowerCatapult 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 12 20

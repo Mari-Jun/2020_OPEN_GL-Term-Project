@@ -93,6 +93,10 @@ void CameraActor::InputBasic()
 	{
 		angluarSpeed = Math::TwoPi / 5;
 	}
+	if (game->getKeyBoard()->isKeyPressed('v'))
+	{
+		upSpeed = -100.0f;
+	}
 	if (game->getKeyBoard()->isKeyPressed(32))
 	{
 		upSpeed = 100.0f;
@@ -128,6 +132,10 @@ void CameraActor::InputMouse()
 	if (game->getKeyBoard()->isKeyPressed('d'))
 	{
 		sideSpeed = 300.0f;
+	}
+	if (game->getKeyBoard()->isKeyPressed('v'))
+	{
+		upSpeed = -100.0f;
 	}
 	if (game->getKeyBoard()->isKeyPressed(32))
 	{

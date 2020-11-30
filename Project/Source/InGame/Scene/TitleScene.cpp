@@ -62,6 +62,7 @@ void TitleScene::loadData()
 	auto game = getGame().lock();
 	auto ui = std::make_shared<UI>(weak_from_this(), game->getRenderer());
 	ui->initailize();
+	ui->setBackgroundTexture(game->getRenderer()->getTexture("Asset/Image/TitleScene/background.png"));
 	ui->addButton([this]() {selectStage(); }, Vector2(0.0f, 30.0f), "Asset/Image/Button/PlayButton");
 	ui->addButton([this]() {
 		mInfo.saveGameInfo() ?

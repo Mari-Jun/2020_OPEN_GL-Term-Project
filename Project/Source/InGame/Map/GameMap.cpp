@@ -195,8 +195,8 @@ void GameMap::addDirectionalLight()
 		light->setAmbientLight(Vector3(0.25f, 0.25f, 0.25f));
 		dirLight.direction = Vector3(0.5f, 0.2f, 0.5f);
 		dirLight.diffuseColor = Vector3::Rgb(255.0f, 100.0f, 100.0f);
-		dirLight.specularColor = Vector3(0.9f, 0.9f, 0.9f);
-		dirLight.intensity = 1.0f;
+		dirLight.specularColor = Vector3(0.5f, 0.5f, 0.5f);
+		dirLight.intensity = 0.7f;
 	}
 	else
 	{
