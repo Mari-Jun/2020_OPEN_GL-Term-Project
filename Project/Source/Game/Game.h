@@ -44,6 +44,7 @@ public:
 	void clearScene();
 	void addScene(const std::shared_ptr<class Scene>& scene);
 	void removeScene(const std::weak_ptr<class Scene>& scene);
+	void releaseAllScene();
 
 private:
 	void processInput();
