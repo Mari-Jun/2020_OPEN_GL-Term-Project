@@ -27,6 +27,7 @@ private:
 
 public:
 	const std::shared_ptr<class MinionAi>& getMinionAi() const { return mMinionAi; }
+	int getCreateMinion() const { return mCreateMinionNum; }
 	int getLiveMinion() const { return mLiveMinionNum; }
 	int getClearMinion() const { return mClearMinionNum; }
 	void setLiveMinion(int num) { mLiveMinionNum = num; }

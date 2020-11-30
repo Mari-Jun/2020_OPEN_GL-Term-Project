@@ -55,7 +55,7 @@ void DefaultMinion::checkHp()
 		setState(Actor::State::Dead);
 		mManager.lock()->setLiveMinion(mManager.lock()->getLiveMinion() - 1);
 		mManager.lock()->resetHUD();
-		if (mManager.lock()->getLiveMinion() < mManager.lock()->getClearMinion())
+		if (mManager.lock()->getCreateMinion() == 0 && mManager.lock()->getLiveMinion() < mManager.lock()->getClearMinion())
 		{
 			std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
 		}
