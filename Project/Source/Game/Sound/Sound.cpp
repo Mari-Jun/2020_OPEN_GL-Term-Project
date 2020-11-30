@@ -44,6 +44,8 @@ void Sound::initalize()
 	ERRCHECK(result,1);
 	result = FMOD_System_CreateSound(System, "Asset/Sound/sunny.mp3", FMOD_LOOP_NORMAL, 0, &bgmSound[2]);
 	ERRCHECK(result, 2);
+	result = FMOD_System_CreateSound(System, "Asset/Sound/fantasy.wav", FMOD_LOOP_NORMAL, 0, &bgmSound[3]);
+	ERRCHECK(result, 3);
 
 	//¹è°æ
 
