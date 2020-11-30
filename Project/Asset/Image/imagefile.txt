@@ -110,3 +110,8 @@ Asset/Mesh/Player/skin_manAlternative.png
 Asset/Image/Button/OKButtonOn.png
 Asset/Image/Button/OKButton.png
 Asset/Image/UIBackground/Complete.png
+Asset/Mesh/Tile/Tower/Tile_Tower_RoundC
+Asset/Mesh/Tile/Tower/Tile_Tower_RoundA
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareA
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareC
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareB
