@@ -32,7 +32,7 @@ bool Game::initialize(int argc, char** argv)
 
 	//Create Renderer
 	mRenderer = std::make_shared<Renderer>(weak_from_this());
-	if (mRenderer == nullptr || !mRenderer->initailize(Vector2(1366.0f, 768.0f), "FrameWork"))
+	if (mRenderer == nullptr || !mRenderer->initailize(Vector2(1366.0f, 768.0f), "Cruelty Tower"))
 	{
 		std::cerr << "Error : Renderer initailization\n";
 		return false;
