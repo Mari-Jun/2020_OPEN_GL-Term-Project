@@ -89,7 +89,8 @@ void GameScene::sceneInput()
 
 void GameScene::sceneUpdate(float deltatime)
 {
-	Scene::sceneUpdate(deltatime);
+	Scene::sceneUpdate(deltatime); 
+	getGame().lock()->getSound()->updateSound();
 }
 
 void GameScene::loadData()
@@ -111,20 +112,20 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	/*auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
+	auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
 	control->setScale(1.5f);
-	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
-	control->initailize();*/
-
-	auto control = std::make_shared<Actor>(weak_from_this());
 	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
 	control->initailize();
 
+	//auto control = std::make_shared<Actor>(weak_from_this());
+	//control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	//control->initailize();
+
 	//Create CameraActor
-	//mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
-	//mFollowCamera->initailize();
-	auto mCamera = std::make_shared<CameraActor>(weak_from_this());
-	mCamera->initailize();
+	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
+	mFollowCamera->initailize();
+	//auto mCamera = std::make_shared<CameraActor>(weak_from_this());
+	//mCamera->initailize();
 
 	//Create ParticleCreator
 	auto particle = std::make_shared<ParticleCreator>(weak_from_this(), control);
@@ -133,8 +134,8 @@ void GameScene::loadActorData()
 	particle->initailize();
 
 	////Create MinionManager
-	//mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
-	//mMinionManager->initailize();
+	mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
+	mMinionManager->initailize();
 }
 
 void GameScene::loadGameMap()
@@ -149,9 +150,9 @@ void GameScene::loadGameMap()
 
 void GameScene::loadUI()
 {
-	//mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
-	//mGameHUD->initailize();
-	//
+	mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mGameHUD->initailize();
+	
 }
 
 void GameScene::pauseGame(const std::string& type)

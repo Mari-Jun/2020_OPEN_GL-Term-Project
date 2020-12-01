@@ -92,3 +92,9 @@ Asset/Image/TitleScene/background.png
 Asset/Image/Button/OKButtonOn.png
 Asset/Image/Button/OKButton.png
 Asset/Image/UIBackground/NotYet.png
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareC
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareA
+Asset/Mesh/Tile/Tower/Tile_Tower_RoundC
+Asset/Image/HUD/RNum8.png
+Asset/Image/HUD/RNum9.png
+Asset/Image/UIBackground/Complete.png
