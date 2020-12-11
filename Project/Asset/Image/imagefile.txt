@@ -107,3 +107,4 @@ Asset/Mesh/Tile/Tower/Tile_Tower_SquareA
 Asset/Image/HUD/RNum8.png
 Asset/Image/HUD/RNum9.png
 Asset/Image/HUD/YNum4.png
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareC

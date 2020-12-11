@@ -9,6 +9,7 @@ private:
 	static bool mKeys[Key_Max];
 	static bool mFirsts[Key_Max];
 	static std::unordered_map<int, bool> mSpecialKeys;
+	static std::unordered_map<int, bool> mSpecialFirsts;
 
 public:
 	KeyBoard();
@@ -21,6 +22,7 @@ public:
 	bool isKeyPressed(unsigned char key) const { return (static_cast<int>(key) >= Key_Max) ? false : mKeys[static_cast<int>(key)]; }
 	bool isKeyFirst(unsigned char key) const { return (static_cast<int>(key) >= Key_Max) ? false : mFirsts[static_cast<int>(key)]; }
 	bool isSpecialKeyPressed(int key) const { return mSpecialKeys[key]; }
+	bool isSpecialKeyFirst(int key) const { return mSpecialFirsts[key]; }
 
 private:
 	friend GLvoid keyDownCallBack(unsigned char key, int x, int y);
