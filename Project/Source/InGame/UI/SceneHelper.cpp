@@ -38,7 +38,7 @@ void SceneHelper::changeToGameScene(const GameInfo& info, int stage)
 
 void SceneHelper::changeToEditScene(const GameInfo& info)
 {
-	auto scene = std::make_shared<EditScene>(mScene.lock()->getGame(), info);
+	auto scene = std::make_shared<EditScene>(mScene.lock()->getGame(), info, info.mStage);
 	scene->initailize();
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);
 }

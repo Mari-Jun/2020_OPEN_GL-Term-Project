@@ -17,10 +17,10 @@
 #include "../UI/SceneHelper.h"
 #include "../UI/HUD/EditHUD.h"
 
-EditScene::EditScene(const std::weak_ptr<class Game>& game, GameInfo info)
+EditScene::EditScene(const std::weak_ptr<class Game>& game, GameInfo info, int stage)
 	: Scene(game)
 	, mInfo(info)
-	, mStage(mInfo.mStage)
+	, mStage(stage)
 {
 
 }
@@ -65,7 +65,7 @@ void EditScene::sceneInput()
 		scene->initailize();
 	}
 
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_LEFT))
+	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_LEFT))
 	{
 		mStage--;
 		if (!loadGameMap())
@@ -74,7 +74,7 @@ void EditScene::sceneInput()
 			mStage++;
 		}
 	}
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_RIGHT))
+	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_RIGHT))
 	{
 		mStage++;
 		if (!loadGameMap())

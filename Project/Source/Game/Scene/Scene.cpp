@@ -275,6 +275,44 @@ void Scene::addUI(const std::shared_ptr<class UI>& ui)
 	mUserInterfaces.emplace_back(ui);
 }
 
+void Scene::pauseAllActor()
+{
+	for (const auto& actors : mActors)
+	{
+		for (const auto& actor : actors.second)
+		{
+			actor->setState(Actor::State::Paused);
+		}
+	}
+
+	for (const auto& actors : mReadyActors)
+	{
+		for (const auto& actor : actors.second)
+		{
+			actor->setState(Actor::State::Paused);
+		}
+	}
+}
+
+void Scene::activeAllActor()
+{
+	for (const auto& actors : mActors)
+	{
+		for (const auto& actor : actors.second)
+		{
+			actor->setState(Actor::State::Active);
+		}
+	}
+
+	for (const auto& actors : mReadyActors)
+	{
+		for (const auto& actor : actors.second)
+		{
+			actor->setState(Actor::State::Active);
+		}
+	}
+}
+
 const std::vector<std::shared_ptr<class Actor>> Scene::getActors(std::string type) const
 {
 	auto actors = mActors.find(type);

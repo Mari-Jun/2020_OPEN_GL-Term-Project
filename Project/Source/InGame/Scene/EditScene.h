@@ -6,7 +6,7 @@
 class EditScene : public Scene
 {
 public:
-	EditScene(const std::weak_ptr<class Game>& game, GameInfo info);
+	EditScene(const std::weak_ptr<class Game>& game, GameInfo info, int stage);
 	virtual ~EditScene();
 
 	virtual void initailize();

@@ -14,6 +14,12 @@ std::unordered_map<int, bool> KeyBoard::mSpecialKeys =
 	{GLUT_KEY_LEFT,false},{GLUT_KEY_LEFT,false}
 };
 
+std::unordered_map<int, bool> KeyBoard::mSpecialFirsts =
+{
+	{GLUT_KEY_UP,false},{GLUT_KEY_DOWN,false},
+	{GLUT_KEY_LEFT,false},{GLUT_KEY_LEFT,false}
+};
+
 KeyBoard::KeyBoard()
 {
 	this->initalize();
@@ -39,6 +45,10 @@ void KeyBoard::update()
 	{
 		bt = false;
 	}
+	for (auto& bt : KeyBoard::mSpecialFirsts)
+	{
+		bt.second = false;
+	}
 }
 
 GLvoid keyDownCallBack(unsigned char key, int x, int y)
@@ -56,9 +66,11 @@ GLvoid keyUpCallBack(unsigned char key, int x, int y)
 GLvoid specialKeyDownCallBack(int key, int x, int y)
 {
 	KeyBoard::mSpecialKeys[key] = true;
+	KeyBoard::mSpecialFirsts[key] = true;
 }
 
 GLvoid specialKeyUpCallBack(int key, int x, int y)
 {
 	KeyBoard::mSpecialKeys[key] = false;
+	KeyBoard::mSpecialFirsts[key] = false;
 }

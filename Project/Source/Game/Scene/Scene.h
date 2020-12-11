@@ -36,6 +36,9 @@ public:
 	void removeActor(const std::string& type, const std::weak_ptr<class Actor>& actor);
 	void addUI(const std::shared_ptr<class UI>& ui);
 
+	void pauseAllActor();
+	void activeAllActor();
+
 private:
 	SceneState mState;
 	std::weak_ptr<class Game> mGame;
