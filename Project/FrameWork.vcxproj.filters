@@ -297,6 +297,9 @@
     <ClCompile Include="Source\InGame\Scene\LogoScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InGame\Camera\MinimapCamera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -591,6 +594,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Camera\MinimapCamera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
