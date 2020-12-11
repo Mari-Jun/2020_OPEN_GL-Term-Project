@@ -223,6 +223,7 @@
     <ClCompile Include="Source\InGame\Actor\Tile\EndPointTile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\EnemyTile.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\LightTile.cpp" />
+    <ClCompile Include="Source\InGame\Camera\MinimapCamera.cpp" />
     <ClCompile Include="Source\InGame\Info\GameInfo.cpp" />
     <ClCompile Include="Source\InGame\Map\Editer\MapEditor.cpp" />
     <ClCompile Include="Source\InGame\Map\GameMap.cpp" />
@@ -324,6 +325,7 @@
     <ClInclude Include="Source\InGame\Actor\Tile\EndPointTile.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\EnemyTile.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\LightTile.h" />
+    <ClInclude Include="Source\InGame\Camera\MinimapCamera.h" />
     <ClInclude Include="Source\InGame\Info\GameInfo.h" />
     <ClInclude Include="Source\InGame\Map\Editer\MapEditor.h" />
     <ClInclude Include="Source\InGame\Map\GameMap.h" />
