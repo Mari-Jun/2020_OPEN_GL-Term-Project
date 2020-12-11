@@ -17,10 +17,10 @@
 #include "../UI/SceneHelper.h"
 #include "../UI/HUD/EditHUD.h"
 
-EditScene::EditScene(const std::weak_ptr<class Game>& game, GameInfo info)
+EditScene::EditScene(const std::weak_ptr<class Game>& game, GameInfo info, int stage)
 	: Scene(game)
 	, mInfo(info)
-	, mStage(mInfo.mStage)
+	, mStage(stage)
 {
 
 }

@@ -58,8 +58,6 @@ void GameScene::initailize()
 
 	//Set Sound
 	game->getSound()->play(static_cast<int>(Sound::Type::bgm), mGameMap->getTimeBgm(), 0);
-
-
 }
 
 void GameScene::sceneInput()
@@ -77,7 +75,7 @@ void GameScene::sceneInput()
 	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
 	{
 		setSceneState(SceneState::Dead);
-		auto scene = std::make_shared<EditScene>(getGame(), mInfo);
+		auto scene = std::make_shared<EditScene>(getGame(), mInfo, mStage);
 		scene->initailize();
 	}
 
@@ -111,10 +109,10 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	/*auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
-	control->setScale(1.5f);
-	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
-	control->initailize();*/
+	//auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
+	//control->setScale(1.5f);
+	//control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	//control->initailize();
 
 	auto control = std::make_shared<Actor>(weak_from_this());
 	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
@@ -127,14 +125,14 @@ void GameScene::loadActorData()
 	mCamera->initailize();
 
 	//Create ParticleCreator
-	auto particle = std::make_shared<ParticleCreator>(weak_from_this(), control);
-	particle->setScale(1000.0f);
-	particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
-	particle->initailize();
+	//auto particle = std::make_shared<ParticleCreator>(weak_from_this(), control);
+	//particle->setScale(1000.0f);
+	//particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
+	//particle->initailize();
 
-	////Create MinionManager
-	//mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
-	//mMinionManager->initailize();
+	//Create MinionManager
+	/*mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
+	mMinionManager->initailize();*/
 }
 
 void GameScene::loadGameMap()
@@ -149,9 +147,8 @@ void GameScene::loadGameMap()
 
 void GameScene::loadUI()
 {
-	//mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
-	//mGameHUD->initailize();
-	//
+	/*mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mGameHUD->initailize();*/
 }
 
 void GameScene::pauseGame(const std::string& type)

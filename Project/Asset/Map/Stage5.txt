@@ -1,40 +1,40 @@
-Time Sunny
+Time Sunset
 Line 1 20
 Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 2 20
 Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 3 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 StartPoint 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 4 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 5 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 6 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 7 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 8 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 StartPoint 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 9 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Light 270 Light 270 Light 270 Light 270 Light 270 Light 270 Light 270 Light 270 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 10 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 TowerBallista 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 11 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 12 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 13 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 14 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 15 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 16 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 EndPoint 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 17 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 
 Line 18 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 EndPoint 0 Basic 0 Basic 0 Basic 0 
 Line 19 20
 Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 20 20
