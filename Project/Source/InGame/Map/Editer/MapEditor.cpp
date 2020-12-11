@@ -153,6 +153,14 @@ void MapEditor::editInput()
 	{
 		rotateTile();
 	}
+	if (game->getKeyBoard()->isKeyFirst('s'))
+	{
+		changeGrassSnow(false);
+	}
+	if (game->getKeyBoard()->isKeyFirst('g'))
+	{
+		changeGrassSnow(true);
+	}
 }
 
 void MapEditor::loadData()
@@ -353,4 +361,40 @@ void MapEditor::checkTime()
 	}
 }
 
+void MapEditor::changeGrassSnow(bool Grass)
+{
+	const auto& tiles = mGameMap.lock()->getTiles();
 
+	auto mapSize = mGameMap.lock()->getMapSize();
+
+	for (auto y = 0; y < mapSize; y++)
+	{
+		for (auto x = 0; x < mapSize; x++)
+		{
+			auto type = "";
+
+			switch (tiles[y][x].lock()->getTileType())
+			{
+			case Tile::TileType::Basic: if (!Grass) type = "SnowBasic"; else continue; break;
+			case Tile::TileType::Rock: if (!Grass) type = "SnowRock"; else continue; break;
+			case Tile::TileType::Hill: if (!Grass) type = "SnowHill"; else continue; break;
+			case Tile::TileType::Crystal: if (!Grass) type = "SnowCrystal"; else continue; break;
+			case Tile::TileType::Tree: if (!Grass) type = "SnowTree"; else continue; break;
+			case Tile::TileType::TreeDouble:if (!Grass)  type = "SnowTreeDouble"; else continue; break;
+			case Tile::TileType::TreeQuad: if (!Grass) type = "SnowTreeQuad"; else continue; break;
+			case Tile::TileType::Snow_Basic: if (Grass) type = "Basic"; else continue; break;
+			case Tile::TileType::Snow_Rock: if (Grass) type = "Rock"; else continue; break;
+			case Tile::TileType::Snow_Hill: if (Grass) type = "Hill"; else continue; break;
+			case Tile::TileType::Snow_Crystal: if (Grass) type = "Crystal"; else continue; break;
+			case Tile::TileType::Snow_Tree: if (Grass) type = "Tree"; else continue; break;
+			case Tile::TileType::Snow_TreeDouble:if (Grass)  type = "TreeDouble"; else continue; break;
+			case Tile::TileType::Snow_TreeQuad: if (Grass) type = "TreeQuad"; else continue; break;
+			default: continue;
+			}
+
+			auto rot = round(Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), tiles[y][x].lock()->getRotation()))));
+			mGameMap.lock()->removeTile(y, x);
+			mGameMap.lock()->addTile(type, y, x, rot * 2);
+		}
+	}
+}
