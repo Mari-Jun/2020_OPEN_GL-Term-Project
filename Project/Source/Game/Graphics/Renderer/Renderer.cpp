@@ -356,7 +356,7 @@ void Renderer::removeCubeMap()
 bool Renderer::loadShader()
 {
 	mSpriteShader = std::make_unique<Shader>();
-	if (!mSpriteShader->load("Source/Game/Graphics/Shader/Sprite.vert", "Source/Game/Graphics/Shader/Sprite.frag"))
+	if (!mSpriteShader->load("Asset/Shader/Sprite.vert", "Asset/Shader/Sprite.frag"))
 	{
 		return false;
 	}
@@ -367,7 +367,7 @@ bool Renderer::loadShader()
 
 
 	mMeshShader = std::make_unique<Shader>();
-	if (!mMeshShader->load("Source/Game/Graphics/Shader/Phong.vert", "Source/Game/Graphics/Shader/Phong.frag"))
+	if (!mMeshShader->load("Asset/Shader/Phong.vert", "Asset/Shader/Phong.frag"))
 	{
 		return false;
 	}
@@ -378,7 +378,7 @@ bool Renderer::loadShader()
 	mMeshShader->setMatrixUniform("uViewProj", mView * mProjection);
 
 	mBillBoardShader = std::make_unique<Shader>();
-	if (!mBillBoardShader->load("Source/Game/Graphics/Shader/Board.vert", "Source/Game/Graphics/Shader/Phong.frag"))
+	if (!mBillBoardShader->load("Asset/Shader/Board.vert", "Asset/Shader/Phong.frag"))
 	{
 		return false;
 	}
@@ -387,7 +387,7 @@ bool Renderer::loadShader()
 
 	auto proj = Matrix4::CreateOrtho(getWindow()->getSize().x, getWindow()->getSize().y, 25.0f, 1000.0f);
 	mCubeMapShader = std::make_unique<Shader>();
-	if (!mCubeMapShader->load("Source/Game/Graphics/Shader/cubemap.vert", "Source/Game/Graphics/Shader/cubemap.frag"))
+	if (!mCubeMapShader->load("Asset/Shader/cubemap.vert", "Asset/Shader/cubemap.frag"))
 	{
 		return false;
 	}

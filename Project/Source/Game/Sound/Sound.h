@@ -75,6 +75,7 @@ public:
 	void setListener(const Vector3& pos);
 	void stopBgmChannel(int channel) { FMOD_Channel_Stop(Channel[channel]); }
 	Vector3 getListener() const { return listenerPos; }
+	void updateSound() { FMOD_System_Update(System); }
 
 protected:
 	int index;
