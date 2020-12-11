@@ -51,11 +51,11 @@ void MovePlayer::initailize()
 
 void MovePlayer::updateActor(float deltatime)
 {
-	Player::updateActor(deltatime);
-
 	updateGravity(deltatime);
 
-	collides(mBoxComponent);		
+	collides(mBoxComponent);
+
+	Player::updateActor(deltatime);
 
 	mHealthBar->setScale(Vector3(0.1f, 0.1f, 0.1f) - 0.1f * Vector3(1.0f, 0.0f, 1.0f) * (1.0f - (mStat.mHp) / mStat.mMaxHp));
 	mHealthBar->setPosition(getPosition() + Vector3::UnitY * 30.0f);

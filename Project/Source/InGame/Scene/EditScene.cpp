@@ -65,8 +65,7 @@ void EditScene::sceneInput()
 		scene->initailize();
 	}
 
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_LEFT) &&
-		game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_LEFT))
+	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_LEFT))
 	{
 		mStage--;
 		if (!loadGameMap())
@@ -75,8 +74,7 @@ void EditScene::sceneInput()
 			mStage++;
 		}
 	}
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_RIGHT) &&
-		game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_RIGHT))
+	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_RIGHT))
 	{
 		mStage++;
 		if (!loadGameMap())

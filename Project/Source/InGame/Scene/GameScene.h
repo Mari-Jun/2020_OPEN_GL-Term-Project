@@ -17,10 +17,13 @@ public:
 	virtual void unLoadData();
 	
 private:
+	std::shared_ptr<class ControlPlayer> mControl;
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;
+	std::shared_ptr<class CameraActor> mPhotoCamera;
+	std::shared_ptr<class ParticleCreator> mParticle;
+	std::shared_ptr<class MinionManager> mMinionManager;
 	std::shared_ptr<class GameMap> mGameMap;
 	std::unique_ptr<class SceneHelper> mSceneHelper;
-	std::shared_ptr<class MinionManager> mMinionManager;
 	std::shared_ptr<class GameHUD> mGameHUD;
 	std::shared_ptr<class CubeMaps> mCubeMaps;
 	GameInfo mInfo;
@@ -31,6 +34,8 @@ private:
 	void loadGameMap();
 	void loadUI();
 	void pauseGame(const std::string& type);
+	void changeGameToPhoto();
+	void changePhotoToGame();
 
 public:
 	void stageClear();

@@ -78,7 +78,17 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<EditScene>(getGame(), mInfo, mStage);
 		scene->initailize();
 	}
-
+	if (game->getKeyBoard()->isKeyFirst('p'))
+	{
+		if (mPhotoCamera->getState() == Actor::State::Active)
+		{
+			changePhotoToGame();
+		}
+		else
+		{
+			changeGameToPhoto();
+		}
+	}
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
 		pauseGame("Pause");
@@ -109,30 +119,28 @@ void GameScene::unLoadData()
 void GameScene::loadActorData()
 {
 	//Create ControlRobot
-	//auto control = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
-	//control->setScale(1.5f);
-	//control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
-	//control->initailize();
-
-	auto control = std::make_shared<Actor>(weak_from_this());
-	control->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
-	control->initailize();
+	mControl = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
+	mControl->setScale(1.5f);
+	mControl->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	mControl->initailize();
 
 	//Create CameraActor
-	//mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), control);
-	//mFollowCamera->initailize();
-	auto mCamera = std::make_shared<CameraActor>(weak_from_this());
-	mCamera->initailize();
+	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), mControl);
+	mFollowCamera->initailize();
+
+	mPhotoCamera = std::make_shared<CameraActor>(weak_from_this());
+	mPhotoCamera->initailize();
+	mPhotoCamera->setState(Actor::State::Paused);
 
 	//Create ParticleCreator
-	//auto particle = std::make_shared<ParticleCreator>(weak_from_this(), control);
-	//particle->setScale(1000.0f);
-	//particle->setPosition(control->getPosition() + Vector3::UnitY * 300.0f);
-	//particle->initailize();
+	mParticle = std::make_shared<ParticleCreator>(weak_from_this(), mControl);
+	mParticle->setScale(1000.0f);
+	mParticle->setPosition(mControl->getPosition() + Vector3::UnitY * 300.0f);
+	mParticle->initailize();
 
 	//Create MinionManager
-	/*mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
-	mMinionManager->initailize();*/
+	mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
+	mMinionManager->initailize();
 }
 
 void GameScene::loadGameMap()
@@ -142,13 +150,12 @@ void GameScene::loadGameMap()
 	file += std::to_string(mStage);
 	file += ".txt";
 	mGameMap->loadMap(file);
-
 }
 
 void GameScene::loadUI()
 {
-	/*mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
-	mGameHUD->initailize();*/
+	mGameHUD = std::make_shared<GameHUD>(std::dynamic_pointer_cast<GameScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
+	mGameHUD->initailize();
 }
 
 void GameScene::pauseGame(const std::string& type)
@@ -176,6 +183,18 @@ void GameScene::pauseGame(const std::string& type)
 
 	game->getMouse()->setCursor(GLUT_CURSOR_INHERIT);
 	game->getMouse()->setWarp(false);
+}
+
+void GameScene::changeGameToPhoto()
+{
+	pauseAllActor();
+	mPhotoCamera->setState(Actor::State::Active);
+}
+
+void GameScene::changePhotoToGame()
+{
+	activeAllActor();
+	mPhotoCamera->setState(Actor::State::Paused);
 }
 
 void GameScene::stageClear()

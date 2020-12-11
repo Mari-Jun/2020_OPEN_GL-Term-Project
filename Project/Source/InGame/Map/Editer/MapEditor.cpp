@@ -149,7 +149,7 @@ void MapEditor::editInput()
 		checkBoard();
 		checkTime();
 	}
-	if (game->getKeyBoard()->isKeyPressed('r') && game->getKeyBoard()->isKeyFirst('r'))
+	if (game->getKeyBoard()->isKeyFirst('r'))
 	{
 		rotateTile();
 	}

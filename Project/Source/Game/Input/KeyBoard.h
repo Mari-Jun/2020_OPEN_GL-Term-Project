@@ -20,9 +20,9 @@ public:
 	void update();
 
 	bool isKeyPressed(unsigned char key) const { return (static_cast<int>(key) >= Key_Max) ? false : mKeys[static_cast<int>(key)]; }
-	bool isKeyFirst(unsigned char key) const { return (static_cast<int>(key) >= Key_Max) ? false : mFirsts[static_cast<int>(key)]; }
+	bool isKeyFirst(unsigned char key) const { return ((static_cast<int>(key) >= Key_Max) ? false : mFirsts[static_cast<int>(key)]) && isKeyPressed(key); }
 	bool isSpecialKeyPressed(int key) const { return mSpecialKeys[key]; }
-	bool isSpecialKeyFirst(int key) const { return mSpecialFirsts[key]; }
+	bool isSpecialKeyFirst(int key) const { return mSpecialFirsts[key] && isSpecialKeyPressed(key); }
 
 private:
 	friend GLvoid keyDownCallBack(unsigned char key, int x, int y);
