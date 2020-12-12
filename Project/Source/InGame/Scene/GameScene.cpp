@@ -133,6 +133,7 @@ void GameScene::draw()
 
 	game->getRenderer()->setEnableSwapBuffer(TRUE);
 	game->getRenderer()->setViewMatrix(play_view);
+	glViewport(0, 0, windowSize.x, windowSize.y);
 
 
 
