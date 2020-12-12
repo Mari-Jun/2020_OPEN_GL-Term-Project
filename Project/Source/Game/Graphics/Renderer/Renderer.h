@@ -18,6 +18,7 @@ public:
 	void update(float deltatime);
 	void processInput();
 	void draw();
+	void draw2();
 
 	void addLineComponent(const std::weak_ptr<class LineComponent>& component);
 	void removeLineComponent(const std::weak_ptr<class LineComponent>& component);
@@ -99,4 +100,8 @@ private:
 	void drawUserInterface();
 	void drawCubeMap();
 	bool writefile(const std::string& fileName);
+	bool EnableSwapBuffer = TRUE;
+
+public:
+	void setEnableSwapBuffer(bool i) { EnableSwapBuffer = i; }
 };

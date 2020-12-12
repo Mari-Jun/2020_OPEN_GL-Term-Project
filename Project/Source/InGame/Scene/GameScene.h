@@ -16,6 +16,8 @@ public:
 	virtual void loadData();
 	virtual void unLoadData();
 	
+	virtual void draw();
+
 private:
 	std::shared_ptr<class ControlPlayer> mControl;
 	std::shared_ptr<class FollowCameraActor> mFollowCamera;

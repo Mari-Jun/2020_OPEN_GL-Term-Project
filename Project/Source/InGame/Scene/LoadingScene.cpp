@@ -34,6 +34,11 @@ void LoadingScene::sceneInput()
 
 }
 
+void LoadingScene::draw()
+{
+	Scene::draw();
+}
+
 void LoadingScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);

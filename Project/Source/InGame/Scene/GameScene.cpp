@@ -58,6 +58,7 @@ void GameScene::initailize()
 
 	//Set Sound
 	game->getSound()->play(static_cast<int>(Sound::Type::bgm), mGameMap->getTimeBgm(), 0);
+
 }
 
 void GameScene::sceneInput()
@@ -89,15 +90,58 @@ void GameScene::sceneInput()
 			changeGameToPhoto();
 		}
 	}
+	
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
 		pauseGame("Pause");
 	}
 }
 
+void GameScene::draw()
+{
+
+
+	auto game = getGame().lock();
+	auto windowSize = game->getRenderer()->getWindow()->getSize();
+	Matrix4 play_view =	game->getRenderer()->getViewMatrix();
+	Matrix4 projection;
+	
+	//Draw Game
+	game->getRenderer()->setEnableSwapBuffer(FALSE);
+
+	//set Game Viewport
+	glViewport(0, 0, windowSize.x, windowSize.y);
+	projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f);
+	game->getRenderer()->setProjectionMatrix(projection);
+
+	Scene::draw();
+
+	//Draw Minimap
+	game->getRenderer()->setEnableSwapBuffer(TRUE);
+	//set minimap viewport
+	glViewport(0, windowSize.y - 300 , 300, 300);
+
+	auto minimapSize = Vector2(windowSize.x, windowSize.y);
+	auto miniMapEye = mControl->getPosition();
+	miniMapEye.y *= 2;
+	auto view = Matrix4::CreateLookAt(miniMapEye, mControl->getPosition(), Vector3::UnitZ);
+	//auto view = Matrix4::CreateLookAt(Vector3::UnitY * 100, Vector3::Zero, Vector3::UnitZ);
+	projection = Matrix4::CreateOrtho(500, 500 , 0.0f, 1000.0f);
+	game->getRenderer()->setViewMatrix(view);
+	game->getRenderer()->setProjectionMatrix(projection);
+	game->getRenderer()->draw2();
+
+	game->getRenderer()->setEnableSwapBuffer(TRUE);
+	game->getRenderer()->setViewMatrix(play_view);
+
+
+
+}
+
 void GameScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);
+	
 }
 
 void GameScene::loadData()

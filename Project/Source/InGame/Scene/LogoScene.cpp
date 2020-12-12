@@ -36,6 +36,11 @@ void LogoScene::sceneInput()
 
 }
 
+void LogoScene::draw()
+{
+	Scene::draw();
+}
+
 void LogoScene::sceneUpdate(float deltatime)
 {
 
