@@ -59,10 +59,6 @@ void GameScene::initailize()
 	//Set Sound
 	game->getSound()->play(static_cast<int>(Sound::Type::bgm), mGameMap->getTimeBgm(), 0);
 
-	//
-	//game->getRenderer()->getWindow()->clear();
-	game->getRenderer()->draw();
-
 }
 
 void GameScene::sceneInput()
@@ -94,6 +90,7 @@ void GameScene::sceneInput()
 			changeGameToPhoto();
 		}
 	}
+	
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
 		pauseGame("Pause");
@@ -106,30 +103,36 @@ void GameScene::draw()
 
 	auto game = getGame().lock();
 	auto windowSize = game->getRenderer()->getWindow()->getSize();
+	Matrix4 play_view =	game->getRenderer()->getViewMatrix();
 	Matrix4 projection;
 	
-	game->getRenderer()->setMulti_viewport(0);
+	//Draw Game
 	game->getRenderer()->setEnableSwapBuffer(FALSE);
+
+	//set Game Viewport
 	glViewport(0, 0, windowSize.x, windowSize.y);
 	projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f);
 	game->getRenderer()->setProjectionMatrix(projection);
 
 	Scene::draw();
 
-	game->getRenderer()->setMulti_viewport(TRUE);
+	//Draw Minimap
 	game->getRenderer()->setEnableSwapBuffer(TRUE);
-	////Scene::draw();
-	////Set Minimap
-	glViewport(0, 100, 200, 200);
+	//set minimap viewport
+	glViewport(0, windowSize.y - 300 , 300, 300);
+
 	auto minimapSize = Vector2(windowSize.x, windowSize.y);
-	auto view = Matrix4::CreateLookAt(Vector3::UnitY * 10.0f, Vector3::Zero, Vector3::UnitZ);
-	projection = Matrix4::CreateOrtho(minimapSize.x, minimapSize.y, 0.0f, 1000.0f);
+	auto miniMapEye = mControl->getPosition();
+	miniMapEye.y *= 2;
+	auto view = Matrix4::CreateLookAt(miniMapEye, mControl->getPosition(), Vector3::UnitZ);
+	//auto view = Matrix4::CreateLookAt(Vector3::UnitY * 100, Vector3::Zero, Vector3::UnitZ);
+	projection = Matrix4::CreateOrtho(500, 500 , 0.0f, 1000.0f);
 	game->getRenderer()->setViewMatrix(view);
 	game->getRenderer()->setProjectionMatrix(projection);
-	Scene::draw();
+	game->getRenderer()->draw2();
 
-
-	game->getRenderer()->setMulti_viewport(0);
+	game->getRenderer()->setEnableSwapBuffer(TRUE);
+	game->getRenderer()->setViewMatrix(play_view);
 
 
 

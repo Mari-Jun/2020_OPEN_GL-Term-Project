@@ -43,7 +43,6 @@ public:
 	void stageClear();
 	void stageFail();
 	void goToTitle();
-	int vr = 0;
 
 public:
 	const GameInfo& getGameInfo() const { return mInfo; }

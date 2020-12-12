@@ -10,6 +10,7 @@ public:
 	virtual void initailize();
 
 	virtual void sceneInput();
+	virtual void draw();
 	virtual void sceneUpdate(float deltatime);
 
 	virtual void loadData();

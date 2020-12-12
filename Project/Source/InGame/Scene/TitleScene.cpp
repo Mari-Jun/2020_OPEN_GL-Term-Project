@@ -52,6 +52,11 @@ void TitleScene::sceneInput()
 	auto game = getGame().lock();
 }
 
+void TitleScene::draw()
+{
+	Scene::draw();
+}
+
 void TitleScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);

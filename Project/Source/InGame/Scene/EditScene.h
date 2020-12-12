@@ -12,10 +12,13 @@ public:
 	virtual void initailize();
 
 	virtual void sceneInput();
+	virtual void draw();
 	virtual void sceneUpdate(float deltatime);
 
 	virtual void loadData();
 	virtual void unLoadData();
+
+
 	bool loadGameMap(const std::string& time = "None");
 	void loadBoard(std::string&& name, Vector3&& position);
 

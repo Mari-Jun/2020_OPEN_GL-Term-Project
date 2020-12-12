@@ -57,6 +57,11 @@ void ShopScene::sceneInput()
 	auto game = getGame().lock();
 }
 
+void ShopScene::draw()
+{
+	Scene::draw();
+}
+
 void ShopScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);

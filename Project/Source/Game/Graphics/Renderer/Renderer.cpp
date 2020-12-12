@@ -93,8 +93,8 @@ void Renderer::processInput()
 
 void Renderer::draw()
 {
-	if (multiple_viewport == FALSE)
-		mWindow->clear();
+
+	mWindow->clear();
 	drawCubeMap();
 	drawLineComponent();
 	drawMeshComponent();
@@ -108,6 +108,23 @@ void Renderer::draw()
 		mWindow->swapBuffer();
 }
 
+void Renderer::draw2()
+{
+	//draw multi_Viewport option draw
+	// 레이어를 겹쳐서 그려야 할 경우, 그리고 원래 draw말고 다르게 그려야 할 경우
+	// 여기에 그려줄것만 따로 빼서 그리세요
+	// 겹쳐서 그리기는 함수기때문에 mwindow->clear 는 없습니다.
+	// 그리는 부분
+	drawCubeMap();
+	drawLineComponent();
+	drawMeshComponent();
+	drawAlphaComponent();
+	drawBillBoardComponent();
+
+
+	mWindow->swapBuffer();
+	//--------------
+}
 
 void Renderer::drawLineComponent()
 {

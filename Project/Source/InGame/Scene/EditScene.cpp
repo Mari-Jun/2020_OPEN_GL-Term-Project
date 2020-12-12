@@ -87,6 +87,11 @@ void EditScene::sceneInput()
 	mEditor->editInput();
 }
 
+void EditScene::draw()
+{
+	Scene::draw();
+}
+
 void EditScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);
