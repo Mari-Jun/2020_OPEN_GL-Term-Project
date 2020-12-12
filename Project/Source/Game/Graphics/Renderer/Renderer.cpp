@@ -93,7 +93,8 @@ void Renderer::processInput()
 
 void Renderer::draw()
 {
-	mWindow->clear();
+	if (multiple_viewport == FALSE)
+		mWindow->clear();
 	drawCubeMap();
 	drawLineComponent();
 	drawMeshComponent();
@@ -103,8 +104,8 @@ void Renderer::draw()
 
 	drawSpriteComponent();
 	drawUserInterface();
-
-	mWindow->swapBuffer();
+	if (EnableSwapBuffer == TRUE)
+		mWindow->swapBuffer();
 }
 
 

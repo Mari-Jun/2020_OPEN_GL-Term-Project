@@ -99,4 +99,10 @@ private:
 	void drawUserInterface();
 	void drawCubeMap();
 	bool writefile(const std::string& fileName);
+	bool multiple_viewport = 0;
+	bool EnableSwapBuffer = TRUE;
+
+public:
+	void setMulti_viewport(bool i) { multiple_viewport = i; }
+	void setEnableSwapBuffer(bool i) { EnableSwapBuffer = i; }
 };

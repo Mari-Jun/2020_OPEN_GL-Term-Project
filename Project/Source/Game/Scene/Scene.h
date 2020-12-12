@@ -27,7 +27,7 @@ public:
 	virtual void sceneUpdate(float deltatime);
 	void uiUpdate(float deltatime);
 
-	void draw();
+	virtual void draw();
 
 	virtual void loadData();
 	virtual void unLoadData();
