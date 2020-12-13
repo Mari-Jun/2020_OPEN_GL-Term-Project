@@ -32,7 +32,7 @@ void ControlPlayer::initailize()
 void ControlPlayer::updateActor(float deltatime)
 {
 	MovePlayer::updateActor(deltatime);
-	std::cout << getPosition().x << "," << getPosition().y << "," << getPosition().z << std::endl;
+	//std::cout << getPosition().x << "," << getPosition().y << "," << getPosition().z << std::endl;
 }
 
 void ControlPlayer::actorInput()

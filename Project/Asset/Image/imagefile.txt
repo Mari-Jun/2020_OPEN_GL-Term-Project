@@ -111,3 +111,9 @@ Asset/Mesh/Tile/Tower/Tile_Tower_SquareC
 Asset/Image/Minimap/mark.png
 Asset/Image/Minimap/mark.png
 Asset/Image/Minimap/boundary.png
+Asset/Image/HUD/YNum6.png
+Asset/Image/HUD/YNum5.png
+Asset/Image/HUD/YNum8.png
+Asset/Image/HUD/YNum9.png
+Asset/Image/HUD/YNum0.png
+Asset/Image/UIBackground/Upgrade.png

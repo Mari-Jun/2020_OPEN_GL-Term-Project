@@ -79,7 +79,13 @@ public:
 
 protected:
 	int index;
+	float mBGMVolume;
+	float mEffectVolume;
 
 public:
+	void BGMvolumeUP() { mBGMVolume >= 1.0f ? NULL: mBGMVolume += 0.1f; }
+	void BGMvolumeDOWN() { mBGMVolume <= 0.0f ? NULL : mBGMVolume -= 0.1f;}
+	void EFFECTvolumeUP() { mEffectVolume >= 1.0f ? NULL : mEffectVolume += 0.1f; }
+	void EFFECTvolumeDOWN() { mEffectVolume <= 0.0f ? NULL : mEffectVolume -= 0.1f; }
 	void setEffectIndex(int effectindex) { EffectChannel.resize(effectindex); }
 };
