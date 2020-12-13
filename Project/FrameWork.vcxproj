@@ -234,6 +234,7 @@
     <ClCompile Include="Source\Game\Scene\Scene.cpp" />
     <ClCompile Include="Source\InGame\Actor\Tile\Tile.cpp" />
     <ClCompile Include="Source\InGame\Scene\LogoScene.cpp" />
+    <ClCompile Include="Source\InGame\Scene\SettingScene.cpp" />
     <ClCompile Include="Source\InGame\Scene\ShopScene.cpp" />
     <ClCompile Include="Source\InGame\Scene\TitleScene.cpp" />
     <ClCompile Include="Source\Game\UI\Button.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="Source\InGame\UI\HUD\GameHUD.cpp" />
     <ClCompile Include="Source\InGame\UI\HUD\HUD.cpp" />
     <ClCompile Include="Source\InGame\UI\HUD\LoadingHUD.cpp" />
+    <ClCompile Include="Source\InGame\UI\HUD\SettingHUD.cpp" />
     <ClCompile Include="Source\InGame\UI\HUD\ShopHUD.cpp" />
     <ClCompile Include="Source\InGame\UI\HUD\StageHUD.cpp" />
     <ClCompile Include="Source\InGame\UI\PauseUI.cpp" />
@@ -337,6 +339,7 @@
     <ClInclude Include="Source\Game\Scene\Scene.h" />
     <ClInclude Include="Source\InGame\Actor\Tile\Tile.h" />
     <ClInclude Include="Source\InGame\Scene\LogoScene.h" />
+    <ClInclude Include="Source\InGame\Scene\SettingScene.h" />
     <ClInclude Include="Source\InGame\Scene\ShopScene.h" />
     <ClInclude Include="Source\InGame\Scene\TitleScene.h" />
     <ClInclude Include="Source\Game\UI\Button.h" />
@@ -346,6 +349,7 @@
     <ClInclude Include="Source\InGame\UI\HUD\GameHUD.h" />
     <ClInclude Include="Source\InGame\UI\HUD\HUD.h" />
     <ClInclude Include="Source\InGame\UI\HUD\LoadingHUD.h" />
+    <ClInclude Include="Source\InGame\UI\HUD\SettingHUD.h" />
     <ClInclude Include="Source\InGame\UI\HUD\ShopHUD.h" />
     <ClInclude Include="Source\InGame\UI\HUD\StageHUD.h" />
     <ClInclude Include="Source\InGame\UI\PauseUI.h" />

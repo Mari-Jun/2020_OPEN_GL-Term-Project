@@ -13,6 +13,7 @@ public:
 	void changeToGameScene(const GameInfo& info, int stage);
 	void changeToEditScene(const GameInfo& info);
 	void changeToShopScene(const GameInfo& info);
+	void changeToSettingScene(const GameInfo& info);
 	void quitGame();
 	void createDialog(const std::string& typeName);
 

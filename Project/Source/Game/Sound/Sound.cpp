@@ -101,13 +101,13 @@ void Sound::play(int type, int name, int channel)
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.5 * mBGMVolume);
+		FMOD_Channel_SetVolume(Channel[channel], mBGMVolume);
 	}
 	else if (type == static_cast<int>(Type::ui))
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, uiSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.5 * mEffectVolume);
+		FMOD_Channel_SetVolume(Channel[channel], mEffectVolume);
 	}
 }
 

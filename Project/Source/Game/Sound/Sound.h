@@ -87,5 +87,8 @@ public:
 	void BGMvolumeDOWN() { mBGMVolume <= 0.0f ? NULL : mBGMVolume -= 0.1f;}
 	void EFFECTvolumeUP() { mEffectVolume >= 1.0f ? NULL : mEffectVolume += 0.1f; }
 	void EFFECTvolumeDOWN() { mEffectVolume <= 0.0f ? NULL : mEffectVolume -= 0.1f; }
+	float getBGMVolume() const { return mBGMVolume; }
+	float getEFFECTVolume() const { return mEffectVolume; }
+
 	void setEffectIndex(int effectindex) { EffectChannel.resize(effectindex); }
 };

@@ -7,6 +7,7 @@
 #include "../Scene/EditScene.h"
 #include "../Scene/LoadingScene.h"
 #include "../Scene/ShopScene.h"
+#include "../Scene/SettingScene.h"
 #include "../../Game/Sound/Sound.h"
 #include "DialogUI.h"
 
@@ -46,6 +47,13 @@ void SceneHelper::changeToEditScene(const GameInfo& info)
 void SceneHelper::changeToShopScene(const GameInfo& info)
 {
 	auto scene = std::make_shared<ShopScene>(mScene.lock()->getGame(), info);
+	scene->initailize();
+	mScene.lock()->setSceneState(Scene::SceneState::Dead);
+}
+
+void SceneHelper::changeToSettingScene(const GameInfo& info)
+{
+	auto scene = std::make_shared<SettingScene>(mScene.lock()->getGame(), info);
 	scene->initailize();
 	mScene.lock()->setSceneState(Scene::SceneState::Dead);
 }
