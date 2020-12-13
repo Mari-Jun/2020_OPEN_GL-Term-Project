@@ -1,9 +1,13 @@
+//∞‘¿”æ¿.cpp
 #include "GameScene.h"
 #include "LoadingScene.h"
 #include "EditScene.h"
 #include "../../Game/Graphics/Window.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Graphics/Mesh/CubeMapComponent.h"
+#include "../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../Game/Graphics/Mesh/SpriteComponent.h"
+#include "../../Game/Graphics/Mesh/Mesh.h"
 #include "../../Game/Game.h"
 #include "../../Game/Actor/Actor.h"
 #include "../../Game/Input/KeyBoard.h"
@@ -11,6 +15,9 @@
 #include "../../Game/Actor/Camera/CameraActor.h"
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
 #include "../../Game/Sound/Sound.h"
+
+//#include "../Minimap/GameMinimap.h"
+#include "../Camera/MinimapCamera.h"
 
 #include "../Actor/CubeMap/CubeMap.h"
 #include "../Actor/Player/Type/ControlPlayer.h"
@@ -32,7 +39,7 @@ GameScene::GameScene(const std::weak_ptr<class Game>& game, GameInfo info, int s
 
 GameScene::~GameScene()
 {
-	
+
 }
 
 void GameScene::initailize()
@@ -90,7 +97,7 @@ void GameScene::sceneInput()
 			changeGameToPhoto();
 		}
 	}
-	
+
 	if (game->getKeyBoard()->isKeyPressed(27))
 	{
 		pauseGame("Pause");
@@ -103,12 +110,13 @@ void GameScene::draw()
 
 	auto game = getGame().lock();
 	auto windowSize = game->getRenderer()->getWindow()->getSize();
-	Matrix4 play_view =	game->getRenderer()->getViewMatrix();
+	Matrix4 play_view = game->getRenderer()->getViewMatrix();
 	Matrix4 projection;
-	
+
 	//Draw Game
 	game->getRenderer()->setEnableSwapBuffer(FALSE);
 
+	//mMarker->setSpritePosition(Vector3::UnitY * 1000);
 	//set Game Viewport
 	glViewport(0, 0, windowSize.x, windowSize.y);
 	projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f);
@@ -117,20 +125,28 @@ void GameScene::draw()
 	Scene::draw();
 
 	//Draw Minimap
-	game->getRenderer()->setEnableSwapBuffer(TRUE);
 	//set minimap viewport
-	glViewport(0, windowSize.y - 300 , 300, 300);
+	//glViewport(windowSize.x - mGameMinimap->getMiniMapSize().x, 0 , mGameMinimap->getMiniMapSize().x, mGameMinimap->getMiniMapSize().y);
+	glViewport(windowSize.x - 250, 0, 250, 250);
 
 	auto minimapSize = Vector2(windowSize.x, windowSize.y);
 	auto miniMapEye = mControl->getPosition();
 	miniMapEye.y *= 2;
-	auto view = Matrix4::CreateLookAt(miniMapEye, mControl->getPosition(), Vector3::UnitZ);
+	if (mControl.use_count())
+		mControl->setScale(10.0f);
+	//mMarker->setSpritePosition(Vector3::Zero);
+	auto view = Matrix4::CreateLookAt(miniMapEye, mControl->getPosition(), mFollowCamera->getForward());
 	//auto view = Matrix4::CreateLookAt(Vector3::UnitY * 100, Vector3::Zero, Vector3::UnitZ);
-	projection = Matrix4::CreateOrtho(500, 500 , 0.0f, 1000.0f);
+	//auto view = Matrix4::CreateLookAt(miniMapEye, mControl->getPosition(), Vector3::UnitX);
+	projection = Matrix4::CreateOrtho(1000, 1000, 0.0f, 1000.0f);
 	game->getRenderer()->setViewMatrix(view);
 	game->getRenderer()->setProjectionMatrix(projection);
 	game->getRenderer()->draw2();
 
+
+	if (mControl.use_count())
+		mControl->setScale(0.1f);
+	//mMarker->setSpritePosition(Vector3::UnitY * 1000);
 	game->getRenderer()->setEnableSwapBuffer(TRUE);
 	game->getRenderer()->setViewMatrix(play_view);
 	glViewport(0, 0, windowSize.x, windowSize.y);
@@ -142,7 +158,9 @@ void GameScene::draw()
 void GameScene::sceneUpdate(float deltatime)
 {
 	Scene::sceneUpdate(deltatime);
-	
+	getGame().lock()->getSound()->updateSound();
+
+	//std::cout << mControl->getPosition().x << "," << mControl->getPosition().y << "," << mControl->getPosition().z << std::endl;
 }
 
 void GameScene::loadData()
@@ -169,6 +187,7 @@ void GameScene::loadActorData()
 	mControl->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
 	mControl->initailize();
 
+
 	//Create CameraActor
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), mControl);
 	mFollowCamera->initailize();
@@ -187,6 +206,14 @@ void GameScene::loadActorData()
 	//Create MinionManager
 	mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
 	mMinionManager->initailize();
+
+	//Create Minimap Boundary
+	mGameMinimap = std::make_shared<GameMinimap>(weak_from_this(), getGame().lock()->getRenderer(), mControl);
+	mGameMinimap->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Minimap/boundary.png"));
+	mGameMinimap->initailize();
+	mGameMinimap->setTexSize(1366, 768);
+
+
 }
 
 void GameScene::loadGameMap()
@@ -222,7 +249,7 @@ void GameScene::pauseGame(const std::string& type)
 		ui = std::make_shared<PauseUI>(weak_from_this(), game->getRenderer(), PauseUI::UIType::Fail);
 	}
 	ui->initailize();
-	
+
 	std::string fileName = "Asset/Image/UIBackground/" + type + ".png";
 
 	ui->setBackgroundTexture(game->getRenderer()->getTexture(fileName));

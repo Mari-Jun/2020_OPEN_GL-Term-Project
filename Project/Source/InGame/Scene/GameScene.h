@@ -1,3 +1,4 @@
+//∞‘¿”æ¿..h
 #pragma once
 #include "../Info/GameInfo.h"
 #include "../../Game/Scene/Scene.h"
@@ -15,7 +16,7 @@ public:
 
 	virtual void loadData();
 	virtual void unLoadData();
-	
+
 	virtual void draw();
 
 private:
@@ -28,6 +29,9 @@ private:
 	std::unique_ptr<class SceneHelper> mSceneHelper;
 	std::shared_ptr<class GameHUD> mGameHUD;
 	std::shared_ptr<class CubeMaps> mCubeMaps;
+	std::shared_ptr<class SpriteComponent> mMarker;
+	std::shared_ptr<class GameMinimap> mGameMinimap;
+
 	GameInfo mInfo;
 	int mStage;
 
