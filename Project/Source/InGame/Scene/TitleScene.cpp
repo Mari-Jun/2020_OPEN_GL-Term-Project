@@ -77,7 +77,8 @@ void TitleScene::loadData()
 		mSceneHelper->createDialog("Complete") :
 		mSceneHelper->createDialog("NoComplete"); 
 		}, Vector2(0.0f, -80.0f), "Asset/Image/Button/SaveButton");
-	ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -190.0f), "Asset/Image/Button/HelpButton");
+	//ui->addButton([this]() {mSceneHelper->createDialog("NotYet"); }, Vector2(0.0f, -190.0f), "Asset/Image/Button/HelpButton");
+	ui->addButton([this]() {mSceneHelper->changeToSettingScene(mInfo); }, Vector2(0.0f, -190.0f), "Asset/Image/Button/HelpButton");
 	ui->addButton([this]() {mSceneHelper->quitGame(); }, Vector2(0.0f, -300.0f), "Asset/Image/Button/QuitButton");
 	ui->addButton([this]() {mSceneHelper->changeToEditScene(mInfo); }, Vector2(500.0f, -300.0f), "Asset/Image/Button/EditButton");
 	ui->addButton([this]() {mSceneHelper->changeToShopScene(mInfo); }, Vector2(-500.0f, -300.0f), "Asset/Image/Button/ShopButton");

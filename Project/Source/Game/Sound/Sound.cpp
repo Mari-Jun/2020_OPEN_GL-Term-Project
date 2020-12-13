@@ -4,6 +4,8 @@
 
 Sound::Sound()
 	:listenerPos(Vector3::Zero)
+	, mBGMVolume(1.0f)
+	, mEffectVolume(1.0f)
 {
 	Sound::initalize();
 
@@ -95,20 +97,18 @@ void Sound::ERRCHECK(FMOD_RESULT result, int num)
 //사용법, bgm은 무조건 channel은 0임 button은 무조건 channel 1임 notice는 2 effect는 effectindex를 넣으시길
 void Sound::play(int type, int name, int channel)
 {
-
 	if (type == static_cast<int>(Type::bgm))
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, bgmSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.5);
+		FMOD_Channel_SetVolume(Channel[channel], mBGMVolume);
 	}
 	else if (type == static_cast<int>(Type::ui))
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, uiSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], 0.5);
+		FMOD_Channel_SetVolume(Channel[channel], mEffectVolume);
 	}
-
 }
 
 
@@ -124,13 +124,13 @@ void Sound::playDist(int name, int channel, float length)
 	{
 		FMOD_Channel_Stop(Channel[channel]);
 		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &Channel[channel]);
-		FMOD_Channel_SetVolume(Channel[channel], volume);
+		FMOD_Channel_SetVolume(Channel[channel], volume * mEffectVolume);
 	}
 	else
 	{
 		FMOD_Channel_Stop(EffectChannel[channel - 1]);
 		FMOD_System_PlaySound(System, effectSound[name], NULL, 0, &EffectChannel[channel - 1]);
-		FMOD_Channel_SetVolume(EffectChannel[channel - 1], volume);
+		FMOD_Channel_SetVolume(EffectChannel[channel - 1], volume * mEffectVolume);
 	}
 }
 

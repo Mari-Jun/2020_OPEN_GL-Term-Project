@@ -7,7 +7,7 @@
 #include "MinionAi/MinionManager.h"
 #include "MinionAi/MinionAi.h"
 #include "../../../../Game/Graphics/Mesh/MeshComponent.h"
-#include "../../../Camera/MinimapCamera.h"
+#include "../../../Minimap/GameMinimap.h"
 
 DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionManager>& manager)
 	: MovePlayer(scene, info)

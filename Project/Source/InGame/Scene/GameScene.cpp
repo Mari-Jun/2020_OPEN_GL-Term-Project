@@ -17,7 +17,7 @@
 #include "../../Game/Sound/Sound.h"
 
 //#include "../Minimap/GameMinimap.h"
-#include "../Camera/MinimapCamera.h"
+#include "../Minimap/GameMinimap.h"
 
 #include "../Actor/CubeMap/CubeMap.h"
 #include "../Actor/Player/Type/ControlPlayer.h"
@@ -97,7 +97,15 @@ void GameScene::sceneInput()
 			changeGameToPhoto();
 		}
 	}
-	if (game->getKeyBoard()->isKeyFirst('m'))
+	if (game->getKeyBoard()->isKeyFirst('+'))
+	{
+		getGame().lock()->getSound()->EFFECTvolumeUP();
+	}
+	if (game->getKeyBoard()->isKeyFirst('-'))
+	{
+		getGame().lock()->getSound()->EFFECTvolumeDOWN();
+	}
+	if (game->getKeyBoard()->isKeyFirst(VK_TAB))
 	{
 		mGameMinimap->OnOffMinimap();
 	}
@@ -120,7 +128,6 @@ void GameScene::draw()
 		//Draw Game
 		game->getRenderer()->setEnableSwapBuffer(FALSE);
 
-		//mMarker->setSpritePosition(Vector3::UnitY * 1000);
 		//set Game Viewport
 		glViewport(0, 0, windowSize.x, windowSize.y);
 		projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f);
@@ -130,7 +137,6 @@ void GameScene::draw()
 
 		//Draw Minimap
 		//set minimap viewport
-		//glViewport(windowSize.x - mGameMinimap->getMiniMapSize().x, 0 , mGameMinimap->getMiniMapSize().x, mGameMinimap->getMiniMapSize().y);
 		glViewport(windowSize.x - 250, 0, 250, 250);
 
 		auto minimapSize = Vector2(windowSize.x, windowSize.y);
@@ -146,7 +152,6 @@ void GameScene::draw()
 		game->getRenderer()->draw2();
 
 
-		//mMarker->setSpritePosition(Vector3::UnitY * 1000);
 		game->getRenderer()->setEnableSwapBuffer(TRUE);
 		game->getRenderer()->setViewMatrix(play_view);
 		game->getRenderer()->setProjectionMatrix(Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f));

@@ -118,7 +118,6 @@ void Renderer::draw2()
 	// 겹쳐서 그리기는 함수기때문에 mwindow->clear 는 없습니다.
 	// 그리는 부분
 	drawCubeMap();
-	drawLineComponent();
 	drawMeshComponent();
 	drawAlphaComponent();
 	drawBillBoardComponent();

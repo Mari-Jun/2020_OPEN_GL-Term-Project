@@ -111,7 +111,9 @@ void Rock::collide()
 			{
 				if (split == false)
 				{
- 					getGame().lock()->getSound()->play(static_cast<int>(Sound::Type::effect), static_cast<int>(Sound::effectName::rockbroken), mEffectindex);
+					auto Sound = getGame().lock()->getSound();
+					auto distVec = Sound->getListener() - getPosition();
+					Sound->playDist(static_cast<int>(Sound::effectName::rockbroken), mEffectindex, distVec.Length());
 					for (int i = 0; i < 12; ++i)	//i의 갯수는 파편의 개수
 					{
 						makeSplitRock();

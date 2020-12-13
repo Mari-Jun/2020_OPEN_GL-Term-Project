@@ -1,4 +1,4 @@
-#include "MinimapCamera.h"
+#include "GameMinimap.h"
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Actor/Actor.h"
 

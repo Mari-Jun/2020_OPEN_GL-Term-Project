@@ -15,7 +15,7 @@
 #include "../../Map/GameMap.h"
 #include "../Tile/Tile.h"
 //#include "../../Minimap/GameMinimap.h"
-#include "../../Camera/MinimapCamera.h"
+#include "../../Minimap/GameMinimap.h"
 MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: Player(scene, info)
 	, mStat({})

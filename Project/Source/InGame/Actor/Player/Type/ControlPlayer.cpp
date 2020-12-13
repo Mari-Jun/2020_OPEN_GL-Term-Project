@@ -6,7 +6,7 @@
 #include "../../../../Game/Component/MoveComponent.h"
 #include "../../../Scene/GameScene.h"
 //#include "../../../Minimap/GameMinimap.h"
-#include "../../../Camera/MinimapCamera.h"
+#include "../../../Minimap/GameMinimap.h"
 #include "../../../../Game/Graphics/Mesh/MeshComponent.h"
 
 ControlPlayer::ControlPlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
@@ -32,7 +32,7 @@ void ControlPlayer::initailize()
 void ControlPlayer::updateActor(float deltatime)
 {
 	MovePlayer::updateActor(deltatime);
-	std::cout << getPosition().x << "," << getPosition().y << "," << getPosition().z << std::endl;
+	//std::cout << getPosition().x << "," << getPosition().y << "," << getPosition().z << std::endl;
 }
 
 void ControlPlayer::actorInput()
