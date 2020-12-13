@@ -16,5 +16,12 @@ public:
 
 private:
 	std::shared_ptr<class Texture> mPlayerMarker;
+	static bool isMinimapEnable;
+
+public:
+	void OnOffMinimap() { isMinimapEnable = (isMinimapEnable + 1) % 2; }
+	void EnableMinimap() { isMinimapEnable = true; }
+	void DisableMinimap() { isMinimapEnable = false; }
+	bool getMinimapEnable() const { return isMinimapEnable; }
 
 };

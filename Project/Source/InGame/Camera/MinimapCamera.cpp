@@ -2,6 +2,7 @@
 #include "../../Game/Graphics/Renderer/Renderer.h"
 #include "../../Game/Actor/Actor.h"
 
+bool GameMinimap::isMinimapEnable = true;
 
 GameMinimap::GameMinimap(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, const std::weak_ptr<class Actor>& owner, bool standard)
 	: Minimap(scene, render, owner, standard)

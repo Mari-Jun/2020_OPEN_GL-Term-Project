@@ -1,10 +1,13 @@
 #include "DefaultMinion.h"
+#include "../../../../Game/Graphics/Window.h"
 #include "../../../../Game/Game.h"
 #include "../../../../Game/Sound/Sound.h"
 #include "../../../../Game/Component/MoveComponent.h"
 #include "../../../Scene/GameScene.h"
 #include "MinionAi/MinionManager.h"
 #include "MinionAi/MinionAi.h"
+#include "../../../../Game/Graphics/Mesh/MeshComponent.h"
+#include "../../../Camera/MinimapCamera.h"
 
 DefaultMinion::DefaultMinion(const std::weak_ptr<class Scene>& scene, PlayerInfo info, const std::weak_ptr<class MinionManager>& manager)
 	: MovePlayer(scene, info)
@@ -21,6 +24,9 @@ DefaultMinion::~DefaultMinion()
 void DefaultMinion::initailize()
 {
 	MovePlayer::initailize();
+	//mMarker = std::make_shared<GameMinimap>(getScene(), getGame().lock()->getRenderer(), weak_from_this(), TRUE);
+	//mMarker->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Minimap/mark.png"));
+	//mMarker->initailize();
 }
 
 void DefaultMinion::updateActor(float deltatime)
