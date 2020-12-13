@@ -1,33 +1,20 @@
 #pragma once
-#include "../Info/GameInfo.h"
-#include "../../Game/Scene/Scene.h"
-#include "../../Game/Math/Math.h"
+#include "../../Game/Minimap/Minimap.h"
 
-class MinimapCamera : public Scene
+
+class GameMinimap : public Minimap
 {
 public:
-	MinimapCamera(const std::weak_ptr<class Game>& game, GameInfo info, int stage);
-	virtual ~MinimapCamera();
+
+	GameMinimap(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Renderer>& render, const std::weak_ptr<class Actor>& owner, bool standard = false);
+	virtual ~GameMinimap() noexcept;
 
 	virtual void initailize();
 
-	virtual void sceneInput();
-	virtual void sceneUpdate(float deltatime);
-
-	virtual void loadData();
-	virtual void unLoadData();
-	bool loadGameMap(const std::string& time = "None");
-	void loadBoard(std::string&& name, Vector3&& position);
+	virtual void update(float deltatime);
+	virtual void draw(std::unique_ptr<class Shader>& shader);
 
 private:
-	std::shared_ptr<class GameMap> mGameMap;
-	std::unique_ptr<class MapEditor> mEditor;
-	std::unique_ptr<class SceneHelper> mSceneHelper;
-	GameInfo mInfo;
-	std::shared_ptr<class EditHUD> mEditHUD;
-	int mStage;
+	std::shared_ptr<class Texture> mPlayerMarker;
 
-public:
-	int getStage() const { return mStage; }
-	void setStage(int stage) { mStage = stage; }
 };

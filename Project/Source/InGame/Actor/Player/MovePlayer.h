@@ -1,3 +1,4 @@
+//무브플레이어.h
 #pragma once
 #include "Player.h"
 
@@ -38,6 +39,7 @@ private:
 protected:
 	PlayerStat mStat;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
+	std::shared_ptr<class GameMinimap> mMarker;
 
 public:
 	float getGravitySpeed() const { return mGravitySpeed; }

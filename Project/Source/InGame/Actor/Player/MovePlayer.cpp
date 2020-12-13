@@ -1,3 +1,4 @@
+//무브플레이어.cpp
 #include "MovePlayer.h"
 #include "Robot/RobotHead.h"
 #include "Robot/RobotArm.h"
@@ -13,7 +14,8 @@
 #include "../../Scene/GameScene.h"
 #include "../../Map/GameMap.h"
 #include "../Tile/Tile.h"
-
+//#include "../../Minimap/GameMinimap.h"
+#include "../../Camera/MinimapCamera.h"
 MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: Player(scene, info)
 	, mStat({})
@@ -25,6 +27,8 @@ MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 MovePlayer::~MovePlayer()
 {
 	mHealthBar->setState(Actor::State::Dead);
+	if (mMarker.use_count())
+		mMarker->~GameMinimap();
 }
 
 void MovePlayer::initailize()
@@ -47,6 +51,7 @@ void MovePlayer::initailize()
 	hp->initailize();
 	mHealthBar->setScale(0.1f);
 	mHealthBar->initailize();
+
 }
 
 void MovePlayer::updateActor(float deltatime)
@@ -71,7 +76,7 @@ void MovePlayer::updateAnimation()
 
 void MovePlayer::actorInput()
 {
-	
+
 }
 
 void MovePlayer::updateGravity(float deltatime)
@@ -139,7 +144,7 @@ void MovePlayer::setStat(PlayerInfo info)
 
 void MovePlayer::checkHp()
 {
-	
+
 }
 
 void MovePlayer::decreaseHp(float damage)

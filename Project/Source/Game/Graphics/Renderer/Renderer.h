@@ -1,3 +1,4 @@
+//·£´õ·¯.h
 #pragma once
 #include <string>
 #include <vector>
@@ -38,12 +39,15 @@ public:
 	void addUI(const std::weak_ptr<class UI>& ui);
 	void removeUI(const std::weak_ptr<class UI>& ui);
 
+	void addMinimap(const std::weak_ptr<class Minimap>& minimap);
+	void removeMinimap(const std::weak_ptr<class Minimap>& minimap);
+
 	void addCubeMap(const std::weak_ptr<class CubeMaps>& cubemaps);
 	void removeCubeMap();
 
 private:
 	bool loadShader();
-	void createSpriteVertex();	
+	void createSpriteVertex();
 
 	std::unordered_map<std::string, std::shared_ptr<class Texture>> mTexture;
 	std::unordered_map<std::string, std::shared_ptr<class Mesh>> mMesh;
@@ -57,6 +61,8 @@ private:
 	std::weak_ptr<class CubeMaps> mCubeMaps;
 
 	std::vector<std::weak_ptr<class UI>> mUserInterfaces;
+	std::vector<std::weak_ptr<class Minimap>> mMinimap;
+
 
 	std::weak_ptr<class Game> mGame;
 
@@ -66,7 +72,7 @@ private:
 	std::unique_ptr<class VertexArray> mSpriteVertex;
 	std::unique_ptr<class Shader> mCubeMapShader;
 	std::unique_ptr<class VertexArray> mCubeMapVertex;
-	
+
 	Matrix4 mView;
 	Matrix4 mInvertView;
 	Matrix4 mProjection;
@@ -90,7 +96,7 @@ public:
 
 	const std::shared_ptr<class Light>& getLight() const { return mLight; }
 	const std::unique_ptr<class Window>& getWindow() const { return mWindow; }
-	
+
 private:
 	void drawLineComponent();
 	void drawMeshComponent();
@@ -98,6 +104,7 @@ private:
 	void drawAlphaComponent();
 	void drawSpriteComponent();
 	void drawUserInterface();
+	void drawMinimapMarker();
 	void drawCubeMap();
 	bool writefile(const std::string& fileName);
 	bool EnableSwapBuffer = TRUE;

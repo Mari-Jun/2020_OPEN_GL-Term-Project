@@ -1,3 +1,4 @@
+//·£´õ·¯.cpp
 #include "../Shader/Shader.h"
 #include "../Light/Light.h"
 #include "../Shader/VertexArray.h"
@@ -13,6 +14,7 @@
 #include "../../Game.h"
 #include "../../Input/KeyBoard.h"
 #include "../../UI/UI.h"
+#include "../../Minimap/Minimap.h"
 #include <fstream>
 #include <sstream>
 
@@ -121,7 +123,7 @@ void Renderer::draw2()
 	drawAlphaComponent();
 	drawBillBoardComponent();
 
-
+	drawMinimapMarker();
 	mWindow->swapBuffer();
 	//--------------
 }
@@ -204,6 +206,22 @@ void Renderer::drawUserInterface()
 	}
 }
 
+void Renderer::drawMinimapMarker()
+{
+	glDisable(GL_DEPTH_TEST);
+
+
+	mSpriteShader->setActive();
+	mSpriteVertex->setActive();
+
+	for (const auto& minimap : mMinimap)
+	{
+		minimap.lock()->draw(mSpriteShader);
+	}
+
+
+}
+
 void Renderer::drawCubeMap()
 {
 	glFrontFace(GL_CCW);
@@ -211,16 +229,16 @@ void Renderer::drawCubeMap()
 	glDepthFunc(GL_LEQUAL);
 	auto view = mView;
 	view.mat[3][0] = view.mat[3][1] = view.mat[3][2] = 0.0f;
-	
+
 
 	auto tmp = mView;
-	tmp.mat[0][1] =view.mat[1][0];
-	tmp.mat[0][2] =view.mat[2][0];
+	tmp.mat[0][1] = view.mat[1][0];
+	tmp.mat[0][2] = view.mat[2][0];
 	tmp.mat[0][3] = view.mat[3][0];
 
-	tmp.mat[1][0] =view.mat[0][1];
-	tmp.mat[1][2] =view.mat[2][1];
-	tmp.mat[1][3] =view.mat[3][1];
+	tmp.mat[1][0] = view.mat[0][1];
+	tmp.mat[1][2] = view.mat[2][1];
+	tmp.mat[1][3] = view.mat[3][1];
 
 	tmp.mat[2][0] = view.mat[0][2] * -1;
 	tmp.mat[2][1] = view.mat[1][2] * -1;
@@ -258,7 +276,7 @@ void Renderer::removeLineComponent(const std::weak_ptr<class LineComponent>& com
 {
 	auto iter = std::find_if(mLineComponent.begin(), mLineComponent.end(),
 		[&component](const std::weak_ptr<LineComponent>& comp)
-		{return component.lock() == comp.lock(); });
+	{return component.lock() == comp.lock(); });
 
 	if (iter != mLineComponent.end())
 	{
@@ -275,7 +293,7 @@ void Renderer::removeMeshComponent(const std::weak_ptr<class MeshComponent>& com
 {
 	auto iter = std::find_if(mMeshComponent.begin(), mMeshComponent.end(),
 		[&component](const std::weak_ptr<MeshComponent>& comp)
-		{return component.lock() == comp.lock(); });
+	{return component.lock() == comp.lock(); });
 
 	if (iter != mMeshComponent.end())
 	{
@@ -292,7 +310,7 @@ void Renderer::removeAlphaComponent(const std::weak_ptr<class AlphaComponent>& c
 {
 	auto iter = std::find_if(mAlphaComponent.begin(), mAlphaComponent.end(),
 		[&component](const std::weak_ptr<AlphaComponent>& comp)
-		{return component.lock() == comp.lock(); });
+	{return component.lock() == comp.lock(); });
 
 	if (iter != mAlphaComponent.end())
 	{
@@ -311,14 +329,14 @@ void Renderer::addSpriteComponent(const std::weak_ptr<class SpriteComponent>& co
 			break;
 		}
 	}
-	mSpriteComponent.insert(iter, component);	
+	mSpriteComponent.insert(iter, component);
 }
 
 void Renderer::removeSpriteComponent(const std::weak_ptr<class SpriteComponent>& component)
 {
 	auto iter = std::find_if(mSpriteComponent.begin(), mSpriteComponent.end(),
 		[&component](const std::weak_ptr<SpriteComponent>& comp)
-		{return component.lock() == comp.lock(); });
+	{return component.lock() == comp.lock(); });
 
 	if (iter != mSpriteComponent.end())
 	{
@@ -335,7 +353,7 @@ void Renderer::removeBillBoardComponent(const std::weak_ptr<class BillBoardCompo
 {
 	auto iter = std::find_if(mBillBoardComponent.begin(), mBillBoardComponent.end(),
 		[&component](const std::weak_ptr<BillBoardComponent>& comp)
-		{return component.lock() == comp.lock(); });
+	{return component.lock() == comp.lock(); });
 
 	if (iter != mBillBoardComponent.end())
 	{
@@ -352,11 +370,28 @@ void Renderer::removeUI(const std::weak_ptr<class UI>& ui)
 {
 	auto iter = std::find_if(mUserInterfaces.begin(), mUserInterfaces.end(),
 		[&ui](const std::weak_ptr<UI>& u)
-		{return ui.lock() == u.lock(); });
+	{return ui.lock() == u.lock(); });
 
 	if (iter != mUserInterfaces.end())
 	{
 		mUserInterfaces.erase(iter);
+	}
+}
+
+void Renderer::addMinimap(const std::weak_ptr<class Minimap>& minimap)
+{
+	mMinimap.emplace_back(minimap);
+}
+
+void Renderer::removeMinimap(const std::weak_ptr<class Minimap>& minimap)
+{
+	auto iter = std::find_if(mMinimap.begin(), mMinimap.end(),
+		[&minimap](const std::weak_ptr<Minimap>& m)
+	{return minimap.lock() == m.lock(); });
+
+	if (iter != mMinimap.end())
+	{
+		mMinimap.erase(iter);
 	}
 }
 
@@ -515,7 +550,7 @@ std::shared_ptr<class Texture> Renderer::loadTexture(const std::string& fileName
 	}
 	else
 	{
-		
+
 		texture = std::make_shared<Texture>();
 		if (texture->load(fileName))
 		{
@@ -543,7 +578,7 @@ std::shared_ptr<class Mesh> Renderer::loadMesh(const std::string& fileName)
 	}
 	else
 	{
-		
+
 		mesh = std::make_shared<Mesh>();
 		if (mesh->load(fileName))
 		{
@@ -571,7 +606,7 @@ bool Renderer::writefile(const std::string& obj)
 		std::cerr << "file not found : " << fileName << '\n';
 		return false;
 	}
-	
+
 	objFile << obj << std::endl;
 
 
