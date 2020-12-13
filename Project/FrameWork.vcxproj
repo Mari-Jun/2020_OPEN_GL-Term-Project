@@ -228,6 +228,7 @@
     <ClCompile Include="Source\InGame\Info\GameInfo.cpp" />
     <ClCompile Include="Source\InGame\Map\Editer\MapEditor.cpp" />
     <ClCompile Include="Source\InGame\Map\GameMap.cpp" />
+    <ClCompile Include="Source\InGame\Minimap\GameMinimap.cpp" />
     <ClCompile Include="Source\InGame\Scene\EditScene.cpp" />
     <ClCompile Include="Source\InGame\Scene\GameScene.cpp" />
     <ClCompile Include="Source\InGame\Scene\LoadingScene.cpp" />
@@ -331,6 +332,7 @@
     <ClInclude Include="Source\InGame\Info\GameInfo.h" />
     <ClInclude Include="Source\InGame\Map\Editer\MapEditor.h" />
     <ClInclude Include="Source\InGame\Map\GameMap.h" />
+    <ClInclude Include="Source\InGame\Minimap\GameMinimap.h" />
     <ClInclude Include="Source\InGame\Scene\EditScene.h" />
     <ClInclude Include="Source\InGame\Scene\GameScene.h" />
     <ClInclude Include="Source\InGame\Scene\LoadingScene.h" />

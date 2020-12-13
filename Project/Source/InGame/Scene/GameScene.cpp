@@ -17,7 +17,7 @@
 #include "../../Game/Sound/Sound.h"
 
 //#include "../Minimap/GameMinimap.h"
-#include "../Camera/MinimapCamera.h"
+#include "../Minimap/GameMinimap.h"
 
 #include "../Actor/CubeMap/CubeMap.h"
 #include "../Actor/Player/Type/ControlPlayer.h"
@@ -154,7 +154,7 @@ void GameScene::draw()
 
 		game->getRenderer()->setEnableSwapBuffer(TRUE);
 		game->getRenderer()->setViewMatrix(play_view);
-		//game->getRenderer()->setProjectionMatrix(Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f));
+		game->getRenderer()->setProjectionMatrix(Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), windowSize.x, windowSize.y, 1.0f, 3000.0f));
 		glViewport(0, 0, windowSize.x, windowSize.y);
 	}
 	else {
