@@ -105,3 +105,11 @@ Asset/Mesh/Tile/Road/Maple_Tile_Hill
 Asset/Mesh/Tile/Road/Maple_Tile_TreeQuad
 Asset/Mesh/Tile/Road/Maple_Tile_Crystal
 Asset/Mesh/Tile/Road/Maple_Tile_Tree
+Asset/Image/Setting/10.png
+Asset/Image/Setting/9.png
+Asset/Image/Setting/8.png
+Asset/Image/Setting/7.png
+Asset/Image/Setting/6.png
+Asset/Image/Setting/5.png
+Asset/Image/Setting/4.png
+Asset/Image/UIBackground/NotYet.png
