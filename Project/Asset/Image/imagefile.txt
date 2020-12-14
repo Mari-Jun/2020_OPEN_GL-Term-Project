@@ -128,3 +128,13 @@ Asset/Image/HUD/RNum9.png
 Asset/Image/UIBackground/Clear.png
 Asset/Image/HUD/YNum0.png
 Asset/Image/UIBackground/Fail.png
+Asset/Image/Setting/3.png
+Asset/Image/Setting/2.png
+Asset/Image/Setting/1.png
+Asset/Image/Setting/0.png
+Asset/Image/UIBackground/Reinforce.png
+Asset/Image/UIBackground/skinBox.png
+Asset/Image/Button/UpgradeOn.png
+Asset/Image/Button/Upgrade.png
+Asset/Image/UIBackground/Volume.pngAsset/Image/Button/SetButtonOn.png
+Asset/Image/Button/SetButton.png

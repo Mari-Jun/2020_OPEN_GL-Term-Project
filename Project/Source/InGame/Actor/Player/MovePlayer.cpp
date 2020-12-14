@@ -27,8 +27,6 @@ MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 MovePlayer::~MovePlayer()
 {
 	mHealthBar->setState(Actor::State::Dead);
-	if (mMarker.use_count())
-		mMarker->~GameMinimap();
 }
 
 void MovePlayer::initailize()

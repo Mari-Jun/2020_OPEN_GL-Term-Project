@@ -208,7 +208,6 @@ void Renderer::drawMinimapMarker()
 {
 	glDisable(GL_DEPTH_TEST);
 
-
 	mSpriteShader->setActive();
 	mSpriteVertex->setActive();
 

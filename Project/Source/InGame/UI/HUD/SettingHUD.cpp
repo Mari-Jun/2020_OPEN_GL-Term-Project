@@ -23,6 +23,7 @@ SettingHUD::~SettingHUD()
 void SettingHUD::initailize()
 {
 	HUD::initailize();
+	mVolumeBoard = mRenderer.lock()->getTexture("Asset/Image/UIBackground/Volume.png");
 	mBGMstate = mRenderer.lock()->getTexture("Asset/Image/Setting/" + std::to_string(int(mSettingScene.lock()->getGame().lock()->getSound()->getBGMVolume() * 10)) + ".png");
 	mEFFECTstate = mRenderer.lock()->getTexture("Asset/Image/Setting/" + std::to_string(int(mSettingScene.lock()->getGame().lock()->getSound()->getEFFECTVolume() * 10)) + ".png");
 }
@@ -41,10 +42,11 @@ void SettingHUD::draw(std::unique_ptr<class Shader>& shader)
 {
 	auto wSize = mRenderer.lock()->getWindow()->getSize();
 
-	std::cout << int( mSettingScene.lock()->getGame().lock()->getSound()->getBGMVolume()*10) << std::endl;
+	//std::cout << int( mSettingScene.lock()->getGame().lock()->getSound()->getBGMVolume()*10) << std::endl;
 	mBGMstate = mRenderer.lock()->getTexture("Asset/Image/Setting/" + std::to_string(int(std::round(mSettingScene.lock()->getGame().lock()->getSound()->getBGMVolume() * 10))) + ".png");
 	mEFFECTstate = mRenderer.lock()->getTexture("Asset/Image/Setting/" + std::to_string(int(std::round(mSettingScene.lock()->getGame().lock()->getSound()->getEFFECTVolume() * 10))) + ".png");
-	drawTexture(shader, mBGMstate, Vector2(0.0f, 50.0f));
-	drawTexture(shader, mEFFECTstate, Vector2(0.0f, -200.0f));
+	drawTexture(shader, mVolumeBoard, Vector2(0.0f, 50.0f));
+	drawTexture(shader, mBGMstate, Vector2(-155.0f, 70.0f));
+	drawTexture(shader, mEFFECTstate, Vector2(-155.0f, -90.0f));
 	
 }
