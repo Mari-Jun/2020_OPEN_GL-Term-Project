@@ -143,6 +143,4 @@ Asset/Image/HUD/YNum4.png
 Asset/Mesh/Tile/Tower/Tile_Tower_SquareB
 Asset/Image/Button/SetButtonOn.png
 Asset/Image/Button/SetButton.png
-Asset/Image/HUD/YNum6.png
-Asset/Image/HUD/YNum9.png
-Asset/Image/HUD/YNum7.png
+Asset/Mesh/Tile/Tower/Tile_Tower_RoundA
