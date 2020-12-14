@@ -1,43 +1,43 @@
-Time Sunny
-Season Maple
+Time Moon
+Season Green
 Line 1 20
-Type TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 
+Type TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 0 TowerSquareB 0 TowerSquareA 0 TowerRoundA 0 TowerRoundC 0 TowerRoundA 0 TowerSquareA 0 TowerSquareB 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 2 20
-Type TreeQuad 0 Tree 0 TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 0 Tree 0 Tree 0 Tree 0 TreeQuad 0 TreeQuad 0 Tree 0 Tree 0 TreeQuad 90 TreeQuad 90 Tree 0 Tree 0 Tree 0 Tree 0 TreeQuad 90 
+Type TowerCannon 0 TowerCannon 0 TowerCannon 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerSquareC 0 Light 180 Light 270 Light 270 Light 270 Light 0 TowerSquareC 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerCatapult 0 TowerCatapult 0 TowerCatapult 0 
 Line 3 20
-Type TreeQuad 0 Tree 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 270 Tree 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Tree 0 TreeQuad 90 
+Type TowerCannon 0 Light 180 Light 270 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerRoundA 0 Light 180 Road 0 Road 0 Road 0 Light 0 TowerRoundA 0 TreeQuad 180 TreeQuad 90 TreeQuad 90 Light 270 Light 360 TowerCatapult 0 
 Line 4 20
-Type TreeQuad 0 TreeQuad 0 TreeDouble 90 StartPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeDouble 0 Tree 0 TreeQuad 90 
+Type TowerCannon 0 Light 180 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TowerRoundC 0 Light 180 Road 0 StartPoint 0 Road 0 Light 0 TowerRoundC 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 Road 0 Light 360 TowerCatapult 0 
 Line 5 20
-Type TreeQuad 90 TreeQuad 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeQuad 90 TreeQuad 0 
+Type TreeQuad 0 TowerSquareC 0 Light 180 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerRoundA 0 Light 180 Road 0 Road 0 Road 0 Light 0 TowerRoundA 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 Light 0 TowerSquareC 0 Crystal 0 
 Line 6 20
-Type TreeQuad 0 Tree 0 Tree 0 Tree 0 Tree 0 Tree 0 Tree 0 TreeQuad 0 TowerBallista 0 Hill 0 Road 0 Hill 0 TowerCannon 0 Tree 0 Tree 0 Tree 0 TreeQuad 180 Tree 0 Tree 0 TreeQuad 90 
+Type TreeQuad 90 Crystal 0 TowerRoundC 0 Light 180 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerSquareC 0 Light 180 Road 0 Road 0 Road 0 Light 360 TowerSquareC 0 TreeQuad 0 TreeQuad 0 Road 0 Light 0 TowerRoundC 0 Crystal 90 
 Line 7 20
-Type TreeQuad 0 TreeQuad 0 TreeDouble 90 TreeDouble 90 TreeDouble 0 TreeDouble 180 TreeDouble 90 TreeQuad 0 TreeQuad 0 Hill 0 Road 0 Hill 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Basic 0 
+Type TreeQuad 0 Crystal 0 TowerSquareB 0 Light 180 Road 0 TreeQuad 0 TreeQuad 90 TowerSquareB 0 TowerSquareA 0 Light 180 Road 0 Light 360 TowerSquareA 0 TowerSquareB 0 TreeQuad 90 TreeQuad 0 Light 0 TowerSquareB 0 Crystal 90 Crystal 0 
 Line 8 20
-Type TreeQuad 90 TreeQuad 0 TreeDouble 90 TreeDouble 0 Tree 0 Tree 0 Tree 0 Tree 0 TowerCannon 0 Hill 0 Road 0 Hill 0 TowerBallista 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 90 Crystal 0 Crystal 0 TowerRoundC 0 Light 180 TreeQuad 0 TreeQuad 0 TreeQuad 90 TowerSquareC 0 TowerSquareC 0 Road 0 TowerSquareC 0 TowerSquareC 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Light 0 TowerRoundC 0 Crystal 0 TreeQuad 90 
 Line 9 20
-Type TreeQuad 0 TreeQuad 90 TreeDouble 90 TreeDouble 180 Tree 0 Crystal 0 Crystal 0 Crystal 0 Tree 0 Hill 0 Road 0 Hill 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 90 Crystal 0 TowerSquareA 0 Light 180 Road 0 Road 0 Road 0 Light 270 Light 90 Light 90 Light 90 Light 270 Road 0 Road 0 Road 0 Light 360 TowerSquareA 0 Crystal 90 TreeQuad 90 
 Line 10 20
-Type TreeQuad 90 TreeQuad 0 TreeDouble 0 TreeDouble 90 Tree 0 Crystal 0 Crystal 0 Crystal 0 Tree 0 Hill 0 Road 0 Hill 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 90 TreeQuad 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 Hill 0 Rock 0 Road 0 TowerSquareB 0 TowerSquareB 0 TowerSquareB 0 Road 0 Rock 0 Hill 0 TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 90 
 Line 11 20
-Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Crystal 0 Crystal 0 Crystal 0 TowerBallista 0 Hill 0 Road 0 Hill 0 TowerCannon 0 TreeQuad 0 TreeQuad 90 TreeDouble 0 Basic 0 TreeQuad 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 90 TreeQuad 180 TreeQuad 0 TreeQuad 90 TreeQuad 0 Hill 0 Rock 0 Light 0 TowerRoundC 90 Light 90 TowerRoundC 0 Light 180 Rock 0 Hill 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 90 
 Line 12 20
-Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Tree 0 Tree 0 Tree 0 TreeQuad 0 Hill 0 Road 0 Hill 0 TreeDouble 0 TreeDouble 0 TreeDouble 90 TreeDouble 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 0 Hill 0 Rock 0 Light 0 TowerSquareC 0 EndPoint 0 TowerSquareC 0 Light 180 Rock 0 Hill 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 13 20
-Type TreeQuad 0 TreeQuad 0 EndPoint 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TowerCannon 0 TreeQuad 90 Hill 0 Road 0 Hill 0 TreeDouble 90 TreeDouble 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 90 TreeQuad 90 Hill 0 Rock 0 Light 0 TowerRoundC 90 Light 270 TowerRoundC 0 Light 180 Rock 0 Hill 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 
 Line 14 20
-Type TreeQuad 0 TreeQuad 0 Road 0 Road 0 TreeQuad 0 TowerCatapult 0 TowerCatapult 0 TreeQuad 0 TreeQuad 0 Road 0 Road 0 Hill 0 TowerBallista 0 TreeDouble 90 TreeDouble 0 TreeDouble 90 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 Hill 0 Rock 0 Light 0 TowerSquareC 0 Road 0 TowerSquareC 0 Light 180 Rock 0 Hill 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 
 Line 15 20
-Type TreeQuad 0 TreeQuad 0 TreeQuad 0 Road 0 Road 0 TreeQuad 0 TreeQuad 270 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeDouble 90 TreeDouble 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 90 Crystal 0 Crystal 90 Rock 0 Light 0 TowerRoundC 0 Road 0 TowerRoundC 0 Light 180 Rock 0 Crystal 90 Crystal 90 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 16 20
-Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 90 TreeQuad 90 TowerCatapult 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 0 Crystal 90 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Crystal 0 TreeQuad 90 TreeQuad 90 Basic 0 TreeQuad 0 
 Line 17 20
-Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 Rock 0 Rock 0 Rock 0 Rock 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 360 TowerBallista 0 TowerBallista 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 Road 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 Road 0 TowerSquareA 0 TowerSquareA 0 TowerSquareA 0 TowerBlaster 0 TowerBlaster 0 
 Line 18 20
-Type TreeQuad 90 Basic 0 TreeQuad 0 Hill 0 Hill 0 TowerBlaster 0 TowerBlaster 0 Hill 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 90 TowerBallista 0 Light 270 Light 270 Light 270 Light 270 Light 360 TowerSquareB 0 TowerRoundA 0 TowerSquareB 0 TowerRoundC 0 TowerSquareB 0 TowerRoundA 0 TowerSquareB 0 Light 180 Light 270 Light 270 Light 270 Light 270 TowerBlaster 0 
 Line 19 20
-Type TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 TreeQuad 0 TreeQuad 90 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 90 TowerBallista 0 Light 90 Light 90 Light 90 Light 90 Light 360 TowerSquareB 0 TowerSquareC 0 TowerSquareC 0 TowerSquareB 0 TowerSquareC 0 TowerSquareC 0 TowerSquareB 0 Light 180 Light 90 Light 90 Light 90 Light 90 TowerBlaster 0 
 Line 20 20
-Type TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
-Minion 20
+Type TreeQuad 90 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TowerBallista 0 TreeQuad 90 TreeQuad 0 TreeQuad 180 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TowerBlaster 0 TowerBlaster 0 TowerBlaster 0 TowerBlaster 0 TowerBlaster 0 
+Minion 0

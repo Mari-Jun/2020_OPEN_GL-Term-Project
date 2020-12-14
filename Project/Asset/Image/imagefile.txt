@@ -141,3 +141,6 @@ Asset/Mesh/Player/skin_womanAlternative.png
 Asset/Image/UIBackground/Upgrade.png
 Asset/Image/HUD/YNum4.png
 Asset/Mesh/Tile/Tower/Tile_Tower_SquareB
+Asset/Image/Button/SetButtonOn.png
+Asset/Image/Button/SetButton.png
+Asset/Mesh/Tile/Tower/Tile_Tower_RoundA

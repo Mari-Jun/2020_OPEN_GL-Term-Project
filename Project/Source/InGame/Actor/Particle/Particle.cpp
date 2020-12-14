@@ -35,9 +35,7 @@ void Particle::updateActor(float deltatime)
 {
 	float gravitySpeed = -200.0f;
 
-	mMoveComponent->setUpSpeed(gravitySpeed * Vector3::Dot(Vector3::UnitY, getUp()));
-	mMoveComponent->setForwardSpeed(gravitySpeed * Vector3::Dot(Vector3::UnitY, getForward()));
-	mMoveComponent->setSideSpeed(gravitySpeed * Vector3::Dot(Vector3::UnitY, getSide()));
+	mMoveComponent->setUpSpeed(gravitySpeed);
 
 	if (getPosition().y <= -30.0f)
 	{
