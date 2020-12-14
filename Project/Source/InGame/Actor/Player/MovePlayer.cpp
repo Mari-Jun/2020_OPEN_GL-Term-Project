@@ -20,6 +20,7 @@ MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: Player(scene, info)
 	, mStat({})
 	, mGravitySpeed(0.0f)
+	, mGroundCollide(false)
 {
 
 }
@@ -81,11 +82,16 @@ void MovePlayer::updateGravity(float deltatime)
 {
 	//중력 설정
 	if (mGravitySpeed > -10000.0f)
+	{
 		mGravitySpeed -= 100.0f;
+		if (getPosition().y < 20.0f)
+		{
+			mGravitySpeed = 0.0f;
+		}
+	}
+		
 
 	mMoveComponent->setUpSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getUp()));
-	mMoveComponent->setForwardSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getForward()));
-	mMoveComponent->setSideSpeed(mGravitySpeed * deltatime * Vector3::Dot(Vector3::UnitY, getSide()));
 }
 
 void MovePlayer::collides(const std::weak_ptr<BoxComponent>& bComp)
@@ -96,12 +102,15 @@ void MovePlayer::collides(const std::weak_ptr<BoxComponent>& bComp)
 
 	Vector3 pos = getPosition();
 
+	mGroundCollide = false;
+
 	auto cTiles = std::dynamic_pointer_cast<GameScene>(getScene().lock())->getGameMap()->getCollideTiles(pos);
 	for (auto tile : cTiles)
 	{
 		const AABB& box = tile.lock()->getBoxComponent()->getWorldBox();
 
 		auto cLength = (box.mMax.x - box.mMin.x) / 2;
+
 		if (Intersect(robotBox, box))
 		{
 			float dx1 = box.mMax.x - robotBox.mMin.x;
@@ -119,19 +128,19 @@ void MovePlayer::collides(const std::weak_ptr<BoxComponent>& bComp)
 			{
 				pos.x += dx;
 			}
-			if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
+			else if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
+			{
+				pos.z += dz;
+			}
+			else
 			{
 				pos.y += dy;
 				mGravitySpeed = 0.0f;
 			}
-			if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
-			{
-				pos.z += dz;
-			}
 
 			setPosition(pos);
-			mBoxComponent->updateWorldTransForm();
-		}
+			mBoxComponent->updateWorldTransForm();			
+		}	
 	}
 }
 

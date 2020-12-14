@@ -80,7 +80,7 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<LoadingScene>(getGame());
 		scene->initailize();
 	}
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
+	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_F5))
 	{
 		setSceneState(SceneState::Dead);
 		auto scene = std::make_shared<EditScene>(getGame(), mInfo, mStage);
@@ -193,9 +193,8 @@ void GameScene::loadActorData()
 	//Create ControlRobot
 	mControl = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
 	mControl->setScale(1.5f);
-	mControl->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	mControl->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 70.0f, 0.0f));
 	mControl->initailize();
-
 
 	//Create CameraActor
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), mControl);
