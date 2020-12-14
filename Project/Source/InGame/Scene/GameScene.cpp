@@ -80,7 +80,7 @@ void GameScene::sceneInput()
 		auto scene = std::make_shared<LoadingScene>(getGame());
 		scene->initailize();
 	}
-	if (game->getKeyBoard()->isSpecialKeyPressed(GLUT_KEY_F5))
+	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_F5))
 	{
 		setSceneState(SceneState::Dead);
 		auto scene = std::make_shared<EditScene>(getGame(), mInfo, mStage);

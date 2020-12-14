@@ -148,7 +148,7 @@ void ShopScene::upgradeStatLevel(int& statLevel, const std::string& type)
 		}
 	}
 
-	if (isBuy)
+	if (isBuy && mInfo.mCoin >= statLevel)
 	{
 		statLevel++;
 		mInfo.mCoin -= statLevel;
