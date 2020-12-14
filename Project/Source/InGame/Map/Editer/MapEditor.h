@@ -49,8 +49,6 @@ private:
 	void checkBoard();
 	void checkTime();
 
-	void changeGrassSnow(bool Grass);
-
 private:
 	static constexpr std::pair<int, int> mBoardMaxIndex = { 11, 3 };
 	static constexpr std::pair<int, int> mTimeMaxIndex = { 2, 3 };

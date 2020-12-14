@@ -202,7 +202,6 @@ void GameScene::loadActorData()
 	mFollowCamera->initailize();
 
 	mPhotoCamera = std::make_shared<CameraActor>(weak_from_this());
-	mPhotoCamera->setPosition(Vector3(0.0f, 100.0f, 0.0f));
 	mPhotoCamera->initailize();
 	mPhotoCamera->setState(Actor::State::Paused);
 
@@ -271,14 +270,12 @@ void GameScene::changeGameToPhoto()
 {
 	pauseAllActor();
 	mPhotoCamera->setState(Actor::State::Active);
-	mGameHUD->setIsPhoto(true);
 }
 
 void GameScene::changePhotoToGame()
 {
 	activeAllActor();
 	mPhotoCamera->setState(Actor::State::Paused);
-	mGameHUD->setIsPhoto(false);
 }
 
 void GameScene::stageClear()

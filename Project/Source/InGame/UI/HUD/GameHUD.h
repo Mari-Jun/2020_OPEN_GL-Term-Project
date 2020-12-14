@@ -14,10 +14,7 @@ public:
 	virtual void processInput();
 	virtual void draw(std::unique_ptr<class Shader>& shader);
 
-	void setIsPhoto(bool photo) { mIsPhoto = photo; }
-
 private:
-	bool mIsPhoto;
 	std::weak_ptr<class GameScene> mGameScene;
 	std::shared_ptr<class Texture> mCoin;
 	std::vector<std::shared_ptr<class Texture>> mCoinNumber;

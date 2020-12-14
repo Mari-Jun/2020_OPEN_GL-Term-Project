@@ -9,7 +9,6 @@
 
 GameHUD::GameHUD(const std::weak_ptr<class GameScene>& scene, const std::weak_ptr<class Renderer>& render)
 	: HUD(scene, render)
-	, mIsPhoto(false)
 	, mGameScene(scene)
 {
 
@@ -54,14 +53,11 @@ void GameHUD::processInput()
 
 void GameHUD::draw(std::unique_ptr<class Shader>& shader)
 {
-	if (!mIsPhoto)
-	{
-		auto wSize = mRenderer.lock()->getWindow()->getSize();
-		drawTexture(shader, mCoin, Vector2(wSize.x / 2 - 50.0f * (mCoinNumber.size() + 2), wSize.y / 2 - 50.0f));
-		drawNumberTexture(shader, mCoinNumber, Vector2(wSize.x / 2, wSize.y / 2 - 50.0f), 50.0f);
+	auto wSize = mRenderer.lock()->getWindow()->getSize();
+	drawTexture(shader, mCoin, Vector2(wSize.x / 2 - 50.0f * (mCoinNumber.size() + 2), wSize.y / 2 - 50.0f));
+	drawNumberTexture(shader, mCoinNumber, Vector2(wSize.x / 2, wSize.y / 2 - 50.0f), 50.0f);
 
-		drawTexture(shader, mCross, Vector2(0.0f, wSize.y / 2 - 50.0f));
-		drawNumberTexture(shader, mLiveMinion, Vector2(0.0f, wSize.y / 2 - 50.0f), 35.0f);
-		drawNumberTexture(shader, mClearMinion, Vector2(35.0f * (mClearMinion.size() + 1), wSize.y / 2 - 50.0f), 35.0f);
-	}
+	drawTexture(shader, mCross, Vector2(0.0f, wSize.y / 2 - 50.0f));
+	drawNumberTexture(shader, mLiveMinion, Vector2(0.0f, wSize.y / 2 - 50.0f), 35.0f);
+	drawNumberTexture(shader, mClearMinion, Vector2(35.0f * (mClearMinion.size() + 1), wSize.y / 2 - 50.0f), 35.0f);
 }
