@@ -138,9 +138,4 @@ Asset/Mesh/Player/skin_orc.png
 Asset/Mesh/Player/skin_soldier.png
 Asset/Mesh/Player/skin_woman.png
 Asset/Mesh/Player/skin_womanAlternative.png
-Asset/Image/HUD/YNum-2.png
-Asset/Image/HUD/YNum-5.png
-Asset/Image/HUD/YNum-9.png
-Asset/Image/HUD/YNum-4.png
-Asset/Image/HUD/YNum-1.png
 Asset/Image/UIBackground/Upgrade.png
