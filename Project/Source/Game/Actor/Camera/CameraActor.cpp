@@ -119,23 +119,23 @@ void CameraActor::InputMouse()
 	//KeyBoard Move
 	if (game->getKeyBoard()->isKeyPressed('w'))
 	{
-		forwardSpeed = 300.0f;
+		forwardSpeed = 500.0f;
 	}
 	if (game->getKeyBoard()->isKeyPressed('s'))
 	{
-		forwardSpeed = -300.0f;
+		forwardSpeed = -500.0f;
 	}
 	if (game->getKeyBoard()->isKeyPressed('a'))
 	{
-		sideSpeed = -300.0f;
+		sideSpeed = -500.0f;
 	}
 	if (game->getKeyBoard()->isKeyPressed('d'))
 	{
-		sideSpeed = 300.0f;
+		sideSpeed = 500.0f;
 	}
 	if (game->getKeyBoard()->isKeyPressed('v'))
 	{
-		upSpeed = -100.0f;
+		upSpeed = -300.0f;
 	}
 	if (game->getKeyBoard()->isKeyPressed(32))
 	{

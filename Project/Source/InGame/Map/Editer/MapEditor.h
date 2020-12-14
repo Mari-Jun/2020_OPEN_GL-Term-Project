@@ -39,26 +39,28 @@ private:
 	Vector2 mClickPos;
 
 private:
+	void setSelector(Selector& selector, Vector3 pos, float scale);
+
 	void changeTile();
 	void rotateTile();
 	void changeStartTile();
 	void changeEndTile();
-	void changeTime();
+	void changeTimeSeason();
 
 	void checkTileIndex();
-	void checkBoard();
-	void checkTime();
-
-	void changeGrassSnow(bool Grass);
+	bool checkBoard(Board& board, Selector& selector, bool right = false);
 
 private:
-	static constexpr std::pair<int, int> mBoardMaxIndex = { 11, 3 };
-	static constexpr std::pair<int, int> mTimeMaxIndex = { 2, 3 };
+	static constexpr std::pair<int, int> mBoardMaxIndex = { 9, 3 };
+	static constexpr std::pair<int, int> mTimeMaxIndex = { 1, 3 };
+	static constexpr std::pair<int, int> mSeasonMaxIndex = { 2, 3 };
 	Selector mMapSelector;
 	Selector mBoardSelector;
 	Selector mTimeSelector;
+	Selector mSeasonSelector;
 
 	Board mLeftBoard;
 	Board mRightBoard;
 	Board mTimeBoard;
+	Board mSeasonBoard;
 };

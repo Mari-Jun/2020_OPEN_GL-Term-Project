@@ -23,9 +23,9 @@ ControlPlayer::~ControlPlayer()
 void ControlPlayer::initailize()
 {
 	MovePlayer::initailize();
-	mMarker = std::make_shared<GameMinimap>(getScene(), getGame().lock()->getRenderer(), weak_from_this(), TRUE);
+	/*mMarker = std::make_shared<GameMinimap>(getScene(), getGame().lock()->getRenderer(), weak_from_this(), TRUE);
 	mMarker->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Minimap/mark.png"));
-	mMarker->initailize();
+	mMarker->initailize();*/
 
 }
 

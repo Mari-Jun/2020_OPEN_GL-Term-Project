@@ -9,12 +9,15 @@ public:
 		Basic, Road, Light,
 		Rock, Hill, Crystal,
 		Tree, TreeDouble, TreeQuad,
-		StartPoint, EndPoint, Snow_Basic,
-		Snow_Rock, Snow_Hill, Snow_Crystal,
-		Snow_Tree, Snow_TreeDouble, Snow_TreeQuad,
+		StartPoint, EndPoint,	
 		Tower_RoundA, Tower_RoundC, Tower_Blaster,
 		Tower_SquareA, Tower_SquareB, Tower_SquareC,
 		Tower_Ballista, Tower_Cannon, Tower_Catapult
+	};
+
+	enum class SeasonType
+	{
+		Sakura, Green, Maple, Snow
 	};
 
 	Tile(const std::weak_ptr<class Scene>& scene, TileType type = TileType::Basic);
@@ -26,6 +29,7 @@ public:
 
 private:
 	TileType mType;
+	SeasonType mSeasonType;
 	std::shared_ptr<class MeshComponent> mMeshComponent;
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 
@@ -33,4 +37,6 @@ public:
 	TileType getTileType() const { return mType; }
 	std::string getTileTypeToString() const;
 	const std::shared_ptr<class BoxComponent>& getBoxComponent() const { return mBoxComponent; }
+	std::string getSeasonTypeToString() const;
+	void setSeasonType(SeasonType type) { mSeasonType = type; }
 };

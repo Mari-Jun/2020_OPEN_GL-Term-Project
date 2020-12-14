@@ -19,7 +19,7 @@ public:
 	virtual void unLoadData();
 
 
-	bool loadGameMap(const std::string& time = "None");
+	bool loadGameMap(const std::string time = "None", const std::string season = "None");
 	void loadBoard(std::string&& name, Vector3&& position);
 
 private:

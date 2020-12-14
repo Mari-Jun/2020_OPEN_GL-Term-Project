@@ -1,31 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 颇老 积己凳: 15.11.2020 00:41:35
+# 颇老 积己凳: 14.12.2020 16:12:40
 
-newmtl dirt
-	Ns 43.2193
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.2000 0.2000 0.2000
-	Kd 0.9765 0.7137 0.4510
-	Ks 0.2000 0.2000 0.2000
-	Ke 0.0000 0.0000 0.0000
-
-newmtl snow
-	Ns 43.2193
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.2000 0.2000 0.2000
-	Kd 0.8932 0.9646 0.9811
-	Ks 0.2000 0.2000 0.2000
-	Ke 0.0000 0.0000 0.0000
-
-newmtl crystal
+newmtl snow_tile_crystal_crystal
 	Ns 43.2193
 	Ni 1.5000
 	d 1.0000
@@ -37,7 +13,7 @@ newmtl crystal
 	Ks 0.2000 0.2000 0.2000
 	Ke 0.0000 0.0000 0.0000
 
-newmtl snowRoad
+newmtl snow_tile_crystal_snowRoad
 	Ns 43.2193
 	Ni 1.5000
 	d 1.0000
@@ -46,5 +22,17 @@ newmtl snowRoad
 	illum 2
 	Ka 0.2000 0.2000 0.2000
 	Kd 0.7020 0.8549 0.8941
+	Ks 0.2000 0.2000 0.2000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl snow_tile_crystal_snow
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2000 0.2000 0.2000
+	Kd 0.8932 0.9646 0.9811
 	Ks 0.2000 0.2000 0.2000
 	Ke 0.0000 0.0000 0.0000

@@ -18,7 +18,7 @@ public:
 	GameMap(const std::weak_ptr<class Scene>& scene, float tileSize = 200.0f, int mapSize = 20);
 	~GameMap() noexcept;
 
-	bool loadMap(const std::string& fileName, const std::string time = "None");
+	bool loadMap(const std::string& fileName, const std::string time = "None", const std::string season = "None");
 
 	void addTile(const std::string& type, int y, int x, float rot);
 	void removeTile(int y, int x);
@@ -34,6 +34,7 @@ private:
 	Vector3 mStartPosition;
 	Vector3 mEndPosition;
 	std::string mTime;
+	std::string mSeason;
 	int mMinionCount;
 	int mAttackTowerCount;
 	int mTimeBgm;
@@ -55,10 +56,12 @@ public:
 	const Vector3& getEndPosition() const { return mEndPosition; }
 	std::pair<int, int> getEndPosIndex() const { return { static_cast<int>((mEndPosition.z - mPosition.z) / -mTileSize), static_cast<int>((mEndPosition.x - mPosition.x) / mTileSize) }; }
 	const std::string& getTime() const { return mTime; }
+	const std::string& getSeason() const { return mSeason; }
 	int getMinionCount() const { return mMinionCount; }
 	void setStartPosition(const Vector3& pos) { mStartPosition = pos; }
 	void setEndPosition(const Vector3& pos) { mEndPosition = pos; }
 	void setTime(const std::string& time) { mTime = time; }
+	void setSeason(const std::string& season) { mSeason = season; }
 	void setMinionCount(int count) { mMinionCount = count; }
 	int getAttackTowerCount() const { return mAttackTowerCount; }
 	void resetAttackTowerCount() { mAttackTowerCount = 0; }
