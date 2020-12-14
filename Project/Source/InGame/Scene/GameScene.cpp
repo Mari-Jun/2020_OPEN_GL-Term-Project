@@ -207,7 +207,7 @@ void GameScene::loadActorData()
 	mPhotoCamera->setState(Actor::State::Paused);
 
 	//Create ParticleCreator
-	mParticle = std::make_shared<ParticleCreator>(weak_from_this(), mControl);
+	mParticle = std::make_shared<ParticleCreator>(weak_from_this(), mControl, mGameMap->getSeason());
 	mParticle->setScale(1000.0f);
 	mParticle->setPosition(mControl->getPosition() + Vector3::UnitY * 300.0f);
 	mParticle->initailize();

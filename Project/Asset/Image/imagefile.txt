@@ -117,3 +117,11 @@ Asset/Mesh/Tile/Tower/Tile_Tower_SquareC
 Asset/Mesh/Tile/Tower/Tile_Tower_SquareA
 Asset/Image/Minimap/mark.png
 Asset/Image/Minimap/boundary.png
+Asset/Image/Particle/Snow.png
+Asset/Image/Particle/Sakura.png
+Asset/Image/Particle/Green.png
+Asset/Image/Particle/Maple.png
+Asset/Image/HUD/RNum6.png
+Asset/Image/HUD/RNum7.png
+Asset/Image/HUD/RNum8.png
+Asset/Image/HUD/RNum9.png

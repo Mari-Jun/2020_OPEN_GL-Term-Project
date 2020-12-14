@@ -1,5 +1,5 @@
 Time Sunny
-Season Sakura
+Season Maple
 Line 1 20
 Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 2 20
