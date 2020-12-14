@@ -126,3 +126,5 @@ Asset/Image/HUD/RNum7.png
 Asset/Image/HUD/RNum8.png
 Asset/Image/HUD/RNum9.png
 Asset/Image/UIBackground/Clear.png
+Asset/Image/HUD/YNum0.png
+Asset/Image/UIBackground/Fail.png

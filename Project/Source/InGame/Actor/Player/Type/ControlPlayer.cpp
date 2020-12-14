@@ -1,11 +1,9 @@
-﻿//컨트롤 플레이어.cpp
-#include "ControlPlayer.h"
+﻿#include "ControlPlayer.h"
 #include "../../../../Game/Graphics/Window.h"
 #include "../../../../Game/Game.h"
 #include "../../../../Game/Input/KeyBoard.h"
 #include "../../../../Game/Component/MoveComponent.h"
 #include "../../../Scene/GameScene.h"
-//#include "../../../Minimap/GameMinimap.h"
 #include "../../../Minimap/GameMinimap.h"
 #include "../../../../Game/Graphics/Mesh/MeshComponent.h"
 
@@ -31,7 +29,6 @@ void ControlPlayer::initailize()
 void ControlPlayer::updateActor(float deltatime)
 {
 	MovePlayer::updateActor(deltatime);
-	//std::cout << getPosition().x << "," << getPosition().y << "," << getPosition().z << std::endl;
 }
 
 void ControlPlayer::actorInput()
@@ -48,10 +45,10 @@ void ControlPlayer::actorInput()
 		updateAnimation();
 	}
 
-	if (game->getKeyBoard()->isKeyPressed(32))
+	/*if (game->getKeyBoard()->isKeyPressed(32))
 	{
 		setGravitySpeed(2000.0f);
-	}
+	}*/
 
 	mMoveComponent->setForwardSpeed(speed);
 }
@@ -68,6 +65,6 @@ void ControlPlayer::checkHp()
 {
 	if (mStat.mHp <= 0.0f)
 	{
-		//std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
+		std::dynamic_pointer_cast<class GameScene>(getScene().lock())->stageFail();
 	}
 }
