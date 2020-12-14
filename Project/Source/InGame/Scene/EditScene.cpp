@@ -102,8 +102,9 @@ void EditScene::loadData()
 	mSceneHelper = std::make_unique<SceneHelper>(weak_from_this());
 
 	mEditor = std::make_unique<MapEditor>(std::dynamic_pointer_cast<EditScene>(weak_from_this().lock()));
-	loadBoard("Left", Vector3(-500.0f, 80.0f, 0.0f));
+	loadBoard("Left", Vector3(-500.0f, 180.0f, 0.0f));
 	loadBoard("Right", Vector3(500.0f, 230.0f, 0.0f));
+	loadBoard("Season", Vector3(-500.0f, -120.0f, 0.0f));
 	loadBoard("Time", Vector3(500.0f, 30.0f, 0.0f));
 
 	mEditHUD = std::make_shared<EditHUD>(std::dynamic_pointer_cast<EditScene>(weak_from_this().lock()), getGame().lock()->getRenderer());
@@ -137,13 +138,13 @@ void EditScene::unLoadData()
 	
 }
 
-bool EditScene::loadGameMap(const std::string& time)
+bool EditScene::loadGameMap(const std::string time, const std::string season)
 {
 	auto newMap = std::make_shared<GameMap>(weak_from_this(), 30.0f);
 	std::string fileName = "Asset/Map/Stage";
 	fileName += std::to_string(mStage);
 	fileName += ".txt";
-	if (newMap->loadMap(fileName, time))
+	if (newMap->loadMap(fileName, time, season))
 	{
 		mGameMap.swap(newMap);
 		mEditor->setGameMap(mGameMap);

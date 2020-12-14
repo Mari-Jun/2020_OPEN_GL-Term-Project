@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 颇老 积己凳: 15.11.2020 00:47:10
+# 颇老 积己凳: 14.12.2020 17:22:08
 
-newmtl dirt
+newmtl tile_rock_dirt
 	Ns 43.2193
 	Ni 1.5000
 	d 1.0000
@@ -13,7 +13,7 @@ newmtl dirt
 	Ks 0.2000 0.2000 0.2000
 	Ke 0.0000 0.0000 0.0000
 
-newmtl foliage
+newmtl tile_rock_foliage
 	Ns 43.2193
 	Ni 1.5000
 	d 1.0000
@@ -21,18 +21,6 @@ newmtl foliage
 	Tf 1.0000 1.0000 1.0000 
 	illum 2
 	Ka 0.2000 0.2000 0.2000
-	Kd 0.2667 0.7098 0.5529
-	Ks 0.2000 0.2000 0.2000
-	Ke 0.0000 0.0000 0.0000
-
-newmtl wood
-	Ns 43.2193
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.2000 0.2000 0.2000
-	Kd 0.8784 0.5333 0.3608
+	Kd 0.7608 0.3843 0.1451
 	Ks 0.2000 0.2000 0.2000
 	Ke 0.0000 0.0000 0.0000

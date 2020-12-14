@@ -17,6 +17,7 @@ MapEditor::MapEditor(const std::weak_ptr<class EditScene>& scene)
 	, mMapSelector({ nullptr, {10, 10} })
 	, mBoardSelector({ nullptr, {-1, -1 } })
 	, mTimeSelector({ nullptr, {0, 0} })
+	, mSeasonSelector({ nullptr, {0, 0} })
 {
 	loadData();
 }
@@ -25,6 +26,8 @@ MapEditor::~MapEditor()
 {
 	mMapSelector.mSelector->setState(Actor::State::Dead);
 	mBoardSelector.mSelector->setState(Actor::State::Dead);
+	mTimeSelector.mSelector->setState(Actor::State::Dead);
+	mSeasonSelector.mSelector->setState(Actor::State::Dead);
 }
 
 bool MapEditor::saveMap()
@@ -47,6 +50,7 @@ bool MapEditor::saveMap()
 		const auto& tile = map->getTiles();
 
 		mapFile << "Time " << map->getTime() << '\n';
+		mapFile << "Season " << map->getSeason() << '\n';
 
 		for (auto y = 0; y < tile.size(); y++)
 		{
@@ -86,6 +90,7 @@ int MapEditor::newMap()
 			const auto& tile = map->getTiles();
 
 			mapFile << "Time " << "Sunny" << '\n';
+			mapFile << "Season " << "Green" << '\n';
 
 			for (auto y = 0; y < tile.size(); y++)
 			{
@@ -146,50 +151,25 @@ void MapEditor::editInput()
 	{
 		mClickPos = game->getMouse()->getPosition();
 		checkTileIndex();
-		checkBoard();
-		checkTime();
+		checkBoard(mLeftBoard, mBoardSelector);
+		checkBoard(mRightBoard, mBoardSelector, true);
+		if (checkBoard(mTimeBoard, mTimeSelector) || checkBoard(mSeasonBoard, mSeasonSelector))
+		{
+			changeTimeSeason();
+		}
 	}
 	if (game->getKeyBoard()->isKeyFirst('r'))
 	{
 		rotateTile();
 	}
-	if (game->getKeyBoard()->isKeyFirst('s'))
-	{
-		changeGrassSnow(false);
-	}
-	if (game->getKeyBoard()->isKeyFirst('g'))
-	{
-		changeGrassSnow(true);
-	}
 }
 
 void MapEditor::loadData()
 {
-	auto game = mEditScene.lock()->getGame().lock();
-
-	mMapSelector.mSelector = std::make_shared<Actor>(mEditScene);
-	mMapSelector.mSelector->initailize();
-	auto borderMap = std::make_shared<SpriteComponent>(mMapSelector.mSelector, game->getRenderer());
-	borderMap->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
-	borderMap->initailize();
-
-	mBoardSelector.mSelector = std::make_shared<Actor>(mEditScene);
-	mBoardSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
-	mBoardSelector.mSelector->setScale(2.5f);
-	mBoardSelector.mSelector->initailize();
-	auto borderBoard = std::make_shared<SpriteComponent>(mBoardSelector.mSelector, game->getRenderer(), 600);
-	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
-	borderBoard->initailize();
-
-	mTimeSelector.mSelector = std::make_shared<Actor>(mEditScene);
-	mTimeSelector.mSelector->setPosition(Vector3(-10000.0f, 0.0f, 0.0f));
-	mTimeSelector.mSelector->setScale(2.5f);
-	mTimeSelector.mSelector->initailize();
-
-	auto borderTime = std::make_shared<SpriteComponent>(mTimeSelector.mSelector, game->getRenderer(), 600);
-	borderTime->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
-	borderTime->initailize();
-
+	setSelector(mMapSelector, Vector3::Zero, 1.0f);
+	setSelector(mBoardSelector, Vector3(-10000.0f, 0.0f, 0.0f), 2.5f);
+	setSelector(mTimeSelector, Vector3(-10000.0f, 0.0f, 0.0f), 2.5f);
+	setSelector(mSeasonSelector, Vector3(-10000.0f, 0.0f, 0.0f), 2.5f);
 }
 
 void  MapEditor::setGameMap(const std::weak_ptr<class GameMap>& gameMap)
@@ -209,11 +189,28 @@ void MapEditor::setBoard(const std::string& type, const Vector2& pos, const Vect
 		mRightBoard.mPos = pos;
 		mRightBoard.mSize = size;
 	}
-	else
+	else if (type == "Time")
 	{
 		mTimeBoard.mPos = pos;
 		mTimeBoard.mSize = size;
 	}
+	else
+	{
+		mSeasonBoard.mPos = pos;
+		mSeasonBoard.mSize = size;
+	}
+}
+
+void MapEditor::setSelector(Selector& selector, Vector3 pos, float scale)
+{
+	auto game = mEditScene.lock()->getGame().lock();
+	selector.mSelector = std::make_shared<Actor>(mEditScene);
+	selector.mSelector->setPosition(pos);
+	selector.mSelector->setScale(scale);
+	selector.mSelector->initailize();
+	auto borderBoard = std::make_shared<SpriteComponent>(selector.mSelector, game->getRenderer(), 600);
+	borderBoard->setTexture(game->getRenderer()->getTexture("Asset/Image/EditScene/select_border.png"));
+	borderBoard->initailize();
 }
 
 void MapEditor::changeTile()
@@ -233,22 +230,15 @@ void MapEditor::changeTile()
 	case 22: type = "TreeQuad"; break;
 	case 30: type = "StartPoint"; changeStartTile(); break;
 	case 31: type = "EndPoint"; changeEndTile(); break;
-	case 32: type = "SnowBasic"; break;
-	case 40: type = "SnowRock"; break;
-	case 41: type = "SnowHill"; break;
-	case 42: type = "SnowCrystal"; break;
-	case 50: type = "SnowTree"; break;
-	case 51: type = "SnowTreeDouble"; break;
-	case 52: type = "SnowTreeQuad"; break;
-	case 60: type = "TowerRoundA"; break;
-	case 61: type = "TowerRoundC"; break;
-	case 62: type = "TowerBlaster"; break;
-	case 70: type = "TowerSquareA"; break;
-	case 71: type = "TowerSquareB"; break;
-	case 72: type = "TowerSquareC"; break;
-	case 80: type = "TowerBallista"; break;
-	case 81: type = "TowerCannon"; break;
-	case 82: type = "TowerCatapult"; break;
+	case 40: type = "TowerRoundA"; break;
+	case 41: type = "TowerRoundC"; break;
+	case 42: type = "TowerBlaster"; break;
+	case 50: type = "TowerSquareA"; break;
+	case 51: type = "TowerSquareB"; break;
+	case 52: type = "TowerSquareC"; break;
+	case 60: type = "TowerBallista"; break;
+	case 61: type = "TowerCannon"; break;
+	case 62: type = "TowerCatapult"; break;
 	default: return;
 	}
 
@@ -275,19 +265,30 @@ void MapEditor::changeEndTile()
 	mGameMap.lock()->addTile("Basic", index.first, index.second, 0);
 }
 
-void MapEditor::changeTime()
+void MapEditor::changeTimeSeason()
 {
 	auto index = mTimeSelector.mIndex.first * 10 + mTimeSelector.mIndex.second;
-	auto type = "";
+	auto timeType = "";
 	switch (index)
 	{
-	case 0: type = "Sunny"; break;
-	case 1: type = "Sunset"; break;
-	case 2: type = "Moon"; break;
+	case 0: timeType = "Sunny"; break;
+	case 1: timeType = "Sunset"; break;
+	case 2: timeType = "Moon"; break;
 	default: break;
 	}
 
-	mEditScene.lock()->loadGameMap(type);
+	index = mSeasonSelector.mIndex.first * 10 + mSeasonSelector.mIndex.second;
+	auto seasonType = "";
+	switch (index)
+	{
+	case 0: seasonType = "Sakura"; break;
+	case 1: seasonType = "Green"; break;
+	case 10: seasonType = "Maple"; break;
+	case 11: seasonType = "Snow"; break;
+	default: break;
+	}
+	
+	mEditScene.lock()->loadGameMap(timeType, seasonType);
 }
 
 
@@ -314,87 +315,23 @@ void MapEditor::checkTileIndex()
 	}
 }
 
-void MapEditor::checkBoard()
+bool MapEditor::checkBoard(Board& board, Selector& selector, bool right)
 {
 	auto tileSize = 80.0f;
 
-	if (mLeftBoard.mPos.x < mClickPos.x && mClickPos.x < mLeftBoard.mPos.x + mLeftBoard.mSize.x &&
-		mLeftBoard.mPos.y > mClickPos.y && mClickPos.y > mLeftBoard.mPos.y - mLeftBoard.mSize.y)
+	if (board.mPos.x < mClickPos.x && mClickPos.x < board.mPos.x + board.mSize.x &&
+		board.mPos.y > mClickPos.y && mClickPos.y > board.mPos.y - board.mSize.y)
 	{		
-		mBoardSelector.mIndex = 
-		{ static_cast<int>((mLeftBoard.mPos.y - mClickPos.y) / 100.0f),
-			static_cast<int>((mClickPos.x - mLeftBoard.mPos.x) / 100.0f) };
+		selector.mIndex = 
+		{ static_cast<int>((board.mPos.y - mClickPos.y) / 100.0f) + right * 4,
+			static_cast<int>((mClickPos.x - board.mPos.x) / 100.0f) };
 
-		auto selectXPos = mLeftBoard.mPos.x + 15 + mBoardSelector.mIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mLeftBoard.mPos.y - 20 - mBoardSelector.mIndex.first * (15 + tileSize) - tileSize / 2;
-		mBoardSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+		auto selectXPos = board.mPos.x + 15 + selector.mIndex.second * (15 + tileSize) + tileSize / 2;
+		auto selectYPos = board.mPos.y - 20 - (selector.mIndex.first - right * 4) * (15 + tileSize) - tileSize / 2;
+		selector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
+
+		return true;
 	}
-	else if (mRightBoard.mPos.x < mClickPos.x && mClickPos.x < mRightBoard.mPos.x + mRightBoard.mSize.x &&
-		mRightBoard.mPos.y > mClickPos.y && mClickPos.y > mRightBoard.mPos.y - mRightBoard.mSize.y)
-	{
-		mBoardSelector.mIndex =
-		{ static_cast<int>((mRightBoard.mPos.y - mClickPos.y) / 100.0f) + 6,
-			static_cast<int>((mClickPos.x - mRightBoard.mPos.x) / 100.0f) };
 
-		auto selectXPos = mRightBoard.mPos.x + 15 + mBoardSelector.mIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mRightBoard.mPos.y - 20 - (mBoardSelector.mIndex.first - 6) * (15 + tileSize) - tileSize / 2;
-		mBoardSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
-	}
-}
-
-void MapEditor::checkTime()
-{
-	auto tileSize = 80.0f;
-	
-	if (mTimeBoard.mPos.x < mClickPos.x && mClickPos.x < mTimeBoard.mPos.x + mTimeBoard.mSize.x &&
-		mTimeBoard.mPos.y > mClickPos.y && mClickPos.y > mTimeBoard.mPos.y - mTimeBoard.mSize.y)
-	{
-		mTimeSelector.mIndex = 
-		{ static_cast<int>((mTimeBoard.mPos.y - mClickPos.y) / 100.0f),
-			static_cast<int>((mClickPos.x - mTimeBoard.mPos.x) / 100.0f) };
-
-		auto selectXPos = mTimeBoard.mPos.x + 15 + mTimeSelector.mIndex.second * (15 + tileSize) + tileSize / 2;
-		auto selectYPos = mTimeBoard.mPos.y - 20 - mTimeSelector.mIndex.first * (15 + tileSize) - tileSize / 2;
-		mTimeSelector.mSelector->setPosition(Vector3(selectXPos, selectYPos, 0.0f));
-
-		changeTime();
-	}
-}
-
-void MapEditor::changeGrassSnow(bool Grass)
-{
-	const auto& tiles = mGameMap.lock()->getTiles();
-
-	auto mapSize = mGameMap.lock()->getMapSize();
-
-	for (auto y = 0; y < mapSize; y++)
-	{
-		for (auto x = 0; x < mapSize; x++)
-		{
-			auto type = "";
-
-			switch (tiles[y][x].lock()->getTileType())
-			{
-			case Tile::TileType::Basic: if (!Grass) type = "SnowBasic"; else continue; break;
-			case Tile::TileType::Rock: if (!Grass) type = "SnowRock"; else continue; break;
-			case Tile::TileType::Hill: if (!Grass) type = "SnowHill"; else continue; break;
-			case Tile::TileType::Crystal: if (!Grass) type = "SnowCrystal"; else continue; break;
-			case Tile::TileType::Tree: if (!Grass) type = "SnowTree"; else continue; break;
-			case Tile::TileType::TreeDouble:if (!Grass)  type = "SnowTreeDouble"; else continue; break;
-			case Tile::TileType::TreeQuad: if (!Grass) type = "SnowTreeQuad"; else continue; break;
-			case Tile::TileType::Snow_Basic: if (Grass) type = "Basic"; else continue; break;
-			case Tile::TileType::Snow_Rock: if (Grass) type = "Rock"; else continue; break;
-			case Tile::TileType::Snow_Hill: if (Grass) type = "Hill"; else continue; break;
-			case Tile::TileType::Snow_Crystal: if (Grass) type = "Crystal"; else continue; break;
-			case Tile::TileType::Snow_Tree: if (Grass) type = "Tree"; else continue; break;
-			case Tile::TileType::Snow_TreeDouble:if (Grass)  type = "TreeDouble"; else continue; break;
-			case Tile::TileType::Snow_TreeQuad: if (Grass) type = "TreeQuad"; else continue; break;
-			default: continue;
-			}
-
-			auto rot = round(Math::ToDegrees(Math::Acos(Quaternion::Dot(Quaternion(Vector3::UnitY, 0), tiles[y][x].lock()->getRotation()))));
-			mGameMap.lock()->removeTile(y, x);
-			mGameMap.lock()->addTile(type, y, x, rot * 2);
-		}
-	}
+	return false;
 }

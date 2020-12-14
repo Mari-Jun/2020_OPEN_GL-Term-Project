@@ -6,6 +6,7 @@
 #include "../../Game/Game.h"
 #include "../../Game/Graphics/Light/Light.h"
 #include "../Actor/Tile/Tile.h"
+#include "../Actor/Tile/OrnamentTile.h"	
 #include "../Actor/Tile/LightTile.h" 
 #include "../Actor/Tile/EnemyTile.h"
 #include "../Actor/Tile/EndPointTile.h"
@@ -20,6 +21,7 @@ GameMap::GameMap(const std::weak_ptr<class Scene>& scene, float tileSize, int ma
 	, mStartPosition(Vector3::Zero)
 	, mEndPosition(Vector3::Zero)
 	, mTime("Sunny")
+	, mSeason("Green")
 	, mMinionCount(0)
 	, mAttackTowerCount(0)
 	, mTimeBgm(static_cast<int>(Sound::bgmName::Sunny))
@@ -41,7 +43,7 @@ GameMap::~GameMap()
 	}
 }
 
-bool GameMap::loadMap(const std::string& fileName, const std::string time)
+bool GameMap::loadMap(const std::string& fileName, const std::string time, const std::string season)
 {
 	//어택타워값 초기화
 	mAttackTowerCount = 0;
@@ -93,6 +95,17 @@ bool GameMap::loadMap(const std::string& fileName, const std::string time)
 			adjustTimeBgm();
 			addDirectionalLight();
 		}
+		else if (prefix == "Season")
+		{
+			if (season == "None")
+			{
+				ss >> mSeason;
+			}
+			else
+			{
+				mSeason = season;
+			}
+		}
 		else if (prefix == "Minion")
 		{
 			ss >> mMinionCount;
@@ -113,21 +126,14 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	case HashCode("Basic"): tile = std::make_shared<Tile>(mScene); break;
 	case HashCode("Road"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Road); break;
 	case HashCode("Light"): tile = std::make_shared<LightTile>(mScene, mScene.lock()->getGame().lock()->getRenderer()->getLight(), mTime); break;
-	case HashCode("Rock"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Rock); break;
-	case HashCode("Hill"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Hill); break;
-	case HashCode("Crystal"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Crystal); break;
-	case HashCode("Tree"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tree); break;
-	case HashCode("TreeDouble"): tile = std::make_shared<Tile>(mScene, Tile::TileType::TreeDouble); break;
-	case HashCode("TreeQuad"): tile = std::make_shared<Tile>(mScene, Tile::TileType::TreeQuad); break;
+	case HashCode("Rock"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Rock); break;
+	case HashCode("Hill"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Hill); break;
+	case HashCode("Crystal"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Crystal); break;
+	case HashCode("Tree"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Tree); break;
+	case HashCode("TreeDouble"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::TreeDouble); break;
+	case HashCode("TreeQuad"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::TreeQuad); break;
 	case HashCode("StartPoint"): tile = std::make_shared<Tile>(mScene, Tile::TileType::StartPoint); setStartPosition(position); break;
 	case HashCode("EndPoint"): tile = std::make_shared<EndPointTile>(mScene); setEndPosition(position); break;
-	case HashCode("SnowBasic"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_Basic); break;
-	case HashCode("SnowRock"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_Rock); break;
-	case HashCode("SnowHill"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_Hill); break;
-	case HashCode("SnowCrystal"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_Crystal); break;
-	case HashCode("SnowTree"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_Tree); break;
-	case HashCode("SnowTreeDouble"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_TreeDouble); break;
-	case HashCode("SnowTreeQuad"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Snow_TreeQuad); break;
 	case HashCode("TowerRoundA"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_RoundA); break;
 	case HashCode("TowerRoundC"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_RoundC); break;
 	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Blaster); mAttackTowerCount++; break;
@@ -142,6 +148,14 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	tile->setScale(mTileSize);
 	tile->setRotation(Quaternion(Vector3::UnitY, Math::ToRadians(rot)));
 	tile->setPosition(position);
+	switch (HashCode(mSeason.c_str()))
+	{
+	case HashCode("Sakura"): tile->setSeasonType(Tile::SeasonType::Sakura); break;
+	case HashCode("Green"): tile->setSeasonType(Tile::SeasonType::Green); break;
+	case HashCode("Maple"): tile->setSeasonType(Tile::SeasonType::Maple); break;
+	case HashCode("Snow"): tile->setSeasonType(Tile::SeasonType::Snow); break;
+	default: break;
+	}
 	tile->initailize();
 
 	mTiles[y][x] = tile;
