@@ -193,9 +193,8 @@ void GameScene::loadActorData()
 	//Create ControlRobot
 	mControl = std::make_shared<ControlPlayer>(weak_from_this(), mInfo.mControlInfo);
 	mControl->setScale(1.5f);
-	mControl->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 100.0f, 0.0f));
+	mControl->setPosition(mGameMap->getStartPosition() + Vector3(0.0f, 70.0f, 0.0f));
 	mControl->initailize();
-
 
 	//Create CameraActor
 	mFollowCamera = std::make_shared<FollowCameraActor>(weak_from_this(), mControl);

@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<class BoxComponent> mBoxComponent;
 	std::shared_ptr<class Actor> mHealthBar;
 	float mGravitySpeed;
+	bool mGroundCollide;
 
 private:
 	void updateGravity(float deltatime);

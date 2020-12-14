@@ -54,9 +54,9 @@ void MinionManager::createMinion()
 	{
 		mDelay += 1.0f;
 
-		auto Sound = getGame().lock()->getSound();
+	/*	auto Sound = getGame().lock()->getSound();
 		auto distVec = Sound->getListener() - getPosition();
-		Sound->playDist(static_cast<int>(Sound::effectName::createminion), static_cast<int>(Sound::TypeChannel::minioneffect), distVec.Length());
+		Sound->playDist(static_cast<int>(Sound::effectName::createminion), static_cast<int>(Sound::TypeChannel::minioneffect), distVec.Length());*/
 
 		auto map = mGameMap.lock();
 		auto minion = std::make_shared<DefaultMinion>(getScene(), mInfo, std::dynamic_pointer_cast<MinionManager>(weak_from_this().lock()));

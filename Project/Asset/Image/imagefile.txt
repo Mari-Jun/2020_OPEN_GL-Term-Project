@@ -139,3 +139,5 @@ Asset/Mesh/Player/skin_soldier.png
 Asset/Mesh/Player/skin_woman.png
 Asset/Mesh/Player/skin_womanAlternative.png
 Asset/Image/UIBackground/Upgrade.png
+Asset/Image/HUD/YNum4.png
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareB
