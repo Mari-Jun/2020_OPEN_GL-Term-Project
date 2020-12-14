@@ -113,3 +113,7 @@ Asset/Image/Setting/6.png
 Asset/Image/Setting/5.png
 Asset/Image/Setting/4.png
 Asset/Image/UIBackground/NotYet.png
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareC
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareA
+Asset/Image/Minimap/mark.png
+Asset/Image/Minimap/boundary.png

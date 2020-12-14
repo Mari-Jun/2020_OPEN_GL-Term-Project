@@ -134,12 +134,12 @@ void GameMap::addTile(const std::string& type, int y, int x, float rot)
 	case HashCode("TreeQuad"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::TreeQuad); break;
 	case HashCode("StartPoint"): tile = std::make_shared<Tile>(mScene, Tile::TileType::StartPoint); setStartPosition(position); break;
 	case HashCode("EndPoint"): tile = std::make_shared<EndPointTile>(mScene); setEndPosition(position); break;
-	case HashCode("TowerRoundA"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_RoundA); break;
-	case HashCode("TowerRoundC"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_RoundC); break;
+	case HashCode("TowerRoundA"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Tower_RoundA); break;
+	case HashCode("TowerRoundC"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Tower_RoundC); break;
 	case HashCode("TowerBlaster"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Blaster); mAttackTowerCount++; break;
-	case HashCode("TowerSquareA"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_SquareA); break;
-	case HashCode("TowerSquareB"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_SquareB); break;
-	case HashCode("TowerSquareC"): tile = std::make_shared<Tile>(mScene, Tile::TileType::Tower_SquareC); break;
+	case HashCode("TowerSquareA"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Tower_SquareA); break;
+	case HashCode("TowerSquareB"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Tower_SquareB); break;
+	case HashCode("TowerSquareC"): tile = std::make_shared<OrnamentTile>(mScene, Tile::TileType::Tower_SquareC); break;
 	case HashCode("TowerBallista"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Ballista); mAttackTowerCount++; break;
 	case HashCode("TowerCannon"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Cannon); mAttackTowerCount++; break;
 	case HashCode("TowerCatapult"): tile = std::make_shared<EnemyTile>(mScene, Tile::TileType::Tower_Catapult); mAttackTowerCount++; break;
