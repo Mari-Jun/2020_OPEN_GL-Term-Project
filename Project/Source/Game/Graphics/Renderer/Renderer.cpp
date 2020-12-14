@@ -1,4 +1,3 @@
-//·£´õ·¯.cpp
 #include "../Shader/Shader.h"
 #include "../Light/Light.h"
 #include "../Shader/VertexArray.h"

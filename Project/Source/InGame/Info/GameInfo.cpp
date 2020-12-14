@@ -67,7 +67,7 @@ int PlayerInfo::getSpeedStat() const
 	case PlayerInfo::PlayerType::Control:
 		switch (mSpeedLevel)
 		{
-		case 1: return 200;
+		case 1: return 100;
 		case 2: return 110;
 		case 3: return 120;
 		case 4: return 135;
@@ -77,7 +77,7 @@ int PlayerInfo::getSpeedStat() const
 	case PlayerInfo::PlayerType::Minion:
 		switch (mSpeedLevel)
 		{
-		case 1: return 200;
+		case 1: return 100;
 		case 2: return 110;
 		case 3: return 120;
 		case 4: return 135;

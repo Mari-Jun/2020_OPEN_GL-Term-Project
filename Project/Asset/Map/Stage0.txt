@@ -1,42 +1,43 @@
 Time Sunset
+Season Snow
 Line 1 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 2 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 3 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 Road 0 Road 0 Road 0 Road 0 EndPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 EndPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 4 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 5 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 6 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 7 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowTree 0 Road 0 SnowTree 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Tree 0 Road 0 Tree 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 8 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowBasic 0 SnowTreeDouble 90 SnowTreeDouble 90 SnowTreeDouble 90 Road 0 SnowTreeDouble 0 SnowTreeDouble 0 SnowTreeDouble 180 SnowBasic 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 Road 0 TreeDouble 0 TreeDouble 0 TreeDouble 180 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 9 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 SnowTreeQuad 90 SnowTreeQuad 90 SnowTreeQuad 90 SnowTreeQuad 90 Road 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowTreeQuad 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 10 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 Road 0 Road 0 Light 90 Road 0 Light 90 Light 90 Light 90 Road 0 Light 90 Road 0 Road 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Light 90 Road 0 Light 90 Light 90 Light 90 Road 0 Light 90 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 11 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 SnowRock 180 Light 0 TowerSquareC 0 Light 180 SnowTreeDouble 90 StartPoint 0 SnowTreeDouble 0 Light 0 TowerSquareC 0 Light 180 SnowRock 0 SnowHill 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Hill 0 Rock 180 Light 0 TowerSquareC 0 Light 180 TreeDouble 90 StartPoint 0 TreeDouble 0 Light 0 TowerSquareC 0 Light 180 Rock 0 Hill 0 Basic 0 Basic 0 Basic 0 
 Line 12 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowHill 0 SnowRock 180 Light 0 TowerSquareC 0 Light 180 SnowTreeDouble 90 SnowTreeQuad 0 SnowTreeDouble 0 Light 0 TowerSquareC 0 Light 180 SnowRock 0 SnowHill 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Hill 0 Rock 180 Light 0 TowerSquareC 0 Light 180 TreeDouble 90 TreeQuad 0 TreeDouble 0 Light 0 TowerSquareC 0 Light 180 Rock 0 Hill 0 Basic 0 Basic 0 Basic 0 
 Line 13 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowTreeQuad 90 SnowTreeDouble 90 Light 0 TowerSquareA 0 Light 180 Light 270 Light 270 Light 270 Light 360 TowerSquareA 0 Light 180 SnowTreeDouble 0 SnowTreeQuad 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 TreeQuad 90 TreeDouble 90 Light 0 TowerSquareA 0 Light 180 Light 270 Light 270 Light 270 Light 360 TowerSquareA 0 Light 180 TreeDouble 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 14 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowTreeQuad 90 SnowTreeDouble 90 Road 0 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Road 0 SnowTreeDouble 0 SnowTreeQuad 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 TreeQuad 90 TreeDouble 90 Road 0 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Light 90 Road 0 TreeDouble 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 15 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowTreeQuad 90 SnowTreeDouble 90 TowerCatapult 0 TowerBallista 0 TowerCannon 0 TowerBlaster 0 TowerRoundC 0 TowerBlaster 0 TowerCannon 0 TowerBallista 0 TowerCatapult 0 SnowTreeDouble 0 SnowTreeQuad 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 TreeQuad 90 TreeDouble 90 TowerCatapult 0 TowerBallista 0 TowerCannon 0 TowerBlaster 0 TowerRoundC 0 TowerBlaster 0 TowerCannon 0 TowerBallista 0 TowerCatapult 0 TreeDouble 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 16 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowTreeQuad 90 SnowTreeDouble 90 SnowTreeDouble 90 SnowTreeDouble 90 SnowTreeDouble 90 SnowTreeDouble 90 SnowTree 0 SnowTreeDouble 0 SnowTreeDouble 0 SnowTreeDouble 0 SnowTreeDouble 0 SnowTreeDouble 0 SnowTreeQuad 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 TreeQuad 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 Tree 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 17 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowTreeQuad 90 SnowTreeQuad 90 SnowTreeQuad 90 SnowTreeQuad 90 SnowTreeQuad 90 SnowTreeQuad 90 SnowTree 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowTreeQuad 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 90 Tree 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 18 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 19 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 20 20
-Type SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 SnowBasic 0 
+Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Minion 5

@@ -4,7 +4,7 @@
 class ParticleCreator : public Actor
 {
 public:
-	ParticleCreator(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower);
+	ParticleCreator(const std::weak_ptr<class Scene>& scene, const std::weak_ptr<class Actor>& follower, const std::string& season);
 	virtual ~ParticleCreator() noexcept;
 
 	virtual void initailize() override;
@@ -14,5 +14,5 @@ public:
 
 private:
 	std::weak_ptr<class Actor> mFollower;
-	bool mSnowing;
+	std::string mSeason;
 };

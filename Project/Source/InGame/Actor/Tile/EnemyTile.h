@@ -1,7 +1,7 @@
 #pragma once
-#include "Tile.h"
+#include "OrnamentTile.h"
 
-class EnemyTile : public Tile
+class EnemyTile : public OrnamentTile
 {
 public:
 	EnemyTile(const std::weak_ptr<class Scene>& scene, TileType type = TileType::Tower_Ballista);
