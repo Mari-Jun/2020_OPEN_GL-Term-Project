@@ -113,3 +113,15 @@ Asset/Image/Setting/6.png
 Asset/Image/Setting/5.png
 Asset/Image/Setting/4.png
 Asset/Image/UIBackground/NotYet.png
+Asset/Image/UIBackground/Reinforce.png
+Asset/Image/UIBackground/skinBox.png
+Asset/Image/Button/UpgradeOn.png
+Asset/Image/Button/Upgrade.png
+Asset/Mesh/Tile/Tower/Tile_Tower_SquareA
+Asset/Image/Minimap/mark.png
+Asset/Image/HUD/RNum6.png
+Asset/Image/HUD/RNum7.png
+Asset/Image/HUD/RNum8.png
+Asset/Image/HUD/RNum9.png
+Asset/Image/UIBackground/Clear.png
+Asset/Image/HUD/YNum5.png
