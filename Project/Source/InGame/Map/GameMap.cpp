@@ -43,6 +43,19 @@ GameMap::~GameMap()
 	}
 }
 
+bool GameMap::existFile(const std::string& fileName)
+{
+	std::ifstream mapFile(fileName);
+
+	if (!mapFile.is_open())
+	{
+		std::cerr << "file not found : " << fileName << '\n';
+		return false;
+	}
+
+	return true;
+}
+
 bool GameMap::loadMap(const std::string& fileName, const std::string time, const std::string season)
 {
 	//어택타워값 초기화

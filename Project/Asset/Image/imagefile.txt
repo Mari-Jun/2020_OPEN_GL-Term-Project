@@ -125,3 +125,4 @@ Asset/Image/HUD/RNum6.png
 Asset/Image/HUD/RNum7.png
 Asset/Image/HUD/RNum8.png
 Asset/Image/HUD/RNum9.png
+Asset/Image/UIBackground/Clear.png

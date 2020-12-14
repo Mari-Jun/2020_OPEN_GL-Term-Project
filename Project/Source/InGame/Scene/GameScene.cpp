@@ -290,6 +290,15 @@ void GameScene::stageClear()
 
 		mInfo.mCoin += mStage * 10;
 		mInfo.mStage = Math::Max(mStage + 1, mInfo.mStage);
+
+		std::string file = "Asset/Map/Stage";
+		file += std::to_string(mInfo.mStage);
+		file += ".txt";
+
+		if (!mGameMap->existFile(file))
+		{
+			mInfo.mStage--;
+		}
 	}
 }
 
