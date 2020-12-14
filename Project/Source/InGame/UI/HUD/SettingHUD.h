@@ -18,6 +18,7 @@ private:
 	std::weak_ptr<class SettingScene> mSettingScene;
 	std::shared_ptr<class Texture> mBGMstate;
 	std::shared_ptr<class Texture> mEFFECTstate;
+	std::shared_ptr<class Texture> mVolumeBoard;
 
 private:
 	int BGMVolume;
