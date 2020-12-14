@@ -207,7 +207,7 @@ void GameScene::loadActorData()
 	mPhotoCamera->setState(Actor::State::Paused);
 
 	//Create ParticleCreator
-	mParticle = std::make_shared<ParticleCreator>(weak_from_this(), mControl);
+	mParticle = std::make_shared<ParticleCreator>(weak_from_this(), mControl, mGameMap->getSeason());
 	mParticle->setScale(1000.0f);
 	mParticle->setPosition(mControl->getPosition() + Vector3::UnitY * 300.0f);
 	mParticle->initailize();
@@ -216,11 +216,11 @@ void GameScene::loadActorData()
 	mMinionManager = std::make_shared<MinionManager>(weak_from_this(), mGameMap, mInfo.mMinionInfo);
 	mMinionManager->initailize();
 
-	////Create Minimap Boundary
-	//mGameMinimap = std::make_shared<GameMinimap>(weak_from_this(), getGame().lock()->getRenderer(), mControl);
-	//mGameMinimap->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Minimap/boundary.png"));
-	//mGameMinimap->initailize();
-	//mGameMinimap->setTexSize(1366, 768);
+	//Create Minimap Boundary
+	mGameMinimap = std::make_shared<GameMinimap>(weak_from_this(), getGame().lock()->getRenderer(), mControl);
+	mGameMinimap->setTexture(getGame().lock()->getRenderer()->getTexture("Asset/Image/Minimap/boundary.png"));
+	mGameMinimap->initailize();
+	mGameMinimap->setTexSize(1366, 768);
 
 
 }
@@ -290,6 +290,15 @@ void GameScene::stageClear()
 
 		mInfo.mCoin += mStage * 10;
 		mInfo.mStage = Math::Max(mStage + 1, mInfo.mStage);
+
+		std::string file = "Asset/Map/Stage";
+		file += std::to_string(mInfo.mStage);
+		file += ".txt";
+
+		if (!mGameMap->existFile(file))
+		{
+			mInfo.mStage--;
+		}
 	}
 }
 

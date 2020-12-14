@@ -40,6 +40,8 @@ std::shared_ptr<class Mesh> Tile::loadMesh() const
 	case Tile::TileType::Road: 
 	case Tile::TileType::Light: 
 		meshName += "Road/Tile_Dirt"; break;
+	case Tile::TileType::StartPoint: meshName = "Asset/Mesh/Tile/Etc/Tile_StartPoint"; break;
+	case Tile::TileType::EndPoint: meshName = "Asset/Mesh/Tile/Etc/Tile_EndPoint"; break;
 	case Tile::TileType::Basic: 
 	case Tile::TileType::Rock:
 	case Tile::TileType::Hill: 
@@ -47,18 +49,16 @@ std::shared_ptr<class Mesh> Tile::loadMesh() const
 	case Tile::TileType::Tree: 
 	case Tile::TileType::TreeDouble: 
 	case Tile::TileType::TreeQuad: 
+	case Tile::TileType::Tower_RoundA:
+	case Tile::TileType::Tower_RoundC: 
+	case Tile::TileType::Tower_Blaster:
+	case Tile::TileType::Tower_SquareA: 
+	case Tile::TileType::Tower_SquareB:
+	case Tile::TileType::Tower_SquareC:
+	case Tile::TileType::Tower_Ballista:
+	case Tile::TileType::Tower_Cannon: 
+	case Tile::TileType::Tower_Catapult:
 		meshName += "Road/" + getSeasonTypeToString() + "_Tile"; break;
-	case Tile::TileType::StartPoint: meshName = "Asset/Mesh/Tile/Etc/Tile_StartPoint"; break;
-	case Tile::TileType::EndPoint: meshName = "Asset/Mesh/Tile/Etc/Tile_EndPoint"; break;
-	case Tile::TileType::Tower_RoundA: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_RoundA"; break;
-	case Tile::TileType::Tower_RoundC: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_RoundC"; break;
-	case Tile::TileType::Tower_Blaster: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Blaster"; break;
-	case Tile::TileType::Tower_SquareA: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_SquareA"; break;
-	case Tile::TileType::Tower_SquareB: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_SquareB"; break;
-	case Tile::TileType::Tower_SquareC: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_SquareC"; break;
-	case Tile::TileType::Tower_Ballista: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Ballista"; break;
-	case Tile::TileType::Tower_Cannon: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Cannon"; break;
-	case Tile::TileType::Tower_Catapult: meshName = "Asset/Mesh/Tile/Tower/Tile_Tower_Catapult"; break;
 	default: break;
 	}
 	return getGame().lock()->getRenderer()->getMesh(meshName);

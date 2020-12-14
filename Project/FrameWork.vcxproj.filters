@@ -150,9 +150,6 @@
     <ClCompile Include="Source\InGame\Scene\LoadingScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\Particle\Snow.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InGame\Map\Editer\MapEditor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -312,6 +309,9 @@
     <ClCompile Include="Source\InGame\Actor\Tile\OrnamentTile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InGame\Actor\Particle\Particle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Actor\Camera\CameraActor.h">
@@ -456,9 +456,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Scene\LoadingScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\Particle\Snow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Map\Editer\MapEditor.h">
@@ -621,6 +618,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\Actor\Tile\OrnamentTile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InGame\Actor\Particle\Particle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,11 +1,11 @@
 #pragma once
 #include "../../../Game/Actor/Actor.h"
 
-class Snow : public Actor
+class Particle : public Actor
 {
 public:
-	Snow(const std::weak_ptr<class Scene>& scene);
-	virtual ~Snow() noexcept;
+	Particle(const std::weak_ptr<class Scene>& scene, const std::string& season);
+	virtual ~Particle() noexcept;
 
 	virtual void initailize() override;
 
@@ -13,6 +13,7 @@ public:
 	virtual void actorInput() override;
 
 private:
-	std::shared_ptr<class BillBoardComponent> mSnow;
+	std::shared_ptr<class BillBoardComponent> mParticle;
 	std::shared_ptr<class MoveComponent> mMoveComponent;
+	std::string mSeason;
 };

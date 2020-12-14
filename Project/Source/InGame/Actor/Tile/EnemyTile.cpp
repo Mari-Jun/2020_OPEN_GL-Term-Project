@@ -6,7 +6,7 @@
 #include "../../Actor/Enemy/EnemyTower.h"
 
 EnemyTile::EnemyTile(const std::weak_ptr<class Scene>& scene, TileType type)
-	: Tile(scene, type)
+	: OrnamentTile(scene, type)
 {
 
 }
@@ -18,7 +18,7 @@ EnemyTile::~EnemyTile()
 
 void EnemyTile::initailize()
 {
-	Tile::initailize();
+	OrnamentTile::initailize();
 
 	switch (getTileType())
 	{
