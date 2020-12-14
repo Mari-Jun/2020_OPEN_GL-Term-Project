@@ -52,7 +52,7 @@ void MinionManager::createMinion()
 {
 	if (mDelay <= 0.0f)
 	{
-		mDelay += 0.2f;
+		mDelay += 1.0f;
 
 		auto Sound = getGame().lock()->getSound();
 		auto distVec = Sound->getListener() - getPosition();

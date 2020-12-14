@@ -41,6 +41,9 @@ int PlayerInfo::getDefStat() const
 		{
 		case 1: return 0;
 		case 2: return 2;
+		case 3: return 4;
+		case 4: return 6;
+		case 5: return 8;
 		default: return 0;
 		}
 	case PlayerInfo::PlayerType::Minion:
@@ -48,6 +51,9 @@ int PlayerInfo::getDefStat() const
 		{
 		case 1: return 0;
 		case 2: return 1;
+		case 3: return 2;
+		case 4: return 3;
+		case 5: return 4;
 		default: return 0;
 		}
 	default: return 0;
@@ -62,14 +68,20 @@ int PlayerInfo::getSpeedStat() const
 		switch (mSpeedLevel)
 		{
 		case 1: return 200;
-		case 2: return 250;
+		case 2: return 110;
+		case 3: return 120;
+		case 4: return 135;
+		case 5: return 150;
 		default: return 0;
 		}
 	case PlayerInfo::PlayerType::Minion:
 		switch (mSpeedLevel)
 		{
 		case 1: return 200;
-		case 2: return 250;
+		case 2: return 110;
+		case 3: return 120;
+		case 4: return 135;
+		case 5: return 150;
 		default: return 0;
 		}
 	default: return 0;
