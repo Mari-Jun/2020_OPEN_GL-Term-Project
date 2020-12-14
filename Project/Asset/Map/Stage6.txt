@@ -1,17 +1,17 @@
 Time Moon
-Season Green
+Season Snow
 Line 1 20
 Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 2 20
-Type TreeQuad 0 TreeQuad 0 Road 0 Road 0 Light 270 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
+Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Light 270 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 3 20
-Type TreeQuad 0 TreeQuad 0 Road 0 Light 270 Light 270 Light 270 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
+Type TreeQuad 0 TreeQuad 0 TreeQuad 0 Light 270 Light 270 Light 270 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 4 20
-Type TreeQuad 0 TreeQuad 0 Light 270 Road 0 Road 0 Road 0 Light 270 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
+Type TreeQuad 0 TreeQuad 0 Light 270 Road 0 Road 0 Road 0 Light 270 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 5 20
 Type TreeQuad 0 TreeQuad 0 Light 270 Light 270 Light 270 Light 270 Light 270 Light 270 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 6 20
-Type TreeQuad 0 Road 0 Road 0 Road 0 Light 270 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
+Type TreeQuad 0 Road 0 Road 0 Road 0 Light 270 Road 0 TreeQuad 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 7 20
 Type TreeQuad 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 EndPoint 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 8 20
