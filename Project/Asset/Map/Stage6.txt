@@ -1,43 +1,43 @@
-Time Sunny
+Time Moon
 Season Green
 Line 1 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 2 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 Road 0 Road 0 Light 270 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 3 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 Road 0 Light 270 Light 270 Light 270 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 4 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 Light 270 Road 0 Road 0 Road 0 Light 270 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 5 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 Light 270 Light 270 Light 270 Light 270 Light 270 Light 270 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 6 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 Road 0 Road 0 Light 270 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 7 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 EndPoint 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 8 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TowerBallista 0 TowerCannon 0 Road 0 Light 0 Road 0 Light 0 TreeQuad 0 Light 0 Road 0 Light 0 Road 0 Light 0 TowerCannon 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 9 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TowerBallista 0 TowerCannon 0 Light 0 TreeQuad 0 TreeQuad 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TowerCatapult 0 TowerCatapult 0 Road 0 TowerCannon 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 10 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Light 0 TowerBallista 0 TowerCannon 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Road 0 Light 0 TreeQuad 0 TowerCatapult 0 TowerBlaster 0 Light 0 TowerCannon 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 11 20
-Type Basic 0 Basic 0 StartPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 EndPoint 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TowerBallista 0 TowerCannon 0 Light 0 Light 0 Light 0 Road 0 Road 0 Light 0 Light 0 Light 0 Light 0 Road 0 Basic 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 12 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TowerBallista 0 TowerCannon 0 Road 0 TreeQuad 0 TreeQuad 0 TreeDouble 0 TreeQuad 0 TreeQuad 0 TreeDouble 0 TreeQuad 0 TowerCannon 0 Light 0 TowerBlaster 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 13 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TowerBallista 0 TowerCannon 0 Light 0 TreeQuad 0 TreeDouble 0 TreeQuad 0 Road 0 Light 0 Road 0 TreeQuad 0 TowerCannon 0 Road 0 TowerCatapult 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 14 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TowerBallista 0 TowerCannon 0 Road 0 Road 0 Road 0 Light 0 Light 0 StartPoint 0 Light 0 Light 0 Road 0 Light 0 TowerCatapult 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 15 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TreeQuad 0 TreeQuad 0 Road 0 TreeDouble 0 TreeQuad 0 TreeQuad 0 Road 0 Light 0 Road 0 TreeDouble 0 TreeQuad 0 TreeDouble 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 16 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 TreeQuad 0 TreeQuad 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeDouble 0 TreeQuad 0 TreeDouble 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 17 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 18 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerBlaster 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 19 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
 Line 20 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
-Minion 0
+Type TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 
+Minion 3

@@ -21,11 +21,11 @@ Type Basic 0 Basic 0 Basic 0 Hill 0 Road 0 Road 0 Rock 0 Basic 0 TreeQuad 0 Tree
 Line 10 20
 Type Basic 0 Basic 0 Basic 0 Hill 0 Road 0 Hill 0 Hill 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 TreeDouble 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 11 20
-Type Basic 0 Basic 0 Basic 0 Hill 0 Road 0 Hill 0 Basic 0 Basic 0 TreeDouble 0 Road 0 StartPoint 180 Road 0 TowerBlaster 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Hill 0 Road 0 Hill 0 Basic 0 Basic 0 TreeDouble 0 Road 0 StartPoint 180 Road 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 12 20
-Type Basic 0 Basic 0 Basic 0 Hill 0 Road 0 Hill 0 Basic 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 TowerBlaster 270 TowerBlaster 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Hill 0 Road 0 Hill 0 Basic 0 Basic 0 TreeDouble 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 13 20
-Type Basic 0 Basic 0 Basic 0 Crystal 0 Road 0 Crystal 0 Basic 0 Basic 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 Road 0 Road 0 Road 0 Road 0 TowerBlaster 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 Basic 0 Basic 0 Crystal 0 Road 0 Crystal 0 Basic 0 Basic 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 14 20
 Type Basic 0 Basic 0 Crystal 0 Crystal 0 Road 0 Crystal 0 Basic 0 Basic 0 Basic 0 Basic 0 TreeDouble 0 Road 0 TowerBallista 0 TowerCannon 0 TowerBlaster 0 TowerCatapult 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 
 Line 15 20
