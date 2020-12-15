@@ -27,14 +27,15 @@ void ParticleCreator::updateActor(float deltatime)
 	const auto& pos = mFollower.lock()->getPosition();
 	setPosition(Vector3(pos.x, getPosition().y, pos.z));
 
+	auto size = getScale().x;
 	std::random_device rd;
 	std::mt19937 mersenne(rd());
-	std::uniform_int_distribution<> newPos(static_cast<int>(-getScale().x), static_cast<int>(getScale().x));
+	std::uniform_int_distribution<> newPos(0, static_cast<int>(size * 2.0f));
 
 	for (auto i = 0; i < 3; i++)
 	{
 		auto particle = std::make_shared<Particle>(getScene(), mSeason);
-		particle->setPosition(getPosition() + Vector3(static_cast<float>(newPos(mersenne)), 0.0f, static_cast<float>(newPos(mersenne))));
+		particle->setPosition(getPosition() + Vector3(static_cast<float>(newPos(mersenne) - size), 0.0f, static_cast<float>(newPos(mersenne) - size)));
 		particle->setScale(0.03f);
 		particle->initailize();
 	}

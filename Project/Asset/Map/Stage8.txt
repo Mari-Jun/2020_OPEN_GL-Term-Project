@@ -1,43 +1,43 @@
-Time Sunny
-Season Green
+Time Sunset
+Season Sakura
 Line 1 20
-Type EndPoint 0 Tree 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 
+Type EndPoint 0 Tree 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TowerSquareC 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 Crystal 0 TowerSquareC 0 TreeQuad 0 TowerCatapult 0 TreeQuad 180 Crystal 0 Crystal 0 Crystal 0 
 Line 2 20
-Type Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Road 0 
+Type Road 0 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 Light 270 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Light 270 TreeQuad 90 TreeQuad 90 TreeQuad 180 Light 360 TowerSquareC 0 Light 180 
 Line 3 20
-Type Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Road 0 
+Type Light 90 Light 90 Light 90 Road 0 Tree 0 Tree 0 Light 360 TowerRoundC 0 Light 90 TowerBallista 0 Light 90 TowerBallista 0 TreeQuad 0 Road 0 TreeQuad 90 TowerCatapult 0 TreeQuad 180 Light 360 TowerSquareC 0 Light 180 
 Line 4 20
-Type Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 
+Type TowerSquareC 0 TowerSquareC 0 TowerSquareC 0 Light 180 TreeQuad 180 TreeQuad 90 Light 360 TowerRoundC 0 TreeQuad 0 Tree 180 Tree 90 TreeQuad 0 TreeQuad 0 Road 0 Road 0 Road 0 Road 0 Road 0 Light 270 Road 0 
 Line 5 20
-Type Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type Light 270 Light 270 Light 270 Road 0 Crystal 0 Crystal 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 180 TreeQuad 90 TreeQuad 90 TreeQuad 0 Road 0 
 Line 6 20
-Type Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type Road 0 TreeQuad 90 TreeQuad 0 Hill 0 TreeQuad 90 TreeQuad 0 Road 0 Tree 0 Tree 0 Tree 0 Road 0 TreeQuad 0 TowerSquareA 0 TowerSquareB 0 TowerSquareC 0 TowerSquareB 0 TowerSquareA 0 TreeQuad 0 TreeQuad 90 Road 0 
 Line 7 20
-Type Road 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type Light 360 TowerRoundC 0 Light 180 Light 90 Road 0 TreeQuad 0 Road 0 Tree 0 Crystal 0 Tree 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 180 TreeQuad 0 TreeQuad 90 TreeQuad 180 TreeQuad 0 Road 0 
 Line 8 20
-Type Road 0 Road 0 Road 0 Basic 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Road 0 
+Type Road 0 Light 270 Light 360 TowerRoundC 0 Light 180 TreeQuad 0 Light 90 Tree 0 Tree 0 Tree 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 Road 0 
 Line 9 20
-Type Basic 0 Basic 0 Basic 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 TowerSquareB 0 TowerSquareB 0 Road 0 TowerSquareB 0 TowerSquareB 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Road 0 
+Type TreeQuad 90 TreeQuad 0 TreeQuad 0 Light 270 Road 0 TreeQuad 0 Crystal 0 Crystal 0 TowerSquareB 0 TowerSquareB 0 Road 0 TowerSquareB 0 TowerSquareB 0 TreeQuad 90 TreeQuad 90 TreeQuad 90 TreeQuad 180 Road 0 TreeQuad 0 Road 0 
 Line 10 20
-Type Basic 0 Basic 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 TowerSquareB 0 Light 270 Road 0 Light 270 TowerSquareB 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Road 0 
+Type TreeQuad 0 TreeQuad 180 Road 0 Road 0 TreeQuad 180 TreeQuad 90 Rock 0 Rock 0 TowerSquareB 0 Light 270 Road 0 Light 270 TowerSquareB 0 Rock 0 Rock 0 TreeQuad 90 TreeQuad 90 Light 360 TowerCannon 0 Light 180 
 Line 11 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 StartPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Road 0 Road 0 Road 0 
+Type TreeQuad 90 Hill 0 Road 0 Hill 0 TreeQuad 90 Road 0 Road 0 Road 0 Road 0 Road 0 StartPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 0 Road 0 Light 270 Road 0 
 Line 12 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 TowerSquareB 0 Light 270 Road 0 Light 270 TowerSquareB 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 0 Hill 0 Road 0 Hill 0 TreeQuad 90 Road 0 Rock 0 Rock 0 TowerSquareB 0 Light 90 Road 0 Light 90 TowerSquareB 0 Rock 0 Rock 0 Road 0 Tree 0 Tree 90 Tree 0 Road 0 
 Line 13 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 TowerSquareB 0 TowerSquareB 0 Road 0 TowerSquareB 0 TowerSquareB 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 90 Crystal 0 Road 0 Crystal 0 TreeQuad 0 Road 0 TreeDouble 0 TreeDouble 0 TowerSquareB 0 TowerSquareB 0 Road 0 TowerSquareB 0 TowerSquareB 0 TreeQuad 0 TreeQuad 0 Road 0 Tree 0 Crystal 0 Tree 0 Road 0 
 Line 14 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 0 Crystal 0 Road 0 Crystal 0 TreeQuad 0 Road 0 TreeDouble 90 TreeDouble 0 Road 0 Road 0 Road 0 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 Road 0 Tree 0 Crystal 0 Tree 0 Road 0 
 Line 15 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 0 Crystal 0 Road 0 Crystal 0 TreeQuad 90 Road 0 TreeDouble 0 TreeDouble 0 Road 0 TowerSquareC 0 Road 0 TowerSquareC 0 TreeQuad 0 TreeQuad 0 TreeQuad 180 Road 0 Tree 0 Crystal 0 Tree 0 Road 0 
 Line 16 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Road 0 Road 0 Basic 0 Basic 0 Road 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 90 Hill 0 Road 0 Hill 0 Road 0 Road 0 TreeDouble 0 TreeDouble 0 Road 0 TreeQuad 90 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Tree 0 Crystal 90 Tree 0 Road 0 
 Line 17 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 0 Hill 0 Road 0 Hill 0 Road 0 TreeQuad 0 TreeQuad 180 TreeQuad 90 TreeQuad 0 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 180 Road 0 TreeQuad 0 TreeQuad 0 Tree 0 Tree 0 Tree 0 Road 0 
 Line 18 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Road 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 
+Type TreeQuad 90 TreeQuad 0 Road 0 TreeQuad 0 Light 270 TreeQuad 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeQuad 90 TreeQuad 0 Road 0 Light 90 Road 0 Light 270 Road 0 Light 270 Road 0 
 Line 19 20
-Type Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Road 0 
+Type TreeQuad 0 TreeQuad 0 Road 0 TowerRoundA 0 TowerRoundA 0 TowerRoundA 0 Road 0 Crystal 0 Crystal 0 Crystal 0 Road 0 TreeQuad 90 TowerSquareB 0 TreeQuad 90 TowerSquareA 0 TreeQuad 0 TowerRoundC 0 TreeQuad 0 TowerSquareC 0 Road 0 
 Line 20 20
-Type Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Basic 0 Basic 0 Basic 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 
-Minion 1
+Type TreeQuad 0 TreeQuad 0 Road 0 Light 270 Light 270 Light 270 Road 0 Crystal 0 Crystal 0 Crystal 0 Road 0 Road 0 Light 270 Road 0 Light 270 Road 0 Light 270 Road 0 Light 270 Road 0 
+Minion 0

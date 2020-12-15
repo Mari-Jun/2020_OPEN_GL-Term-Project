@@ -3,7 +3,7 @@ Season Sakura
 Line 1 20
 Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 2 20
-Type Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
+Type Basic 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 TreeQuad 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 3 20
 Type Basic 0 Basic 0 Basic 0 Crystal 0 TreeQuad 0 TreeDouble 0 Crystal 0 TreeQuad 0 TreeDouble 0 Hill 0 Rock 0 Hill 0 Rock 0 Crystal 0 Tree 0 Tree 0 Basic 0 Basic 0 Basic 0 Basic 0 
 Line 4 20
