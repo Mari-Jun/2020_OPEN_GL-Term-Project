@@ -1,4 +1,3 @@
-//무브플레이어.cpp
 #include "MovePlayer.h"
 #include "Robot/RobotHead.h"
 #include "Robot/RobotArm.h"
@@ -14,8 +13,8 @@
 #include "../../Scene/GameScene.h"
 #include "../../Map/GameMap.h"
 #include "../Tile/Tile.h"
-//#include "../../Minimap/GameMinimap.h"
 #include "../../Minimap/GameMinimap.h"
+
 MovePlayer::MovePlayer(const std::weak_ptr<class Scene>& scene, PlayerInfo info)
 	: Player(scene, info)
 	, mStat({})
@@ -128,11 +127,11 @@ void MovePlayer::collides(const std::weak_ptr<BoxComponent>& bComp)
 			{
 				pos.x += dx;
 			}
-			else if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
+			if (Math::Abs(dz) <= Math::Abs(dx) && Math::Abs(dz) <= Math::Abs(dy))
 			{
 				pos.z += dz;
 			}
-			else
+			if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
 			{
 				pos.y += dy;
 				mGravitySpeed = 0.0f;

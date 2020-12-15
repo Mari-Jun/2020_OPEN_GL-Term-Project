@@ -5,7 +5,7 @@
 int main(int argc, char** argv)
 {
 	HWND hWndConsole = GetConsoleWindow();
-	ShowWindow(hWndConsole, SW_SHOW);
+	ShowWindow(hWndConsole, SW_HIDE);
 
 	auto game = std::make_shared<Game>();
 

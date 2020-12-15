@@ -19,7 +19,6 @@
 //#include "../Minimap/GameMinimap.h"
 #include "../Minimap/GameMinimap.h"
 
-#include "../Actor/CubeMap/CubeMap.h"
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreator.h"
 #include "../Actor/Player/Type/MinionAi/MinionManager.h"

@@ -151,6 +151,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glew32.lib;freeglut.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EnableUAC>true</EnableUAC>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -163,7 +165,6 @@
     <ClCompile Include="Source\Game\Graphics\Mesh\CubeMapComponent.cpp" />
     <ClCompile Include="Source\Game\Minimap\Minimap.cpp" />
     <ClCompile Include="Source\Game\Sound\Sound.cpp" />
-    <ClCompile Include="Source\InGame\Actor\CubeMap\CubeMap.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Arrow.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Frozen.cpp" />
     <ClCompile Include="Source\InGame\Actor\Enemy\Projectile\Laser.cpp" />
@@ -265,7 +266,6 @@
     <ClInclude Include="Source\Game\Graphics\Mesh\CubeMapComponent.h" />
     <ClInclude Include="Source\Game\Minimap\Minimap.h" />
     <ClInclude Include="Source\Game\Sound\Sound.h" />
-    <ClInclude Include="Source\InGame\Actor\CubeMap\CubeMap.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Arrow.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Frozen.h" />
     <ClInclude Include="Source\InGame\Actor\Enemy\Projectile\Laser.h" />
