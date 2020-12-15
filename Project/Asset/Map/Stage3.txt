@@ -5,11 +5,11 @@ Type TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQuad 90 TreeQuad 0 TreeQu
 Line 2 20
 Type TreeQuad 0 Tree 0 TreeQuad 90 TreeQuad 90 TreeQuad 0 TreeQuad 0 Tree 0 Tree 0 Tree 0 TreeQuad 0 TreeQuad 0 Tree 0 Tree 0 TreeQuad 90 TreeQuad 90 Tree 0 Tree 0 Tree 0 Tree 0 TreeQuad 90 
 Line 3 20
-Type TreeQuad 0 Tree 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 270 Tree 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Tree 0 TreeQuad 90 
+Type TreeQuad 0 Tree 0 Road 0 Road 0 Road 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 270 Tree 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Tree 0 TreeQuad 90 
 Line 4 20
-Type TreeQuad 0 TreeQuad 0 TreeDouble 90 StartPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeDouble 0 Tree 0 TreeQuad 90 
+Type TreeQuad 0 TreeQuad 0 Road 0 StartPoint 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 Road 0 TreeDouble 0 Tree 0 TreeQuad 90 
 Line 5 20
-Type TreeQuad 90 TreeQuad 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeQuad 90 TreeQuad 0 
+Type TreeQuad 90 TreeQuad 0 Road 0 Road 0 Road 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 TreeDouble 0 Road 0 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeDouble 90 TreeQuad 90 TreeQuad 0 
 Line 6 20
 Type TreeQuad 0 Tree 0 Tree 0 Tree 0 Tree 0 Tree 0 Tree 0 TreeQuad 0 TowerBallista 0 Hill 0 Road 0 Hill 0 TowerCannon 0 Tree 0 Tree 0 Tree 0 TreeQuad 180 Tree 0 Tree 0 TreeQuad 90 
 Line 7 20

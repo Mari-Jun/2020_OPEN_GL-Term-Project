@@ -144,3 +144,4 @@ Asset/Mesh/Tile/Tower/Tile_Tower_SquareB
 Asset/Image/Button/SetButtonOn.png
 Asset/Image/Button/SetButton.png
 Asset/Mesh/Tile/Tower/Tile_Tower_RoundA
+Asset/Image/UIBackground/Volume.png
