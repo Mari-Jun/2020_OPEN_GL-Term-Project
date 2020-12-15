@@ -146,3 +146,7 @@ Asset/Image/Button/SetButton.png
 Asset/Image/HUD/YNum6.png
 Asset/Image/HUD/YNum9.png
 Asset/Image/HUD/YNum7.png
+Asset/Image/UIBackground/Volume.png
+Asset/Image/Setting/3.png
+Asset/Image/Setting/2.png
+Asset/Image/Setting/1.png
