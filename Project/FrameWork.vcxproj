@@ -24,7 +24,6 @@
     <ProjectGuid>{db62b82e-8dd3-4f85-9298-9fde2a1619b5}</ProjectGuid>
     <RootNamespace>FrameWork</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Cruelty Tower</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,7 +153,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glew32.lib;freeglut.lib;Extern\FMOD\lib\x64\fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EnableUAC>true</EnableUAC>
-      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
