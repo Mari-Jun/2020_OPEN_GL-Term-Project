@@ -285,9 +285,6 @@
     <ClCompile Include="Source\Game\Graphics\Mesh\CubeMapComponent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InGame\Actor\CubeMap\CubeMap.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InGame\UI\HUD\LoadingHUD.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -591,9 +588,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Graphics\Mesh\CubeMapComponent.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InGame\Actor\CubeMap\CubeMap.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Source\InGame\UI\HUD\LoadingHUD.h">
