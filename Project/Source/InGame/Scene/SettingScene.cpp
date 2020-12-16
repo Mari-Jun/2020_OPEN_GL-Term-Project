@@ -92,7 +92,7 @@ void SettingScene::loadUI()
 	}, Vector2(180.0f, 70.0f), "Asset/Image/Button/DownButton");
 
 	ui->addButton([this]() {getGame().lock()->getSound()->EFFECTvolumeUP(); }, Vector2(320.0f, -90.0f), "Asset/Image/Button/UpButton");
-	ui->addButton([this]() {getGame().lock()->getSound()->EFFECTvolumeDOWN(); }, Vector2(180.0f, -90.0f), "Asset/Image/Button/UpButton");
+	ui->addButton([this]() {getGame().lock()->getSound()->EFFECTvolumeDOWN(); }, Vector2(180.0f, -90.0f), "Asset/Image/Button/DownButton");
 }
 
 void SettingScene::unLoadData()
