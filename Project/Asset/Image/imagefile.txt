@@ -153,3 +153,4 @@ Asset/Image/HUD/YNum8.png
 Asset/Image/HUD/YNum5.png
 Asset/Image/HUD/YNum9.png
 Asset/Image/HUD/YNum6.png
+Asset/Image/HUD/YNum7.png
