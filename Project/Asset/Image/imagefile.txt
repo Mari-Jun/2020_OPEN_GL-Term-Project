@@ -149,3 +149,7 @@ Asset/Image/Setting/3.png
 Asset/Image/Setting/2.png
 Asset/Image/Setting/1.png
 Asset/Image/Setting/0.png
+Asset/Image/HUD/YNum8.png
+Asset/Image/HUD/YNum5.png
+Asset/Image/HUD/YNum9.png
+Asset/Image/HUD/YNum6.png
