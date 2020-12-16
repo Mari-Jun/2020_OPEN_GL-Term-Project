@@ -70,12 +70,6 @@ void GameScene::sceneInput()
 
 	auto game = getGame().lock();
 
-	if (game->getKeyBoard()->isKeyPressed('z'))
-	{
-		setSceneState(SceneState::Dead);
-		auto scene = std::make_shared<LoadingScene>(getGame());
-		scene->initailize();
-	}
 	if (game->getKeyBoard()->isSpecialKeyFirst(GLUT_KEY_F5))
 	{
 		setSceneState(SceneState::Dead);

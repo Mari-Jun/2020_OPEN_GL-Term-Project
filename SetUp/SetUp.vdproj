@@ -249,12 +249,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1A01B3BBDD564BC6A6930C375B428BF8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1A766AAF308A4180BE3A6EE0234F95F4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1630,6 +1624,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B52726C545AB42B294AD067BA10C9C6C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B5BD61EDE08B48D1ABDD0B60F948868F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -10160,7 +10160,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Cruelty Tower"
         "ProductCode" = "8:{F2D17417-DC48-4098-8715-93EAC3EB37D4}"
-        "PackageCode" = "8:{3CF2459C-DD34-4299-B53C-21890D155E94}"
+        "PackageCode" = "8:{19CA47AB-27EB-4C68-94CC-126E6DAC3BD5}"
         "UpgradeCode" = "8:{BB728F3E-04FE-4CAC-83DF-83D10874D74C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -10280,15 +10280,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3641FD48FE46443B96F0A2C8F364F054"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0B68A4F62FBF466493557B4C78971B5C"
             {
-            "Name" = "8:Tower SetUp"
+            "Name" = "8:Tower Setup"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_1A01B3BBDD564BC6A6930C375B428BF8"
+            "Target" = "8:_B5BD61EDE08B48D1ABDD0B60F948868F"
             "Folder" = "8:_0F6D10C63DB247DB99C25B7837B13FED"
             "WorkingFolder" = "8:_4F7E9EAA07B94013B21459B1D3D41889"
             "Icon" = "8:"
@@ -10693,9 +10693,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1A01B3BBDD564BC6A6930C375B428BF8"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B5BD61EDE08B48D1ABDD0B60F948868F"
             {
-            "SourcePath" = "8:..\\Project\\x64\\Release\\FrameWork.exe"
+            "SourcePath" = "8:..\\Project\\Debug\\FrameWork.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4F7E9EAA07B94013B21459B1D3D41889"
@@ -10713,7 +10713,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{DB62B82E-8DD3-4F85-9298-9FDE2A1619B5}"
             "ShowKeyOutput" = "11:TRUE"
