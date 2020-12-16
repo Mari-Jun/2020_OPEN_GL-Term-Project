@@ -15,10 +15,7 @@
 #include "../../Game/Actor/Camera/CameraActor.h"
 #include "../../Game/Actor/Camera/FollowCameraActor.h"
 #include "../../Game/Sound/Sound.h"
-
-//#include "../Minimap/GameMinimap.h"
 #include "../Minimap/GameMinimap.h"
-
 #include "../Actor/Player/Type/ControlPlayer.h"
 #include "../Actor/Particle/ParticleCreator.h"
 #include "../Actor/Player/Type/MinionAi/MinionManager.h"
