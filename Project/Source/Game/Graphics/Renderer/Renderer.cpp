@@ -116,10 +116,9 @@ void Renderer::draw2()
 	// 여기에 그려줄것만 따로 빼서 그리세요
 	// 겹쳐서 그리기는 함수기때문에 mwindow->clear 는 없습니다.
 	// 그리는 부분
-	drawCubeMap();
+
 	drawMeshComponent();
 	drawAlphaComponent();
-	drawBillBoardComponent();
 
 	drawMinimapMarker();
 	mWindow->swapBuffer();
